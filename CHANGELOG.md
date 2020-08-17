@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.2] - 17/08/2020
 
-* TODO: Describe initial release.
+* Improvements in CubeBuilder and Observer.
+
+## [0.0.1] - 17/08/2020
+
+* Start Project

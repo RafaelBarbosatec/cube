@@ -3,7 +3,7 @@ import 'package:examplecube/pokemon/pokemon_cube.dart';
 import 'package:examplecube/pokemon/widgets/pokemon_item_widget.dart';
 import 'package:flutter/material.dart';
 
-class PokemonWidget extends StatelessWidget {
+class PokemonScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {

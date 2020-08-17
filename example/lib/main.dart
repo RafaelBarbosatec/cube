@@ -1,8 +1,8 @@
 import 'package:cubes/cubes.dart';
-import 'package:examplecube/counter/Counter.dart';
 import 'package:examplecube/counter/counter_cube.dart';
+import 'package:examplecube/counter/counter_screen.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
-import 'package:examplecube/pokemon/pokemon_widget.dart';
+import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Counter()),
+                  MaterialPageRoute(builder: (context) => CounterScreen()),
                 );
               },
             ),
@@ -55,7 +55,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PokemonWidget()),
+                  MaterialPageRoute(builder: (context) => PokemonScreen()),
                 );
               },
             )

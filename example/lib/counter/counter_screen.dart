@@ -2,7 +2,7 @@ import 'package:cubes/cubes.dart';
 import 'package:examplecube/counter/counter_cube.dart';
 import 'package:flutter/material.dart';
 
-class Counter extends StatelessWidget {
+class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(

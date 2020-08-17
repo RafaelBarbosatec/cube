@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);
 
-class Observer<T> extends StatefulWidget {
-  final ObservableValue<T> observable;
+class Observer extends StatefulWidget {
+  final ObservableValue observable;
   final ObserverBuilder builder;
 
   const Observer({

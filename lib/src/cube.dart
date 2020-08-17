@@ -17,11 +17,13 @@ abstract class Cube {
     if (listener != null) _onErrorListeners.add(listener);
   }
 
-  void removeOnSuccessListener(FeedbackChanged listener) {
+  void removeOnSuccessListener<T extends Cube>(
+      FeedbackChanged<T, String> listener) {
     _onSuccessListeners.remove(listener);
   }
 
-  void removeOnErrorListener(FeedbackChanged listener) {
+  void removeOnErrorListener<T extends Cube>(
+      FeedbackChanged<T, String> listener) {
     _onErrorListeners.remove(listener);
   }
 

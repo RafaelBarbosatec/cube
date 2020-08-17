@@ -1,3 +1,7 @@
+## [0.0.3] - 17/08/2020
+
+* Fix removeListener.
+
 ## [0.0.2] - 17/08/2020
 
 * Improvements in CubeBuilder and Observer.

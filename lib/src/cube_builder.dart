@@ -58,7 +58,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   @override
   void dispose() {
     cube.removeOnSuccessListener(_onSuccess);
-    cube.removeOnErrorListener(widget._builderOnError);
+    cube.removeOnErrorListener(_onError);
     cube.dispose();
     super.dispose();
   }
@@ -68,15 +68,15 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     return widget._builderInner(context, cube);
   }
 
-  void _onSuccess(C valueA, String valueB) {
+  void _onSuccess(C cube, String text) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._builderOnSuccess(valueA, valueB);
+      widget._builderOnSuccess(cube, text);
     });
   }
 
-  void _onError(C valueA, String valueB) {
+  void _onError(C cube, String text) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._builderOnError(valueA, valueB);
+      widget._builderOnError(cube, text);
     });
   }
 }

@@ -5,7 +5,7 @@
 Simple State Manager
 
 ## Install
-To use this plugin, add `bsev:latest_version` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+To use this plugin, add `cubes:latest_version` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
 ## Usage
 

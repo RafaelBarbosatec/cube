@@ -1,4 +1,4 @@
-# cube
+# Cube
 
 Simple State Manager
 

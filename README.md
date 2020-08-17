@@ -1,6 +1,13 @@
+[![pub package](https://img.shields.io/pub/v/cubes.svg)](https://pub.dartlang.org/packages/cubes)
+
 # Cubes
 
 Simple State Manager
+
+## Install
+To use this plugin, add `bsev:latest_version` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+
+## Usage
 
 ```dart
 

@@ -35,6 +35,8 @@ class _ObserverState extends State<Observer> {
   }
 
   void _listener() {
-    setState(() {});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
   }
 }

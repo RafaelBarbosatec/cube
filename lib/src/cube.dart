@@ -1,34 +1,35 @@
-import 'package:flutter/cupertino.dart';
+typedef FeedbackChanged<A, B> = void Function(A valueA, B valueB);
 
 abstract class Cube {
-  List<ValueChanged<String>> _onSuccessListeners = List();
-  List<ValueChanged<String>> _onErrorListeners = List();
+  List<FeedbackChanged<dynamic, String>> _onSuccessListeners = List();
+  List<FeedbackChanged<dynamic, String>> _onErrorListeners = List();
   dynamic data;
 
   void ready() {}
   void dispose() {}
 
-  void addOnSuccessListener(ValueChanged<String> listener) {
+  void addOnSuccessListener<T extends Cube>(
+      FeedbackChanged<T, String> listener) {
     if (listener != null) _onSuccessListeners.add(listener);
   }
 
-  void addOnErrorListener(ValueChanged<String> listener) {
+  void addOnErrorListener<T extends Cube>(FeedbackChanged<T, String> listener) {
     if (listener != null) _onErrorListeners.add(listener);
   }
 
-  void removeOnSuccessListener(ValueChanged<String> listener) {
+  void removeOnSuccessListener(FeedbackChanged listener) {
     _onSuccessListeners.remove(listener);
   }
 
-  void removeOnErrorListener(ValueChanged<String> listener) {
+  void removeOnErrorListener(FeedbackChanged listener) {
     _onErrorListeners.remove(listener);
   }
 
   void onSuccess(String msg) {
-    _onSuccessListeners.forEach((element) => element(msg));
+    _onSuccessListeners.forEach((element) => element(this, msg));
   }
 
   void onError(String msg) {
-    _onErrorListeners.forEach((element) => element(msg));
+    _onErrorListeners.forEach((element) => element(this, msg));
   }
 }

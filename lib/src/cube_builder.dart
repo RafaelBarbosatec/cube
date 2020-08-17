@@ -11,10 +11,12 @@ typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(
 class CubeBuilder<C extends Cube> extends StatefulWidget {
   final dynamic initData;
   final AsyncWidgetBuilder<C> builder;
-  final ValueChanged<String> onSuccess;
-  final ValueChanged<String> onError;
+  final FeedbackChanged<C, String> onSuccess;
+  final FeedbackChanged<C, String> onError;
   final C cube;
   AsyncWidgetBuilder _builderInner;
+  FeedbackChanged _builderOnSuccess;
+  FeedbackChanged _builderOnError;
 
   CubeBuilder(
       {Key key,
@@ -29,6 +31,8 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
 
   void _confBuilders() {
     _builderInner = (context, cube) => builder(context, cube);
+    _builderOnSuccess = (cube, text) => onSuccess(cube, text);
+    _builderOnError = (cube, text) => onError(cube, text);
   }
 
   @override
@@ -45,16 +49,16 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
       cube = widget.cube;
     }
     cube.data = widget.initData;
-    cube.addOnSuccessListener(widget.onSuccess);
-    cube.addOnErrorListener(widget.onError);
+    cube.addOnSuccessListener(_onSuccess);
+    cube.addOnErrorListener(_onError);
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override
   void dispose() {
-    cube.removeOnSuccessListener(widget.onSuccess);
-    cube.removeOnErrorListener(widget.onError);
+    cube.removeOnSuccessListener(_onSuccess);
+    cube.removeOnErrorListener(widget._builderOnError);
     cube.dispose();
     super.dispose();
   }
@@ -62,5 +66,17 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   @override
   Widget build(BuildContext context) {
     return widget._builderInner(context, cube);
+  }
+
+  void _onSuccess(C valueA, String valueB) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget._builderOnSuccess(valueA, valueB);
+    });
+  }
+
+  void _onError(C valueA, String valueB) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget._builderOnError(valueA, valueB);
+    });
   }
 }

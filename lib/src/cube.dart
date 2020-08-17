@@ -5,7 +5,7 @@ abstract class Cube {
   List<ValueChanged<String>> _onErrorListeners = List();
   dynamic data;
 
-  void init() {}
+  void ready() {}
   void dispose() {}
 
   void addOnSuccessListener(ValueChanged<String> listener) {

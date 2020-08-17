@@ -48,7 +48,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     cube.addOnSuccessListener(widget.onSuccess);
     cube.addOnErrorListener(widget.onError);
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => cube.init());
+    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override

@@ -18,14 +18,14 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   FeedbackChanged _builderOnSuccess;
   FeedbackChanged _builderOnError;
 
-  CubeBuilder(
-      {Key key,
-      @required this.builder,
-      this.onSuccess,
-      this.onError,
-      this.initData,
-      this.cube})
-      : super(key: key) {
+  CubeBuilder({
+    Key key,
+    @required this.builder,
+    this.onSuccess,
+    this.onError,
+    this.initData,
+    this.cube,
+  }) : super(key: key) {
     _confBuilders();
   }
 

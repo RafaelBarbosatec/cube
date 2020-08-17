@@ -1,4 +1,4 @@
-import 'package:cube/cube.dart';
+import 'package:cubes/cube.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,5 +1,5 @@
-import 'package:cube/src/cube.dart';
-import 'package:cube/src/injector.dart';
+import 'package:cubes/src/cube.dart';
+import 'package:cubes/src/injector.dart';
 import 'package:flutter/material.dart';
 
 typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(

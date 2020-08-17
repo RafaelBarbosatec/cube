@@ -1,4 +1,4 @@
-import 'package:cube/src/cube.dart';
+import 'package:cubes/src/cube.dart';
 import 'package:get_it/get_it.dart';
 
 final _getIt = GetIt.instance;

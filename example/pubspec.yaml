@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cube:
+  cubes:
     path: ../
 
 dev_dependencies:

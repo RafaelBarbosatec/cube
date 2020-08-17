@@ -1,4 +1,4 @@
-import 'package:cubes/cube.dart';
+import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class CountCube extends Cube {
-  ObservableValue<int> count = ObservableValue(initValue: 0);
+  final count = ObservableValue<int>(initValue: 0);
 
   void increment() {
     count.set(count.value + 1);

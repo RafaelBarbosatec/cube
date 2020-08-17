@@ -26,6 +26,12 @@ class CountCube extends Cube {
 
   void increment() {
     count.set(count.value + 1);
+    if (count.value == 10) {
+      onSuccess('Value iguals 10');
+    }
+    if (count.value == 50) {
+      onError('You are clicking too much o.O');
+    }
   }
 }
 
@@ -36,6 +42,12 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CountCube>(
+      onSuccess: (text) {
+        print('onSuccess: $text');
+      },
+      onError: (text) {
+        print('onError: $text');
+      },
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(

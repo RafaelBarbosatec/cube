@@ -7,6 +7,7 @@ typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(
   C cube,
 );
 
+// ignore: must_be_immutable
 class CubeBuilder<C extends Cube> extends StatefulWidget {
   final dynamic initData;
   final AsyncWidgetBuilder<C> builder;

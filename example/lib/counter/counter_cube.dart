@@ -12,14 +12,14 @@ class CounterCube extends Cube {
   void increment() {
     count.set(count.value + 1);
     if (count.value == 5) {
-      onAction({'key': 'param'}); // to send anythings to view
+      onAction({'key': 'param'}); // to send anything to view
     }
     if (count.value == 10) {
-      onSuccess('Value iguals 10'); // to send message of the success
+      onSuccess('Value iguals 10'); // to send the success message
     }
     if (count.value == 50) {
       onError(
-          'You are clicking too much o.O'); // to send message of the failure
+          'You are clicking too much o.O'); // to send the failure message
     }
   }
 }

@@ -71,10 +71,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onSuccess: (text) {
+      onSuccess: (cube, text) {
         print('onSuccess: $text');
       },
-      onError: (text) {
+      onError: (cube, text) {
         print('onError: $text');
       },
       onAction: (cube, data) {

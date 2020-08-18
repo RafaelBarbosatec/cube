@@ -1,17 +1,19 @@
 import 'package:cubes/src/observable_value.dart';
+import 'package:cubes/src/util.dart';
 import 'package:flutter/material.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);
 
-class Observer extends StatefulWidget {
-  final ObservableValue observable;
-  final ObserverBuilder builder;
-
+class Observer<T> extends StatefulWidget {
   const Observer({
     Key key,
     @required this.observable,
     @required this.builder,
   }) : super(key: key);
+
+  final ObservableValue<T> observable;
+  final ObserverBuilder<T> builder;
+
   @override
   _ObserverState createState() => _ObserverState();
 }
@@ -35,8 +37,6 @@ class _ObserverState extends State<Observer> {
   }
 
   void _listener() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {});
-    });
+    postFrame((_) => setState(() {}));
   }
 }

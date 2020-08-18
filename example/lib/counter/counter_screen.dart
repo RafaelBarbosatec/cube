@@ -12,6 +12,9 @@ class CounterScreen extends StatelessWidget {
       onError: (cube, text) {
         print('onError: $text');
       },
+      onAction: (cube, data) {
+        print('onAction: $data');
+      },
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(
@@ -24,7 +27,7 @@ class CounterScreen extends StatelessWidget {
                 Text(
                   'You have pushed the button this many times:',
                 ),
-                cube.count.build((value) {
+                cube.count.build<int>((value) {
                   return Text(value.toString());
                 }),
               ],

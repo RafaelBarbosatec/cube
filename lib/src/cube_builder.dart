@@ -1,5 +1,6 @@
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/injector.dart';
+import 'package:cubes/src/util.dart';
 import 'package:flutter/material.dart';
 
 typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(
@@ -9,15 +10,6 @@ typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(
 
 // ignore: must_be_immutable
 class CubeBuilder<C extends Cube> extends StatefulWidget {
-  final dynamic initData;
-  final AsyncWidgetBuilder<C> builder;
-  final FeedbackChanged<C, String> onSuccess;
-  final FeedbackChanged<C, String> onError;
-  final C cube;
-  AsyncWidgetBuilder _builderInner;
-  FeedbackChanged _builderOnSuccess;
-  FeedbackChanged _builderOnError;
-
   CubeBuilder({
     Key key,
     @required this.builder,
@@ -25,14 +17,27 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.onError,
     this.initData,
     this.cube,
+    this.onAction,
   }) : super(key: key) {
     _confBuilders();
   }
+
+  final dynamic initData;
+  final AsyncWidgetBuilder<C> builder;
+  final FeedbackChanged<C, String> onSuccess;
+  final FeedbackChanged<C, String> onError;
+  final FeedbackChanged<C, dynamic> onAction;
+  final C cube;
+  AsyncWidgetBuilder _builderInner;
+  FeedbackChanged _builderOnSuccess;
+  FeedbackChanged _builderOnError;
+  FeedbackChanged _builderOnAction;
 
   void _confBuilders() {
     _builderInner = (context, cube) => builder(context, cube);
     _builderOnSuccess = (cube, text) => onSuccess(cube, text);
     _builderOnError = (cube, text) => onError(cube, text);
+    _builderOnAction = (cube, data) => onAction(cube, data);
   }
 
   @override
@@ -41,6 +46,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
 
 class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   C cube;
+
   @override
   void initState() {
     if (widget.cube == null) {
@@ -51,14 +57,16 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     cube.data = widget.initData;
     cube.addOnSuccessListener(_onSuccess);
     cube.addOnErrorListener(_onError);
+    cube.addOnActionListener(_onAction);
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
+    postFrame((_) => cube.ready());
   }
 
   @override
   void dispose() {
     cube.removeOnSuccessListener(_onSuccess);
     cube.removeOnErrorListener(_onError);
+    cube.removeOnActionListener(_onAction);
     cube.dispose();
     super.dispose();
   }
@@ -69,14 +77,14 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   }
 
   void _onSuccess(C cube, String text) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._builderOnSuccess(cube, text);
-    });
+    postFrame((_) => widget._builderOnSuccess(cube, text));
   }
 
   void _onError(C cube, String text) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._builderOnError(cube, text);
-    });
+    postFrame((_) => widget._builderOnError(cube, text));
+  }
+
+  void _onAction(C cube, dynamic data) {
+    postFrame((_) => widget._builderOnAction(cube, data));
   }
 }

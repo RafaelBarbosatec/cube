@@ -15,7 +15,13 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  registerCube((i) => CountCube());
+  // register cube
+  registerCube((i) => CounterCube());
+
+  // Example register repositories or anythings
+  // registerSingletonDependency((i) => SingletonRepository(i.get());
+  // registerDependency((i) => FactoryRepository(i.get());
+
   runApp(MyApp());
 }
 
@@ -34,18 +40,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CountCube extends Cube {
+class CounterCube extends Cube {
   final count = ObservableValue<int>(initValue: 0);
 
-  void increment() {
-    count.set(count.value + 1);
-    if (count.value == 10) {
-      onSuccess('Value iguals 10');
+    @override
+    void ready() {
+      // do anythings when view is ready
+      super.ready();
     }
-    if (count.value == 50) {
-      onError('You are clicking too much o.O');
+
+    void increment() {
+      count.set(count.value + 1);
+      if (count.value == 5) {
+        onAction({'key': 'param'}); // to send anythings to view
+      }
+      if (count.value == 10) {
+        onSuccess('Value iguals 10'); // to send message of the success
+      }
+      if (count.value == 50) {
+        onError('You are clicking too much o.O'); // to send message of the failure
+      }
     }
-  }
 }
 
 class Home extends StatelessWidget {
@@ -54,12 +69,15 @@ class Home extends StatelessWidget {
   const Home({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return CubeBuilder<CountCube>(
+    return CubeBuilder<CounterCube>(
       onSuccess: (text) {
         print('onSuccess: $text');
       },
       onError: (text) {
         print('onError: $text');
+      },
+      onAction: (cube, data) {
+        print('onAction: $data');
       },
       builder: (context, cube) {
         return Scaffold(
@@ -73,7 +91,7 @@ class Home extends StatelessWidget {
                 Text(
                   'You have pushed the button this many times:',
                 ),
-                cube.count.build((value) {
+                cube.count.build<int>((value) {
                   return Text(value.toString());
                 }),
               ],

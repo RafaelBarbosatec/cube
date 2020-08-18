@@ -1,3 +1,8 @@
+## [0.0.5] - 18/08/2020
+
+* Add `onAction`
+* Update example.
+
 ## [0.0.4] - 17/08/2020
 
 * Improvements in ObservableValueExtensions.

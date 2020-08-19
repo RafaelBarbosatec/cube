@@ -143,7 +143,7 @@ void main() {
   });
 }
 
-Example with asynchronous call [here]()
-
 ```
+
+Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/pokemon_test.dart)
 

@@ -37,6 +37,10 @@ class _ObserverState extends State<Observer> {
   }
 
   void _listener() {
-    postFrame((_) => setState(() {}));
+    postFrame(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 }

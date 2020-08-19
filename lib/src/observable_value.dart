@@ -8,7 +8,9 @@ class ObservableValue<T> extends ChangeNotifier {
 
   void set(T value) {
     _data = value;
-    notifyListeners();
+    if (hasListeners) {
+      notifyListeners();
+    }
   }
 
   T get value => _data;

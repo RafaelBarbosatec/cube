@@ -59,7 +59,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     cube.addOnErrorListener(_onError);
     cube.addOnActionListener(_onAction);
     super.initState();
-    postFrame((_) => cube.ready());
+    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override
@@ -77,14 +77,26 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   }
 
   void _onSuccess(C cube, String text) {
-    postFrame((_) => widget._builderOnSuccess(cube, text));
+    postFrame(() {
+      if (mounted) {
+        widget._builderOnSuccess(cube, text);
+      }
+    });
   }
 
   void _onError(C cube, String text) {
-    postFrame((_) => widget._builderOnError(cube, text));
+    postFrame(() {
+      if (mounted) {
+        widget._builderOnError(cube, text);
+      }
+    });
   }
 
   void _onAction(C cube, dynamic data) {
-    postFrame((_) => widget._builderOnAction(cube, data));
+    postFrame(() {
+      if (mounted) {
+        widget._builderOnAction(cube, data);
+      }
+    });
   }
 }

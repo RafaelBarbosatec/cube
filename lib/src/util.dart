@@ -1,6 +1,6 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 
-void postFrame(FrameCallback callback) {
-  WidgetsBinding.instance.addPostFrameCallback(callback);
+void postFrame(VoidCallback callback) {
+  Future.delayed(Duration.zero, callback);
 }

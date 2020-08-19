@@ -40,7 +40,7 @@ class PokemonScreen extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       )
                     : SizedBox.shrink();
-              })
+              }),
             ],
           ),
         );

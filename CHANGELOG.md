@@ -1,3 +1,7 @@
+## [0.0.6] - 19/08/2020
+
+* Hotfix rebuild Observer.
+
 ## [0.0.5] - 18/08/2020
 
 * Add `onAction`

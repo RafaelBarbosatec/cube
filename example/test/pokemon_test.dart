@@ -37,6 +37,7 @@ void main() {
 
     await cube.ready();
 
-    expectLater(cube.list.value, mockList);
+    expect(cube.list.value, mockList);
+    expect(cube.progress.value, false);
   });
 }

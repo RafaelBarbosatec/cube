@@ -27,6 +27,7 @@ dependencies:
   cubes:
     path: ../
   http: ^0.12.2
+  mockito: ^4.1.1
 
 dev_dependencies:
   flutter_test:

@@ -18,7 +18,7 @@ class PokemonCube extends Cube {
     super.ready();
   }
 
-  void loadList({bool isMore = false}) async {
+  void loadList({bool isMore = false}) {
     if (progress.value) return;
     if (isMore) {
       page++;

@@ -110,3 +110,40 @@ class Home extends StatelessWidget {
 }
 
 ```
+
+## Testing
+
+```dart
+
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  CounterCube cube;
+  setUp(() {
+    cube = CounterCube();
+  });
+
+  tearDown(() {
+    cube?.dispose();
+  });
+  test('initial value', () {
+    expect(cube.count.value, 0);
+  });
+
+  test('increment value', () {
+    cube.increment();
+    expect(cube.count.value, 1);
+  });
+
+  test('increment value 3 times', () {
+    cube.increment();
+    cube.increment();
+    cube.increment();
+    expect(cube.count.value, 3);
+  });
+}
+
+Example with asynchronous call [here]()
+
+```
+

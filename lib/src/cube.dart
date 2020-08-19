@@ -56,17 +56,17 @@ abstract class Cube {
     _onActionListeners?.remove(listener);
   }
 
-  // Method to send message of the success
+  // Method to send the success message
   void onSuccess(String msg) {
     _onSuccessListeners?.forEach((element) => element(this, msg));
   }
 
-  // Method to send message of the failure
+  // Method to send the failure message
   void onError(String msg) {
     _onErrorListeners?.forEach((element) => element(this, msg));
   }
 
-  // Method to send anythings to view
+  // Method to send anything to view
   void onAction(dynamic action) {
     _onActionListeners?.forEach((element) => element(this, action));
   }

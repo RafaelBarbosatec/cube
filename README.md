@@ -19,7 +19,7 @@ void main() {
   // register cube
   registerCube((i) => CounterCube());
 
-  // Example register repositories or anythings
+  // Example register repositories or anything
   // registerSingletonDependency((i) => SingletonRepository(i.get());
   // registerDependency((i) => FactoryRepository(i.get());
 
@@ -46,20 +46,20 @@ class CounterCube extends Cube {
 
     @override
     void ready() {
-      // do anythings when view is ready
+      // do anything when view is ready
       super.ready();
     }
 
     void increment() {
       count.set(count.value + 1);
       if (count.value == 5) {
-        onAction({'key': 'param'}); // to send anythings to view
+        onAction({'key': 'param'}); // Method to send anything to view
       }
       if (count.value == 10) {
-        onSuccess('Value iguals 10'); // to send message of the success
+        onSuccess('Value iguals 10'); // Method to send the success message
       }
       if (count.value == 50) {
-        onError('You are clicking too much o.O'); // to send message of the failure
+        onError('You are clicking too much o.O'); // Method to send the failure message
       }
     }
 }

@@ -1,3 +1,7 @@
+## [0.0.8] - 20/08/2020
+
+* Add animation in Observer
+
 ## [0.0.7] - 20/08/2020
 
 * Improvements in `ObservableValue`

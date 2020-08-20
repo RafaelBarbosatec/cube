@@ -9,10 +9,16 @@ class Observer<T> extends StatefulWidget {
     Key key,
     @required this.observable,
     @required this.builder,
+    this.animate = false,
+    this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
+    this.duration = const Duration(milliseconds: 300),
   }) : super(key: key);
 
   final ObservableValue<T> observable;
   final ObserverBuilder<T> builder;
+  final bool animate;
+  final AnimatedSwitcherTransitionBuilder transitionBuilder;
+  final Duration duration;
 
   @override
   _ObserverState createState() => _ObserverState();
@@ -33,6 +39,13 @@ class _ObserverState extends State<Observer> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.animate) {
+      return AnimatedSwitcher(
+        duration: widget.duration,
+        transitionBuilder: widget.transitionBuilder,
+        child: widget.builder(widget.observable.value),
+      );
+    }
     return widget.builder(widget.observable.value);
   }
 

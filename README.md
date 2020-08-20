@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 }
 
 class CounterCube extends Cube {
-  final count = ObservableValue<int>(initValue: 0);
+  final count = ObservableValue<int>(value: 0);
 
     @override
     void ready() {
@@ -51,7 +51,7 @@ class CounterCube extends Cube {
     }
 
     void increment() {
-      count.set(count.value + 1);
+      count.value++;
       if (count.value == 5) {
         onAction({'key': 'param'}); // Method to send anything to view
       }

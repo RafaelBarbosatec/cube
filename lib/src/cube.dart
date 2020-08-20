@@ -1,9 +1,12 @@
+import 'package:cubes/src/util/debouncer.dart';
+
 typedef FeedbackChanged<A, B> = void Function(A valueA, B valueB);
 
 abstract class Cube {
   List<FeedbackChanged<dynamic, String>> _onSuccessListeners;
   List<FeedbackChanged<dynamic, String>> _onErrorListeners;
   List<FeedbackChanged<dynamic, dynamic>> _onActionListeners;
+  Map<int, Debounce> _debounceMap;
 
   // initial data if passed through CubeBuilder
   dynamic data;
@@ -69,5 +72,19 @@ abstract class Cube {
   // Method to send anything to view
   void onAction(dynamic action) {
     _onActionListeners?.forEach((element) => element(this, action));
+  }
+
+  void runDebounce(int identify, Function call,
+      {Duration duration = const Duration(milliseconds: 400)}) {
+    if (_debounceMap == null) _debounceMap = Map();
+    if (_debounceMap.containsKey(call)) {
+      if (_debounceMap[identify].delay != duration) {
+        _debounceMap[identify] = Debounce(duration);
+      }
+      _debounceMap[identify].call(call);
+    } else {
+      _debounceMap[identify] = Debounce(duration);
+      _debounceMap[identify].call(call);
+    }
   }
 }

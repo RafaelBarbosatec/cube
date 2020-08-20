@@ -1,5 +1,5 @@
 import 'package:cubes/src/observable_value.dart';
-import 'package:cubes/src/util.dart';
+import 'package:cubes/src/util/functions.dart';
 import 'package:flutter/material.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);

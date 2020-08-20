@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
 
 class ObservableValue<T> extends ChangeNotifier {
-  T _data;
-  ObservableValue({T initValue}) {
-    _data = initValue;
+  T _value;
+  ObservableValue({T value}) {
+    _value = value;
   }
 
-  void set(T value) {
-    _data = value;
+  T get value => _value;
+
+  set value(T newValue) {
+    if (_value == newValue) return;
+    _value = newValue;
     if (hasListeners) {
       notifyListeners();
     }
   }
 
-  T get value => _data;
+  void notify() {
+    if (hasListeners) {
+      notifyListeners();
+    }
+  }
 }

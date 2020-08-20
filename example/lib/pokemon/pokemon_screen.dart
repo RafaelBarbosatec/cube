@@ -20,27 +20,32 @@ class PokemonScreen extends StatelessWidget {
           ),
           body: Stack(
             children: <Widget>[
-              cube.list.build<List<Pokemon>>((data) {
-                return ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    if (index >= data.length - 3) {
-                      cube.loadList(isMore: true);
-                    }
-                    return PokemonItemWidget(
-                      item: data[index],
-                      onClick: (item) {},
-                    );
-                  },
-                );
-              }),
-              cube.progress.build<bool>((value) {
-                return value
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : SizedBox.shrink();
-              }),
+              cube.list.build<List<Pokemon>>(
+                (data) {
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      if (index >= data.length - 3) {
+                        cube.loadList(isMore: true);
+                      }
+                      return PokemonItemWidget(
+                        item: data[index],
+                        onClick: (item) {},
+                      );
+                    },
+                  );
+                },
+              ),
+              cube.progress.build<bool>(
+                (value) {
+                  return value
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : SizedBox.shrink();
+                },
+                animate: true,
+              ),
             ],
           ),
         );

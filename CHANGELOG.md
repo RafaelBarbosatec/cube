@@ -1,3 +1,7 @@
+## [0.1.0] - 26/08/2020
+
+* Add option of the singleton Cube
+
 ## [0.0.9] - 26/08/2020
 
 * Add `getCubeInMemory` in `Cube`

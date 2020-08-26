@@ -19,9 +19,6 @@ abstract class Cube {
 
   // called when the cube is destroyed
   void dispose() {
-    _onSuccessListeners.clear();
-    _onErrorListeners.clear();
-    _onActionListeners.clear();
     CubeMemoryContainer.instance.remove(this);
   }
 

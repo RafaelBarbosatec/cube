@@ -19,6 +19,9 @@ void main() {
   // register cube
   registerCube((i) => CounterCube());
 
+  // Example register singleton Cube
+  // registerCube((i) => CounterCube(),isSingleton: true);
+
   // Example register repositories or anything
   // registerSingletonDependency((i) => SingletonRepository(i.get());
   // registerDependency((i) => FactoryRepository(i.get());

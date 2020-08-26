@@ -7,8 +7,13 @@ typedef T CubeInjector<T extends Cube>(GetIt injector);
 typedef T DependencyInjector<T>(GetIt injector);
 
 // registers cubes
-registerCube<C extends Cube>(CubeInjector<C> cubeBuilder) {
-  _getIt.registerFactory<C>(() => cubeBuilder(_getIt));
+registerCube<C extends Cube>(CubeInjector<C> cubeBuilder,
+    {bool isSingleton = false}) {
+  if (isSingleton) {
+    _getIt.registerLazySingleton<C>(() => cubeBuilder(_getIt));
+  } else {
+    _getIt.registerFactory<C>(() => cubeBuilder(_getIt));
+  }
 }
 
 // registers dependency of type Factory

@@ -31,13 +31,10 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _animationSlide,
-      child: FadeTransition(
-        opacity: _controller,
-        child: Container(
-          margin: const EdgeInsets.all(5.0),
-          child: Card(
-            child: _getListTile(),
-          ),
+      child: Container(
+        margin: const EdgeInsets.all(5.0),
+        child: Card(
+          child: _getListTile(),
         ),
       ),
     );

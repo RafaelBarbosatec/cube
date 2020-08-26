@@ -64,9 +64,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
 
   @override
   void dispose() {
-    cube.removeOnSuccessListener(_onSuccess);
-    cube.removeOnErrorListener(_onError);
-    cube.removeOnActionListener(_onAction);
     cube.dispose();
     super.dispose();
   }

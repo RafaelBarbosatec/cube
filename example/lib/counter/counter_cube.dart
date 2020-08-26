@@ -20,5 +20,11 @@ class CounterCube extends Cube {
     if (count.value == 50) {
       onError('You are clicking too much o.O'); // to send the failure message
     }
+
+    runDebounce(
+      'increment',
+      () => print(count.value),
+      duration: Duration(seconds: 1),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cubes/src/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
 
 typedef FeedbackChanged<A, B> = void Function(A valueA, B valueB);
@@ -6,16 +7,23 @@ abstract class Cube {
   List<FeedbackChanged<dynamic, String>> _onSuccessListeners;
   List<FeedbackChanged<dynamic, String>> _onErrorListeners;
   List<FeedbackChanged<dynamic, dynamic>> _onActionListeners;
-  Map<int, Debounce> _debounceMap;
+  Map<dynamic, Debounce> _debounceMap;
 
   // initial data if passed through CubeBuilder
   dynamic data;
 
   // called when the view is ready
-  void ready() {}
+  void ready() {
+    CubeMemoryContainer.instance.add(this);
+  }
 
   // called when the cube is destroyed
-  void dispose() {}
+  void dispose() {
+    _onSuccessListeners.clear();
+    _onErrorListeners.clear();
+    _onActionListeners.clear();
+    CubeMemoryContainer.instance.remove(this);
+  }
 
   void addOnSuccessListener<T extends Cube>(
     FeedbackChanged<T, String> listener,
@@ -74,10 +82,13 @@ abstract class Cube {
     _onActionListeners?.forEach((element) => element(this, action));
   }
 
-  void runDebounce(int identify, Function call,
-      {Duration duration = const Duration(milliseconds: 400)}) {
+  void runDebounce(
+    dynamic identify,
+    Function call, {
+    Duration duration = const Duration(milliseconds: 400),
+  }) {
     if (_debounceMap == null) _debounceMap = Map();
-    if (_debounceMap.containsKey(call)) {
+    if (_debounceMap.containsKey(identify)) {
       if (_debounceMap[identify].delay != duration) {
         _debounceMap[identify] = Debounce(duration);
       }
@@ -86,5 +97,9 @@ abstract class Cube {
       _debounceMap[identify] = Debounce(duration);
       _debounceMap[identify].call(call);
     }
+  }
+
+  T getCubeInMemory<T extends Cube>() {
+    return CubeMemoryContainer.instance.get<T>();
   }
 }

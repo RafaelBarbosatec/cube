@@ -1,3 +1,9 @@
+## [0.0.9] - 26/08/2020
+
+* Add `getCubeInMemory` in `Cube`
+* Add StringExtensions
+* Fix bug runDebounce
+
 ## [0.0.8] - 20/08/2020
 
 * Add animation in Observer

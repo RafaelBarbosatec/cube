@@ -16,7 +16,7 @@ class PokemonScreen extends StatelessWidget {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            title: Text('Pokemon'),
+            title: 'Pokemon'.title(context, color: Colors.white),
           ),
           body: Stack(
             children: <Widget>[

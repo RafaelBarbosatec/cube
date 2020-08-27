@@ -194,7 +194,7 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
 
 ## Internationalization support
 
-Cubes supports internationalization in a simple way using .json files.
+With Cubes you can configure internationalization in your application. in a simple way using .json files.
 
 ### Using
 

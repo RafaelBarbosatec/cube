@@ -96,7 +96,7 @@ abstract class Cube {
     }
   }
 
-  T getCubeInMemory<T extends Cube>() {
+  T getCubeIsReady<T extends Cube>() {
     return CubeMemoryContainer.instance.get<T>();
   }
 }

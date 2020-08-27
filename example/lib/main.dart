@@ -19,15 +19,23 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final cubeLocation = CubesLocalizationDelegate(
+    [
+      Locale('en', 'US'),
+      Locale('pt', 'BR'),
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Cubes Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      localizationsDelegates: cubeLocation.delegates,
+      supportedLocales: cubeLocation.supportedLocations,
       home: Home(),
     );
   }
@@ -38,12 +46,15 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: getString('welcome').title(context, color: Colors.white),
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
-              child: 'Counter'.body(context),
+              child: getString('counter').body(context),
               onPressed: () {
                 context.goTo(CounterScreen());
               },
@@ -55,7 +66,7 @@ class Home extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: 'Singleton'.body(context),
+              child: getString('singleton').body(context),
               onPressed: () {
                 context.goTo(ScreenCounterSingleton());
               },

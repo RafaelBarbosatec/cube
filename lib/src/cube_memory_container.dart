@@ -10,4 +10,8 @@ class CubeMemoryContainer {
   T get<T extends Cube>() {
     return _cubes.firstWhere((element) => element is T, orElse: () => null);
   }
+
+  Iterable<T> getCubes<T extends Cube>() {
+    return _cubes.where((element) => element is T);
+  }
 }

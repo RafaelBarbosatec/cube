@@ -1,3 +1,7 @@
+## [0.1.1] - 27/08/2020
+
+* Add getCubeIsReady and getCubesIsReady in Cube
+
 ## [0.1.0] - 26/08/2020
 
 * Add option of the singleton Cube

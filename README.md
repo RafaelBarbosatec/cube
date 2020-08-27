@@ -3,7 +3,7 @@
 <img src="https://github.com/RafaelBarbosatec/cube/blob/master/media/icon.png" height=80><img/>
 # Cubes
 
-Simple State Manager
+Simple State Manager with dependency injection and no code generation required.
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).

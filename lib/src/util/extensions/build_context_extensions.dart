@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 extension BuildContextExtensions on BuildContext {
-  Future goTo(Widget widget) {
-    return Navigator.push(
+  Future<T> goTo<T extends Object>(Widget widget) {
+    return Navigator.push<T>(
       this,
       MaterialPageRoute(builder: (context) => widget),
     );
   }
 
-  Future goToReplacement(Widget widget) {
-    return Navigator.pushReplacement(
+  Future<T> goToReplacement<T extends Object, TO extends Object>(
+      Widget widget) {
+    return Navigator.pushReplacement<T, TO>(
       this,
       MaterialPageRoute(builder: (context) => widget),
     );
   }
 
-  Future goToAndRemoveUntil(Widget widget, RoutePredicate predicate) {
-    return Navigator.pushAndRemoveUntil(
+  Future<T> goToAndRemoveUntil<T extends Object>(
+      Widget widget, RoutePredicate predicate) {
+    return Navigator.pushAndRemoveUntil<T>(
       this,
       MaterialPageRoute(builder: (context) => widget),
       predicate,

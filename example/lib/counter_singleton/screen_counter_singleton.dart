@@ -1,3 +1,4 @@
+import 'package:cubes/cubes.dart';
 import 'package:examplecube/counter_singleton/counter_singleton.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ class ScreenCounterSingleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Singleton example'),
+        title: getString('singleton').title(context, color: Colors.white),
       ),
       body: Column(
         children: [

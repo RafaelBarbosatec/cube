@@ -18,13 +18,13 @@ class CounterScreen extends StatelessWidget {
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(
-            title: 'Counter'.title(context, color: Colors.white),
+            title: getString('counter').title(context, color: Colors.white),
           ),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                'You have pushed the button this many times:'.body(context),
+                getString('description_counter').body(context),
                 cube.count.build<int>((value) {
                   return value.toString().body(context);
                 }),

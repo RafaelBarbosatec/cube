@@ -1,6 +1,8 @@
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/counter/counter_cube.dart';
 import 'package:examplecube/counter/counter_screen.dart';
+import 'package:examplecube/counter_singleton/counter_singleton_cube.dart';
+import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 void main() {
   // register cube
   registerCube((i) => CounterCube());
+  registerCube((i) => CounterSingletonCube(), isSingleton: true);
   registerCube((i) => PokemonCube(i.get()));
   registerSingletonDependency((i) => PokemonRepository());
 
@@ -25,15 +28,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: Home(),
     );
   }
 }
 
 class Home extends StatelessWidget {
-  final String title;
-
-  const Home({Key key, this.title}) : super(key: key);
+  const Home({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,23 +43,23 @@ class Home extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
-              child: Text('Counter'),
+              child: 'Counter'.body(context),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CounterScreen()),
-                );
+                context.goTo(CounterScreen());
               },
             ),
             RaisedButton(
-              child: Text('Pokemons'),
+              child: 'Pokemons'.body(context),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PokemonScreen()),
-                );
+                context.goTo(PokemonScreen());
               },
-            )
+            ),
+            RaisedButton(
+              child: 'Singleton'.body(context),
+              onPressed: () {
+                context.goTo(ScreenCounterSingleton());
+              },
+            ),
           ],
         ),
       ),

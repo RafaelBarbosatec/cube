@@ -8,6 +8,8 @@
 
 Simple State Manager with dependency injection and no code generation required.
 
+With Cubes, rebuilding only takes place where it is needed!
+
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 

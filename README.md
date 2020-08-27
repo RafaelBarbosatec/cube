@@ -198,7 +198,7 @@ Cubes supports internationalization in a simple way using .json files.
 
 Create a folder named `lang` and put your files with name location. This way:
 
-///IMAGEM
+![](https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/example-folders.png)
 
 Add path in your `pubspec.yaml`:
 
@@ -210,7 +210,7 @@ Add path in your `pubspec.yaml`:
 
 ```
 
-In your `MaterialApp` you can configurate the `CubesLocalizationDelegate`:
+In your `MaterialApp` you can configure the `CubesLocalizationDelegate`:
 
 
 ```dart
@@ -246,6 +246,6 @@ Ready!!!  Your application already supports internationalization. Bas get the st
 
 ```
 
-Any questions see our [example]().
+Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 
 

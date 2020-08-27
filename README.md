@@ -189,3 +189,63 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
 
 ```
 
+
+## Internationalization support
+
+Cubes supports internationalization in a simple way using .json files.
+
+### Using
+
+Create a folder named `lang` and put your files with name location. This way:
+
+///IMAGEM
+
+Add path in your `pubspec.yaml`:
+
+```yaml
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+   - lang/
+
+```
+
+In your `MaterialApp` you can configurate the `CubesLocalizationDelegate`:
+
+
+```dart
+
+    final cubeLocation = CubesLocalizationDelegate(
+      [
+        Locale('en', 'US'),
+        Locale('pt', 'BR'),
+      ],
+    );
+
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        title: 'My app',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        localizationsDelegates: cubeLocation.delegates, // see here
+        supportedLocales: cubeLocation.supportedLocations, // see here
+        home: Home(),
+      );
+    }
+
+```
+
+Ready!!!  Your application already supports internationalization. Bas get the strings as follows:
+
+```dart
+
+  String text = getString('welcome');
+
+```
+
+Any questions see our [example]().
+
+

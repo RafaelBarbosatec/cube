@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:cubes/src/localization/cube_localizations.dart';
+import 'package:cubes/src/localization/cubes_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class CubeLocalizationsDelegate
-    extends LocalizationsDelegate<CubeLocalizations> {
-  const CubeLocalizationsDelegate(
+class CubesLocalizationDelegate
+    extends LocalizationsDelegate<CubesLocalization> {
+  const CubesLocalizationDelegate(
     this.supportedLocations, {
     this.pathFiles = 'lang/',
   })  : assert(supportedLocations != null),
@@ -29,11 +29,8 @@ class CubeLocalizationsDelegate
       ];
 
   @override
-  Future<CubeLocalizations> load(Locale locale) async {
-    if (!supportedLocations.contains(locale)) {
-      locale = supportedLocations.first;
-    }
-    CubeLocalizations localizations = CubeLocalizations(
+  Future<CubesLocalization> load(Locale locale) async {
+    CubesLocalization localizations = CubesLocalization(
       locale,
       pathFiles: pathFiles,
     );
@@ -43,5 +40,5 @@ class CubeLocalizationsDelegate
   }
 
   @override
-  bool shouldReload(CubeLocalizationsDelegate old) => false;
+  bool shouldReload(CubesLocalizationDelegate old) => false;
 }

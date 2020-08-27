@@ -1,3 +1,7 @@
+## [0.2.0] - 27/08/2020
+
+* Add internationalization.
+
 ## [0.1.1] - 27/08/2020
 
 * Add getCubeIsReady and getCubesIsReady in Cube

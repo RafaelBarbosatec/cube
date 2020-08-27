@@ -5,8 +5,8 @@ import 'package:cubes/src/localization/strings_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CubeLocalizations {
-  CubeLocalizations(this.locale, {this.pathFiles = 'lang/'}) {
+class CubesLocalization {
+  CubesLocalization(this.locale, {this.pathFiles = 'lang/'}) {
     StringsLocation.configure(this);
   }
 

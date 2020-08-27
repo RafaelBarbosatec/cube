@@ -1,6 +1,9 @@
 [![pub package](https://img.shields.io/pub/v/cubes.svg)](https://pub.dartlang.org/packages/cubes)
 
-<img src="https://github.com/RafaelBarbosatec/cube/blob/master/media/icon.png" height=80><img/>
+<a href="#">
+   <img alt="Cubes" src="https://github.com/RafaelBarbosatec/cube/blob/master/media/icon.png" height=80/>
+</a>
+
 # Cubes
 
 Simple State Manager with dependency injection and no code generation required.

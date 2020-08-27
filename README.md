@@ -1,6 +1,6 @@
 [![pub package](https://img.shields.io/pub/v/cubes.svg)](https://pub.dartlang.org/packages/cubes)
 
-<a href="#">
+<a href="https://github.com/RafaelBarbosatec/cube">
    <img alt="Cubes" src="https://github.com/RafaelBarbosatec/cube/blob/master/media/icon.png" height=80/>
 </a>
 

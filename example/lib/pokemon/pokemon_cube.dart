@@ -7,7 +7,7 @@ class PokemonCube extends Cube {
 
   PokemonCube(this.repository);
 
-  final list = ObservableValue<List<Pokemon>>(value: []);
+  final list = ObservableList<Pokemon>(value: []);
   final progress = ObservableValue<bool>(value: false);
   int page = 0;
 
@@ -27,8 +27,7 @@ class PokemonCube extends Cube {
     progress.value = true;
     repository.getPokemonList(page: page).then((value) {
       if (isMore) {
-        list.value.addAll(value);
-        list.notify();
+        list.addAll(value);
       } else {
         list.value = value;
       }

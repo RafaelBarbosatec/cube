@@ -1,3 +1,7 @@
+## [NEXT]
+
+* Create `ObservableList`.
+
 ## [0.2.0] - 27/08/2020
 
 * Add internationalization.

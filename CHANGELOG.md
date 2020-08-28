@@ -1,6 +1,7 @@
-## [NEXT]
+## [0.2.1]
 
 * Create `ObservableList`.
+* Add Todo example.
 
 ## [0.2.0] - 27/08/2020
 

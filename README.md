@@ -52,6 +52,9 @@ class MyApp extends StatelessWidget {
 class CounterCube extends Cube {
   final count = ObservableValue<int>(value: 0);
 
+  // To List use `ObservableList`.
+  // To others objects not primitive remember call `prop.notify();` after modification to notify listeners.
+
     @override
     void ready() {
       // do anything when view is ready

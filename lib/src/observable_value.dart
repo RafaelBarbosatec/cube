@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class ObservableValue<T> extends ChangeNotifier {
   T _value;
@@ -11,9 +11,7 @@ class ObservableValue<T> extends ChangeNotifier {
   set value(T newValue) {
     if (_value == newValue) return;
     _value = newValue;
-    if (hasListeners) {
-      notifyListeners();
-    }
+    notify();
   }
 
   void notify() {

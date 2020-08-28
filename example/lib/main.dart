@@ -6,12 +6,15 @@ import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
+import 'package:examplecube/todo/todo_cube.dart';
+import 'package:examplecube/todo/todo_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   // register cube
   registerCube((i) => CounterCube());
   registerCube((i) => CounterSingletonCube(), isSingleton: true);
+  registerCube((i) => TodoCube(), isSingleton: true);
   registerCube((i) => PokemonCube(i.get()));
   registerSingletonDependency((i) => PokemonRepository());
 
@@ -69,6 +72,12 @@ class Home extends StatelessWidget {
               child: getString('singleton').body(context),
               onPressed: () {
                 context.goTo(ScreenCounterSingleton());
+              },
+            ),
+            RaisedButton(
+              child: 'Todo'.body(context),
+              onPressed: () {
+                context.goTo(TodoList());
               },
             ),
           ],

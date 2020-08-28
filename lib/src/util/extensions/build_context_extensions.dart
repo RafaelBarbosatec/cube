@@ -26,6 +26,10 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
+  void pop<T>([T result]) {
+    Navigator.pop(this, result);
+  }
+
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   EdgeInsets get padding => mediaQuery.padding;
   EdgeInsets get viewInsets => mediaQuery.viewInsets;

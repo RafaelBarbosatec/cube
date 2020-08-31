@@ -1,3 +1,7 @@
+## [NEXT]
+
+* add `clear` in ObservableList.
+
 ## [0.2.2]
 
 * Improvements in `CubeBuilder` and Observer.

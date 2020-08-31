@@ -14,6 +14,11 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     notify();
   }
 
+  void clear() {
+    this.value?.clear();
+    notify();
+  }
+
   void remove(T value) {
     this.value?.remove(value);
     notify();

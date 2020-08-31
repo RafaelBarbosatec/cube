@@ -21,10 +21,10 @@ class Observer<T> extends StatefulWidget {
   final Duration duration;
 
   @override
-  _ObserverState createState() => _ObserverState();
+  _ObserverState<T> createState() => _ObserverState<T>();
 }
 
-class _ObserverState extends State<Observer> {
+class _ObserverState<T> extends State<Observer> {
   @override
   void initState() {
     widget.observable?.addListener(_listener);
@@ -43,10 +43,10 @@ class _ObserverState extends State<Observer> {
       return AnimatedSwitcher(
         duration: widget.duration,
         transitionBuilder: widget.transitionBuilder,
-        child: widget.builder(widget.observable.value),
+        child: widgetObserver.builder(widget.observable.value),
       );
     }
-    return widget.builder(widget.observable.value);
+    return widgetObserver.builder(widget.observable.value);
   }
 
   void _listener() {
@@ -56,4 +56,6 @@ class _ObserverState extends State<Observer> {
       }
     });
   }
+
+  Observer<T> get widgetObserver => (widget as Observer<T>);
 }

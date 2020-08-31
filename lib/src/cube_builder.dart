@@ -8,9 +8,8 @@ typedef AsyncWidgetBuilder<C extends Cube> = Widget Function(
   C cube,
 );
 
-// ignore: must_be_immutable
 class CubeBuilder<C extends Cube> extends StatefulWidget {
-  CubeBuilder({
+  const CubeBuilder({
     Key key,
     @required this.builder,
     this.onSuccess,
@@ -18,9 +17,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.initData,
     this.cube,
     this.onAction,
-  }) : super(key: key) {
-    _confBuilders();
-  }
+  }) : super(key: key);
 
   final dynamic initData;
   final AsyncWidgetBuilder<C> builder;
@@ -28,17 +25,6 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   final FeedbackChanged<C, String> onError;
   final FeedbackChanged<C, dynamic> onAction;
   final C cube;
-  AsyncWidgetBuilder _builderInner;
-  FeedbackChanged _builderOnSuccess;
-  FeedbackChanged _builderOnError;
-  FeedbackChanged _builderOnAction;
-
-  void _confBuilders() {
-    _builderInner = (context, cube) => builder(context, cube);
-    _builderOnSuccess = (cube, text) => onSuccess(cube, text);
-    _builderOnError = (cube, text) => onError(cube, text);
-    _builderOnAction = (cube, data) => onAction(cube, data);
-  }
 
   @override
   _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
@@ -73,13 +59,13 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return widget._builderInner(context, cube);
+    return cubeWidget.builder(context, cube);
   }
 
   void _onSuccess(C cube, String text) {
     postFrame(() {
       if (mounted) {
-        widget._builderOnSuccess(cube, text);
+        cubeWidget.onSuccess(cube, text);
       }
     });
   }
@@ -87,7 +73,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   void _onError(C cube, String text) {
     postFrame(() {
       if (mounted) {
-        widget._builderOnError(cube, text);
+        cubeWidget.onError(cube, text);
       }
     });
   }
@@ -95,8 +81,10 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   void _onAction(C cube, dynamic data) {
     postFrame(() {
       if (mounted) {
-        widget._builderOnAction(cube, data);
+        cubeWidget.onAction(cube, data);
       }
     });
   }
+
+  CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);
 }

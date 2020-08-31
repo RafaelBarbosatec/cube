@@ -10,12 +10,12 @@ extension ObservableValueExtensions on ObservableValue {
         AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
   }) {
-    return Observer(
+    return Observer<T>(
       observable: this,
       animate: animate,
       transitionBuilder: transitionBuilder,
       duration: duration,
-      builder: (value) => build(value as T),
+      builder: build,
     );
   }
 }

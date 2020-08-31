@@ -9,19 +9,20 @@ abstract class Cube {
   List<FeedbackChanged<dynamic, dynamic>> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
 
-  // initial data if passed through CubeBuilder
+  /// initial data if passed through CubeBuilder
   dynamic data;
 
-  // called when the view is ready
+  /// called when the view is ready
   void ready() {
     CubeMemoryContainer.instance.add(this);
   }
 
-  // called when the cube is destroyed
+  /// called when the cube is destroyed
   void dispose() {
     CubeMemoryContainer.instance.remove(this);
   }
 
+  /// Add OnSuccessListener
   void addOnSuccessListener<T extends Cube>(
     FeedbackChanged<T, String> listener,
   ) {
@@ -31,6 +32,7 @@ abstract class Cube {
     }
   }
 
+  /// Add OnErrorListener
   void addOnErrorListener<T extends Cube>(
     FeedbackChanged<T, String> listener,
   ) {
@@ -40,6 +42,7 @@ abstract class Cube {
     }
   }
 
+  /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
     FeedbackChanged<T, String> listener,
   ) {
@@ -49,36 +52,49 @@ abstract class Cube {
     }
   }
 
+  /// Remove OnSuccessListener
   void removeOnSuccessListener<T extends Cube>(
       FeedbackChanged<T, String> listener) {
     _onSuccessListeners?.remove(listener);
   }
 
+  /// Remove OnErrorListener
   void removeOnErrorListener<T extends Cube>(
       FeedbackChanged<T, String> listener) {
     _onErrorListeners?.remove(listener);
   }
 
+  /// Remove OnActionListener
   void removeOnActionListener<T extends Cube>(
       FeedbackChanged<T, String> listener) {
     _onActionListeners?.remove(listener);
   }
 
-  // Method to send the success message
+  /// Method to send the success message
   void onSuccess(String msg) {
     _onSuccessListeners?.forEach((element) => element(this, msg));
   }
 
-  // Method to send the failure message
+  /// Method to send the failure message
   void onError(String msg) {
     _onErrorListeners?.forEach((element) => element(this, msg));
   }
 
-  // Method to send anything to view
+  /// Method to send anything to view
   void onAction(dynamic action) {
     _onActionListeners?.forEach((element) => element(this, action));
   }
 
+  ///
+  /// Uses to apply debounce.
+  ///
+  /// Example:
+  ///
+  ///   runDebounce(
+  //      'increment',
+  //      () => print(count.value),
+  //      duration: Duration(seconds: 1),
+  //    );
   void runDebounce(
     dynamic identify,
     Function call, {
@@ -96,10 +112,12 @@ abstract class Cube {
     }
   }
 
+  /// Uses to get the Cube ready in memory by type
   T getCubeIsReady<T extends Cube>() {
     return CubeMemoryContainer.instance.get<T>();
   }
 
+  /// Uses to get the Cubes ready in memory by type
   Iterable<T> getCubesIsReady<T extends Cube>() {
     return CubeMemoryContainer.instance.getCubes<T>();
   }

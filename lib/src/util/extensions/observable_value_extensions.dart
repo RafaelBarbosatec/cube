@@ -1,4 +1,4 @@
-import 'package:cubes/src/observable_value.dart';
+import 'package:cubes/src/observable/observable_value.dart';
 import 'package:cubes/src/observer.dart';
 import 'package:flutter/widgets.dart';
 

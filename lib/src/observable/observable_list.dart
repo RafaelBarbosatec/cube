@@ -1,4 +1,4 @@
-import 'package:cubes/src/observable_value.dart';
+import 'package:cubes/src/observable/observable_value.dart';
 
 class ObservableList<T> extends ObservableValue<List<T>> {
   ObservableList({Iterable<T> value}) {

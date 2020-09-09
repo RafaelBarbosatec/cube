@@ -78,7 +78,7 @@ void main() {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: Home(),
     ));
 }
 
@@ -89,9 +89,7 @@ void main() {
 ```dart
 
 class Home extends StatelessWidget {
-  final String title;
 
-  const Home({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
@@ -107,7 +105,7 @@ class Home extends StatelessWidget {
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(title),
+            title: Text('Home'),
           ),
           body: Center(
             child: Column(
@@ -134,6 +132,43 @@ class Home extends StatelessWidget {
 }
 
 ```
+
+ or use `CubeWidget`
+
+```dart
+
+class Home extends CubeWidget<CounterCube> {
+
+  @override
+  Widget buildView(BuildContext context, CounterCube cube) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            cube.count.build<int>((value) {
+              return Text(value.toString());
+            }),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: cube.increment,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+```
+
 
 ## Testing
 

@@ -2,26 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 extension BuildContextExtensions on BuildContext {
-  Future<T> goTo<T extends Object>(Widget widget) {
+  Future<T> goTo<T extends Object>(
+    Widget widget, {
+    RouteSettings settings,
+    bool fullscreenDialog = false,
+  }) {
     return Navigator.push<T>(
       this,
-      MaterialPageRoute(builder: (context) => widget),
+      MaterialPageRoute(
+        builder: (context) => widget,
+        fullscreenDialog: fullscreenDialog,
+        settings: settings,
+      ),
     );
   }
 
   Future<T> goToReplacement<T extends Object, TO extends Object>(
-      Widget widget) {
+    Widget widget, {
+    RouteSettings settings,
+    bool fullscreenDialog = false,
+  }) {
     return Navigator.pushReplacement<T, TO>(
       this,
-      MaterialPageRoute(builder: (context) => widget),
+      MaterialPageRoute(
+        builder: (context) => widget,
+        fullscreenDialog: fullscreenDialog,
+        settings: settings,
+      ),
     );
   }
 
   Future<T> goToAndRemoveUntil<T extends Object>(
-      Widget widget, RoutePredicate predicate) {
+    Widget widget,
+    RoutePredicate predicate, {
+    RouteSettings settings,
+    bool fullscreenDialog = false,
+  }) {
     return Navigator.pushAndRemoveUntil<T>(
       this,
-      MaterialPageRoute(builder: (context) => widget),
+      MaterialPageRoute(
+        builder: (context) => widget,
+        fullscreenDialog: fullscreenDialog,
+        settings: settings,
+      ),
       predicate,
     );
   }

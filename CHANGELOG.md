@@ -1,3 +1,7 @@
+## [0.2.4]
+
+* improvements in BuildContextExtensions
+
 ## [0.2.3]
 
 * add `clear` in ObservableList.

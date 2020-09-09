@@ -89,9 +89,11 @@ void main() {
 ```dart
 
 class Home extends StatelessWidget {
-  final String title;
 
   const Home({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
@@ -134,6 +136,47 @@ class Home extends StatelessWidget {
 }
 
 ```
+
+ or use `CubeWidget`
+
+```dart
+
+class Home extends CubeWidget<CounterCube> {
+
+  const Home({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget buildView(BuildContext context, CounterCube cube) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            cube.count.build<int>((value) {
+              return Text(value.toString());
+            }),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: cube.increment,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+``
+
 
 ## Testing
 

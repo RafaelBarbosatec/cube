@@ -1,5 +1,6 @@
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/counter/counter_cube.dart';
+import 'package:examplecube/counter/counter_cube_widget.dart';
 import 'package:examplecube/counter/counter_screen.dart';
 import 'package:examplecube/counter_singleton/counter_singleton_cube.dart';
 import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
@@ -60,6 +61,12 @@ class Home extends StatelessWidget {
               child: getString('counter').body(context),
               onPressed: () {
                 context.goTo(CounterScreen());
+              },
+            ),
+            RaisedButton(
+              child: 'Counter with CubeWidget'.body(context),
+              onPressed: () {
+                context.goTo(CounterCubeWidget());
               },
             ),
             RaisedButton(

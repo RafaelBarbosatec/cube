@@ -1,3 +1,7 @@
+## [0.3.0]
+
+* create `CubeWidget`
+
 ## [0.2.4]
 
 * improvements in BuildContextExtensions

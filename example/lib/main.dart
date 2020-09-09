@@ -5,6 +5,7 @@ import 'package:examplecube/counter/counter_screen.dart';
 import 'package:examplecube/counter_singleton/counter_singleton_cube.dart';
 import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
+import 'package:examplecube/pokemon/pokemon_cube_widget.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
 import 'package:examplecube/todo/todo_cube.dart';
@@ -73,6 +74,12 @@ class Home extends StatelessWidget {
               child: 'Pokemons'.body(context),
               onPressed: () {
                 context.goTo(PokemonScreen());
+              },
+            ),
+            RaisedButton(
+              child: 'Pokemons with CubeWidget'.body(context),
+              onPressed: () {
+                context.goTo(PokemonCubeWidget());
               },
             ),
             RaisedButton(

@@ -78,7 +78,7 @@ void main() {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: Home(),
     ));
 }
 
@@ -89,10 +89,6 @@ void main() {
 ```dart
 
 class Home extends StatelessWidget {
-
-  const Home({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +105,7 @@ class Home extends StatelessWidget {
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(title),
+            title: Text('Home'),
           ),
           body: Center(
             child: Column(
@@ -143,15 +139,11 @@ class Home extends StatelessWidget {
 
 class Home extends CubeWidget<CounterCube> {
 
-  const Home({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   Widget buildView(BuildContext context, CounterCube cube) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Home'),
       ),
       body: Center(
         child: Column(

@@ -7,7 +7,7 @@ class CounterCubeWidget extends CubeWidget<CounterCube> {
   Widget buildView(BuildContext context, CounterCube cube) {
     return Scaffold(
       appBar: AppBar(
-        title: getString('counter').title(context, color: Colors.white),
+        title: 'Counter with CubeWidget'.title(context, color: Colors.white),
       ),
       body: Center(
         child: Column(

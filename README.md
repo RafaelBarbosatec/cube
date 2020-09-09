@@ -15,36 +15,6 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 ## Usage
 
-- Register Cubes and or dependencies:
-
-```dart
-
-import 'package:cubes/cubes.dart';
-import 'package:flutter/material.dart';
-
-void main() {
-  // register cube
-  registerCube((i) => CounterCube());
-
-  // Example register singleton Cube
-  // registerCube((i) => CounterCube(),isSingleton: true);
-
-  // Example register repositories or anything
-  // registerSingletonDependency((i) => SingletonRepository(i.get());
-  // registerDependency((i) => FactoryRepository(i.get());
-
-  runApp(MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Home(title: 'Flutter Demo Home Page'),
-    ));
-}
-
-```
-
 * Creating Cube:
 
 ```dart
@@ -80,6 +50,36 @@ class CounterCube extends Cube {
         duration: Duration(seconds: 1),
       );
     }
+}
+
+```
+
+- Registering Cubes and or dependencies:
+
+```dart
+
+import 'package:cubes/cubes.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  // register cube
+  registerCube((i) => CounterCube());
+
+  // Example register singleton Cube
+  // registerCube((i) => CounterCube(),isSingleton: true);
+
+  // Example register repositories or anything
+  // registerSingletonDependency((i) => SingletonRepository(i.get());
+  // registerDependency((i) => FactoryRepository(i.get());
+
+  runApp(MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: Home(title: 'Flutter Demo Home Page'),
+    ));
 }
 
 ```

@@ -15,6 +15,8 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 ## Usage
 
+- Register Cubes and or dependencies:
+
 ```dart
 
 import 'package:cubes/cubes.dart';
@@ -31,23 +33,21 @@ void main() {
   // registerSingletonDependency((i) => SingletonRepository(i.get());
   // registerDependency((i) => FactoryRepository(i.get());
 
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  runApp(MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Home(title: 'Flutter Demo Home Page'),
-    );
-  }
+    ));
 }
+
+```
+
+* Creating Cube:
+
+```dart
 
 class CounterCube extends Cube {
   final count = ObservableValue<int>(value: 0);
@@ -81,6 +81,12 @@ class CounterCube extends Cube {
       );
     }
 }
+
+```
+
+* Creating view with `CubeBuilder`:
+
+```dart
 
 class Home extends StatelessWidget {
   final String title;

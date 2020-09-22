@@ -5,7 +5,6 @@ import 'package:examplecube/counter/counter_screen.dart';
 import 'package:examplecube/counter_singleton/counter_singleton_cube.dart';
 import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
-import 'package:examplecube/pokemon/pokemon_cube_widget.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
 import 'package:examplecube/todo/todo_cube.dart';
@@ -52,44 +51,38 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: getString('welcome').title(context, color: Colors.white),
+        title: Text(getString('welcome')),
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
-              child: getString('counter').body(context),
+              child: Text(getString('counter')),
               onPressed: () {
                 context.goTo(CounterScreen());
               },
             ),
             RaisedButton(
-              child: 'Counter with CubeWidget'.body(context),
+              child: Text('Counter with CubeWidget'),
               onPressed: () {
                 context.goTo(CounterCubeWidget());
               },
             ),
             RaisedButton(
-              child: 'Pokemons'.body(context),
+              child: Text('Pokemons'),
               onPressed: () {
                 context.goTo(PokemonScreen());
               },
             ),
             RaisedButton(
-              child: 'Pokemons with CubeWidget'.body(context),
-              onPressed: () {
-                context.goTo(PokemonCubeWidget());
-              },
-            ),
-            RaisedButton(
-              child: getString('singleton').body(context),
+              child: Text(getString('singleton')),
               onPressed: () {
                 context.goTo(ScreenCounterSingleton());
               },
             ),
             RaisedButton(
-              child: 'Todo'.body(context),
+              child: Text('Todo'),
               onPressed: () {
                 context.goTo(TodoList());
               },

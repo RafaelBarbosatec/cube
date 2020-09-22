@@ -10,7 +10,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
   Widget buildView(BuildContext context, TodoCube cube) {
     return Scaffold(
       appBar: AppBar(
-        title: 'Todo register'.title(context, color: Colors.white),
+        title: Text('Todo register'),
       ),
       body: Form(
         key: formKey,
@@ -38,7 +38,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
                   width: double.maxFinite,
                   child: RaisedButton(
                     color: context.theme.primaryColor,
-                    child: 'Save'.body(context, color: Colors.white),
+                    child: Text('Save'),
                     onPressed: () {
                       if (formKey.currentState.validate()) {
                         cube.addTodo(textEditingController.text);

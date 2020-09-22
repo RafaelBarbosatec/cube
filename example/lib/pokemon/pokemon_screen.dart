@@ -12,7 +12,7 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: 'Pokemons with CubeWidget'.title(context, color: Colors.white),
+        title: Text('Pokemons with CubeWidget'),
       ),
       body: Stack(
         children: <Widget>[

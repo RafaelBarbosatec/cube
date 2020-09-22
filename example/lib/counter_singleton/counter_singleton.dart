@@ -23,13 +23,12 @@ class CounterSingleton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                'You have pushed the button this many times:'
-                    .body(context, textAlign: TextAlign.center),
+                Text('You have pushed the button this many times:'),
                 SizedBox(
                   height: 20,
                 ),
                 cube.count.build<int>((value) {
-                  return value.toString().body(context);
+                  return Text(value.toString());
                 }),
               ],
             ),

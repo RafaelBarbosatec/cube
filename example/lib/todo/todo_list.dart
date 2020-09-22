@@ -8,13 +8,13 @@ class TodoList extends CubeWidget<TodoCube> {
   Widget buildView(BuildContext context, TodoCube cube) {
     return Scaffold(
       appBar: AppBar(
-        title: 'Todo List'.title(context, color: Colors.white),
+        title: Text('Todo List'),
       ),
       body: cube.todoList.build<List<String>>(
         (value) {
           if (value.isEmpty) {
             return Center(
-              child: 'Empty list'.body(context),
+              child: Text('Empty list'),
             );
           }
           return ListView.builder(
@@ -30,7 +30,7 @@ class TodoList extends CubeWidget<TodoCube> {
                   padding: const EdgeInsets.all(15),
                   child: Row(
                     children: [
-                      Expanded(child: value[index].body(context)),
+                      Expanded(child: Text(value[index])),
                       IconButton(
                         icon: Icon(
                           Icons.delete,

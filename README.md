@@ -227,12 +227,6 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
     context.theme;
     context.scaffold;
 
-    // StringExtensions
-
-    'Hello'.body(context);
-    'Hello'.headline(context);
-    'Hello'.title(context);
-
 ```
 
 

@@ -51,38 +51,38 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: getString('welcome').title(context, color: Colors.white),
+        title: Text(getString('welcome')),
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
-              child: getString('counter').body(context),
+              child: Text(getString('counter')),
               onPressed: () {
                 context.goTo(CounterScreen());
               },
             ),
             RaisedButton(
-              child: 'Counter with CubeWidget'.body(context),
+              child: Text('Counter with CubeWidget'),
               onPressed: () {
                 context.goTo(CounterCubeWidget());
               },
             ),
             RaisedButton(
-              child: 'Pokemons'.body(context),
+              child: Text('Pokemons'),
               onPressed: () {
                 context.goTo(PokemonScreen());
               },
             ),
             RaisedButton(
-              child: getString('singleton').body(context),
+              child: Text(getString('singleton')),
               onPressed: () {
                 context.goTo(ScreenCounterSingleton());
               },
             ),
             RaisedButton(
-              child: 'Todo'.body(context),
+              child: Text('Todo'),
               onPressed: () {
                 context.goTo(TodoList());
               },

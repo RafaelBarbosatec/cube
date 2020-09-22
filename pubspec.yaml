@@ -12,7 +12,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  get_it: ^4.0.4
+  get_it: ^5.0.0
 
 dev_dependencies:
   flutter_test:

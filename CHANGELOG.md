@@ -1,3 +1,7 @@
+## [0.3.1]
+
+* remove String extensions
+
 ## [0.3.0]
 
 * create `CubeWidget`

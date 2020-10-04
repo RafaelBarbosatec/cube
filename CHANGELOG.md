@@ -1,4 +1,4 @@
-## [0.3.2]
+## [next]
 
 * add params to replace in getString
 

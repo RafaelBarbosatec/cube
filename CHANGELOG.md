@@ -1,3 +1,11 @@
+## [0.3.2]
+
+* add params to replace in getString
+
+## [0.3.1]
+
+* remove String extensions
+
 ## [0.3.0]
 
 * create `CubeWidget`

@@ -1,4 +1,4 @@
-# [next]
+# 0.3.2
 
 - add params to replace in getString
 - add `T getCube<T extends Cube>()`

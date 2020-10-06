@@ -1,77 +1,82 @@
-## [0.3.1]
+# 0.3.2
 
-* remove String extensions
+- add params to replace in getString
+- add `T getCube<T extends Cube>()`
 
-## [0.3.0]
+# 0.3.1
 
-* create `CubeWidget`
+- remove String extensions
 
-## [0.2.4]
+# 0.3.0
 
-* improvements in BuildContextExtensions
+- create `CubeWidget`
 
-## [0.2.3]
+# 0.2.4
 
-* add `clear` in ObservableList.
+- improvements in BuildContextExtensions
 
-## [0.2.2]
+# 0.2.3
 
-* Improvements in `CubeBuilder` and Observer.
+- add `clear` in ObservableList.
 
-## [0.2.1]
+# 0.2.2
 
-* Create `ObservableList`.
-* Add Todo example.
+- Improvements in `CubeBuilder` and Observer.
 
-## [0.2.0] - 27/08/2020
+# 0.2.1
 
-* Add internationalization.
+- Create `ObservableList`.
+- Add Todo example.
 
-## [0.1.1] - 27/08/2020
+# 0.2.0
 
-* Add getCubeIsReady and getCubesIsReady in Cube
+- Add internationalization.
 
-## [0.1.0] - 26/08/2020
+# 0.1.1
 
-* Add option of the singleton Cube
+- Add getCubeIsReady and getCubesIsReady in Cube
 
-## [0.0.9] - 26/08/2020
+# 0.1.0
 
-* Add `getCubeInMemory` in `Cube`
-* Add StringExtensions
-* Fix bug runDebounce
+- Add option of the singleton Cube
 
-## [0.0.8] - 20/08/2020
+# 0.0.9
 
-* Add animation in Observer
+- Add `getCubeInMemory` in `Cube`
+- Add StringExtensions
+- Fix bug runDebounce
 
-## [0.0.7] - 20/08/2020
+# 0.0.8
 
-* Improvements in `ObservableValue`
-* add `runDebounce` in `Cube`
-* add extensions
+- Add animation in Observer
 
-## [0.0.6] - 19/08/2020
+# 0.0.7
 
-* Hotfix rebuild Observer.
+- Improvements in `ObservableValue`
+- add `runDebounce` in `Cube`
+- add extensions
 
-## [0.0.5] - 18/08/2020
+# 0.0.6
 
-* Add `onAction`
-* Update example.
+- Hotfix rebuild Observer.
 
-## [0.0.4] - 17/08/2020
+# 0.0.5
 
-* Improvements in ObservableValueExtensions.
+- Add `onAction`
+- Update example.
 
-## [0.0.3] - 17/08/2020
+# 0.0.4
 
-* Fix removeListener.
+- Improvements in ObservableValueExtensions.
 
-## [0.0.2] - 17/08/2020
+# 0.0.3
 
-* Improvements in CubeBuilder and Observer.
+- Fix removeListener.
 
-## [0.0.1] - 17/08/2020
+# 0.0.2
+
+- Improvements in CubeBuilder and Observer.
+
+# 0.0.1
 
 * Start Project

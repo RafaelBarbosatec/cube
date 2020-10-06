@@ -36,7 +36,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   @override
   void initState() {
     if (widget.cube == null) {
-      cube = getDependency();
+      cube = getCube();
     } else {
       cube = widget.cube;
     }

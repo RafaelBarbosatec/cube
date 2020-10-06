@@ -37,3 +37,8 @@ registerSingletonDependency<T>(DependencyInjector<T> builder,
 T getDependency<T>({String dependencyName}) {
   return _getIt.get<T>(instanceName: dependencyName);
 }
+
+// get any Cube registered
+T getCube<T extends Cube>() {
+  return _getIt.get<T>();
+}

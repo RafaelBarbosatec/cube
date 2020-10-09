@@ -275,18 +275,15 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 
 ```
 
-AnimatedListCube({
-    Key key,
-    this.itemBuilder,
-    this.scrollDirection = Axis.vertical,
-    this.reverse = false,
-    this.controller,
-    this.primary,
-    this.physics,
-    this.shrinkWrap = false,
-    this.padding,
-    this.itemList,
-  })
+  AnimatedListCube<String>(
+    itemList: cube.todoList,
+    itemBuilder: (context, item, animation, type) {
+      return ScaleTransition(
+        scale: animation,
+        child: _buildItem(item),
+      );
+    },
+  )
 
 ```
 

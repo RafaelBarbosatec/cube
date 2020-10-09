@@ -1,4 +1,4 @@
-# next
+# 0.3.3
 
 - add `AnimatedListCube`
 - add `CubeWidgetAnimation` to use animations

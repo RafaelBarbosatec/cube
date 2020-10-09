@@ -1,17 +1,14 @@
 import 'package:cubes/src/cube.dart';
+import 'package:cubes/src/cube_builder.dart';
 import 'package:cubes/src/injector.dart';
 import 'package:cubes/src/util/functions.dart';
 import 'package:flutter/material.dart';
 
-typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
-  BuildContext context,
-  C cube,
-);
+typedef InitStateWithTickerCallback<C extends Cube> = Function(
+    C cube, TickerProvider vsync);
 
-typedef InitCallback<C extends Cube> = Function(C cube);
-
-class CubeBuilder<C extends Cube> extends StatefulWidget {
-  const CubeBuilder({
+class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
+  const CubeBuilderAnimation({
     Key key,
     @required this.builder,
     this.onSuccess,
@@ -20,6 +17,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.cube,
     this.onAction,
     this.initState,
+    this.initView,
     this.dispose,
   }) : super(key: key);
 
@@ -28,15 +26,18 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   final FeedbackChanged<C, String> onSuccess;
   final FeedbackChanged<C, String> onError;
   final FeedbackChanged<C, dynamic> onAction;
-  final InitCallback<C> initState;
+  final InitStateWithTickerCallback<C> initState;
+  final InitCallback<C> initView;
   final VoidCallback dispose;
   final C cube;
 
   @override
-  _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
+  _CubeBuilderAnimationState<C> createState() =>
+      _CubeBuilderAnimationState<C>();
 }
 
-class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
+class _CubeBuilderAnimationState<C extends Cube>
+    extends State<CubeBuilderAnimation> with TickerProviderStateMixin {
   C cube;
 
   @override
@@ -51,8 +52,9 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     cube.addOnErrorListener(_onError);
     cube.addOnActionListener(_onAction);
     super.initState();
-    cubeWidget.initState?.call(cube);
+    cubeWidget.initState?.call(cube, this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      cubeWidget.initView?.call(cube);
       cube.ready();
     });
   }
@@ -96,5 +98,5 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     });
   }
 
-  CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);
+  CubeBuilderAnimation<C> get cubeWidget => (widget as CubeBuilderAnimation<C>);
 }

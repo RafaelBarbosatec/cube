@@ -1,10 +1,16 @@
+# 0.3.3
+
+- add `AnimatedListCube`
+- add `CubeWidgetAnimation` to use animations (experimental)
+- add `initState()` and `dispose()` in `CubeWidget`
+
 # 0.3.2+1
 
 - update README.
 
 # 0.3.2
 
-- add params to replace in getString
+- add params to replace in `getString()`
 - add `T getCube<T extends Cube>()`
 
 # 0.3.1

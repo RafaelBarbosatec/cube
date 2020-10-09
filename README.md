@@ -267,6 +267,27 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
 
 ```
 
+## Useful Widgets
+
+### AnimatedListCube
+
+This is a version of AnimatedList that simplifies its use for the Cube context.
+
+```
+
+  AnimatedListCube<String>(
+    itemList: cube.todoList,
+    itemBuilder: (context, item, animation, type) {
+      return ScaleTransition(
+        scale: animation,
+        child: _buildItem(item),
+      );
+    },
+  )
+
+```
+
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
 
 ## Internationalization support
 

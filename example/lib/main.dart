@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: Text('Counter with CubeWidget'),
+              child: Text('Counter with CubeWidgetAnimation'),
               onPressed: () {
                 context.goTo(CounterCubeWidget());
               },

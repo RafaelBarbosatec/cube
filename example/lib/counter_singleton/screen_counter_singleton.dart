@@ -1,5 +1,5 @@
 import 'package:cubes/cubes.dart';
-import 'package:examplecube/counter_singleton/counter_singleton.dart';
+import 'package:examplecube/counter_singleton/counter_singleton_widget.dart';
 import 'package:flutter/material.dart';
 
 class ScreenCounterSingleton extends StatelessWidget {
@@ -14,16 +14,16 @@ class ScreenCounterSingleton extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: CounterSingleton()),
-                Expanded(child: CounterSingleton()),
+                Expanded(child: CounterSingletonWidget()),
+                Expanded(child: CounterSingletonWidget()),
               ],
             ),
           ),
           Expanded(
             child: Row(
               children: [
-                Expanded(child: CounterSingleton()),
-                Expanded(child: CounterSingleton()),
+                Expanded(child: CounterSingletonWidget()),
+                Expanded(child: CounterSingletonWidget()),
               ],
             ),
           ),

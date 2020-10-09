@@ -267,6 +267,30 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
 
 ```
 
+## Useful Widgets
+
+### AnimatedListCube
+
+This is a version of AnimatedList that simplifies its use for the Cube context.
+
+```
+
+AnimatedListCube({
+    Key key,
+    this.itemBuilder,
+    this.scrollDirection = Axis.vertical,
+    this.reverse = false,
+    this.controller,
+    this.primary,
+    this.physics,
+    this.shrinkWrap = false,
+    this.padding,
+    this.itemList,
+  })
+
+```
+
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
 
 ## Internationalization support
 

@@ -10,44 +10,21 @@ class TodoList extends CubeWidget<TodoCube> {
       appBar: AppBar(
         title: Text('Todo List'),
       ),
-      body: cube.todoList.build<List<String>>(
-        (value) {
-          if (value.isEmpty) {
-            return Center(
-              child: Text('Empty list'),
+      body: AnimatedListCube<String>(
+        itemList: cube.todoList,
+        itemBuilder: (context, item, animation, type) {
+          if (type == TypeAnimationListEnum.add) {
+            return ScaleTransition(
+              scale: animation,
+              child: _buildItem(item, cube),
+            );
+          } else {
+            return SizeTransition(
+              sizeFactor: animation,
+              child: _buildItem(item, cube),
             );
           }
-          return ListView.builder(
-            padding: const EdgeInsets.only(top: 20),
-            itemCount: value.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(value[index])),
-                      IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          cube.delete(value[index]);
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
         },
-        animate: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -56,6 +33,32 @@ class TodoList extends CubeWidget<TodoCube> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), //
+    );
+  }
+
+  Widget _buildItem(String text, TodoCube cube) {
+    return Card(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 5,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: Row(
+          children: [
+            Expanded(child: Text(text)),
+            IconButton(
+              icon: Icon(
+                Icons.delete,
+                color: Colors.red,
+              ),
+              onPressed: () {
+                cube.delete(text);
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -171,6 +171,7 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
+Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
 
 ## Testing
 

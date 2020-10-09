@@ -188,6 +188,8 @@ we register by listening to the Observer `count`, and every time this variable i
   return Text(value.toString());
 ```
 
+This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
+
 ## Testing
 
 ```dart

@@ -167,6 +167,24 @@ class Home extends CubeWidget<CounterCube> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  @override
+  void onError(BuildContext context, PokemonCube cube, String text) {
+    // TODO: implement onError
+    super.onError(context, cube, text);
+  }
+
+  @override
+  void onSuccess(BuildContext context, PokemonCube cube, String text) {
+    // TODO: implement onSuccess
+    super.onSuccess(context, cube, text);
+  }
+
+  @override
+  void onAction(BuildContext context, PokemonCube cube, data) {
+    // TODO: implement onAction
+    super.onAction(context, cube, data);
+  }
 }
 
 ```

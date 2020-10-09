@@ -1,7 +1,7 @@
 # 0.3.3
 
 - add `AnimatedListCube`
-- add `CubeWidgetAnimation` to use animations
+- add `CubeWidgetAnimation` to use animations (experimental)
 - add `initState()` and `dispose()` in `CubeWidget`
 
 # 0.3.2+1

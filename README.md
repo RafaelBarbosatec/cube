@@ -173,6 +173,21 @@ class Home extends CubeWidget<CounterCube> {
 
 Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
 
+By doing this:
+
+```
+  cube.count.build<int>((value) {
+    return Text(value.toString());
+  }),
+
+```
+
+we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+
+```
+  return Text(value.toString());
+```
+
 ## Testing
 
 ```dart

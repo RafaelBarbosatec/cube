@@ -10,6 +10,8 @@ Simple State Manager with dependency injection and no code generation required.
 
 With Cubes, rebuilding only takes place where it is needed!
 
+MVVM based architecture.
+
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
 

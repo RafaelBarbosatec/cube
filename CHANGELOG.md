@@ -1,3 +1,7 @@
+# 0.3.2+1
+
+- update README.
+
 # 0.3.2
 
 - add params to replace in getString

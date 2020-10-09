@@ -10,6 +10,8 @@ Simple State Manager with dependency injection and no code generation required.
 
 With Cubes, rebuilding only takes place where it is needed!
 
+MVVM based architecture.
+
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
 
@@ -165,10 +167,46 @@ class Home extends CubeWidget<CounterCube> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  @override
+  void onError(BuildContext context, PokemonCube cube, String text) {
+    // TODO: implement onError
+    super.onError(context, cube, text);
+  }
+
+  @override
+  void onSuccess(BuildContext context, PokemonCube cube, String text) {
+    // TODO: implement onSuccess
+    super.onSuccess(context, cube, text);
+  }
+
+  @override
+  void onAction(BuildContext context, PokemonCube cube, data) {
+    // TODO: implement onAction
+    super.onAction(context, cube, data);
+  }
 }
 
 ```
 
+Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
+
+By doing this:
+
+```
+  cube.count.build<int>((value) {
+    return Text(value.toString());
+  }),
+
+```
+
+we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+
+```
+  return Text(value.toString());
+```
+
+This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
 
 ## Testing
 

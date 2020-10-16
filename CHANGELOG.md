@@ -1,3 +1,7 @@
+# 0.3.5
+
+- improvements in `CubeWidgetAnimation` [still experimental]
+
 # 0.3.4
 
 - improvements in `CubeWidgetAnimation`

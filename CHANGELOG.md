@@ -1,3 +1,7 @@
+# 0.3.4
+
+- improvements in `CubeWidgetAnimation`
+
 # 0.3.3
 
 - add `AnimatedListCube`

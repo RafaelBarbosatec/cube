@@ -29,7 +29,7 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   AnimationController getAnimController(dynamic id) =>
       _animationControllers[id];
 
-  Animation setAnimation(dynamic id, Animation animation) {
+  Animation confAnimation(dynamic id, Animation animation) {
     _animations[id] = animation;
     return _animations[id];
   }

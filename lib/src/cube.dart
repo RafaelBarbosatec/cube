@@ -118,7 +118,7 @@ abstract class Cube {
   }
 
   /// Uses to get the Cubes ready in memory by type
-  Iterable<T> getCubesIsReady<T extends Cube>() {
+  Iterable<T> getCubesAreReady<T extends Cube>() {
     return CubeMemoryContainer.instance.getCubes<T>();
   }
 }

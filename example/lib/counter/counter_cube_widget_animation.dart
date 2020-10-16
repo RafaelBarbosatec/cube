@@ -4,20 +4,29 @@ import 'package:flutter/material.dart';
 
 enum CounterCubeKeyAnimation { scaleController, scaleAnimation }
 
-class CounterCubeWidget extends CubeWidgetAnimation<CounterCube> {
+class CounterCubeWidgetAnimation extends CubeWidgetAnimation<CounterCube> {
   @override
-  void initState(BuildContext context, CounterCube cube, TickerProvider vsync) {
-    animationControllers[CounterCubeKeyAnimation.scaleController] =
-        AnimationController(
-      vsync: vsync,
+  void initState(
+    BuildContext context,
+    CounterCube cube,
+    TickerProvider ticker,
+  ) {
+    final controller = confAnimationController(
+      CounterCubeKeyAnimation.scaleController,
+      ticker,
       duration: Duration(seconds: 1),
     );
-    animations[CounterCubeKeyAnimation.scaleAnimation] = CurvedAnimation(
-      parent: animationControllers[CounterCubeKeyAnimation.scaleController],
-      curve: Curves.bounceOut,
+
+    confAnimation(
+      CounterCubeKeyAnimation.scaleAnimation,
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.bounceOut,
+      ),
     );
-    animationControllers[CounterCubeKeyAnimation.scaleController].forward();
-    super.initState(context, cube, vsync);
+
+    controller.forward();
+    super.initState(context, cube, ticker);
   }
 
   @override
@@ -27,7 +36,7 @@ class CounterCubeWidget extends CubeWidgetAnimation<CounterCube> {
         title: Text('CubeWidgetAnimation'),
       ),
       body: ScaleTransition(
-        scale: animations[CounterCubeKeyAnimation.scaleAnimation],
+        scale: getAnimation(CounterCubeKeyAnimation.scaleAnimation),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

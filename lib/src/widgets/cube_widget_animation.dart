@@ -4,8 +4,8 @@ import 'package:cubes/src/cube_builder_animation.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
-  final Map<dynamic, AnimationController> animationControllers = Map();
-  final Map<dynamic, Animation> animations = Map();
+  final Map<dynamic, AnimationController> _animationControllers = Map();
+  final Map<dynamic, Animation> _animations = Map();
   void onSuccess(BuildContext context, C cube, String text) {}
   void onError(BuildContext context, C cube, String text) {}
   void onAction(BuildContext context, C cube, dynamic data) {}
@@ -13,6 +13,28 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   void dispose() {}
 
   dynamic get initData => null;
+
+  AnimationController confAnimationController(
+    dynamic id,
+    TickerProvider ticker, {
+    Duration duration = const Duration(milliseconds: 300),
+  }) {
+    _animationControllers[id] = AnimationController(
+      vsync: ticker,
+      duration: duration,
+    );
+    return _animationControllers[id];
+  }
+
+  AnimationController getAnimController(dynamic id) =>
+      _animationControllers[id];
+
+  Animation confAnimation(dynamic id, Animation animation) {
+    _animations[id] = animation;
+    return _animations[id];
+  }
+
+  Animation getAnimation(dynamic id) => _animations[id];
 
   @protected
   Widget buildView(BuildContext context, C cube);
@@ -27,9 +49,9 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
       initState: (cube, ticker) => initState(context, cube, ticker),
       initData: initData,
       dispose: () {
-        animationControllers.forEach((key, value) => value.dispose());
-        animationControllers.clear();
-        animations.clear();
+        _animationControllers.forEach((key, value) => value.dispose());
+        _animationControllers.clear();
+        _animations.clear();
         dispose();
       },
     );

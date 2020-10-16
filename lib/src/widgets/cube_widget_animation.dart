@@ -1,26 +1,27 @@
 import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/cube_builder_animation.dart';
+import 'package:cubes/src/util/ticker_provider_container.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   final Map<dynamic, AnimationController> _animationControllers = Map();
   final Map<dynamic, Animation> _animations = Map();
+  final TickerProviderContainer tickerContainer = TickerProviderContainer();
   void onSuccess(BuildContext context, C cube, String text) {}
   void onError(BuildContext context, C cube, String text) {}
   void onAction(BuildContext context, C cube, dynamic data) {}
-  void initState(BuildContext context, C cube, TickerProvider ticker) {}
+  void initState(BuildContext context, C cube) {}
   void dispose() {}
 
   dynamic get initData => null;
 
   AnimationController confAnimationController(
-    dynamic id,
-    TickerProvider ticker, {
+    dynamic id, {
     Duration duration = const Duration(milliseconds: 300),
   }) {
     _animationControllers[id] = AnimationController(
-      vsync: ticker,
+      vsync: tickerContainer.ticker,
       duration: duration,
     );
     return _animationControllers[id];
@@ -46,7 +47,10 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
       onError: (cube, text) => onError(context, cube, text),
       onSuccess: (cube, text) => onSuccess(context, cube, text),
       onAction: (cube, data) => onAction(context, cube, data),
-      initState: (cube, ticker) => initState(context, cube, ticker),
+      initState: (cube, ticker) {
+        tickerContainer.ticker = ticker;
+        initState(context, cube);
+      },
       initData: initData,
       dispose: () {
         _animationControllers.forEach((key, value) => value.dispose());

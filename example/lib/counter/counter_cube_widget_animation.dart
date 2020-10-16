@@ -6,14 +6,9 @@ enum CounterCubeKeyAnimation { scaleController, scaleAnimation }
 
 class CounterCubeWidgetAnimation extends CubeWidgetAnimation<CounterCube> {
   @override
-  void initState(
-    BuildContext context,
-    CounterCube cube,
-    TickerProvider ticker,
-  ) {
+  void initState(BuildContext context, CounterCube cube) {
     final controller = confAnimationController(
       CounterCubeKeyAnimation.scaleController,
-      ticker,
       duration: Duration(seconds: 1),
     );
 
@@ -26,7 +21,7 @@ class CounterCubeWidgetAnimation extends CubeWidgetAnimation<CounterCube> {
     );
 
     controller.forward();
-    super.initState(context, cube, ticker);
+    super.initState(context, cube);
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/util/functions.dart';
+import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 
 typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
@@ -36,15 +36,14 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
 }
 
-class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
+class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMixin {
   C cube;
 
   @override
   void initState() {
-    if (widget.cube == null) {
+    cube = widget.cube;
+    if (cube == null) {
       cube = Cubes.getDependency();
-    } else {
-      cube = widget.cube;
     }
     cube.data = widget.initData;
     cube.addOnSuccessListener(_onSuccess);
@@ -52,9 +51,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      cube.ready();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override
@@ -73,27 +70,15 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   }
 
   void _onSuccess(C cube, String text) {
-    postFrame(() {
-      if (mounted) {
-        cubeWidget.onSuccess(cube, text);
-      }
-    });
+    postFrame(() => cubeWidget.onSuccess(cube, text));
   }
 
   void _onError(C cube, String text) {
-    postFrame(() {
-      if (mounted) {
-        cubeWidget.onError(cube, text);
-      }
-    });
+    postFrame(() => cubeWidget.onError(cube, text));
   }
 
   void _onAction(C cube, dynamic data) {
-    postFrame(() {
-      if (mounted) {
-        cubeWidget.onAction(cube, data);
-      }
-    });
+    postFrame(() => cubeWidget.onAction(cube, data));
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

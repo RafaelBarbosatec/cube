@@ -1,3 +1,12 @@
+# 0.4.0
+
+- [BREAKING CHANGE] move `getString` to `Cubes.getString`
+- [BREAKING CHANGE] move `registerDependency` to `Cubes.registerDependency`
+- [BREAKING CHANGE] move `getDependency` to `Cubes.getDependency`
+- [BREAKING CHANGE] remove `getCube` (use getDependency)
+- [BREAKING CHANGE] remove `registerCube` (use registerDependency)
+- create `Cubes.instance.customInjector(Injector)` to use if you want to overwrite the default injector (getIt).
+
 # 0.3.5
 
 - improvements in `CubeWidgetAnimation` [still experimental]

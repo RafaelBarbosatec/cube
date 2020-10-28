@@ -12,9 +12,9 @@ class GetItInjector extends Injector {
   @override
   void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
     if (isSingleton) {
-      _getIt.registerLazySingleton<T>(() => builder(_getIt));
+      _getIt.registerLazySingleton<T>(() => builder(this));
     } else {
-      _getIt.registerFactory<T>(() => builder(_getIt));
+      _getIt.registerFactory<T>(() => builder(this));
     }
   }
 }

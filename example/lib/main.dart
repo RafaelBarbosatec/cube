@@ -16,7 +16,7 @@ void main() {
   Cubes.registerDependency((i) => CounterCube());
   Cubes.registerDependency((i) => CounterSingletonCube(), isSingleton: true);
   Cubes.registerDependency((i) => TodoCube(), isSingleton: true);
-  Cubes.registerDependency((i) => PokemonCube(i.get()));
+  Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
   Cubes.registerDependency((i) => PokemonRepository());
 
   runApp(MyApp());

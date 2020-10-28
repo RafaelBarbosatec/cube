@@ -16,8 +16,6 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
 
   dynamic get initData => null;
 
-  C get initCube => null;
-
   AnimationController confAnimationController(
     dynamic id, {
     Duration duration = const Duration(milliseconds: 300),
@@ -45,7 +43,6 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilderAnimation<C>(
       builder: buildView,
-      cube: initCube,
       initData: initData,
       onError: (cube, text) => onError(context, cube, text),
       onSuccess: (cube, text) => onSuccess(context, cube, text),

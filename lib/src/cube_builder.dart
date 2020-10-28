@@ -1,5 +1,5 @@
+import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/injector.dart';
 import 'package:cubes/src/util/functions.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> {
   @override
   void initState() {
     if (widget.cube == null) {
-      cube = getCube();
+      cube = Cubes.getDependency();
     } else {
       cube = widget.cube;
     }

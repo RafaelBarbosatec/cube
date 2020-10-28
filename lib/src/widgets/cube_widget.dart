@@ -10,6 +10,7 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   void dispose() {}
 
   dynamic get initData => null;
+  C get initCube => null;
 
   @protected
   Widget buildView(BuildContext context, C cube);
@@ -18,11 +19,12 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilder<C>(
       builder: buildView,
+      cube: initCube,
+      initData: initData,
       onError: (cube, text) => onError(context, cube, text),
       onSuccess: (cube, text) => onSuccess(context, cube, text),
       onAction: (cube, data) => onAction(context, cube, data),
       initState: (cube) => initState(context, cube),
-      initData: initData,
       dispose: dispose,
     );
   }

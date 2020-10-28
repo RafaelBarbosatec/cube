@@ -1,11 +1,10 @@
+import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/cube_builder.dart';
-import 'package:cubes/src/injector.dart';
 import 'package:cubes/src/util/functions.dart';
 import 'package:flutter/material.dart';
 
-typedef InitStateWithTickerCallback<C extends Cube> = Function(
-    C cube, TickerProvider vsync);
+typedef InitStateWithTickerCallback<C extends Cube> = Function(C cube, TickerProvider vsync);
 
 class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
   const CubeBuilderAnimation({
@@ -32,18 +31,16 @@ class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
   final C cube;
 
   @override
-  _CubeBuilderAnimationState<C> createState() =>
-      _CubeBuilderAnimationState<C>();
+  _CubeBuilderAnimationState<C> createState() => _CubeBuilderAnimationState<C>();
 }
 
-class _CubeBuilderAnimationState<C extends Cube>
-    extends State<CubeBuilderAnimation> with TickerProviderStateMixin {
+class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimation> with TickerProviderStateMixin {
   C cube;
 
   @override
   void initState() {
     if (widget.cube == null) {
-      cube = getCube();
+      cube = Cubes.getDependency();
     } else {
       cube = widget.cube;
     }

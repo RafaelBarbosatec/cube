@@ -3,6 +3,9 @@ import 'package:examplecube/counter/counter_cube.dart';
 import 'package:flutter/material.dart';
 
 class CounterScreen extends StatelessWidget {
+  @visibleForTesting
+  static const KEY_FLOATING_BUTTON = Key('CounterScreen.KEY_FLOATING_BUTTON');
+
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
@@ -32,6 +35,7 @@ class CounterScreen extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
+            key: KEY_FLOATING_BUTTON,
             onPressed: cube.increment,
             tooltip: 'Increment',
             child: Icon(Icons.add),

@@ -17,4 +17,9 @@ class GetItInjector extends Injector {
       _getIt.registerFactory<T>(() => builder(this));
     }
   }
+
+  @override
+  void reset() {
+    _getIt.reset(dispose: false);
+  }
 }

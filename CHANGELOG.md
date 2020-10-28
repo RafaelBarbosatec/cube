@@ -6,6 +6,7 @@
 - [BREAKING CHANGE] remove `getCube` (use getDependency)
 - [BREAKING CHANGE] remove `registerCube` (use registerDependency)
 - create `Cubes.instance.customInjector(Injector)` to use if you want to overwrite the default injector (getIt).
+- add test widget example of the CounterScreen.
 
 # 0.3.5
 

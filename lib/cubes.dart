@@ -43,4 +43,6 @@ class Cubes {
   static String getString(String key, [Map<String, String> params]) {
     return StringsLocation.instance.getString(key, params: params);
   }
+
+  static void resetInjector() => _injector.reset();
 }

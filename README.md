@@ -346,6 +346,28 @@ Ready!!!  Your application already supports internationalization. Bas get the st
 
 ```
 
+By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one you can overwrite the Injector:
+
+```dart
+
+  class MyInjector extends Injector {
+   @override
+    T getDependency<T>({String dependencyName}) {
+    }
+
+    @override
+    void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+    }
+
+    @override
+    void reset() {
+    }
+  }
+
+  Cubes.instance.customInjector(MyInjector());
+
+```
+
 Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 
 

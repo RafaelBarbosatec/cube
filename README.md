@@ -65,14 +65,14 @@ import 'package:flutter/material.dart';
 
 void main() {
   // register cube
-  registerCube((i) => CounterCube());
+  Cubes.registerDependency((i) => CounterCube());
 
   // Example register singleton Cube
-  // registerCube((i) => CounterCube(),isSingleton: true);
+  // Cubes.registerDependency((i) => CounterCube(),isSingleton: true);
 
   // Example register repositories or anything
-  // registerSingletonDependency((i) => SingletonRepository(i.get());
-  // registerDependency((i) => FactoryRepository(i.get());
+  // Cubes.registerDependency((i) => SingletonRepository(i.getDependency(),isSingleton: true);
+  // Cubes.registerDependency((i) => FactoryRepository(i.getDependency());
 
   runApp(MaterialApp(
       title: 'Flutter Demo',
@@ -242,7 +242,8 @@ void main() {
 
 ```
 
-Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/pokemon_test.dart)
+Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
+Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/widget/cube_test.dart)
 
 ## Useful extensions
 
@@ -341,7 +342,29 @@ Ready!!!  Your application already supports internationalization. Bas get the st
 
 ```dart
 
-  String text = getString('welcome');
+  String text = Cubes.getString('welcome');
+
+```
+
+By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one you can overwrite the Injector:
+
+```dart
+
+  class MyInjector extends Injector {
+   @override
+    T getDependency<T>({String dependencyName}) {
+    }
+
+    @override
+    void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+    }
+
+    @override
+    void reset() {
+    }
+  }
+
+  Cubes.instance.customInjector(MyInjector());
 
 ```
 

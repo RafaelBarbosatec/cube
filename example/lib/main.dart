@@ -13,11 +13,11 @@ import 'package:flutter/material.dart';
 
 void main() {
   // register cube
-  registerCube((i) => CounterCube());
-  registerCube((i) => CounterSingletonCube(), isSingleton: true);
-  registerCube((i) => TodoCube(), isSingleton: true);
-  registerCube((i) => PokemonCube(i.get()));
-  registerSingletonDependency((i) => PokemonRepository());
+  Cubes.registerDependency((i) => CounterCube());
+  Cubes.registerDependency((i) => CounterSingletonCube(), isSingleton: true);
+  Cubes.registerDependency((i) => TodoCube(), isSingleton: true);
+  Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
+  Cubes.registerDependency((i) => PokemonRepository());
 
   runApp(MyApp());
 }
@@ -51,14 +51,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(getString('welcome')),
+        title: Text(Cubes.getString('welcome')),
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
-              child: Text(getString('counter')),
+              child: Text(Cubes.getString('counter')),
               onPressed: () {
                 context.goTo(CounterScreen());
               },
@@ -76,7 +76,7 @@ class Home extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: Text(getString('singleton')),
+              child: Text(Cubes.getString('singleton')),
               onPressed: () {
                 context.goTo(ScreenCounterSingleton());
               },

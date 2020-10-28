@@ -17,7 +17,3 @@ class StringsLocation {
     return str;
   }
 }
-
-String getString(String key, [Map<String, String> params]) {
-  return StringsLocation.instance.getString(key, params: params);
-}

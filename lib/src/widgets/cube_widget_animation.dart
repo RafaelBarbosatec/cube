@@ -4,6 +4,7 @@ import 'package:cubes/src/cube_builder_animation.dart';
 import 'package:cubes/src/util/ticker_provider_container.dart';
 import 'package:flutter/widgets.dart';
 
+/// (EXPERIMENTAL) CubeWidget created to use animations.
 abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   final Map<dynamic, AnimationController> _animationControllers = Map();
   final Map<dynamic, Animation> _animations = Map();
@@ -27,8 +28,7 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
     return _animationControllers[id];
   }
 
-  AnimationController getAnimController(dynamic id) =>
-      _animationControllers[id];
+  AnimationController getAnimController(dynamic id) => _animationControllers[id];
 
   Animation confAnimation(dynamic id, Animation animation) {
     _animations[id] = animation;
@@ -44,6 +44,7 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilderAnimation<C>(
       builder: buildView,
+      initData: initData,
       onError: (cube, text) => onError(context, cube, text),
       onSuccess: (cube, text) => onSuccess(context, cube, text),
       onAction: (cube, data) => onAction(context, cube, data),
@@ -51,7 +52,6 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
         tickerContainer.ticker = ticker;
         initState(context, cube);
       },
-      initData: initData,
       dispose: () {
         _animationControllers.forEach((key, value) => value.dispose());
         _animationControllers.clear();

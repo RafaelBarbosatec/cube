@@ -1,5 +1,5 @@
 import 'package:cubes/src/observable/observable_value.dart';
-import 'package:cubes/src/util/functions.dart';
+import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);
@@ -24,7 +24,7 @@ class Observer<T> extends StatefulWidget {
   _ObserverState<T> createState() => _ObserverState<T>();
 }
 
-class _ObserverState<T> extends State<Observer> {
+class _ObserverState<T> extends State<Observer> with StateMixin {
   @override
   void initState() {
     widget.observable?.addListener(_listener);
@@ -50,11 +50,7 @@ class _ObserverState<T> extends State<Observer> {
   }
 
   void _listener() {
-    postFrame(() {
-      if (mounted) {
-        setState(() {});
-      }
-    });
+    postFrame(() => setState(() {}));
   }
 
   Observer<T> get widgetObserver => (widget as Observer<T>);

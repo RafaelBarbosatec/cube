@@ -1,7 +1,10 @@
 import 'package:cubes/cubes.dart';
 
 class CounterCube extends Cube {
+  final bool withDebounce;
   final count = ObservableValue<int>(value: 0);
+
+  CounterCube({this.withDebounce = true});
 
   @override
   void ready() {
@@ -21,10 +24,12 @@ class CounterCube extends Cube {
       onError('You are clicking too much o.O'); // to send the failure message
     }
 
-    runDebounce(
-      'increment',
-      () => print(count.value),
-      duration: Duration(seconds: 1),
-    );
+    if (withDebounce) {
+      runDebounce(
+        'increment',
+        () => print(count.value),
+        duration: Duration(seconds: 300),
+      );
+    }
   }
 }

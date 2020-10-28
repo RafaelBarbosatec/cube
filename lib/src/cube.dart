@@ -53,20 +53,17 @@ abstract class Cube {
   }
 
   /// Remove OnSuccessListener
-  void removeOnSuccessListener<T extends Cube>(
-      FeedbackChanged<T, String> listener) {
+  void removeOnSuccessListener<T extends Cube>(FeedbackChanged<T, String> listener) {
     _onSuccessListeners?.remove(listener);
   }
 
   /// Remove OnErrorListener
-  void removeOnErrorListener<T extends Cube>(
-      FeedbackChanged<T, String> listener) {
+  void removeOnErrorListener<T extends Cube>(FeedbackChanged<T, String> listener) {
     _onErrorListeners?.remove(listener);
   }
 
   /// Remove OnActionListener
-  void removeOnActionListener<T extends Cube>(
-      FeedbackChanged<T, String> listener) {
+  void removeOnActionListener<T extends Cube>(FeedbackChanged<T, String> listener) {
     _onActionListeners?.remove(listener);
   }
 
@@ -100,15 +97,19 @@ abstract class Cube {
     Function call, {
     Duration duration = const Duration(milliseconds: 400),
   }) {
-    if (_debounceMap == null) _debounceMap = Map();
-    if (_debounceMap.containsKey(identify)) {
-      if (_debounceMap[identify].delay != duration) {
+    try {
+      if (_debounceMap == null) _debounceMap = Map();
+      if (_debounceMap.containsKey(identify)) {
+        if (_debounceMap[identify].delay != duration) {
+          _debounceMap[identify] = Debounce(duration);
+        }
+        _debounceMap[identify].call(call);
+      } else {
         _debounceMap[identify] = Debounce(duration);
+        _debounceMap[identify].call(call);
       }
-      _debounceMap[identify].call(call);
-    } else {
-      _debounceMap[identify] = Debounce(duration);
-      _debounceMap[identify].call(call);
+    } catch (e) {
+      print('runDebounce: $e');
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:cubes/cubes.dart';
+import 'package:cubes/src/action/cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/cube_builder.dart';
 import 'package:cubes/src/util/state_mixin.dart';
@@ -10,8 +11,6 @@ class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
   const CubeBuilderAnimation({
     Key key,
     @required this.builder,
-    this.onSuccess,
-    this.onError,
     this.initData,
     this.cube,
     this.onAction,
@@ -21,9 +20,7 @@ class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
 
   final dynamic initData;
   final AsyncCubeWidgetBuilder<C> builder;
-  final FeedbackChanged<C, String> onSuccess;
-  final FeedbackChanged<C, String> onError;
-  final FeedbackChanged<C, dynamic> onAction;
+  final OnActionChanged<C, CubeAction> onAction;
   final InitStateWithTickerCallback<C> initState;
   final VoidCallback dispose;
   final C cube;
@@ -44,8 +41,6 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
       cube = widget.cube;
     }
     cube.data = widget.initData;
-    cube.addOnSuccessListener(_onSuccess);
-    cube.addOnErrorListener(_onError);
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube, this);
@@ -54,8 +49,6 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
 
   @override
   void dispose() {
-    cube.removeOnSuccessListener(_onSuccess);
-    cube.removeOnErrorListener(_onError);
     cube.removeOnActionListener(_onAction);
     cube.dispose();
     cubeWidget.dispose?.call();
@@ -65,14 +58,6 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
   @override
   Widget build(BuildContext context) {
     return cubeWidget.builder(context, cube);
-  }
-
-  void _onSuccess(C cube, String text) {
-    postFrame(() => cubeWidget.onSuccess(cube, text));
-  }
-
-  void _onError(C cube, String text) {
-    postFrame(() => cubeWidget.onError(cube, text));
   }
 
   void _onAction(C cube, dynamic data) {

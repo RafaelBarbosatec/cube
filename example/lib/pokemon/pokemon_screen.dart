@@ -48,8 +48,10 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
   }
 
   @override
-  void onError(BuildContext context, PokemonCube cube, String text) {
-    scaffoldKey?.currentState?.showSnackBar(SnackBar(content: Text(text)));
-    super.onError(context, cube, text);
+  void onAction(BuildContext context, PokemonCube cube, CubeAction action) {
+    if (action is CubeErrorAction) {
+      scaffoldKey?.currentState?.showSnackBar(SnackBar(content: Text(action.text)));
+    }
+    super.onAction(context, cube, action);
   }
 }

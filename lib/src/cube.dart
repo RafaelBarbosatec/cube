@@ -1,12 +1,11 @@
+import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
 
-typedef FeedbackChanged<A, B> = void Function(A valueA, B valueB);
+typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
 
 abstract class Cube {
-  List<FeedbackChanged<dynamic, String>> _onSuccessListeners;
-  List<FeedbackChanged<dynamic, String>> _onErrorListeners;
-  List<FeedbackChanged<dynamic, dynamic>> _onActionListeners;
+  List<OnActionChanged> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
 
   /// initial data if passed through CubeBuilder
@@ -22,29 +21,9 @@ abstract class Cube {
     CubeMemoryContainer.instance.remove(this);
   }
 
-  /// Add OnSuccessListener
-  void addOnSuccessListener<T extends Cube>(
-    FeedbackChanged<T, String> listener,
-  ) {
-    if (listener != null) {
-      if (_onSuccessListeners == null) _onSuccessListeners = List();
-      _onSuccessListeners.add(listener);
-    }
-  }
-
-  /// Add OnErrorListener
-  void addOnErrorListener<T extends Cube>(
-    FeedbackChanged<T, String> listener,
-  ) {
-    if (listener != null) {
-      if (_onErrorListeners == null) _onErrorListeners = List();
-      _onErrorListeners.add(listener);
-    }
-  }
-
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
-    FeedbackChanged<T, String> listener,
+    OnActionChanged<T, String> listener,
   ) {
     if (listener != null) {
       if (_onActionListeners == null) _onActionListeners = List();
@@ -52,33 +31,13 @@ abstract class Cube {
     }
   }
 
-  /// Remove OnSuccessListener
-  void removeOnSuccessListener<T extends Cube>(FeedbackChanged<T, String> listener) {
-    _onSuccessListeners?.remove(listener);
-  }
-
-  /// Remove OnErrorListener
-  void removeOnErrorListener<T extends Cube>(FeedbackChanged<T, String> listener) {
-    _onErrorListeners?.remove(listener);
-  }
-
   /// Remove OnActionListener
-  void removeOnActionListener<T extends Cube>(FeedbackChanged<T, String> listener) {
+  void removeOnActionListener<T extends Cube>(OnActionChanged<T, String> listener) {
     _onActionListeners?.remove(listener);
   }
 
-  /// Method to send the success message
-  void onSuccess(String msg) {
-    _onSuccessListeners?.forEach((element) => element(this, msg));
-  }
-
-  /// Method to send the failure message
-  void onError(String msg) {
-    _onErrorListeners?.forEach((element) => element(this, msg));
-  }
-
   /// Method to send anything to view
-  void onAction(dynamic action) {
+  void onAction(CubeAction action) {
     _onActionListeners?.forEach((element) => element(this, action));
   }
 

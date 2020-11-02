@@ -1,4 +1,5 @@
 import 'package:cubes/cubes.dart';
+import 'package:cubes/src/action/cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,6 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   const CubeBuilder({
     Key key,
     @required this.builder,
-    this.onSuccess,
-    this.onError,
     this.initData,
     this.cube,
     this.onAction,
@@ -25,9 +24,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
 
   final dynamic initData;
   final AsyncCubeWidgetBuilder<C> builder;
-  final FeedbackChanged<C, String> onSuccess;
-  final FeedbackChanged<C, String> onError;
-  final FeedbackChanged<C, dynamic> onAction;
+  final OnActionChanged<C, CubeAction> onAction;
   final InitCallback<C> initState;
   final VoidCallback dispose;
   final C cube;
@@ -46,8 +43,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
       cube = Cubes.getDependency();
     }
     cube.data = widget.initData;
-    cube.addOnSuccessListener(_onSuccess);
-    cube.addOnErrorListener(_onError);
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
@@ -56,8 +51,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
 
   @override
   void dispose() {
-    cube.removeOnSuccessListener(_onSuccess);
-    cube.removeOnErrorListener(_onError);
     cube.removeOnActionListener(_onAction);
     cube.dispose();
     cubeWidget.dispose?.call();
@@ -67,14 +60,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   @override
   Widget build(BuildContext context) {
     return cubeWidget.builder(context, cube);
-  }
-
-  void _onSuccess(C cube, String text) {
-    postFrame(() => cubeWidget.onSuccess(cube, text));
-  }
-
-  void _onError(C cube, String text) {
-    postFrame(() => cubeWidget.onError(cube, text));
   }
 
   void _onAction(C cube, dynamic data) {

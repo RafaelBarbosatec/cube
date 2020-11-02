@@ -9,9 +9,7 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
   final Map<dynamic, AnimationController> _animationControllers = Map();
   final Map<dynamic, Animation> _animations = Map();
   final TickerProviderContainer tickerContainer = TickerProviderContainer();
-  void onSuccess(BuildContext context, C cube, String text) {}
-  void onError(BuildContext context, C cube, String text) {}
-  void onAction(BuildContext context, C cube, dynamic data) {}
+  void onAction(BuildContext context, C cube, CubeAction data) {}
   void initState(BuildContext context, C cube) {}
   void dispose() {}
 
@@ -45,8 +43,6 @@ abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
     return CubeBuilderAnimation<C>(
       builder: buildView,
       initData: initData,
-      onError: (cube, text) => onError(context, cube, text),
-      onSuccess: (cube, text) => onSuccess(context, cube, text),
       onAction: (cube, data) => onAction(context, cube, data),
       initState: (cube, ticker) {
         tickerContainer.ticker = ticker;

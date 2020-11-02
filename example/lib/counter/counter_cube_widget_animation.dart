@@ -53,20 +53,8 @@ class CounterCubeWidgetAnimation extends CubeWidgetAnimation<CounterCube> {
   }
 
   @override
-  void onAction(BuildContext context, CounterCube cube, data) {
+  void onAction(BuildContext context, CounterCube cube, CubeAction data) {
     print('onAction: $data');
     super.onAction(context, cube, data);
-  }
-
-  @override
-  void onSuccess(BuildContext context, CounterCube cube, String text) {
-    print('onSuccess: $text');
-    super.onSuccess(context, cube, text);
-  }
-
-  @override
-  void onError(BuildContext context, CounterCube cube, String text) {
-    print('onError: $text');
-    super.onError(context, cube, text);
   }
 }

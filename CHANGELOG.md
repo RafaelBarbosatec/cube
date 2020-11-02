@@ -1,3 +1,7 @@
+# 0.4.1
+
+- [BREAKING CHANGE] remove `onSuccess` an `onError`. Now centers on ʻonAction(CubeAction)`.
+
 # 0.4.0
 
 - [BREAKING CHANGE] move `getString` to `Cubes.getString`

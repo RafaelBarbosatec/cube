@@ -32,7 +32,7 @@ class PokemonCube extends Cube {
         list.value = value;
       }
     }).catchError((error) {
-      onError(error.toString());
+      onAction(CubeErrorAction(text: error.toString()));
     }).whenComplete(() {
       progress.value = false;
     });

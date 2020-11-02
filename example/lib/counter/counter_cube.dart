@@ -15,20 +15,18 @@ class CounterCube extends Cube {
   void increment() {
     count.value++;
     if (count.value == 5) {
-      onAction({'key': 'param'}); // to send anything to view
+      onAction(CubeSuccessAction(text: "count five")); // to send action to view
     }
-    if (count.value == 10) {
-      onSuccess('Value iguals 10'); // to send the success message
-    }
+
     if (count.value == 50) {
-      onError('You are clicking too much o.O'); // to send the failure message
+      onAction(CubeErrorAction(text: "You are clicking too much o.O")); // to send action to view
     }
 
     if (withDebounce) {
       runDebounce(
         'increment',
         () => print(count.value),
-        duration: Duration(seconds: 300),
+        duration: Duration(milliseconds: 300),
       );
     }
   }

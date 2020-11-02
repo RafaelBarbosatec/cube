@@ -4,6 +4,7 @@ import 'package:cubes/src/injector/getit_injector.dart';
 import 'package:cubes/src/injector/injector.dart';
 import 'package:cubes/src/localization/strings_location.dart';
 
+export 'package:cubes/src/action/cube_action.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/cube_builder.dart';
 export 'package:cubes/src/injector/injector.dart';

@@ -36,13 +36,11 @@ class CounterCube extends Cube {
     void increment() {
       count.value++;
       if (count.value == 5) {
-        onAction({'key': 'param'}); // Method to send anything to view
+        onAction(CubeSuccessAction(text: "count five")); // to send action to view
       }
-      if (count.value == 10) {
-        onSuccess('Value iguals 10'); // Method to send the success message
-      }
+
       if (count.value == 50) {
-        onError('You are clicking too much o.O'); // Method to send the failure message
+        onAction(CubeErrorAction(text: "You are clicking too much o.O")); // to send action to view
       }
 
       // example apply debounce
@@ -55,6 +53,8 @@ class CounterCube extends Cube {
 }
 
 ```
+
+In ʻonAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
 
 - Registering Cubes and or dependencies:
 
@@ -95,16 +95,15 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onSuccess: (cube, text) {
-        print('onSuccess: $text');
+      onAction: (CounterCube cube, CubeAction action) {
+        if (action is CubeSuccessAction) {
+          print('CubeSuccessAction: ${action.text}');
+        }
+        if (action is CubeErrorAction) {
+          print('CubeErrorAction: ${action.text}');
+        }
       },
-      onError: (cube, text) {
-        print('onError: $text');
-      },
-      onAction: (cube, data) {
-        print('onAction: $data');
-      },
-      builder: (context, cube) {
+      builder: (BuildContext context,CounterCube cube) {
         return Scaffold(
           appBar: AppBar(
             title: Text('Home'),
@@ -169,21 +168,9 @@ class Home extends CubeWidget<CounterCube> {
   }
 
   @override
-  void onError(BuildContext context, PokemonCube cube, String text) {
-    // TODO: implement onError
-    super.onError(context, cube, text);
-  }
-
-  @override
-  void onSuccess(BuildContext context, PokemonCube cube, String text) {
-    // TODO: implement onSuccess
-    super.onSuccess(context, cube, text);
-  }
-
-  @override
-  void onAction(BuildContext context, PokemonCube cube, data) {
+  void onAction(BuildContext context, PokemonCube cube, CubeAction action) {
     // TODO: implement onAction
-    super.onAction(context, cube, data);
+    super.onAction(context, cube, action);
   }
 }
 

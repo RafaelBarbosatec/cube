@@ -197,7 +197,7 @@ This guarantees that in the whole widget tree of your screen, only the necessary
 
 ## Provider
 
-To get the Cube by the children of CubeBuilder, CubeWidget or CubeWidgetAnimation you can use Cubes.of<MyCube>(context);
+To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;
 
 ## Testing
 

@@ -1,6 +1,6 @@
 # 0.5.0
 
-- Add CuberProvider. To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context);
+- Add CuberProvider. To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;
 
 # 0.4.1
 

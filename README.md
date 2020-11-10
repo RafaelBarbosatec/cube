@@ -54,7 +54,7 @@ class CounterCube extends Cube {
 
 ```
 
-In ʻonAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
+In `onAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
 
 - Registering Cubes and or dependencies:
 

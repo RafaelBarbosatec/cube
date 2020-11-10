@@ -11,18 +11,15 @@ class PokemonItemWidget extends StatefulWidget {
   _PokemonItemWidgetState createState() => _PokemonItemWidgetState();
 }
 
-class _PokemonItemWidgetState extends State<PokemonItemWidget>
-    with TickerProviderStateMixin {
+class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _animationSlide;
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animationSlide = Tween(begin: Offset(2.0, 0.0), end: Offset(0.0, 0.0))
-        .animate(
-            CurvedAnimation(parent: _controller, curve: Curves.decelerate));
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.decelerate));
     _controller.forward(from: 0.0);
     super.initState();
   }

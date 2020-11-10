@@ -195,6 +195,10 @@ we register by listening to the Observer `count`, and every time this variable i
 
 This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
 
+## Provider
+
+To get the Cube by the children of CubeBuilder, CubeWidget or CubeWidgetAnimation you can use Cubes.of<MyCube>(context);
+
 ## Testing
 
 ```dart

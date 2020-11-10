@@ -2,6 +2,7 @@ import 'package:cubes/cubes.dart';
 import 'package:cubes/src/action/cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/cube_builder.dart';
+import 'package:cubes/src/cube_provider.dart';
 import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,10 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
 
   @override
   Widget build(BuildContext context) {
-    return cubeWidget.builder(context, cube);
+    return CubeProvider(
+      cube: cube,
+      child: cubeWidget.builder(context, cube),
+    );
   }
 
   void _onAction(C cube, dynamic data) {

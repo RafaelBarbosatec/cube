@@ -1,8 +1,11 @@
 library cube;
 
+import 'package:cubes/src/cube.dart';
+import 'package:cubes/src/cube_provider.dart';
 import 'package:cubes/src/injector/getit_injector.dart';
 import 'package:cubes/src/injector/injector.dart';
 import 'package:cubes/src/localization/strings_location.dart';
+import 'package:flutter/widgets.dart';
 
 export 'package:cubes/src/action/cube_action.dart';
 export 'package:cubes/src/cube.dart';
@@ -46,4 +49,8 @@ class Cubes {
   }
 
   static void resetInjector() => _injector.reset();
+
+  static C of<C extends Cube>(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;
+  }
 }

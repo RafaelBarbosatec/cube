@@ -51,6 +51,6 @@ class Cubes {
   static void resetInjector() => _injector.reset();
 
   static C of<C extends Cube>(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>().cube;
+    return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;
   }
 }

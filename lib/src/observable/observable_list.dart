@@ -59,6 +59,18 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     notify();
   }
 
+  /// get if list is empty
+  bool get isEmpty => this.value?.isEmpty;
+
+  /// get if list is not empty
+  bool get isNotEmpty => !isEmpty;
+
   /// get size list
   int get length => this.value?.length;
+
+  /// get first item
+  T get first => this.value?.first;
+
+  /// get last item
+  T get last => this.value?.last;
 }

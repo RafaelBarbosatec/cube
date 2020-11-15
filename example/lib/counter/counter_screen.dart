@@ -27,9 +27,11 @@ class CounterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(Cubes.getString('description_counter')),
-                cube.count.build<int>((value) {
-                  return Text(value.toString());
-                }),
+                cube.count.build<int>(
+                  (value) {
+                    return Text(value.toString());
+                  },
+                ),
               ],
             ),
           ),

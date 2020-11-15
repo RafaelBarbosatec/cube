@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 enum CounterCubeKeyAnimation { scaleController, scaleAnimation }
 
-class CounterCubeWidgetAnimation extends CubeWidgetAnimation<CounterCube> {
+class CounterCubeWidgetAnimation extends CubeAnimationWidget<CounterCube> {
   @override
   void initState(BuildContext context, CounterCube cube) {
     final controller = confAnimationController(

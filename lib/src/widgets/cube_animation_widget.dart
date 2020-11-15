@@ -1,11 +1,11 @@
 import 'package:cubes/cubes.dart';
+import 'package:cubes/src/builder/cube_builder_animation.dart';
 import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/cube_builder_animation.dart';
 import 'package:cubes/src/util/ticker_provider_container.dart';
 import 'package:flutter/widgets.dart';
 
 /// (EXPERIMENTAL) CubeWidget created to use animations.
-abstract class CubeWidgetAnimation<C extends Cube> extends StatelessWidget {
+abstract class CubeAnimationWidget<C extends Cube> extends StatelessWidget {
   final Map<dynamic, AnimationController> _animationControllers = Map();
   final Map<dynamic, Animation> _animations = Map();
   final TickerProviderContainer tickerContainer = TickerProviderContainer();

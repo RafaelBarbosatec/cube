@@ -1,3 +1,7 @@
+# 0.5.1
+
+- Add `when` in `Observer` and extension `build` of the `Observer`
+
 # 0.5.0
 
 - Add CuberProvider. To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;

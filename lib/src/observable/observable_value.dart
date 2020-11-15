@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+typedef ModifyValue<T> = T Function(T lastValue);
+
 class ObservableValue<T> extends ChangeNotifier {
   T _lastValue;
   T _value;
@@ -17,6 +19,9 @@ class ObservableValue<T> extends ChangeNotifier {
     _value = newValue;
     notify();
   }
+
+  void update({@required T value}) => this.value = value;
+  void modify({@required ModifyValue modify}) => this.value = modify(this.value);
 
   void notify() {
     if (hasListeners) {

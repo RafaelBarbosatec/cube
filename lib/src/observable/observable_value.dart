@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-typedef ModifyValue<T> = T Function(T lastValue);
+typedef ModifyValue<T> = T Function(T value);
 
 class ObservableValue<T> extends ChangeNotifier {
   T _lastValue;

@@ -180,7 +180,7 @@ Cube and its dependencies are injected into CubeBuilder and CubeWidget without t
 
 By doing this:
 
-```
+``` dart
   cube.count.build<int>((value) {
     return Text(value.toString());
   }),
@@ -189,11 +189,40 @@ By doing this:
 
 we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
-```
+``` dart
   return Text(value.toString());
 ```
 
 This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
+
+## Listening observable variables
+
+You can listen to observables in two ways, using the extension `build` as in the example above or using the `Observer` widget:
+
+### Extension 'build'
+
+``` dart
+  cube.count.build<int>(
+     (value) => Text(value.toString()),                              // Here you build the widget and it will be rebuilt every time the variable is modified and will leave the conditions of `when`.
+     when: (lastValue,newValue)=> lastValue != newValue,             // You can add conditions to rebuild or not your widget. By default, whenever the variable is modified, the widget will be rebuilt.
+     animate: true,                                                  // Setting to `true`, fadeIn animation will be performed between widget changes.
+     transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,   // Here you can modify the default animation which is FadeIn.
+     duration: Duration(milliseconds: 300),                          // Sets the duration of the animation.
+  ),
+```
+
+### Widget Observer
+
+``` dart
+  return Observer<int>(
+      observable: cube.count,
+      builder: (value)=> Text(value.toString()),
+      when: (lastValue,newValue)=> lastValue != newValue,
+      animate:true,
+      transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
+      duration: Duration(milliseconds: 300),
+  );
+```
 
 ## Provider
 

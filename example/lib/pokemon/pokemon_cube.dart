@@ -21,14 +21,14 @@ class PokemonCube extends Cube {
     if (progress.value) return;
     int page = 0;
     if (isMore) page = (list.length ~/ LIMIT_PAGE) + 1;
-    progress.value = true;
+    progress.update(true);
     repository
         .getPokemonList(page: page, limit: LIMIT_PAGE)
         .then((value) {
-          if (isMore) return list.addAll(value);
-          list.value = value;
+          if (isMore) return list.modify((current) => current..addAll(value));
+          list.update(value);
         })
         .catchError((error) => onAction(CubeErrorAction(text: error.toString())))
-        .whenComplete(() => progress.value = false);
+        .whenComplete(() => progress.update(false));
   }
 }

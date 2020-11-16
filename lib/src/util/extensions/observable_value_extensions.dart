@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 extension ObservableValueExtensions on ObservableValue {
   Observer build<T>(
     ObserverBuilder<T> build, {
-    WhenCondition<T> when,
     bool animate = false,
     AnimatedSwitcherTransitionBuilder transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
@@ -15,7 +14,6 @@ extension ObservableValueExtensions on ObservableValue {
       animate: animate,
       transitionBuilder: transitionBuilder,
       duration: duration,
-      when: when,
       builder: build,
     );
   }

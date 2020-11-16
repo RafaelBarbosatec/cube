@@ -13,7 +13,7 @@ class CounterCube extends Cube {
   }
 
   void increment() {
-    count.value++;
+    count.modify((value) => value + 1);
     if (count.value == 5) {
       onAction(CubeSuccessAction(text: "count five")); // to send action to view
     }

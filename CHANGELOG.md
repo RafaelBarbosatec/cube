@@ -1,7 +1,6 @@
 # 0.5.1
 
-- Add `when` in `Observer` and extension `build` of the `Observer`;
-- Add method `update` and `modify` in `ObservableValue`;
+- [BREAKING CHANGE] Add method `update` and `modify` in `ObservableValue`;
 - Add `isEmpty`, `isNotEmpty`, `first` and `last` in `ObservableList`;
 
 # 0.5.0

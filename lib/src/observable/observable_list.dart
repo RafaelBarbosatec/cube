@@ -2,7 +2,7 @@ import 'package:cubes/src/observable/observable_value.dart';
 
 class ObservableList<T> extends ObservableValue<List<T>> {
   ObservableList({Iterable<T> value}) {
-    this.value = value;
+    this.setInitialValue(value);
   }
 
   /// add element in list and notify listeners

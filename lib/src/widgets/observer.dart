@@ -3,7 +3,6 @@ import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);
-typedef WhenCondition<T> = bool Function(T oldValue, T newValue);
 
 class Observer<T> extends StatefulWidget {
   const Observer({
@@ -13,12 +12,10 @@ class Observer<T> extends StatefulWidget {
     this.animate = false,
     this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
     this.duration = const Duration(milliseconds: 300),
-    this.when,
   }) : super(key: key);
 
   final ObservableValue<T> observable;
   final ObserverBuilder<T> builder;
-  final WhenCondition<T> when;
   final bool animate;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final Duration duration;
@@ -53,9 +50,7 @@ class _ObserverState<T> extends State<Observer> with StateMixin {
   }
 
   void _listener() {
-    if (widgetObserver.when?.call(widget.observable.lastValue, widget.observable.value) ?? true) {
-      postFrame(() => setState(() {}));
-    }
+    postFrame(() => setState(() {}));
   }
 
   Observer<T> get widgetObserver => (widget as Observer<T>);

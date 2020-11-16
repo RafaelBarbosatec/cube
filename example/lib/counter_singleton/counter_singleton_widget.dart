@@ -30,16 +30,4 @@ class CounterSingletonWidget extends CubeWidget<CounterSingletonCube> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-  @override
-  void initState(BuildContext context, CounterSingletonCube cube) {
-    print('initState');
-    super.initState(context, cube);
-  }
-
-  @override
-  void dispose() {
-    print('dispose');
-    super.dispose();
-  }
 }

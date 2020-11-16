@@ -25,7 +25,7 @@ class PokemonCube extends Cube {
     repository
         .getPokemonList(page: page, limit: LIMIT_PAGE)
         .then((value) {
-          if (isMore) return list.modify((current) => current..addAll(value));
+          if (isMore) return list.addAll(value);
           list.update(value);
         })
         .catchError((error) => onAction(CubeErrorAction(text: error.toString())))

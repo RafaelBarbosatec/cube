@@ -9,14 +9,7 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onAction: (cube, action) {
-        if (action is CubeSuccessAction) {
-          print('CubeSuccessAction: ${action.text}');
-        }
-        if (action is CubeErrorAction) {
-          print('CubeErrorAction: ${action.text}');
-        }
-      },
+      onAction: (cube, action) => print(action),
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(

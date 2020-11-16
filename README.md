@@ -94,15 +94,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onAction: (CounterCube cube, CubeAction action) {
-        if (action is CubeSuccessAction) {
-          print('CubeSuccessAction: ${action.text}');
-        }
-        if (action is CubeErrorAction) {
-          print('CubeErrorAction: ${action.text}');
-        }
-      },
-      builder: (BuildContext context,CounterCube cube) {
+      onAction: (cube, action) => print(action),
+      builder: (BuildContext context, CounterCube cube) {
         return Scaffold(
           appBar: AppBar(
             title: Text('Home'),
@@ -167,7 +160,7 @@ class Home extends CubeWidget<CounterCube> {
   }
 
   @override
-  void onAction(BuildContext context, PokemonCube cube, CubeAction action) {
+  void onAction(BuildContext context, CounterCube cube, CubeAction action) {
     // TODO: implement onAction
     super.onAction(context, cube, action);
   }

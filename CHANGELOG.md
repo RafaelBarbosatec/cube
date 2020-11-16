@@ -1,7 +1,7 @@
 # 0.5.1
 
 - Add method `update` and `modify` in `ObservableValue`;
-- [BREAKING CHANGE] not modify directly the `value` use `update` or `modify`;
+- [BREAKING CHANGE] not modify directly the `value`, now use `update` or `modify`;
 - Add `isEmpty`, `isNotEmpty`, `first` and `last` in `ObservableList`;
 
 # 0.5.0

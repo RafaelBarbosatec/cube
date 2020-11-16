@@ -13,11 +13,11 @@ class PokemonCube extends Cube {
 
   @override
   void ready() {
-    loadList();
+    fetchPokemonList();
     super.ready();
   }
 
-  void loadList({bool isMore = false}) {
+  void fetchPokemonList({bool isMore = false}) {
     if (progress.value) return;
     int page = 0;
     if (isMore) page = (list.length ~/ LIMIT_PAGE) + 1;

@@ -22,7 +22,7 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   if (index >= data.length - 3) {
-                    cube.loadList(isMore: true);
+                    cube.fetchPokemonList(isMore: true);
                   }
                   return PokemonItemWidget(
                     item: data[index],

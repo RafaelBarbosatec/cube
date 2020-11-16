@@ -18,15 +18,9 @@ class ObservableValue<T> extends ChangeNotifier {
 
   void _setValueAndNotify(T newValue) {
     _value = newValue;
-    notify();
+    notifyListeners();
   }
 
   void update(T value) => _setValueAndNotify(value);
   void modify(ModifyValue<T> modify) => _setValueAndNotify(modify(value));
-
-  void notify() {
-    if (hasListeners) {
-      notifyListeners();
-    }
-  }
 }

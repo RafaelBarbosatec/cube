@@ -1,19 +1,15 @@
 import 'package:cubes/cubes.dart';
 import 'package:cubes/src/action/cube_action.dart';
+import 'package:cubes/src/builder/cube_builder.dart';
 import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/cube_provider.dart';
+import 'package:cubes/src/util/cube_provider.dart';
 import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 
-typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
-  BuildContext context,
-  C cube,
-);
+typedef InitStateWithTickerCallback<C extends Cube> = Function(C cube, TickerProvider vsync);
 
-typedef InitCallback<C extends Cube> = Function(C cube);
-
-class CubeBuilder<C extends Cube> extends StatefulWidget {
-  const CubeBuilder({
+class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
+  const CubeBuilderAnimation({
     Key key,
     @required this.builder,
     this.initData,
@@ -26,27 +22,29 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   final dynamic initData;
   final AsyncCubeWidgetBuilder<C> builder;
   final OnActionChanged<C, CubeAction> onAction;
-  final InitCallback<C> initState;
+  final InitStateWithTickerCallback<C> initState;
   final VoidCallback dispose;
   final C cube;
 
   @override
-  _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
+  _CubeBuilderAnimationState<C> createState() => _CubeBuilderAnimationState<C>();
 }
 
-class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMixin {
+class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimation>
+    with TickerProviderStateMixin, StateMixin {
   C cube;
 
   @override
   void initState() {
-    cube = widget.cube;
-    if (cube == null) {
+    if (widget.cube == null) {
       cube = Cubes.getDependency();
+    } else {
+      cube = widget.cube;
     }
     cube.data = widget.initData;
     cube.addOnActionListener(_onAction);
     super.initState();
-    cubeWidget.initState?.call(cube);
+    cubeWidget.initState?.call(cube, this);
     WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
@@ -70,5 +68,5 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
     postFrame(() => cubeWidget.onAction(cube, data));
   }
 
-  CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);
+  CubeBuilderAnimation<C> get cubeWidget => (widget as CubeBuilderAnimation<C>);
 }

@@ -8,7 +8,7 @@
 
 Simple State Manager with dependency injection and no code generation required.
 
-With Cubes, rebuilding only takes place where it is needed!
+With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
 
 MVVM based architecture.
 
@@ -22,10 +22,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 ```dart
 
 class CounterCube extends Cube {
-  final count = ObservableValue<int>(value: 0);
-
-  // To List use `ObservableList`.
-  // To others objects not primitive remember call `prop.notify();` after modification to notify listeners.
+  final count = ObservableValue<int>(value: 0); // To List use `ObservableList`.
 
     @override
     void ready() {
@@ -34,7 +31,7 @@ class CounterCube extends Cube {
     }
 
     void increment() {
-      count.value++;
+      count.modify((value) => value + 1); // or count.update(newValue);
       if (count.value == 5) {
         onAction(CubeSuccessAction(text: "count five")); // to send action to view
       }
@@ -95,15 +92,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onAction: (CounterCube cube, CubeAction action) {
-        if (action is CubeSuccessAction) {
-          print('CubeSuccessAction: ${action.text}');
-        }
-        if (action is CubeErrorAction) {
-          print('CubeErrorAction: ${action.text}');
-        }
-      },
-      builder: (BuildContext context,CounterCube cube) {
+      onAction: (cube, action) => print(action),
+      builder: (BuildContext context, CounterCube cube) {
         return Scaffold(
           appBar: AppBar(
             title: Text('Home'),
@@ -168,7 +158,7 @@ class Home extends CubeWidget<CounterCube> {
   }
 
   @override
-  void onAction(BuildContext context, PokemonCube cube, CubeAction action) {
+  void onAction(BuildContext context, CounterCube cube, CubeAction action) {
     // TODO: implement onAction
     super.onAction(context, cube, action);
   }
@@ -180,7 +170,7 @@ Cube and its dependencies are injected into CubeBuilder and CubeWidget without t
 
 By doing this:
 
-```
+``` dart
   cube.count.build<int>((value) {
     return Text(value.toString());
   }),
@@ -189,11 +179,38 @@ By doing this:
 
 we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
-```
+``` dart
   return Text(value.toString());
 ```
 
 This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
+
+## Listening observable variables
+
+You can listen to observables in two ways, using the extension `build` as in the example above or using the `Observer` widget:
+
+### Extension 'build'
+
+``` dart
+  cube.count.build<int>(
+     (value) => Text(value.toString()),                              // Here you build the widget and it will be rebuilt every time the variable is modified and will leave the conditions of `when`.
+     animate: true,                                                  // Setting to `true`, fadeIn animation will be performed between widget changes.
+     transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,   // Here you can modify the default animation which is FadeIn.
+     duration: Duration(milliseconds: 300),                          // Sets the duration of the animation.
+  ),
+```
+
+### Widget Observer
+
+``` dart
+  return Observer<int>(
+      observable: cube.count,
+      builder: (value)=> Text(value.toString()),
+      animate:true,
+      transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
+      duration: Duration(milliseconds: 300),
+  );
+```
 
 ## Provider
 

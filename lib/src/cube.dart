@@ -1,5 +1,5 @@
 import 'package:cubes/cubes.dart';
-import 'package:cubes/src/cube_memory_container.dart';
+import 'package:cubes/src/util/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
 
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);

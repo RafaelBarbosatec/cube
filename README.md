@@ -8,7 +8,7 @@
 
 Simple State Manager with dependency injection and no code generation required.
 
-With Cubes, rebuilding only takes place where it is needed!
+With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
 
 MVVM based architecture.
 

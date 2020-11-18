@@ -1,3 +1,7 @@
+# 0.6.0
+
+- Add `when` in `Observer`. Now you can decide when rebuild widget;
+
 # 0.5.1
 
 - Add method `update` and `modify` in `ObservableValue`;

@@ -4,12 +4,14 @@ typedef ModifyValue<T> = T Function(T value);
 
 class ObservableValue<T> extends ChangeNotifier {
   T _value;
+  T _lastValue;
 
   ObservableValue({T value}) {
     _value = value;
   }
 
   T get value => _value;
+  T get lastValue => _lastValue;
 
   @protected
   void setInitialValue(T value) {
@@ -17,6 +19,7 @@ class ObservableValue<T> extends ChangeNotifier {
   }
 
   void _setValueAndNotify(T newValue) {
+    _lastValue = _value;
     _value = newValue;
     notifyListeners();
   }

@@ -6,6 +6,7 @@ extension ObservableValueExtensions on ObservableValue {
   Observer build<T>(
     ObserverBuilder<T> build, {
     bool animate = false,
+    WhenBuild<T> when,
     AnimatedSwitcherTransitionBuilder transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
   }) {
@@ -14,6 +15,7 @@ extension ObservableValueExtensions on ObservableValue {
       animate: animate,
       transitionBuilder: transitionBuilder,
       duration: duration,
+      when: when,
       builder: build,
     );
   }

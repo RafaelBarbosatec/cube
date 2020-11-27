@@ -19,7 +19,11 @@ class ObservableValue<T> extends ChangeNotifier {
   }
 
   void _setValueAndNotify(T newValue) {
-    _lastValue = _value;
+    if (T is List) {
+      _lastValue = List.of(_value as List) as T;
+    } else {
+      _lastValue = _value;
+    }
     _value = newValue;
     notifyListeners();
   }

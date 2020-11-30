@@ -195,6 +195,7 @@ You can listen to observables in two ways, using the extension `build` as in the
   cube.count.build<int>(
      (value) => Text(value.toString()),                              // Here you build the widget and it will be rebuilt every time the variable is modified and will leave the conditions of `when`.
      animate: true,                                                  // Setting to `true`, fadeIn animation will be performed between widget changes.
+     when: (last, next) => last != next,                             // You can decide when rebuild widget using previous and next value. (For a good functioning of this feature use immutable variables)
      transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,   // Here you can modify the default animation which is FadeIn.
      duration: Duration(milliseconds: 300),                          // Sets the duration of the animation.
   ),
@@ -206,6 +207,7 @@ You can listen to observables in two ways, using the extension `build` as in the
   return Observer<int>(
       observable: cube.count,
       builder: (value)=> Text(value.toString()),
+      when: (last, next) => true,
       animate:true,
       transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
       duration: Duration(milliseconds: 300),

@@ -10,6 +10,7 @@ abstract class Cube {
   Map<dynamic, Debounce> _debounceMap;
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
   OnActionChanged _cubeActionListener;
+  bool isReady = false;
 
   /// initial data if passed through CubeBuilder
   dynamic data;
@@ -17,6 +18,7 @@ abstract class Cube {
   /// called when the view is ready
   void ready() {
     CubeMemoryContainer.instance.add(this);
+    isReady = true;
   }
 
   /// called when the cube is destroyed

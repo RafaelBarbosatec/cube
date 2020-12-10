@@ -47,7 +47,7 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube, this);
-    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
+    if (!cube.isReady) WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override

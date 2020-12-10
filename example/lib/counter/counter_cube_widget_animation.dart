@@ -57,10 +57,4 @@ class CounterCubeWidgetAnimation extends CubeAnimationWidget<CounterCube> {
     print('onAction: $data');
     super.onAction(context, cube, data);
   }
-
-  @override
-  bool dispose(CounterCube cube) {
-    // TODO: implement dispose
-    return super.dispose(cube);
-  }
 }

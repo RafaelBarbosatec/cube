@@ -14,7 +14,7 @@ abstract class CubeAnimationWidget<C extends Cube> extends StatelessWidget {
   void dispose() {}
 
   dynamic get initData => null;
-  bool get enableCubeDispose => true;
+  bool get callCubeDispose => true;
 
   AnimationController confAnimationController(
     dynamic id, {
@@ -44,7 +44,7 @@ abstract class CubeAnimationWidget<C extends Cube> extends StatelessWidget {
     return CubeBuilderAnimation<C>(
       builder: buildView,
       initData: initData,
-      enableCubeDispose: enableCubeDispose,
+      callCubeDispose: callCubeDispose,
       onAction: (cube, data) => onAction(context, cube, data),
       initState: (cube, ticker) {
         tickerContainer.ticker = ticker;

@@ -17,7 +17,7 @@ class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
     this.onAction,
     this.initState,
     this.dispose,
-    this.enableCubeDispose = true,
+    this.callCubeDispose = true,
   }) : super(key: key);
 
   final dynamic initData;
@@ -25,7 +25,7 @@ class CubeBuilderAnimation<C extends Cube> extends StatefulWidget {
   final OnActionChanged<C, CubeAction> onAction;
   final InitStateWithTickerCallback<C> initState;
   final VoidCallback dispose;
-  final bool enableCubeDispose;
+  final bool callCubeDispose;
   final C cube;
 
   @override
@@ -53,7 +53,7 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
   @override
   void dispose() {
     cube.removeOnActionListener(_onAction);
-    if (widget.enableCubeDispose) cube.dispose();
+    if (widget.callCubeDispose) cube.dispose();
     cubeWidget.dispose?.call();
     super.dispose();
   }

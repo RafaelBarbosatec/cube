@@ -10,6 +10,7 @@ class CounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
       onAction: (cube, action) => print(action),
+      dispose: (cube) => true,
       builder: (context, cube) {
         return Scaffold(
           appBar: AppBar(

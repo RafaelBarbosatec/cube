@@ -60,6 +60,7 @@ class CounterCubeWidgetAnimation extends CubeAnimationWidget<CounterCube> {
 
   @override
   bool dispose(CounterCube cube) {
-    return false;
+    // TODO: implement dispose
+    return super.dispose(cube);
   }
 }

@@ -77,6 +77,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
       onAction: (cube, action) => print(action),
+      // dispose: (cube)=> true, if you want the widget to not call `dispose` in the Cube, return false
       builder: (BuildContext context, CounterCube cube) {
         return Scaffold(
           appBar: AppBar(
@@ -145,6 +146,12 @@ class Home extends CubeWidget<CounterCube> {
   void onAction(BuildContext context, CounterCube cube, CubeAction action) {
     // TODO: implement onAction
     super.onAction(context, cube, action);
+  }
+
+  @override
+  bool dispose(CounterCube cube) {
+    // TODO: implement dispose
+    return super.dispose(cube); //if you want the widget to not call `dispose` in the Cube, return false
   }
 }
 

@@ -46,7 +46,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
-    if (!cube.isReady) WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
+    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
   }
 
   @override

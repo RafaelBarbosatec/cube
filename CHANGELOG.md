@@ -1,3 +1,8 @@
+# 0.7.0
+
+- add method `listen` inner `Cube` to listen `ObservableValue`.
+- add method `listenActions` inner `Cube` to listen `Actions`.
+
 # 0.6.0
 
 - Add `when` in `Observer`. Now you can decide when rebuild widget;

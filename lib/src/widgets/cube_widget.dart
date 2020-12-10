@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   void onAction(BuildContext context, C cube, CubeAction data) {}
   void initState(BuildContext context, C cube) {}
-  void dispose() {}
+  bool dispose(C cube) => true;
 
   dynamic get initData => null;
 

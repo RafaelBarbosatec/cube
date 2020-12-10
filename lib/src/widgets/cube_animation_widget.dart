@@ -11,7 +11,7 @@ abstract class CubeAnimationWidget<C extends Cube> extends StatelessWidget {
   final TickerProviderContainer tickerContainer = TickerProviderContainer();
   void onAction(BuildContext context, C cube, CubeAction data) {}
   void initState(BuildContext context, C cube) {}
-  void dispose() {}
+  bool dispose(C cube) => true;
 
   dynamic get initData => null;
 
@@ -48,11 +48,11 @@ abstract class CubeAnimationWidget<C extends Cube> extends StatelessWidget {
         tickerContainer.ticker = ticker;
         initState(context, cube);
       },
-      dispose: () {
+      dispose: (C cube) {
         _animationControllers.forEach((key, value) => value.dispose());
         _animationControllers.clear();
         _animations.clear();
-        dispose();
+        return dispose(cube);
       },
     );
   }

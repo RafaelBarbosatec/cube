@@ -32,26 +32,10 @@ class CounterCube extends Cube {
 
     void increment() {
       count.modify((value) => value + 1); // or count.update(newValue);
-      if (count.value == 5) {
-        onAction(CubeSuccessAction(text: "count five")); // to send action to view
-      }
-
-      if (count.value == 50) {
-        onAction(CubeErrorAction(text: "You are clicking too much o.O")); // to send action to view
-      }
-
-      // example apply debounce
-       runDebounce(
-        'increment', // identify
-        ()  => print(count.value),
-        duration: Duration(seconds: 1),
-      );
     }
 }
 
 ```
-
-In `onAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
 
 - Registering Cubes and or dependencies:
 
@@ -217,6 +201,48 @@ You can listen to observables in two ways, using the extension `build` as in the
 ## Provider
 
 To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;
+
+## Methods inner Cube
+
+### onAction
+
+In `onAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
+
+```dart
+  onAction(CubeSuccessAction(text: "Login successfully"));
+```
+
+### runDebounce
+
+This method will help you to `debounce` the execution of something.
+
+```dart
+   runDebounce(
+     'increment', // identify
+     ()  => print(count.value),
+     duration: Duration(seconds: 1),
+   );
+```
+
+### listen
+
+Use to listen ObservableValue.
+
+```dart
+  listen(count,(value){
+      // do anything
+  });
+```
+
+### listenActions
+
+Use to listen to `Action` sent to view.
+
+```dart
+  listenActions((action){
+      // do anything
+  });
+```
 
 ## Testing
 

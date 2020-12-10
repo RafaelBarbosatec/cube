@@ -1,12 +1,14 @@
 import 'package:cubes/cubes.dart';
 import 'package:cubes/src/util/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
+import 'package:flutter/cupertino.dart';
 
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
 
 abstract class Cube {
   List<OnActionChanged> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
+  Map<ObservableValue, VoidCallback> _listenersObservableMap;
 
   /// initial data if passed through CubeBuilder
   dynamic data;
@@ -18,6 +20,7 @@ abstract class Cube {
 
   /// called when the cube is destroyed
   void dispose() {
+    _disposeListen();
     CubeMemoryContainer.instance.remove(this);
   }
 
@@ -47,10 +50,10 @@ abstract class Cube {
   /// Example:
   ///
   ///   runDebounce(
-  //      'increment',
-  //      () => print(count.value),
-  //      duration: Duration(seconds: 1),
-  //    );
+  ///      'increment',
+  ///      () => print(count.value),
+  ///      duration: Duration(seconds: 1),
+  ///    );
   void runDebounce(
     dynamic identify,
     Function call, {
@@ -80,5 +83,17 @@ abstract class Cube {
   /// Uses to get the Cubes ready in memory by type
   Iterable<T> getCubesAreReady<T extends Cube>() {
     return CubeMemoryContainer.instance.getCubes<T>();
+  }
+
+  void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
+    if (_listenersObservableMap == null) _listenersObservableMap = Map();
+    _listenersObservableMap[observableValue] = () => listener(observableValue.value);
+    observableValue.addListener(_listenersObservableMap[observableValue]);
+  }
+
+  void _disposeListen() {
+    _listenersObservableMap.forEach((key, value) {
+      key.removeListener(value);
+    });
   }
 }

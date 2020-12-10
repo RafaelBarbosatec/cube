@@ -26,7 +26,7 @@ class CounterCube extends Cube {
       runDebounce(
         'increment',
         () => print(count.value),
-        duration: Duration(milliseconds: 300),
+        duration: Duration(seconds: 1),
       );
     }
   }

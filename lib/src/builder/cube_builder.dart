@@ -21,6 +21,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.onAction,
     this.initState,
     this.dispose,
+    this.enableCubeDispose = true,
   }) : super(key: key);
 
   final dynamic initData;
@@ -28,6 +29,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   final OnActionChanged<C, CubeAction> onAction;
   final InitCallback<C> initState;
   final VoidCallback dispose;
+  final bool enableCubeDispose;
   final C cube;
 
   @override
@@ -39,10 +41,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
 
   @override
   void initState() {
-    cube = widget.cube;
-    if (cube == null) {
-      cube = Cubes.getDependency();
-    }
+    cube = widget.cube ?? Cubes.getDependency();
     cube.data = widget.initData;
     cube.addOnActionListener(_onAction);
     super.initState();
@@ -53,7 +52,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   @override
   void dispose() {
     cube.removeOnActionListener(_onAction);
-    cube.dispose();
+    if (widget.enableCubeDispose) cube.dispose();
     cubeWidget.dispose?.call();
     super.dispose();
   }

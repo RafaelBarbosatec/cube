@@ -1,3 +1,8 @@
+# 0.6.1
+
+- add `enableCubeDispose` in `CubeBuilder` `to decide call `dispose` or not in cube.
+- add method `listen` inner `Cube` to listen `ObservableValue`.
+
 # 0.6.0
 
 - Add `when` in `Observer`. Now you can decide when rebuild widget;

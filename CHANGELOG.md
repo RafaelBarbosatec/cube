@@ -1,6 +1,5 @@
 # 0.7.0
 
-- add bool `callCubeDispose` in `CubeBuilder` `to decide call `dispose` or not in cube.
 - add method `listen` inner `Cube` to listen `ObservableValue`.
 - add method `listenActions` inner `Cube` to listen `Actions`.
 

@@ -11,6 +11,7 @@ typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
 );
 
 typedef InitCallback<C extends Cube> = Function(C cube);
+typedef CubeWidgetDispose<C extends Cube> = bool Function(C cube);
 
 class CubeBuilder<C extends Cube> extends StatefulWidget {
   const CubeBuilder({
@@ -21,15 +22,13 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.onAction,
     this.initState,
     this.dispose,
-    this.callCubeDispose = true,
   }) : super(key: key);
 
   final dynamic initData;
   final AsyncCubeWidgetBuilder<C> builder;
   final OnActionChanged<C, CubeAction> onAction;
   final InitCallback<C> initState;
-  final VoidCallback dispose;
-  final bool callCubeDispose;
+  final CubeWidgetDispose<C> dispose;
   final C cube;
 
   @override
@@ -51,9 +50,8 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
 
   @override
   void dispose() {
+    if (cubeWidget.dispose?.call(cube) ?? true) cube.dispose();
     cube.removeOnActionListener(_onAction);
-    if (widget.callCubeDispose) cube.dispose();
-    cubeWidget.dispose?.call();
     super.dispose();
   }
 

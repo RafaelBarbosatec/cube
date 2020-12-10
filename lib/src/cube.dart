@@ -9,6 +9,7 @@ abstract class Cube {
   List<OnActionChanged> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
+  OnActionChanged _cubeActionListener;
 
   /// initial data if passed through CubeBuilder
   dynamic data;
@@ -21,6 +22,7 @@ abstract class Cube {
   /// called when the cube is destroyed
   void dispose() {
     _disposeListen();
+    removeOnActionListener(_cubeActionListener);
     CubeMemoryContainer.instance.remove(this);
   }
 
@@ -85,15 +87,23 @@ abstract class Cube {
     return CubeMemoryContainer.instance.getCubes<T>();
   }
 
+  /// Uses to listen `ObservableValue` inner Cube
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
     if (_listenersObservableMap == null) _listenersObservableMap = Map();
     _listenersObservableMap[observableValue] = () => listener(observableValue.value);
     observableValue.addListener(_listenersObservableMap[observableValue]);
   }
 
+  /// Remove listeners created on `listen`
   void _disposeListen() {
-    _listenersObservableMap.forEach((key, value) {
+    _listenersObservableMap?.forEach((key, value) {
       key.removeListener(value);
     });
+  }
+
+  /// Uses to listen `CubeAction` sended to view
+  void listenActions(ValueChanged<CubeAction> listener) {
+    _cubeActionListener = (cube, action) => listener(action);
+    addOnActionListener(_cubeActionListener);
   }
 }

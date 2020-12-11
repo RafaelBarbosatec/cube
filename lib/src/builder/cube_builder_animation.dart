@@ -63,7 +63,7 @@ class _CubeBuilderAnimationState<C extends Cube> extends State<CubeBuilderAnimat
     );
   }
 
-  void _onAction(C cube, dynamic data) {
+  void _onAction(C cube, CubeAction data) {
     postFrame(() => cubeWidget.onAction(cube, data));
   }
 

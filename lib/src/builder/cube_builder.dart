@@ -63,7 +63,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
     );
   }
 
-  void _onAction(C cube, dynamic data) {
+  void _onAction(C cube, CubeAction data) {
     postFrame(() => cubeWidget.onAction(cube, data));
   }
 

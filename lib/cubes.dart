@@ -15,10 +15,10 @@ export 'package:cubes/src/localization/cubes_localization_delegate.dart';
 export 'package:cubes/src/localization/strings_location.dart';
 export 'package:cubes/src/observable/observable_list.dart';
 export 'package:cubes/src/observable/observable_value.dart';
+export 'package:cubes/src/util/cube_provider.dart';
 export 'package:cubes/src/util/extensions/ext.dart';
 export 'package:cubes/src/util/state_mixin.dart';
 export 'package:cubes/src/widgets/animated_list_cube.dart';
-export 'package:cubes/src/widgets/cube_animation_widget.dart';
 export 'package:cubes/src/widgets/cube_widget.dart';
 
 class Cubes {

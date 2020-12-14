@@ -157,7 +157,7 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
+OBS: Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
 
 By doing this:
 
@@ -207,7 +207,7 @@ You can listen to observables in two ways, using the extension `build` as in the
 
 ## Provider
 
-To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;
+To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cubes.of<MyCube>(context)`;
 
 ## Methods inner Cube
 

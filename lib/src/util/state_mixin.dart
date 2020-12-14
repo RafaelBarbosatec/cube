@@ -28,9 +28,11 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   @override
   void dispose() {
     cube.dispose();
-    cube.removeOnActionListener(_innerOnAction);
+    removeOnActionListener();
     super.dispose();
   }
+
+  void removeOnActionListener() => cube.removeOnActionListener(_innerOnAction);
 
   void _innerOnAction(C cube, CubeAction action) => onAction(action);
 

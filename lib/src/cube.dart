@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
 
 abstract class Cube {
-  List<OnActionChanged> _onActionListeners;
+  List<OnActionChanged<Cube, CubeAction>> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
   OnActionChanged _cubeActionListener;
@@ -28,7 +28,7 @@ abstract class Cube {
 
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
-    OnActionChanged<T, String> listener,
+    OnActionChanged<T, CubeAction> listener,
   ) {
     if (listener != null) {
       if (_onActionListeners == null) _onActionListeners = List();
@@ -37,7 +37,7 @@ abstract class Cube {
   }
 
   /// Remove OnActionListener
-  void removeOnActionListener<T extends Cube>(OnActionChanged<T, String> listener) {
+  void removeOnActionListener<T extends Cube>(OnActionChanged<T, CubeAction> listener) {
     _onActionListeners?.remove(listener);
   }
 

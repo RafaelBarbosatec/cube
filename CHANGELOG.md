@@ -1,3 +1,8 @@
+# 0.8.0
+
+- create `CubeStateMixin` to use cube in StatefulWidget
+- discontinued `CubeBuilderAnimation` and `CubeAnimationWidget`
+
 # 0.7.0
 
 - add method `listen` inner `Cube` to listen `ObservableValue`.

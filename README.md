@@ -157,7 +157,9 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
+If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state. See this [exemple](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
+
+OBS: Cube and its dependencies are injected into `CubeBuilder` and `CubeWidget without the need for any extra configuration.
 
 By doing this:
 
@@ -168,7 +170,7 @@ By doing this:
 
 ```
 
-we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+we register by listening to the Observable `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
 ``` dart
   return Text(value.toString());
@@ -207,7 +209,7 @@ You can listen to observables in two ways, using the extension `build` as in the
 
 ## Provider
 
-To get the Cube by the children of `CubeBuilder`, `CubeWidget` or `CubeWidgetAnimation` you can use `Cubes.of<MyCube>(context)`;
+To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cubes.of<MyCube>(context)`;
 
 ## Methods inner Cube
 

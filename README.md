@@ -157,7 +157,7 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-OBS: Cube and its dependencies are injected into CubeBuilder and CubeWidget without the need for any extra configuration.
+OBS: Cube and its dependencies are injected into `CubeBuilder` and `CubeWidget without the need for any extra configuration.
 
 By doing this:
 
@@ -168,7 +168,7 @@ By doing this:
 
 ```
 
-we register by listening to the Observer `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+we register by listening to the Observable `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
 ``` dart
   return Text(value.toString());

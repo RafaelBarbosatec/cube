@@ -4,8 +4,8 @@ import 'package:examplecube/counter/counter_screen.dart';
 import 'package:examplecube/counter/counter_screen_animation.dart';
 import 'package:examplecube/counter_singleton/counter_singleton_cube.dart';
 import 'package:examplecube/counter_singleton/screen_counter_singleton.dart';
-import 'package:examplecube/feedback_manager/feedback_manager_example_cube.dart';
-import 'package:examplecube/feedback_manager/feedback_manager_example_screen.dart';
+import 'package:examplecube/feedback_manager/feedback_manager_cube.dart';
+import 'package:examplecube/feedback_manager/feedback_manager_screen.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
@@ -20,7 +20,7 @@ void main() {
   Cubes.registerDependency((i) => TodoCube(), isSingleton: true);
   Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
   Cubes.registerDependency((i) => PokemonRepository());
-  Cubes.registerDependency((i) => FeedbackManagerExampleCube());
+  Cubes.registerDependency((i) => FeedbackManagerCube());
 
   runApp(MyApp());
 }
@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
             RaisedButton(
               child: Text('FeedBackManager'),
               onPressed: () {
-                context.goTo(FeedbackManagerExampleScreen());
+                context.goTo(FeedbackManagerScreen());
               },
             ),
           ],

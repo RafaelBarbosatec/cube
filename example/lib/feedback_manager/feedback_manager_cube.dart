@@ -1,6 +1,6 @@
 import 'package:cubes/cubes.dart';
 
-class FeedbackManagerExampleCube extends Cube {
+class FeedbackManagerCube extends Cube {
   final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
   final bottomSheetControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
   final snackBarControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());

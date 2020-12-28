@@ -1,10 +1,10 @@
 import 'package:cubes/cubes.dart';
-import 'package:examplecube/feedback_manager/feedback_manager_example_cube.dart';
+import 'package:examplecube/feedback_manager/feedback_manager_cube.dart';
 import 'package:flutter/material.dart';
 
-class FeedbackManagerExampleScreen extends CubeWidget<FeedbackManagerExampleCube> {
+class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
   @override
-  Widget buildView(BuildContext context, FeedbackManagerExampleCube cube) {
+  Widget buildView(BuildContext context, FeedbackManagerCube cube) {
     return Scaffold(
       appBar: AppBar(
         title: Text('FeedBackManager'),

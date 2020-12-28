@@ -1,3 +1,7 @@
+# 0.9.0
+
+- add `DialogsManager`
+
 # 0.8.0
 
 - create `CubeStateMixin` to use cube in StatefulWidget

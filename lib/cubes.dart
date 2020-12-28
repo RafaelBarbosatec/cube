@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 export 'package:cubes/src/action/cube_action.dart';
 export 'package:cubes/src/builder/cube_builder.dart';
 export 'package:cubes/src/cube.dart';
+export 'package:cubes/src/dialog/dialogs_controller.dart';
 export 'package:cubes/src/injector/injector.dart';
 export 'package:cubes/src/localization/cubes_localization_delegate.dart';
 export 'package:cubes/src/localization/strings_location.dart';

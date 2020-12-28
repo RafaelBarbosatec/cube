@@ -1,21 +1,6 @@
-import 'package:cubes/cubes.dart';
+import 'package:cubes/src/feedback_manager/feedback_manager.dart';
+import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
-
-typedef Widget DialogBuilder<T>(T data, BuildContext context);
-
-class DialogControl<T> {
-  final bool show;
-  final T data;
-
-  DialogControl({this.show = false, this.data});
-
-  DialogControl<T> copyWith({bool show, T data}) {
-    return DialogControl(
-      show: show ?? this.show,
-      data: data ?? this.data,
-    );
-  }
-}
 
 class DialogController {
   final bool dismissible;
@@ -23,8 +8,8 @@ class DialogController {
   final bool useSafeArea;
   final bool useRootNavigator;
   final RouteSettings routeSettings;
-  final ObservableValue<DialogControl> observable;
-  final DialogBuilder builder;
+  final ObservableValue<FeedBackControl> observable;
+  final WidgetByDataBuilder builder;
 
   DialogController({
     @required this.observable,
@@ -37,37 +22,24 @@ class DialogController {
   });
 }
 
-class DialogsManager extends StatefulWidget {
-  final List<DialogController> controllers;
-  final Widget child;
-
-  const DialogsManager({Key key, this.controllers, @required this.child}) : super(key: key);
-
-  @override
-  _DialogsManagerState createState() => _DialogsManagerState();
-}
-
-class _DialogsManagerState extends State<DialogsManager> {
+mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 300;
   Map<DialogController, bool> _mapDialogIsShowing = Map();
+  List<DialogController> dialogControllers;
 
-  @override
-  void initState() {
-    widget.controllers.forEach((element) {
+  void confDialogFeedBack(List<DialogController> controllers) {
+    this.dialogControllers = controllers;
+    this.dialogControllers?.forEach((element) {
       _mapDialogIsShowing[element] = false;
       element.observable.addListener(() => _listenerDialogController(element));
     });
-    super.initState();
   }
 
   @override
   void dispose() {
-    widget.controllers.forEach((element) => element.observable.dispose());
+    dialogControllers?.forEach((element) => element.observable.dispose());
     super.dispose();
   }
-
-  @override
-  Widget build(BuildContext context) => widget.child;
 
   void _listenerDialogController(DialogController element) {
     if (element.observable.value.show && !_mapDialogIsShowing[element]) {

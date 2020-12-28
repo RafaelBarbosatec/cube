@@ -117,7 +117,7 @@ class Home extends CubeWidget<CounterCube> {
 
 If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
 
-OBS: Cube and its dependencies are injected into `CubeBuilder` and `CubeWidget without the need for any extra configuration.
+OBS: Cube and its dependencies are injected into `CubeWidget` without the need for any extra configuration.
 
 By doing this:
 

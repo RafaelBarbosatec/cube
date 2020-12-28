@@ -295,7 +295,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 ## FeedBackManager
 
-Using this widget you can reactively control your Dialogs, BottomSheets and SnackBar using an ObservableValue.
+Use this widget if you want to reactively control your `Dialog`, `BottomSheet` and `SnackBar` using an ObservableValue.
 
 Creating observable to control:
 

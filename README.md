@@ -346,7 +346,7 @@ Criando observable para controlar tanto Dialog quando BottomSheet:`
 final bottomSheetControl = ObservableValue<FeedBackControl<String>(value: FeedBackControl(data:'test'));
 final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl(data:'test'));
 
-``
+```
 
 Agora basta adiciona o widget em sua arvore:
 
@@ -378,7 +378,7 @@ Para exibir ou ocultar:
 
 ``` dart
 
-bottomSheetControl.modify((value) => value.copyWith(show: true));
+botomSheetControl.modify((value) => value.copyWith(show: true));
 dialogControl.modify((value) => value.copyWith(show: true));
 
 ```

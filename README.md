@@ -319,7 +319,7 @@ Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/
 
 This is a version of AnimatedList that simplifies its use for the Cube context.
 
-```
+```dart
 
   AnimatedListCube<String>(
     itemList: cube.todoList,
@@ -334,6 +334,54 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 ```
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
+
+## FeedBackManager
+
+Utilizando esse widget você poderá controlar seus Dialogs e BottomSheets de forma reativa utilizando um ObservableValue.
+
+Criando observable para controlar tanto Dialog quando BottomSheet:`
+
+``` dart
+
+final bottomSheetControl = ObservableValue<FeedBackControl<String>(value: FeedBackControl(data:'test'));
+final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl(data:'test'));
+
+``
+
+Agora basta adiciona o widget em sua arvore:
+
+``` dart
+
+FeedbackManager(
+   dialogControllers:[  // Pode adicionar quandos dialogs diferentes desejar
+       DialogController(
+           observable: cube.dialogControl,
+           builder: (data, context) {
+               return Container(height: 200, child: Center(child: Text('Dialog: $data')));
+           },
+       ),
+   ],
+   bottomSheetControllers: [  // Pode adicionar quandos bottomSheets diferentes desejar
+       BottomSheetController(
+           observable: cube.bottomSheetControl,
+           builder: (data, context) {
+               return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
+           },
+       ),
+   ],
+   child: ...
+)
+
+```
+
+Para exibir ou ocultar:
+
+``` dart
+
+bottomSheetControl.modify((value) => value.copyWith(show: true));
+dialogControl.modify((value) => value.copyWith(show: true));
+
+```
 
 ## Internationalization support
 

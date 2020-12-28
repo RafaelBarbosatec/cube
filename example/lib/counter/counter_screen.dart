@@ -17,6 +17,7 @@ class CounterScreen extends StatelessWidget {
             title: Text(Cubes.getString('counter')),
           ),
           body: FeedbackManager(
+            dialogControllers: [],
             bottomSheetControllers: [
               BottomSheetController(
                 observable: cube.bottomSheet,

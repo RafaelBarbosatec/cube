@@ -2,9 +2,9 @@ import 'package:cubes/src/feedback_manager/feedback_manager.dart';
 import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 
-class BottomSheetController {
-  final ObservableValue<FeedBackControl> observable;
-  final WidgetByDataBuilder builder;
+class BottomSheetController<T> {
+  final ObservableValue<FeedBackControl<T>> observable;
+  final WidgetByDataBuilder<T> builder;
   final bool dismissible;
   final Color barrierColor;
   final Color backgroundColor;
@@ -16,6 +16,10 @@ class BottomSheetController {
   final bool isScrollControlled;
   final ShapeBorder shape;
   final Clip clipBehavior;
+
+  Widget doBuild(T data, BuildContext context) {
+    return builder(data, context);
+  }
 
   BottomSheetController({
     @required this.observable,
@@ -81,7 +85,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
       isScrollControlled: element.isScrollControlled,
       shape: element.shape,
       clipBehavior: element.clipBehavior,
-      builder: (context) => element.builder(element.observable.value.data, context),
+      builder: (context) => element.doBuild(element.observable.value.data, context),
     );
     _mapDialogIsShowing[element] = false;
   }

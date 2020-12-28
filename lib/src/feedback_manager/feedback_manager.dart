@@ -1,9 +1,11 @@
-import 'package:cubes/src/feedback_manager/bottom_sheet_mixin.dart';
+import 'package:cubes/src/feedback_manager/bottom_sheet_feedback_mixin.dart';
 import 'package:cubes/src/feedback_manager/dialog_feedback_mixin.dart';
+import 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 import 'package:flutter/material.dart';
 
-export 'package:cubes/src/feedback_manager/bottom_sheet_mixin.dart';
+export 'package:cubes/src/feedback_manager/bottom_sheet_feedback_mixin.dart';
 export 'package:cubes/src/feedback_manager/dialog_feedback_mixin.dart';
+export 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 
 typedef Widget WidgetByDataBuilder<T>(T data, BuildContext context);
 
@@ -26,17 +28,25 @@ class FeedbackManager extends StatefulWidget {
 
   final List<BottomSheetController> bottomSheetControllers;
   final List<DialogController> dialogControllers;
-  const FeedbackManager({Key key, @required this.child, this.bottomSheetControllers, this.dialogControllers})
-      : super(key: key);
+  final List<SnackBarController> snackBarControllers;
+  const FeedbackManager({
+    Key key,
+    @required this.child,
+    this.bottomSheetControllers,
+    this.dialogControllers,
+    this.snackBarControllers,
+  }) : super(key: key);
   @override
   _FeedbackManagerState createState() => _FeedbackManagerState();
 }
 
-class _FeedbackManagerState extends State<FeedbackManager> with DialogFeedBackMixin, BottomSheetFeedBackMixin {
+class _FeedbackManagerState extends State<FeedbackManager>
+    with DialogFeedBackMixin, BottomSheetFeedBackMixin, SnackBarFeedBackMixin {
   @override
   void initState() {
     confBottomSheetFeedBack(widget.bottomSheetControllers);
     confDialogFeedBack(widget.dialogControllers);
+    confSnackBarFeedBack(widget.snackBarControllers);
     super.initState();
   }
 

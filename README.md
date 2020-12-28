@@ -337,7 +337,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 ## FeedBackManager
 
-Using this widget you can reactively control your Dialogs and BottomSheets using an ObservableValue.
+Using this widget you can reactively control your Dialogs, BottomSheets and SnackBar using an ObservableValue.
 
 Creating observable to control both Dialog and BottomSheet:
 
@@ -345,7 +345,7 @@ Creating observable to control both Dialog and BottomSheet:
 
 final bottomSheetControl = ObservableValue<FeedBackControl<String>(value: FeedBackControl(data:'test'));
 final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl(data:'test'));
-
+final snackBarControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
 ```
 
 Now just add the widget to your tree and settings:
@@ -354,7 +354,7 @@ Now just add the widget to your tree and settings:
 
 FeedbackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
-       DialogController(
+       DialogController<String>(
            observable: cube.dialogControl,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('Dialog: $data')));
@@ -362,10 +362,18 @@ FeedbackManager(
        ),
    ],
    bottomSheetControllers: [  // You can add as many different BottomSheets as you like
-       BottomSheetController(
+       BottomSheetController<String>(
            observable: cube.bottomSheetControl,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
+           },
+       ),
+   ],
+   snackBarControllers: [
+       SnackBarController<String>(
+           observable: cube.snackBarControl,
+           builder: (data, context) {
+               return SnackBar(content: Text(data));
            },
        ),
    ],
@@ -380,6 +388,7 @@ To show or hide:
 
 bottomSheetControl.modify((value) => value.copyWith(show: true)); // or false to hide
 dialogControl.modify((value) => value.copyWith(show: true)); // or false to hide
+snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success')); // only true to show
 
 ```
 

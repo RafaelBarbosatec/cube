@@ -2,14 +2,18 @@ import 'package:cubes/src/feedback_manager/feedback_manager.dart';
 import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 
-class DialogController {
+class DialogController<T> {
   final bool dismissible;
   final Color barrierColor;
   final bool useSafeArea;
   final bool useRootNavigator;
   final RouteSettings routeSettings;
-  final ObservableValue<FeedBackControl> observable;
-  final WidgetByDataBuilder builder;
+  final ObservableValue<FeedBackControl<T>> observable;
+  final WidgetByDataBuilder<T> builder;
+
+  Widget doBuild(T data, BuildContext context) {
+    return builder(data, context);
+  }
 
   DialogController({
     @required this.observable,
@@ -66,7 +70,7 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
       routeSettings: element.routeSettings,
       child: WillPopScope(
         onWillPop: () => Future.value(element.dismissible),
-        child: element.builder(element.observable.value.data, context),
+        child: element.doBuild(element.observable.value.data, context),
       ),
     );
     _mapDialogIsShowing[element] = false;

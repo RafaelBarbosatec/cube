@@ -16,28 +16,17 @@ class CounterScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(Cubes.getString('counter')),
           ),
-          body: FeedbackManager(
-            dialogControllers: [],
-            bottomSheetControllers: [
-              BottomSheetController(
-                observable: cube.bottomSheet,
-                builder: (data, context) {
-                  return Container(height: 200, child: Center(child: Text('BottomSheetController: $data')));
-                },
-              )
-            ],
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(Cubes.getString('description_counter')),
-                  cube.count.build<int>(
-                    (value) {
-                      return Text(value.toString());
-                    },
-                  ),
-                ],
-              ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(Cubes.getString('description_counter')),
+                cube.count.build<int>(
+                  (value) {
+                    return Text(value.toString());
+                  },
+                ),
+              ],
             ),
           ),
           floatingActionButton: FloatingActionButton(

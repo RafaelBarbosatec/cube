@@ -352,7 +352,7 @@ Now just add the widget to your tree and settings:
 
 ``` dart
 
-FeedbackManager(
+FeedBackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
        DialogController<String>(
            observable: cube.dialogControl,

@@ -1,6 +1,6 @@
 # 0.9.0
 
-- add `FeedbackManager`. Now you can control Dialogs and BottomSheets with Observables in reactive way
+- add `FeedBackManager`. Now you can control Dialogs and BottomSheets with Observables in reactive way
 
 # 0.8.0
 

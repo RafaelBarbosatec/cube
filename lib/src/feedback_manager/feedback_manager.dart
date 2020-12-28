@@ -23,13 +23,13 @@ class FeedBackControl<T> {
   }
 }
 
-class FeedbackManager extends StatefulWidget {
+class FeedBackManager extends StatefulWidget {
   final Widget child;
 
   final List<BottomSheetController> bottomSheetControllers;
   final List<DialogController> dialogControllers;
   final List<SnackBarController> snackBarControllers;
-  const FeedbackManager({
+  const FeedBackManager({
     Key key,
     @required this.child,
     this.bottomSheetControllers,
@@ -37,10 +37,10 @@ class FeedbackManager extends StatefulWidget {
     this.snackBarControllers,
   }) : super(key: key);
   @override
-  _FeedbackManagerState createState() => _FeedbackManagerState();
+  _FeedBackManagerState createState() => _FeedBackManagerState();
 }
 
-class _FeedbackManagerState extends State<FeedbackManager>
+class _FeedBackManagerState extends State<FeedBackManager>
     with DialogFeedBackMixin, BottomSheetFeedBackMixin, SnackBarFeedBackMixin {
   @override
   void initState() {

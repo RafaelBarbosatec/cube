@@ -67,49 +67,7 @@ void main() {
 
 ```
 
-* Creating view with `CubeBuilder`:
-
-```dart
-
-class Home extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return CubeBuilder<CounterCube>(
-      onAction: (cube, action) => print(action),
-      // dispose: (cube)=> true, if you want the widget to not call `dispose` in the Cube, return false
-      builder: (BuildContext context, CounterCube cube) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Home'),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You have pushed the button this many times:',
-                ),
-                cube.count.build<int>((value) {
-                  return Text(value.toString());
-                }),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: cube.increment,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
-        );
-      },
-    );
-  }
-}
-
-```
-
- or use `CubeWidget`
+* Creating view
 
 ```dart
 
@@ -157,7 +115,7 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state. See this [exemple](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
+If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
 
 OBS: Cube and its dependencies are injected into `CubeBuilder` and `CubeWidget without the need for any extra configuration.
 

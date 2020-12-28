@@ -29,19 +29,21 @@ class DialogController<T> {
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   Map<DialogController, bool> _mapDialogIsShowing = Map();
+  Map<DialogController, Function> _mapDialogListeners = Map();
   List<DialogController> dialogControllers;
 
   void confDialogFeedBack(List<DialogController> controllers) {
     this.dialogControllers = controllers;
     this.dialogControllers?.forEach((element) {
       _mapDialogIsShowing[element] = false;
-      element.observable.addListener(() => _listenerDialogController(element));
+      _mapDialogListeners[element] = () => _listenerDialogController(element);
+      element.observable.addListener(_mapDialogListeners[element]);
     });
   }
 
   @override
   void dispose() {
-    dialogControllers?.forEach((element) => element.observable.dispose());
+    dialogControllers?.forEach((element) => element.observable.removeListener(_mapDialogListeners[element]));
     super.dispose();
   }
 

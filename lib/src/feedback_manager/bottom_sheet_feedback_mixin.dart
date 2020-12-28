@@ -40,31 +40,33 @@ class BottomSheetController<T> {
 
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
-  Map<BottomSheetController, bool> _mapDialogIsShowing = Map();
+  Map<BottomSheetController, bool> _mapBottomSheetIsShowing = Map();
+  Map<BottomSheetController, Function> _mapBottomSheetListeners = Map();
   List<BottomSheetController> bottomSheetControllers;
 
   void confBottomSheetFeedBack(List<BottomSheetController> controllers) {
     this.bottomSheetControllers = controllers;
     this.bottomSheetControllers?.forEach((element) {
-      _mapDialogIsShowing[element] = false;
-      element.observable.addListener(() => _listenerDialogController(element));
+      _mapBottomSheetIsShowing[element] = false;
+      _mapBottomSheetListeners[element] = () => _listenerDialogController(element);
+      element.observable.addListener(_mapBottomSheetListeners[element]);
     });
   }
 
   @override
   void dispose() {
-    bottomSheetControllers?.forEach((element) => element.observable.dispose());
+    bottomSheetControllers?.forEach((element) => element.observable.removeListener(_mapBottomSheetListeners[element]));
     super.dispose();
   }
 
   void _listenerDialogController(BottomSheetController element) {
-    if (element.observable.value.show && !_mapDialogIsShowing[element]) {
+    if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
       if (mounted) {
         _showBottomSheet(element);
       }
-    } else if (_mapDialogIsShowing[element]) {
+    } else if (_mapBottomSheetIsShowing[element]) {
       if (mounted) {
-        _mapDialogIsShowing[element] = false;
+        _mapBottomSheetIsShowing[element] = false;
         Navigator.pop(context);
       }
     }
@@ -72,7 +74,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
 
   void _showBottomSheet(BottomSheetController element) async {
     await Future.delayed(Duration(milliseconds: ANIMATION_DURATION));
-    _mapDialogIsShowing[element] = true;
+    _mapBottomSheetIsShowing[element] = true;
     await showModalBottomSheet(
       context: context,
       isDismissible: element.dismissible,
@@ -90,6 +92,6 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
         child: element.doBuild(element.observable.value.data, context),
       ),
     );
-    _mapDialogIsShowing[element] = false;
+    _mapBottomSheetIsShowing[element] = false;
   }
 }

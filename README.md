@@ -319,7 +319,7 @@ Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/
 
 This is a version of AnimatedList that simplifies its use for the Cube context.
 
-```
+```dart
 
   AnimatedListCube<String>(
     itemList: cube.todoList,
@@ -334,6 +334,66 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 ```
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
+
+## FeedBackManager
+
+Using this widget you can reactively control your Dialogs, BottomSheets and SnackBar using an ObservableValue.
+
+Creating observable to control:
+
+``` dart
+
+final bottomSheetControl = ObservableValue<FeedBackControl<String>(value: FeedBackControl(data:'test'));
+final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl(data:'test'));
+final snackBarControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
+```
+
+Now just add the widget to your tree and settings:
+
+``` dart
+
+FeedBackManager(
+   dialogControllers:[  // You can add as many different dialogs as you like
+       DialogController<String>(
+           observable: cube.dialogControl,
+           builder: (data, context) {
+               return Container(height: 200, child: Center(child: Text('Dialog: $data')));
+           },
+       ),
+   ],
+   bottomSheetControllers: [  // You can add as many different BottomSheets as you like
+       BottomSheetController<String>(
+           observable: cube.bottomSheetControl,
+           builder: (data, context) {
+               return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
+           },
+       ),
+   ],
+   snackBarControllers: [
+       SnackBarController<String>(
+           observable: cube.snackBarControl,
+           builder: (data, context) {
+               return SnackBar(content: Text(data));
+           },
+       ),
+   ],
+   child: ...
+)
+
+```
+
+To show or hide:
+
+``` dart
+
+bottomSheetControl.modify((value) => value.copyWith(show: true)); // or false to hide
+dialogControl.modify((value) => value.copyWith(show: true)); // or false to hide
+snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
+
+```
+
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager/feedback_manager_screen.dart).
+
 
 ## Internationalization support
 

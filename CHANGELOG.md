@@ -1,3 +1,7 @@
+# 0.9.0
+
+- add `FeedBackManager`. Now you can control Dialogs, BottomSheets and SnackBars with Observables in reactive way
+
 # 0.8.0
 
 - create `CubeStateMixin` to use cube in StatefulWidget

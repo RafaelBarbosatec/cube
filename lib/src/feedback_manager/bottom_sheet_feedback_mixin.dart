@@ -81,11 +81,14 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
       routeSettings: element.routeSettings,
       backgroundColor: element.backgroundColor,
       elevation: element.elevation,
-      enableDrag: element.enableDrag,
+      enableDrag: element.dismissible ? element.enableDrag : false,
       isScrollControlled: element.isScrollControlled,
       shape: element.shape,
       clipBehavior: element.clipBehavior,
-      builder: (context) => element.doBuild(element.observable.value.data, context),
+      builder: (context) => WillPopScope(
+        onWillPop: () => Future.value(element.dismissible),
+        child: element.doBuild(element.observable.value.data, context),
+      ),
     );
     _mapDialogIsShowing[element] = false;
   }

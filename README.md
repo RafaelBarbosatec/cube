@@ -392,6 +392,9 @@ snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
 
 ```
 
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager/feedback_manager_screen.dart).
+
+
 ## Internationalization support
 
 With Cubes you can configure internationalization in your application. in a simple way using .json files.

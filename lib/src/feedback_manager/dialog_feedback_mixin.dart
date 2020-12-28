@@ -48,15 +48,12 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   }
 
   void _listenerDialogController(DialogController element) {
+    if (!mounted) return;
     if (element.observable.value.show && !_mapDialogIsShowing[element]) {
-      if (mounted) {
-        _showDialog(element);
-      }
-    } else if (_mapDialogIsShowing[element]) {
-      if (mounted) {
-        _mapDialogIsShowing[element] = false;
-        Navigator.pop(context);
-      }
+      _showDialog(element);
+    } else if (!element.observable.value.show && _mapDialogIsShowing[element]) {
+      _mapDialogIsShowing[element] = false;
+      Navigator.pop(context);
     }
   }
 
@@ -76,5 +73,7 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
       ),
     );
     _mapDialogIsShowing[element] = false;
+    // ignore: invalid_use_of_protected_member
+    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
   }
 }

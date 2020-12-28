@@ -36,10 +36,12 @@ class SnackBarController<T> {
 
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   List<SnackBarController> snackBarControllers;
+  Map<SnackBarController, bool> _mapSnackBarIsShowing = Map();
 
   void confSnackBarFeedBack(List<SnackBarController> controllers) {
     this.snackBarControllers = controllers;
     this.snackBarControllers?.forEach((element) {
+      _mapSnackBarIsShowing[element] = false;
       element.observable.addListener(() => _listenerDialogController(element));
     });
   }
@@ -51,14 +53,21 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   }
 
   void _listenerDialogController(SnackBarController element) {
-    if (element.observable.value.show) {
-      if (mounted) {
-        _showSnackBar(element);
-      }
+    if (!mounted) return;
+    if (element.observable.value.show && !_mapSnackBarIsShowing[element]) {
+      _showSnackBar(element);
+    } else if (!element.observable.value.show && _mapSnackBarIsShowing[element]) {
+      _mapSnackBarIsShowing[element] = false;
+      Scaffold.of(context)?.hideCurrentSnackBar();
     }
   }
 
   void _showSnackBar(SnackBarController element) async {
+    _mapSnackBarIsShowing[element] = true;
     Scaffold.of(context)?.showSnackBar(element.doBuild(element.observable.value.data, context));
+    await Future.delayed(element.duration);
+    _mapSnackBarIsShowing[element] = false;
+    // ignore: invalid_use_of_protected_member
+    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
   }
 }

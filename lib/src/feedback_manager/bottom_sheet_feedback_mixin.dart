@@ -60,15 +60,12 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   }
 
   void _listenerDialogController(BottomSheetController element) {
+    if (!mounted) return;
     if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
-      if (mounted) {
-        _showBottomSheet(element);
-      }
-    } else if (_mapBottomSheetIsShowing[element]) {
-      if (mounted) {
-        _mapBottomSheetIsShowing[element] = false;
-        Navigator.pop(context);
-      }
+      _showBottomSheet(element);
+    } else if (!element.observable.value.show && _mapBottomSheetIsShowing[element]) {
+      _mapBottomSheetIsShowing[element] = false;
+      Navigator.pop(context);
     }
   }
 
@@ -93,5 +90,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
       ),
     );
     _mapBottomSheetIsShowing[element] = false;
+    // ignore: invalid_use_of_protected_member
+    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
   }
 }

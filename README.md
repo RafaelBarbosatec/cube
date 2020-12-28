@@ -388,7 +388,7 @@ To show or hide:
 
 bottomSheetControl.modify((value) => value.copyWith(show: true)); // or false to hide
 dialogControl.modify((value) => value.copyWith(show: true)); // or false to hide
-snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success')); // only true to show
+snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
 
 ```
 

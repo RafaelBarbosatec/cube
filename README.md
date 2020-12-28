@@ -348,12 +348,12 @@ final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackCo
 
 ```
 
-Now just add the widget to your tree:
+Now just add the widget to your tree and settings:
 
 ``` dart
 
 FeedbackManager(
-   dialogControllers:[  // Pode adicionar quandos dialogs diferentes desejar
+   dialogControllers:[  // You can add as many different dialogs as you like
        DialogController(
            observable: cube.dialogControl,
            builder: (data, context) {
@@ -361,7 +361,7 @@ FeedbackManager(
            },
        ),
    ],
-   bottomSheetControllers: [  // Pode adicionar quandos bottomSheets diferentes desejar
+   bottomSheetControllers: [  // You can add as many different BottomSheets as you like
        BottomSheetController(
            observable: cube.bottomSheetControl,
            builder: (data, context) {

@@ -337,9 +337,9 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 ## FeedBackManager
 
-Utilizando esse widget você poderá controlar seus Dialogs e BottomSheets de forma reativa utilizando um ObservableValue.
+Using this widget you can reactively control your Dialogs and BottomSheets using an ObservableValue.
 
-Criando observable para controlar tanto Dialog quando BottomSheet:`
+Creating observable to control both Dialog and BottomSheet:
 
 ``` dart
 
@@ -348,7 +348,7 @@ final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackCo
 
 ```
 
-Agora basta adiciona o widget em sua arvore:
+Now just add the widget to your tree:
 
 ``` dart
 
@@ -374,11 +374,11 @@ FeedbackManager(
 
 ```
 
-Para exibir ou ocultar:
+To show or hide:
 
 ``` dart
 
-botomSheetControl.modify((value) => value.copyWith(show: true));
+bottomSheetControl.modify((value) => value.copyWith(show: true));
 dialogControl.modify((value) => value.copyWith(show: true));
 
 ```

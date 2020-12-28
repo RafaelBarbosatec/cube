@@ -39,7 +39,7 @@ class BottomSheetController<T> {
 }
 
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
-  static const ANIMATION_DURATION = 300;
+  static const ANIMATION_DURATION = 150;
   Map<BottomSheetController, bool> _mapDialogIsShowing = Map();
   List<BottomSheetController> bottomSheetControllers;
 

@@ -27,7 +27,7 @@ class DialogController<T> {
 }
 
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
-  static const ANIMATION_DURATION = 300;
+  static const ANIMATION_DURATION = 150;
   Map<DialogController, bool> _mapDialogIsShowing = Map();
   List<DialogController> dialogControllers;
 

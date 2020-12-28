@@ -339,7 +339,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 Using this widget you can reactively control your Dialogs, BottomSheets and SnackBar using an ObservableValue.
 
-Creating observable to control both Dialog and BottomSheet:
+Creating observable to control:
 
 ``` dart
 

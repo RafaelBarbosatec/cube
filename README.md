@@ -378,8 +378,8 @@ To show or hide:
 
 ``` dart
 
-bottomSheetControl.modify((value) => value.copyWith(show: true));
-dialogControl.modify((value) => value.copyWith(show: true));
+bottomSheetControl.modify((value) => value.copyWith(show: true)); // or false to hide
+dialogControl.modify((value) => value.copyWith(show: true)); // or false to hide
 
 ```
 

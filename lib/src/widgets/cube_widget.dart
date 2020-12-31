@@ -3,8 +3,13 @@ import 'package:cubes/src/cube.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
+  /// called when cube send any Action to view.
   void onAction(BuildContext context, C cube, CubeAction data) {}
+
+  /// called when execute initState of the CubeBuilder
   void initState(BuildContext context, C cube) {}
+
+  /// if you want the widget to not call `dispose` in the Cube, return false
   bool dispose(C cube) => true;
 
   dynamic get initData => null;

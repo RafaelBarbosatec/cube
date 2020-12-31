@@ -100,17 +100,6 @@ class Home extends CubeWidget<CounterCube> {
     );
   }
 
-  @override
-  void onAction(BuildContext context, CounterCube cube, CubeAction action) {
-    // TODO: implement onAction
-    super.onAction(context, cube, action);
-  }
-
-  @override
-  bool dispose(CounterCube cube) {
-    // TODO: implement dispose
-    return super.dispose(cube); //if you want the widget to not call `dispose` in the Cube, return false
-  }
 }
 
 ```
@@ -173,11 +162,34 @@ To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cube
 
 ### onAction
 
-In `onAction` you can send `CubeSuccessAction` and `CubeErrorAction` to view. Or create your own action by creating a class and extending `CubeAction`.
+`onAction` is used to send any type of action or message to a view. You simply create an 'action' extending from `CubeAction`.
 
 ```dart
-  onAction(CubeSuccessAction(text: "Login successfully"));
+
+  class NavigationAction extends CubeAction {
+      final String route;
+      MyAction({this.route});
+  }
+
+  // sending action
+  onAction(NavigationAction(route: "/home"));
+
 ```
+
+you will receive this action in the `View` through the method:
+
+```dart
+
+   @override
+   void onAction(BuildContext context, MyCube cube, CubeAction action) {
+     // TODO: implement onAction
+     if(action is NavigationAction) Navigator.pushNamed(context, (action as NavigationAction).route);
+     super.onAction(context, cube, data);
+   }
+
+```
+
+this will be useful for navigation, to start some more complex animation, among other needs that `View` has to perform.
 
 ### runDebounce
 

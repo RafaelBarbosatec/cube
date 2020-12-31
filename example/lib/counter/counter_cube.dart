@@ -1,5 +1,16 @@
 import 'package:cubes/cubes.dart';
 
+class MsgAction extends CubeAction {
+  final String text;
+
+  MsgAction({this.text});
+
+  @override
+  String toString() {
+    return 'MsgAction{text: $text}';
+  }
+}
+
 class CounterCube extends Cube {
   final bool withDebounce;
   final count = ObservableValue<int>(value: 0);
@@ -15,11 +26,11 @@ class CounterCube extends Cube {
   void increment() {
     count.modify((value) => value + 1);
     if (count.value == 5) {
-      onAction(CubeSuccessAction(text: "count five")); // to send action to view
+      onAction(MsgAction(text: "count five")); // to send action to view
     }
 
     if (count.value == 50) {
-      onAction(CubeErrorAction(text: "You are clicking too much o.O")); // to send action to view
+      onAction(MsgAction(text: "You are clicking too much o.O")); // to send action to view
     }
 
     if (withDebounce) {

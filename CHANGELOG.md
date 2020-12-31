@@ -1,3 +1,8 @@
+# 0.9.1
+
+- update example and readme
+
+
 # 0.9.0
 
 - add `FeedBackManager`. Now you can control Dialogs, BottomSheets and SnackBars with Observables in reactive way

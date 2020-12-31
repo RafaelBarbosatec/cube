@@ -108,6 +108,8 @@ If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateM
 
 OBS: Cube and its dependencies are injected into `CubeWidget` without the need for any extra configuration.
 
+---
+
 By doing this:
 
 ``` dart

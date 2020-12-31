@@ -10,6 +10,7 @@ class PokemonCube extends Cube {
 
   final list = ObservableList<Pokemon>(value: []);
   final progress = ObservableValue<bool>(value: false);
+  final snackBarController = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
 
   @override
   void ready() {
@@ -28,7 +29,7 @@ class PokemonCube extends Cube {
           if (isMore) return list.addAll(value);
           list.update(value);
         })
-        .catchError((error) => onAction(CubeErrorAction(text: error.toString())))
+        .catchError((error) => snackBarController.update(FeedBackControl(show: true, data: error.toString())))
         .whenComplete(() => progress.update(false));
   }
 }

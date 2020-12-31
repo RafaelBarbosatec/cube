@@ -168,7 +168,7 @@ To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cube
 
   class NavigationAction extends CubeAction {
       final String route;
-      MyAction({this.route});
+      NavigationAction({this.route});
   }
 
   // sending action

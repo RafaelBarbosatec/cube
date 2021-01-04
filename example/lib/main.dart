@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
             RaisedButton(
               child: Text(Cubes.getString('counter')),
               onPressed: () {
-                context.goTo(CounterScreen());
+                context.goTo(CounterScreen(), settings: RouteSettings(arguments: {'name': 'rafael'}));
               },
             ),
             RaisedButton(

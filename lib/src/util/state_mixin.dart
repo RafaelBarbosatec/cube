@@ -14,14 +14,14 @@ mixin StateMixin<T extends StatefulWidget> on State<T> {
 mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   C cube;
 
-  dynamic get initData => null;
+  Object get initData => null;
 
   @override
   void initState() {
     cube = cube ?? Cubes.getDependency();
     cube.data = initData;
     cube.addOnActionListener(_innerOnAction);
-    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
+    WidgetsBinding.instance.addPostFrameCallback(_ready);
     super.initState();
   }
 
@@ -37,4 +37,9 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   void _innerOnAction(C cube, CubeAction action) => onAction(action);
 
   void onAction(CubeAction action);
+
+  void _ready(_) {
+    cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
+    cube.ready();
+  }
 }

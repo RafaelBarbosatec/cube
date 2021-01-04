@@ -1,7 +1,11 @@
+# 0.9.2
+
+- update example
+- if initData is not passed, the cube's `data` is filled with `ModalRoute.of(context).settings.arguments;`
+
 # 0.9.1
 
 - update example and readme
-
 
 # 0.9.0
 

@@ -24,7 +24,7 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.dispose,
   }) : super(key: key);
 
-  final dynamic initData;
+  final Object initData;
   final AsyncCubeWidgetBuilder<C> builder;
   final OnActionChanged<C, CubeAction> onAction;
   final InitCallback<C> initState;
@@ -45,7 +45,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
-    WidgetsBinding.instance.addPostFrameCallback((_) => cube.ready());
+    WidgetsBinding.instance.addPostFrameCallback(_ready);
   }
 
   @override
@@ -65,6 +65,11 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
 
   void _onAction(C cube, CubeAction data) {
     postFrame(() => cubeWidget.onAction(cube, data));
+  }
+
+  void _ready(_) {
+    cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
+    cube.ready();
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

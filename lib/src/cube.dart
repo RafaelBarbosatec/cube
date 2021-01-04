@@ -11,8 +11,8 @@ abstract class Cube {
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
   OnActionChanged _cubeActionListener;
 
-  /// initial data if passed through CubeBuilder
-  dynamic data;
+  /// initial data if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
+  Object data;
 
   /// called when the view is ready
   void ready() {

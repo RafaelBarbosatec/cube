@@ -12,7 +12,7 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// if you want the widget to not call `dispose` in the Cube, return false
   bool dispose(C cube) => true;
 
-  dynamic get initData => null;
+  Object get initData => null;
 
   @protected
   Widget buildView(BuildContext context, C cube);

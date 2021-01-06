@@ -9,7 +9,7 @@ class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
       appBar: AppBar(
         title: Text('FeedBackManager'),
       ),
-      body: FeedBackManager(
+      body: CFeedBackManager(
         dialogControllers: [
           DialogController<String>(
             observable: cube.dialogControl,

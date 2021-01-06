@@ -11,7 +11,7 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
       appBar: AppBar(
         title: Text('Pokemons with CubeWidget'),
       ),
-      body: FeedBackManager(
+      body: CFeedBackManager(
         snackBarControllers: [
           SnackBarController<String>(
             observable: cube.snackBarController,

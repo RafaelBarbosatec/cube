@@ -22,4 +22,8 @@ class TextFormFieldCube extends Cube {
   void disable() {
     textFieldControl.modify((value) => value.copyWith(enable: false));
   }
+
+  void changeObscureText() {
+    textFieldControl.modify((value) => value.copyWith(obscureText: !value.obscureText));
+  }
 }

@@ -18,8 +18,8 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
               CTextFormField(
                 observable: cube.textFieldControl,
                 decoration: InputDecoration(hintText: 'Digite algo'),
-                obscureText: true,
                 obscureTextButtonConfiguration: CObscureTextButtonConfiguration(
+                  show: true,
                   align: CObscureTextAlign.right,
                   iconHide: Icon(Icons.visibility_off_outlined),
                   iconShow: Icon(Icons.visibility_outlined),
@@ -39,6 +39,8 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
                   RaisedButton(child: Text('enable'), onPressed: cube.enable),
                   SizedBox(width: 10),
                   RaisedButton(child: Text('disable'), onPressed: cube.disable),
+                  SizedBox(width: 10),
+                  RaisedButton(child: Text('change obscureText'), onPressed: cube.changeObscureText),
                 ],
               )
             ],

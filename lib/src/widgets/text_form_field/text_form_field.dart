@@ -6,34 +6,43 @@ class CTextFormFieldControl {
   final bool enable;
   final String text;
   final String error;
+  final bool obscureText;
 
-  CTextFormFieldControl({this.enable, this.text, this.error});
+  CTextFormFieldControl({
+    this.enable,
+    this.text,
+    this.error,
+    this.obscureText = false,
+  });
 
   CTextFormFieldControl copyWith({
     String text,
     bool enable,
+    bool obscureText,
     String error,
   }) {
     return CTextFormFieldControl(
       text: text ?? this.text,
       enable: enable ?? this.enable,
+      obscureText: obscureText ?? this.obscureText,
       error: error,
     );
   }
 }
 
 enum CObscureTextAlign {
-  none,
   left,
   right,
 }
 
 class CObscureTextButtonConfiguration {
+  final bool show;
   final Widget iconShow;
   final Widget iconHide;
   final CObscureTextAlign align;
 
   CObscureTextButtonConfiguration({
+    this.show,
     this.iconShow,
     this.iconHide,
     this.align = CObscureTextAlign.right,
@@ -42,7 +51,8 @@ class CObscureTextButtonConfiguration {
   const CObscureTextButtonConfiguration.none({
     this.iconShow,
     this.iconHide,
-  }) : this.align = CObscureTextAlign.none;
+    this.align,
+  }) : this.show = false;
 }
 
 class CTextFormField extends StatefulWidget {
@@ -50,8 +60,8 @@ class CTextFormField extends StatefulWidget {
   final InputDecoration decoration;
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onChanged;
+  final ValueChanged<bool> onChangedObscuteText;
   final CObscureTextButtonConfiguration obscureTextButtonConfiguration;
-  final bool obscureText;
   final AutovalidateMode autovalidateMode;
   final FocusNode focusNode;
   final GestureTapCallback onTap;
@@ -97,7 +107,6 @@ class CTextFormField extends StatefulWidget {
     this.validator,
     this.obscureTextButtonConfiguration = const CObscureTextButtonConfiguration.none(),
     this.onChanged,
-    this.obscureText = false,
     this.textAlign = TextAlign.start,
     this.autovalidateMode,
     this.focusNode,
@@ -135,6 +144,7 @@ class CTextFormField extends StatefulWidget {
     this.onEditingComplete,
     this.onSaved,
     this.toolbarOptions,
+    this.onChangedObscuteText,
   }) : super(key: key);
   @override
   _CTextFormFieldState createState() => _CTextFormFieldState();
@@ -148,7 +158,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
 
   @override
   void initState() {
-    _obscureText = widget.obscureText;
+    _obscureText = widget.observable.value.obscureText;
     widget.observable.addListener(listener);
     super.initState();
   }
@@ -162,7 +172,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
   void listener() {
     final control = widget.observable.value;
 
-    Future.delayed(Duration.zero, () {
+    postFrame(() {
       if (control.text != null && control.text != _controller.text) {
         _controller.text = control.text;
         _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
@@ -172,6 +182,13 @@ class _CTextFormFieldState extends State<CTextFormField> {
         setState(() {
           _enable = control.enable;
         });
+      }
+
+      if (control.obscureText != null && control.obscureText != _obscureText) {
+        setState(() {
+          _obscureText = control.obscureText;
+        });
+        widget.onChangedObscuteText?.call(widget.observable.value.obscureText);
       }
 
       if (_error != control.error) {
@@ -243,16 +260,15 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildSuffixIcon() {
-    if (widget.obscureText && widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.right) {
+    if (widget?.obscureTextButtonConfiguration?.show == true &&
+        widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.right) {
       Widget icon = _obscureText
           ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
           : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
       return IconButton(
         icon: icon,
         onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
+          widget.observable.modify((value) => value.copyWith(obscureText: !value.obscureText));
         },
       );
     } else {
@@ -261,20 +277,23 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildPrefixIcon() {
-    if (widget.obscureText && widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.left) {
+    if (widget?.obscureTextButtonConfiguration?.show == true &&
+        widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.left) {
       Widget icon = _obscureText
           ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
           : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
       return IconButton(
         icon: icon,
         onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
+          widget.observable.modify((value) => value.copyWith(obscureText: !value.obscureText));
         },
       );
     } else {
       return null;
     }
+  }
+
+  void postFrame(VoidCallback callback) {
+    Future.delayed(Duration.zero, callback);
   }
 }

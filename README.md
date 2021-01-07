@@ -343,6 +343,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
  //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text
  //  textFieldControl.modify((value) => value.copyWith(error: 'error example')); // set error
  //  textFieldControl.modify((value) => value.copyWith(enable: true)); // enable or disable
+ //  textFieldControl.modify((value) => value.copyWith(obscureText: true)); // enable or disable obscureText
 
  // code in Widget
 

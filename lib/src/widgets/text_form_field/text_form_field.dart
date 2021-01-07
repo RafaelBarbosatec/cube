@@ -78,6 +78,17 @@ class CTextFormField extends StatefulWidget {
   final TextDirection textDirection;
   final TextAlignVertical textAlignVertical;
   final TextCapitalization textCapitalization;
+  final Iterable<String> autofillHints;
+  final Brightness keyboardAppearance;
+  final EdgeInsets scrollPadding;
+  final bool enableInteractiveSelection;
+  final InputCounterWidgetBuilder buildCounter;
+  final ScrollPhysics scrollPhysics;
+  final String obscuringCharacter;
+  final VoidCallback onEditingComplete;
+  final FormFieldSetter<String> onSaved;
+  final bool maxLengthEnforced;
+  final ToolbarOptions toolbarOptions;
 
   const CTextFormField({
     Key key,
@@ -104,6 +115,7 @@ class CTextFormField extends StatefulWidget {
     this.readOnly = false,
     this.autocorrect = true,
     this.enableSuggestions = true,
+    this.maxLengthEnforced = true,
     this.showCursor,
     this.cursorWidth = 2.0,
     this.cursorHeight,
@@ -112,7 +124,17 @@ class CTextFormField extends StatefulWidget {
     this.strutStyle,
     this.textDirection,
     this.textAlignVertical,
+    this.enableInteractiveSelection = true,
+    this.scrollPadding = const EdgeInsets.all(20.0),
     this.textCapitalization = TextCapitalization.none,
+    this.autofillHints,
+    this.keyboardAppearance,
+    this.buildCounter,
+    this.scrollPhysics,
+    this.obscuringCharacter = '•',
+    this.onEditingComplete,
+    this.onSaved,
+    this.toolbarOptions,
   }) : super(key: key);
   @override
   _CTextFormFieldState createState() => _CTextFormFieldState();
@@ -192,6 +214,17 @@ class _CTextFormFieldState extends State<CTextFormField> {
       strutStyle: widget.strutStyle,
       textDirection: widget.textDirection,
       textCapitalization: widget.textCapitalization,
+      autofillHints: widget.autofillHints,
+      buildCounter: widget.buildCounter,
+      keyboardAppearance: widget.keyboardAppearance,
+      scrollPadding: widget.scrollPadding,
+      scrollPhysics: widget.scrollPhysics,
+      enableInteractiveSelection: widget.enableInteractiveSelection,
+      obscuringCharacter: widget.obscuringCharacter,
+      onEditingComplete: widget.onEditingComplete,
+      onSaved: widget.onSaved,
+      maxLengthEnforced: widget.maxLengthEnforced,
+      toolbarOptions: widget.toolbarOptions,
       onChanged: (text) {
         widget.observable.modify((value) => value.copyWith(value: text));
         widget.onChanged?.call(text);

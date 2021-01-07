@@ -142,7 +142,7 @@ class CTextFormField extends StatefulWidget {
 
 class _CTextFormFieldState extends State<CTextFormField> {
   TextEditingController _controller = TextEditingController();
-  bool _enable;
+  bool _enable = true;
   bool _obscureText = false;
   String _error;
 
@@ -168,7 +168,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
         _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
       }
 
-      if (_enable != control.enable) {
+      if (control.enable != null && control.enable != _enable) {
         setState(() {
           _enable = control.enable;
         });

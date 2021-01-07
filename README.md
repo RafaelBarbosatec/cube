@@ -326,7 +326,7 @@ snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
 
 ```
 
-Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager/feedback_manager_screen.dart).
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager).
 
 ### CTextFormField
 
@@ -360,7 +360,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
 
 It is exactly the same as the conventional `TextFormField` with two more fields, the` observable` and `obscureTextButtonConfiguration`.
 
-Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field/text_form_field_screen.dart).
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field).
 
 ## Internationalization support
 

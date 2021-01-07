@@ -13,7 +13,7 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
       ),
       body: CFeedBackManager(
         snackBarControllers: [
-          SnackBarController<String>(
+          CSnackBarController<String>(
             observable: cube.snackBarController,
             builder: (value, context) => SnackBar(content: Text(value)),
           ),

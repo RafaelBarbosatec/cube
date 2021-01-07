@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 typedef SnackBar SnackBarByDataBuilder<T>(T data, BuildContext context);
 
-class SnackBarController<T> {
+class CSnackBarController<T> {
   final SnackBarAction action;
-  final ObservableValue<FeedBackControl<T>> observable;
+  final ObservableValue<CFeedBackControl<T>> observable;
   final SnackBarByDataBuilder<T> builder;
   final Duration duration;
   final ShapeBorder shape;
@@ -20,7 +20,7 @@ class SnackBarController<T> {
     return builder(data, context);
   }
 
-  SnackBarController({
+  CSnackBarController({
     @required this.observable,
     @required this.builder,
     this.action,
@@ -35,10 +35,10 @@ class SnackBarController<T> {
 }
 
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
-  List<SnackBarController> snackBarControllers;
-  Map<SnackBarController, bool> _mapSnackBarIsShowing = Map();
+  List<CSnackBarController> snackBarControllers;
+  Map<CSnackBarController, bool> _mapSnackBarIsShowing = Map();
 
-  void confSnackBarFeedBack(List<SnackBarController> controllers) {
+  void confSnackBarFeedBack(List<CSnackBarController> controllers) {
     this.snackBarControllers = controllers;
     this.snackBarControllers?.forEach((element) {
       _mapSnackBarIsShowing[element] = false;
@@ -52,7 +52,7 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
-  void _listenerDialogController(SnackBarController element) {
+  void _listenerDialogController(CSnackBarController element) {
     if (!mounted) return;
     if (element.observable.value.show && !_mapSnackBarIsShowing[element]) {
       _showSnackBar(element);
@@ -62,7 +62,7 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
-  void _showSnackBar(SnackBarController element) async {
+  void _showSnackBar(CSnackBarController element) async {
     _mapSnackBarIsShowing[element] = true;
     Scaffold.of(context)?.showSnackBar(element.doBuild(element.observable.value.data, context));
     await Future.delayed(element.duration);

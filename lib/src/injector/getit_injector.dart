@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 final _getIt = GetIt.instance;
 
-class GetItInjector extends Injector {
+class GetItInjector extends CInjector {
   @override
   T getDependency<T>({String dependencyName}) {
     return _getIt.get<T>();

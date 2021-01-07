@@ -1,19 +1,20 @@
 import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class TextFormFieldControl {
+class CTextFormFieldControl {
   final bool enable;
   final String value;
   final String error;
 
-  TextFormFieldControl({this.enable, this.value, this.error});
+  CTextFormFieldControl({this.enable, this.value, this.error});
 
-  TextFormFieldControl copyWith({
+  CTextFormFieldControl copyWith({
     String value,
     bool enable,
     String error,
   }) {
-    return TextFormFieldControl(
+    return CTextFormFieldControl(
       value: value ?? this.value,
       enable: enable ?? this.enable,
       error: error ?? this.error,
@@ -21,47 +22,97 @@ class TextFormFieldControl {
   }
 }
 
-enum ObscureTextAlign {
+enum CObscureTextAlign {
   none,
   left,
   right,
 }
 
-class ObscureTextConfiguration {
+class CObscureTextButtonConfiguration {
   final Widget iconShow;
   final Widget iconHide;
-  final ObscureTextAlign align;
+  final CObscureTextAlign align;
 
-  ObscureTextConfiguration({
+  CObscureTextButtonConfiguration({
     this.iconShow,
     this.iconHide,
-    this.align = ObscureTextAlign.right,
+    this.align = CObscureTextAlign.right,
   });
 
-  const ObscureTextConfiguration.none({
+  const CObscureTextButtonConfiguration.none({
     this.iconShow,
     this.iconHide,
-  }) : this.align = ObscureTextAlign.none;
+  }) : this.align = CObscureTextAlign.none;
 }
 
 class CTextFormField extends StatefulWidget {
-  final ObservableValue<TextFormFieldControl> observable;
+  final ObservableValue<CTextFormFieldControl> observable;
   final InputDecoration decoration;
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onChanged;
-  final ObscureTextConfiguration obscureTextConfiguration;
+  final CObscureTextButtonConfiguration obscureTextConfiguration;
   final bool obscureText;
   final AutovalidateMode autovalidateMode;
+  final FocusNode focusNode;
+  final GestureTapCallback onTap;
+  final ValueChanged<String> onFieldSubmitted;
+  final TextInputAction textInputAction;
+  final List<TextInputFormatter> inputFormatters;
+  final TextInputType keyboardType;
+  final TextStyle style;
+  final TextAlign textAlign;
+  final int maxLines;
+  final int minLines;
+  final bool expands;
+  final int maxLength;
+  final bool showCursor;
+  final bool autofocus;
+  final bool readOnly;
+  final bool autocorrect;
+  final bool enableSuggestions;
+  final double cursorWidth;
+  final double cursorHeight;
+  final Radius cursorRadius;
+  final Color cursorColor;
+  final StrutStyle strutStyle;
+  final TextDirection textDirection;
+  final TextAlignVertical textAlignVertical;
+  final TextCapitalization textCapitalization;
 
   const CTextFormField({
     Key key,
-    this.observable,
-    this.decoration,
+    @required this.observable,
+    this.decoration = const InputDecoration(),
     this.validator,
-    this.obscureTextConfiguration = const ObscureTextConfiguration.none(),
+    this.obscureTextConfiguration = const CObscureTextButtonConfiguration.none(),
     this.onChanged,
     this.obscureText = false,
+    this.textAlign = TextAlign.start,
     this.autovalidateMode,
+    this.focusNode,
+    this.onTap,
+    this.onFieldSubmitted,
+    this.textInputAction,
+    this.inputFormatters,
+    this.keyboardType,
+    this.style,
+    this.minLines,
+    this.maxLength,
+    this.maxLines = 1,
+    this.expands = false,
+    this.autofocus = false,
+    this.readOnly = false,
+    this.autocorrect = true,
+    this.enableSuggestions = true,
+    this.showCursor,
+    this.cursorWidth = 2.0,
+    this.cursorHeight,
+    this.cursorRadius,
+    this.cursorColor,
+    this.strutStyle,
+    this.textDirection,
+    this.textAlignVertical,
+    this.textCapitalization = TextCapitalization.none,
   }) : super(key: key);
   @override
   _CTextFormFieldState createState() => _CTextFormFieldState();
@@ -116,12 +167,37 @@ class _CTextFormFieldState extends State<CTextFormField> {
       enabled: _enable,
       obscureText: _obscureText,
       autovalidateMode: widget.autovalidateMode,
+      focusNode: widget.focusNode,
+      onTap: widget.onTap,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      textInputAction: widget.textInputAction,
+      inputFormatters: widget.inputFormatters,
+      keyboardType: widget.keyboardType,
+      style: widget.style,
+      textAlign: widget.textAlign,
+      maxLines: widget.maxLines,
+      minLines: widget.minLines,
+      expands: widget.expands,
+      maxLength: widget.maxLength,
+      autofocus: widget.autofocus,
+      showCursor: widget.showCursor,
+      readOnly: widget.readOnly,
+      autocorrect: widget.autocorrect,
+      enableSuggestions: widget.enableSuggestions,
+      cursorColor: widget.cursorColor,
+      cursorHeight: widget.cursorHeight,
+      cursorRadius: widget.cursorRadius,
+      cursorWidth: widget.cursorWidth,
+      textAlignVertical: widget.textAlignVertical,
+      strutStyle: widget.strutStyle,
+      textDirection: widget.textDirection,
+      textCapitalization: widget.textCapitalization,
       onChanged: (text) {
-        widget.onChanged?.call(text);
         widget.observable.modify((value) => value.copyWith(value: text));
+        widget.onChanged?.call(text);
       },
-      decoration: (widget.decoration ?? InputDecoration()).copyWith(
-        errorText: _error.isNotEmpty ? _error : null,
+      decoration: widget.decoration?.copyWith(
+        errorText: (_error?.isNotEmpty ?? false) ? _error : null,
         suffixIcon: _buildSuffixIcon(),
         prefixIcon: _buildPrefixIcon(),
       ),
@@ -134,7 +210,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildSuffixIcon() {
-    if (widget.obscureText && widget?.obscureTextConfiguration?.align == ObscureTextAlign.right) {
+    if (widget.obscureText && widget?.obscureTextConfiguration?.align == CObscureTextAlign.right) {
       Widget icon = _obscureText
           ? widget?.obscureTextConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
           : widget?.obscureTextConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
@@ -152,7 +228,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildPrefixIcon() {
-    if (widget.obscureText && widget?.obscureTextConfiguration?.align == ObscureTextAlign.left) {
+    if (widget.obscureText && widget?.obscureTextConfiguration?.align == CObscureTextAlign.left) {
       Widget icon = _obscureText
           ? widget?.obscureTextConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
           : widget?.obscureTextConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);

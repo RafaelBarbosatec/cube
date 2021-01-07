@@ -26,11 +26,11 @@ export 'package:cubes/src/widgets/text_form_field/text_form_field.dart';
 
 class Cubes {
   static final Cubes instance = Cubes._internal();
-  static Injector _injector = GetItInjector();
+  static CInjector _injector = GetItInjector();
 
   Cubes._internal();
 
-  void customInjector(Injector injector) => _injector = injector;
+  void customInjector(CInjector injector) => _injector = injector;
 
   static T getDependency<T>({String dependencyName}) {
     return _injector.getDependency<T>(dependencyName: dependencyName);
@@ -49,7 +49,7 @@ class Cubes {
   }
 
   static String getString(String key, [Map<String, String> params]) {
-    return StringsLocation.instance.getString(key, params: params);
+    return CStringsLocation.instance.getString(key, params: params);
   }
 
   static void resetInjector() => _injector.reset();

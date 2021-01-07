@@ -11,7 +11,7 @@ class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
       ),
       body: CFeedBackManager(
         dialogControllers: [
-          DialogController<String>(
+          CDialogController<String>(
             observable: cube.dialogControl,
             dismissible: false,
             builder: (data, context) => Center(
@@ -25,7 +25,7 @@ class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
           ),
         ],
         bottomSheetControllers: [
-          BottomSheetController<String>(
+          CBottomSheetController<String>(
             dismissible: false,
             observable: cube.bottomSheetControl,
             builder: (data, context) => Container(
@@ -37,7 +37,7 @@ class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
           ),
         ],
         snackBarControllers: [
-          SnackBarController(
+          CSnackBarController(
             observable: cube.snackBarControl,
             builder: (data, context) => SnackBar(content: Text(data)),
           ),

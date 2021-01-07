@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class CubesLocalization {
   CubesLocalization(this.locale, {this.pathFiles = 'lang/'}) {
-    StringsLocation.configure(this);
+    CStringsLocation.configure(this);
   }
 
   final Locale locale;
@@ -16,8 +16,7 @@ class CubesLocalization {
   Map<String, String> _sentences;
 
   Future<bool> load() async {
-    String data = await rootBundle
-        .loadString('$pathFiles${this.locale.languageCode}.json');
+    String data = await rootBundle.loadString('$pathFiles${this.locale.languageCode}.json');
     Map<String, dynamic> _result = json.decode(data);
 
     this._sentences = new Map();

@@ -9,6 +9,8 @@ import 'package:examplecube/feedback_manager/feedback_manager_screen.dart';
 import 'package:examplecube/pokemon/pokemon_cube.dart';
 import 'package:examplecube/pokemon/pokemon_screen.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
+import 'package:examplecube/text_form_field/text_form_field_cube.dart';
+import 'package:examplecube/text_form_field/text_form_field_screen.dart';
 import 'package:examplecube/todo/todo_cube.dart';
 import 'package:examplecube/todo/todo_list.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,7 @@ void main() {
   Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
   Cubes.registerDependency((i) => PokemonRepository());
   Cubes.registerDependency((i) => FeedbackManagerCube());
+  Cubes.registerDependency((i) => TextFormFieldCube());
 
   runApp(MyApp());
 }
@@ -94,6 +97,12 @@ class Home extends StatelessWidget {
               child: Text('FeedBackManager'),
               onPressed: () {
                 context.goTo(FeedbackManagerScreen());
+              },
+            ),
+            RaisedButton(
+              child: Text('CTextFormField'),
+              onPressed: () {
+                context.goTo(TextFormFieldScreen());
               },
             ),
           ],

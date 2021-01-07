@@ -9,7 +9,7 @@ typedef AnimatedListCubeItemBuilder<T> = Widget Function(
   TypeAnimationListEnum type,
 );
 
-class AnimatedListCube<T> extends StatefulWidget {
+class CAnimatedList<T> extends StatefulWidget {
   final AnimatedListCubeItemBuilder itemBuilder;
   final Axis scrollDirection;
   final bool reverse;
@@ -20,7 +20,7 @@ class AnimatedListCube<T> extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final ObservableList<T> itemList;
 
-  const AnimatedListCube({
+  const CAnimatedList({
     Key key,
     this.itemBuilder,
     this.scrollDirection = Axis.vertical,
@@ -37,7 +37,7 @@ class AnimatedListCube<T> extends StatefulWidget {
   _AnimatedListState<T> createState() => _AnimatedListState<T>();
 }
 
-class _AnimatedListState<T> extends State<AnimatedListCube> {
+class _AnimatedListState<T> extends State<CAnimatedList> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   List<T> itemList = List();
@@ -62,7 +62,7 @@ class _AnimatedListState<T> extends State<AnimatedListCube> {
     return AnimatedList(
       key: _listKey,
       itemBuilder: (context, index, animation) {
-        return (widget as AnimatedListCube<T>).itemBuilder(
+        return (widget as CAnimatedList<T>).itemBuilder(
           context,
           itemList[index],
           animation,
@@ -88,7 +88,7 @@ class _AnimatedListState<T> extends State<AnimatedListCube> {
           int index = itemList.indexOf(element);
           _listKey.currentState.removeItem(
             index,
-            (context, animation) => (widget as AnimatedListCube<T>).itemBuilder(
+            (context, animation) => (widget as CAnimatedList<T>).itemBuilder(
               context,
               element,
               animation,

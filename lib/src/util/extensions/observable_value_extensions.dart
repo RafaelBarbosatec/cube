@@ -3,14 +3,14 @@ import 'package:cubes/src/widgets/observer.dart';
 import 'package:flutter/widgets.dart';
 
 extension ObservableValueExtensions on ObservableValue {
-  Observer build<T>(
+  CObserver build<T>(
     ObserverBuilder<T> build, {
     bool animate = false,
     WhenBuild<T> when,
     AnimatedSwitcherTransitionBuilder transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
   }) {
-    return Observer<T>(
+    return CObserver<T>(
       observable: this,
       animate: animate,
       transitionBuilder: transitionBuilder,

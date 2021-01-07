@@ -2,8 +2,8 @@ import 'package:cubes/src/feedback_manager/feedback_manager.dart';
 import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 
-class BottomSheetController<T> {
-  final ObservableValue<FeedBackControl<T>> observable;
+class CBottomSheetController<T> {
+  final ObservableValue<CFeedBackControl<T>> observable;
   final WidgetByDataBuilder<T> builder;
   final bool dismissible;
   final Color barrierColor;
@@ -21,7 +21,7 @@ class BottomSheetController<T> {
     return builder(data, context);
   }
 
-  BottomSheetController({
+  CBottomSheetController({
     @required this.observable,
     @required this.builder,
     this.dismissible = true,
@@ -40,11 +40,11 @@ class BottomSheetController<T> {
 
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
-  Map<BottomSheetController, bool> _mapBottomSheetIsShowing = Map();
-  Map<BottomSheetController, Function> _mapBottomSheetListeners = Map();
-  List<BottomSheetController> bottomSheetControllers;
+  Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = Map();
+  Map<CBottomSheetController, Function> _mapBottomSheetListeners = Map();
+  List<CBottomSheetController> bottomSheetControllers;
 
-  void confBottomSheetFeedBack(List<BottomSheetController> controllers) {
+  void confBottomSheetFeedBack(List<CBottomSheetController> controllers) {
     this.bottomSheetControllers = controllers;
     this.bottomSheetControllers?.forEach((element) {
       _mapBottomSheetIsShowing[element] = false;
@@ -59,7 +59,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
-  void _listenerDialogController(BottomSheetController element) {
+  void _listenerDialogController(CBottomSheetController element) {
     if (!mounted) return;
     if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
       _showBottomSheet(element);
@@ -69,7 +69,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
-  void _showBottomSheet(BottomSheetController element) async {
+  void _showBottomSheet(CBottomSheetController element) async {
     await Future.delayed(Duration(milliseconds: ANIMATION_DURATION));
     _mapBottomSheetIsShowing[element] = true;
     await showModalBottomSheet(

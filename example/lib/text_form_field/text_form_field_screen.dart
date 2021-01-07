@@ -18,6 +18,7 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
               CTextFormField(
                 observable: cube.textFieldControl,
                 decoration: InputDecoration(hintText: 'Digite algo'),
+                obscureText: true,
                 obscureTextButtonConfiguration: CObscureTextButtonConfiguration(
                   align: CObscureTextAlign.right,
                   iconHide: Icon(Icons.visibility_off_outlined),

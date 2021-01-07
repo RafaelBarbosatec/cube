@@ -15,10 +15,6 @@ class TextFormFieldCube extends Cube {
     textFieldControl.modify((value) => value.copyWith(error: 'error example'));
   }
 
-  void cleanError() {
-    textFieldControl.modify((value) => value.copyWith(error: ''));
-  }
-
   void enable() {
     textFieldControl.modify((value) => value.copyWith(enable: true));
   }

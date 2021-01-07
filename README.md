@@ -269,7 +269,7 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
 
-## CFeedBackManager
+### CFeedBackManager
 
 Use this widget if you want to reactively control your `Dialog`, `BottomSheet` and `SnackBar` using an ObservableValue.
 
@@ -328,6 +328,39 @@ snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager/feedback_manager_screen.dart).
 
+### CTextFormField
+
+Widget criado para utilizar `TextFormField` com `ObservableValue`.
+Com ele foce poderá trabalhar de forma reativa com seu `CTextFormField`. Podendo modificar e ler seu valor, setar error, habilitar e desabilitar.
+
+``` dart
+
+ /// code in Cube
+
+ final ObservableValue<CTextFormFieldControl> textFieldControl = ObservableValue(value: CTextFormFieldControl());
+
+ //  textFieldControl.value.text; // get text
+ //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text
+ //  textFieldControl.modify((value) => value.copyWith(error: 'error example')); // set error
+ //  textFieldControl.modify((value) => value.copyWith(enable: true)); // enable or disable
+
+ // code in Widget
+
+ CTextFormField(
+   observable: cube.textFieldControl,
+   obscureTextButtonConfiguration: CObscureTextButtonConfiguration(  // use to configure the hide and show content icon in case of obscureText = true.
+     align: CObscureTextAlign.right,
+     iconHide: Icon(Icons.visibility_off_outlined),
+     iconShow: Icon(Icons.visibility_outlined),
+   ),
+   decoration: InputDecoration(hintText: 'Type something'),
+ ),
+
+```
+
+Ele é exatamente igual ao `CTextFormField` convencional com dois campos diferentes, o `observable` e `obscureTextButtonConfiguration`.
+
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field/text_form_field_screen.dart).
 
 ## Internationalization support
 

@@ -18,6 +18,11 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
               CTextFormField(
                 observable: cube.textFieldControl,
                 decoration: InputDecoration(hintText: 'Digite algo'),
+                obscureTextButtonConfiguration: CObscureTextButtonConfiguration(
+                  align: CObscureTextAlign.right,
+                  iconHide: Icon(Icons.visibility_off_outlined),
+                  iconShow: Icon(Icons.visibility_outlined),
+                ),
               ),
               SizedBox(
                 height: 100,
@@ -29,8 +34,6 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
                   RaisedButton(child: Text('Change text'), onPressed: cube.changeText),
                   SizedBox(width: 10),
                   RaisedButton(child: Text('Set error'), onPressed: cube.setError),
-                  SizedBox(width: 10),
-                  RaisedButton(child: Text('Clean error'), onPressed: cube.cleanError),
                   SizedBox(width: 10),
                   RaisedButton(child: Text('enable'), onPressed: cube.enable),
                   SizedBox(width: 10),

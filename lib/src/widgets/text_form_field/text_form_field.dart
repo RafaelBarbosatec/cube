@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 
 class CTextFormFieldControl {
   final bool enable;
-  final String value;
+  final String text;
   final String error;
 
-  CTextFormFieldControl({this.enable, this.value, this.error});
+  CTextFormFieldControl({this.enable, this.text, this.error});
 
   CTextFormFieldControl copyWith({
     String value,
@@ -15,9 +15,9 @@ class CTextFormFieldControl {
     String error,
   }) {
     return CTextFormFieldControl(
-      value: value ?? this.value,
+      text: value ?? this.text,
       enable: enable ?? this.enable,
-      error: error ?? this.error,
+      error: error,
     );
   }
 }
@@ -50,7 +50,7 @@ class CTextFormField extends StatefulWidget {
   final InputDecoration decoration;
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onChanged;
-  final CObscureTextButtonConfiguration obscureTextConfiguration;
+  final CObscureTextButtonConfiguration obscureTextButtonConfiguration;
   final bool obscureText;
   final AutovalidateMode autovalidateMode;
   final FocusNode focusNode;
@@ -84,7 +84,7 @@ class CTextFormField extends StatefulWidget {
     @required this.observable,
     this.decoration = const InputDecoration(),
     this.validator,
-    this.obscureTextConfiguration = const CObscureTextButtonConfiguration.none(),
+    this.obscureTextButtonConfiguration = const CObscureTextButtonConfiguration.none(),
     this.onChanged,
     this.obscureText = false,
     this.textAlign = TextAlign.start,
@@ -141,8 +141,8 @@ class _CTextFormFieldState extends State<CTextFormField> {
     final control = widget.observable.value;
 
     Future.delayed(Duration.zero, () {
-      if (control.value != null && control.value != _controller.text) {
-        _controller.text = control.value;
+      if (control.text != null && control.text != _controller.text) {
+        _controller.text = control.text;
         _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
       }
 
@@ -210,10 +210,10 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildSuffixIcon() {
-    if (widget.obscureText && widget?.obscureTextConfiguration?.align == CObscureTextAlign.right) {
+    if (widget.obscureText && widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.right) {
       Widget icon = _obscureText
-          ? widget?.obscureTextConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
-          : widget?.obscureTextConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+          ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
+          : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
       return IconButton(
         icon: icon,
         onPressed: () {
@@ -228,10 +228,10 @@ class _CTextFormFieldState extends State<CTextFormField> {
   }
 
   Widget _buildPrefixIcon() {
-    if (widget.obscureText && widget?.obscureTextConfiguration?.align == CObscureTextAlign.left) {
+    if (widget.obscureText && widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.left) {
       Widget icon = _obscureText
-          ? widget?.obscureTextConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
-          : widget?.obscureTextConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+          ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
+          : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
       return IconButton(
         icon: icon,
         onPressed: () {

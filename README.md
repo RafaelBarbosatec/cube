@@ -330,8 +330,8 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 ### CTextFormField
 
-Widget criado para utilizar `TextFormField` com `ObservableValue`.
-Com ele foce poderá trabalhar de forma reativa com seu `CTextFormField`. Podendo modificar e ler seu valor, setar error, habilitar e desabilitar.
+Widget created to use `TextFormField` with` ObservableValue`.
+With it you can work reactively with your `TextFormField`. Being able to modify and read its value, set error, enable and disable.
 
 ``` dart
 
@@ -358,7 +358,7 @@ Com ele foce poderá trabalhar de forma reativa com seu `CTextFormField`. Podend
 
 ```
 
-Ele é exatamente igual ao `CTextFormField` convencional com dois campos diferentes, o `observable` e `obscureTextButtonConfiguration`.
+It is exactly the same as the conventional `TextFormField` with two more fields, the` observable` and `obscureTextButtonConfiguration`.
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field/text_form_field_screen.dart).
 

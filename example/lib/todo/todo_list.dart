@@ -10,7 +10,7 @@ class TodoList extends CubeWidget<TodoCube> {
       appBar: AppBar(
         title: Text('Todo List'),
       ),
-      body: AnimatedListCube<String>(
+      body: CAnimatedList<String>(
         itemList: cube.todoList,
         itemBuilder: (context, item, animation, type) {
           if (type == TypeAnimationListEnum.add) {

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 typedef ObserverBuilder<T> = Widget Function(T value);
 typedef WhenBuild<T> = bool Function(T last, T next);
 
-class Observer<T> extends StatefulWidget {
-  const Observer({
+class CObserver<T> extends StatefulWidget {
+  const CObserver({
     Key key,
     @required this.observable,
     @required this.builder,
@@ -24,10 +24,10 @@ class Observer<T> extends StatefulWidget {
   final Duration duration;
 
   @override
-  _ObserverState<T> createState() => _ObserverState<T>();
+  _CObserverState<T> createState() => _CObserverState<T>();
 }
 
-class _ObserverState<T> extends State<Observer> with StateMixin {
+class _CObserverState<T> extends State<CObserver> with StateMixin {
   @override
   void initState() {
     widget.observable?.addListener(_listener);
@@ -58,5 +58,5 @@ class _ObserverState<T> extends State<Observer> with StateMixin {
     }
   }
 
-  Observer<T> get widgetObserver => (widget as Observer<T>);
+  CObserver<T> get widgetObserver => (widget as CObserver<T>);
 }

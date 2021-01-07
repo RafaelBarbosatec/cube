@@ -9,27 +9,27 @@ export 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 
 typedef Widget WidgetByDataBuilder<T>(T data, BuildContext context);
 
-class FeedBackControl<T> {
+class CFeedBackControl<T> {
   final bool show;
   final T data;
 
-  FeedBackControl({this.show = false, this.data});
+  CFeedBackControl({this.show = false, this.data});
 
-  FeedBackControl<T> copyWith({bool show, T data}) {
-    return FeedBackControl(
+  CFeedBackControl<T> copyWith({bool show, T data}) {
+    return CFeedBackControl(
       show: show ?? this.show,
       data: data ?? this.data,
     );
   }
 }
 
-class FeedBackManager extends StatefulWidget {
+class CFeedBackManager extends StatefulWidget {
   final Widget child;
 
-  final List<BottomSheetController> bottomSheetControllers;
-  final List<DialogController> dialogControllers;
-  final List<SnackBarController> snackBarControllers;
-  const FeedBackManager({
+  final List<CBottomSheetController> bottomSheetControllers;
+  final List<CDialogController> dialogControllers;
+  final List<CSnackBarController> snackBarControllers;
+  const CFeedBackManager({
     Key key,
     @required this.child,
     this.bottomSheetControllers,
@@ -37,10 +37,10 @@ class FeedBackManager extends StatefulWidget {
     this.snackBarControllers,
   }) : super(key: key);
   @override
-  _FeedBackManagerState createState() => _FeedBackManagerState();
+  _CFeedBackManagerState createState() => _CFeedBackManagerState();
 }
 
-class _FeedBackManagerState extends State<FeedBackManager>
+class _CFeedBackManagerState extends State<CFeedBackManager>
     with DialogFeedBackMixin, BottomSheetFeedBackMixin, SnackBarFeedBackMixin {
   @override
   void initState() {

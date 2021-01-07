@@ -16,7 +16,7 @@ class CounterWidgetRobot {
     Cubes.registerDependency((injector) => CounterCube(withDebounce: false));
   }
 
-  void setup() async {
+  Future setup() async {
     final cubeLocation = CubesLocalizationDelegate(
       [
         Locale('en', 'US'),
@@ -36,25 +36,25 @@ class CounterWidgetRobot {
     return find.byKey(CounterScreen.KEY_FLOATING_BUTTON);
   }
 
-  void assetText() async {
+  Future assetText() async {
     await tester.pumpAndSettle(const Duration(milliseconds: 100));
     final finder = find.text('You have pushed the button this many times:');
     expect(finder, findsOneWidget);
   }
 
-  void assetValue0() async {
+  Future assetValue0() async {
     await tester.pumpAndSettle(const Duration(milliseconds: 100));
     final finder = find.text('0');
     expect(finder, findsOneWidget);
   }
 
-  void assetValue3() async {
+  Future assetValue3() async {
     await tester.pumpAndSettle(const Duration(milliseconds: 100));
     final finder = find.text('3');
     expect(finder, findsOneWidget);
   }
 
-  void clickIncrement() async {
+  Future clickIncrement() async {
     await tester.tap(buttonIncrement);
   }
 }

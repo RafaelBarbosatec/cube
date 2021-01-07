@@ -143,10 +143,10 @@ You can listen to observables in two ways, using the extension `build` as in the
   ),
 ```
 
-### Widget Observer
+### Widget CObserver
 
 ``` dart
-  return Observer<int>(
+  return CObserver<int>(
       observable: cube.count,
       builder: (value)=> Text(value.toString()),
       when: (last, next) => true,
@@ -224,44 +224,6 @@ Use to listen to `Action` sent to view.
       // do anything
   });
 ```
-
-## Testing
-
-```dart
-
-import 'package:flutter_test/flutter_test.dart';
-
-void main() {
-  CounterCube cube;
-  setUp(() {
-    cube = CounterCube();
-  });
-
-  tearDown(() {
-    cube?.dispose();
-  });
-  test('initial value', () {
-    expect(cube.count.value, 0);
-  });
-
-  test('increment value', () {
-    cube.increment();
-    expect(cube.count.value, 1);
-  });
-
-  test('increment value 3 times', () {
-    cube.increment();
-    cube.increment();
-    cube.increment();
-    expect(cube.count.value, 3);
-  });
-}
-
-```
-
-Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
-Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/widget/cube_test.dart)
-
 ## Useful extensions
 
 ```dart
@@ -287,13 +249,13 @@ Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/
 
 ## Useful Widgets
 
-### AnimatedListCube
+### CAnimatedList
 
 This is a version of AnimatedList that simplifies its use for the Cube context.
 
 ```dart
 
-  AnimatedListCube<String>(
+  CAnimatedList<String>(
     itemList: cube.todoList,
     itemBuilder: (context, item, animation, type) {
       return ScaleTransition(
@@ -307,7 +269,7 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/todo/todo_list.dart).
 
-## FeedBackManager
+### CFeedBackManager
 
 Use this widget if you want to reactively control your `Dialog`, `BottomSheet` and `SnackBar` using an ObservableValue.
 
@@ -315,9 +277,9 @@ Creating observable to control:
 
 ``` dart
 
-final bottomSheetControl = ObservableValue<FeedBackControl<String>(value: FeedBackControl(data:'test'));
-final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl(data:'test'));
-final snackBarControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
+final bottomSheetControl = ObservableValue<CFeedBackControl<String>(value: CFeedBackControl(data:'test'));
+final dialogControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl(data:'test'));
+final snackBarControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
 ```
 
 Now just add the widget to your tree and settings:
@@ -326,7 +288,7 @@ Now just add the widget to your tree and settings:
 
 FeedBackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
-       DialogController<String>(
+       CDialogController<String>(
            observable: cube.dialogControl,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('Dialog: $data')));
@@ -334,7 +296,7 @@ FeedBackManager(
        ),
    ],
    bottomSheetControllers: [  // You can add as many different BottomSheets as you like
-       BottomSheetController<String>(
+       CBottomSheetController<String>(
            observable: cube.bottomSheetControl,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
@@ -342,7 +304,7 @@ FeedBackManager(
        ),
    ],
    snackBarControllers: [
-       SnackBarController<String>(
+       CSnackBarController<String>(
            observable: cube.snackBarControl,
            builder: (data, context) {
                return SnackBar(content: Text(data));
@@ -364,8 +326,42 @@ snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
 
 ```
 
-Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager/feedback_manager_screen.dart).
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/feedback_manager).
 
+### CTextFormField
+
+Widget created to use `TextFormField` with` ObservableValue`.
+With it you can work reactively with your `TextFormField`. Being able to modify and read its value, set error, enable and disable.
+
+``` dart
+
+ /// code in Cube
+
+ final ObservableValue<CTextFormFieldControl> textFieldControl = ObservableValue(value: CTextFormFieldControl());
+
+ //  textFieldControl.value.text; // get text
+ //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text
+ //  textFieldControl.modify((value) => value.copyWith(error: 'error example')); // set error
+ //  textFieldControl.modify((value) => value.copyWith(enable: true)); // enable or disable
+ //  textFieldControl.modify((value) => value.copyWith(obscureText: true)); // enable or disable obscureText
+
+ // code in Widget
+
+ CTextFormField(
+   observable: cube.textFieldControl,
+   obscureTextButtonConfiguration: CObscureTextButtonConfiguration(  // use to configure the hide and show content icon in case of obscureText = true.
+     align: CObscureTextAlign.right,
+     iconHide: Icon(Icons.visibility_off_outlined),
+     iconShow: Icon(Icons.visibility_outlined),
+   ),
+   decoration: InputDecoration(hintText: 'Type something'),
+ ),
+
+```
+
+It is exactly the same as the conventional `TextFormField` with two more fields, the` observable` and `obscureTextButtonConfiguration`.
+
+Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field).
 
 ## Internationalization support
 
@@ -444,6 +440,43 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
   Cubes.instance.customInjector(MyInjector());
 
 ```
+
+## Testing
+
+```dart
+
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  CounterCube cube;
+  setUp(() {
+    cube = CounterCube();
+  });
+
+  tearDown(() {
+    cube?.dispose();
+  });
+  test('initial value', () {
+    expect(cube.count.value, 0);
+  });
+
+  test('increment value', () {
+    cube.increment();
+    expect(cube.count.value, 1);
+  });
+
+  test('increment value 3 times', () {
+    cube.increment();
+    cube.increment();
+    cube.increment();
+    expect(cube.count.value, 3);
+  });
+}
+
+```
+
+Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
+Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/widget/cube_test.dart)
 
 Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 

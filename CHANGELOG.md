@@ -1,3 +1,12 @@
+# 0.10.0
+
+- add `CTextFormField`.
+- renamed `FeedBackManager` to `CFeedBackManager`;
+- renamed `FeedBackControl` to `CFeedBackControl`;
+- renamed `BottomSheetController` to `CBottomSheetController`;
+- renamed `DialogController` to `CDialogController`;
+- renamed `SnackBarController` to `CSnackBarController`;
+
 # 0.9.2
 
 - update example

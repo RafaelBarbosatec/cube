@@ -1,9 +1,9 @@
 import 'package:cubes/cubes.dart';
 
 class FeedbackManagerCube extends Cube {
-  final dialogControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
-  final bottomSheetControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
-  final snackBarControl = ObservableValue<FeedBackControl<String>>(value: FeedBackControl());
+  final dialogControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
+  final bottomSheetControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
+  final snackBarControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
 
   void showDialogPer3Seconds() async {
     if (dialogControl.value.show) return;

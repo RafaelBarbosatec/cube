@@ -1,7 +1,7 @@
 import 'package:cubes/src/localization/cubes_localization.dart';
 
-class StringsLocation {
-  static final StringsLocation instance = StringsLocation._internal();
+class CStringsLocation {
+  static final CStringsLocation instance = CStringsLocation._internal();
 
   static CubesLocalization _myLocalizations;
 
@@ -9,7 +9,7 @@ class StringsLocation {
     _myLocalizations = location;
   }
 
-  StringsLocation._internal();
+  CStringsLocation._internal();
 
   String getString(String key, {Map<String, String> params}) {
     String str = _myLocalizations.trans(key);

@@ -9,7 +9,7 @@ class CTextFormFieldControl {
   final bool obscureText;
 
   CTextFormFieldControl({
-    this.enable,
+    this.enable = true,
     this.text,
     this.error,
     this.obscureText = false,

@@ -4,11 +4,11 @@ class TextFormFieldCube extends Cube {
   final ObservableValue<CTextFormFieldControl> textFieldControl = ObservableValue(value: CTextFormFieldControl());
 
   void cleanText() {
-    textFieldControl.modify((value) => value.copyWith(value: ''));
+    textFieldControl.modify((value) => value.copyWith(text: ''));
   }
 
   void changeText() {
-    textFieldControl.modify((value) => value.copyWith(value: 'Change Text'));
+    textFieldControl.modify((value) => value.copyWith(text: 'Change Text'));
   }
 
   void setError() {

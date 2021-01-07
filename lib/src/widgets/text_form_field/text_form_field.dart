@@ -10,12 +10,12 @@ class CTextFormFieldControl {
   CTextFormFieldControl({this.enable, this.text, this.error});
 
   CTextFormFieldControl copyWith({
-    String value,
+    String text,
     bool enable,
     String error,
   }) {
     return CTextFormFieldControl(
-      text: value ?? this.text,
+      text: text ?? this.text,
       enable: enable ?? this.enable,
       error: error,
     );
@@ -226,7 +226,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
       maxLengthEnforced: widget.maxLengthEnforced,
       toolbarOptions: widget.toolbarOptions,
       onChanged: (text) {
-        widget.observable.modify((value) => value.copyWith(value: text));
+        widget.observable.modify((value) => value.copyWith(text: text));
         widget.onChanged?.call(text);
       },
       decoration: widget.decoration?.copyWith(

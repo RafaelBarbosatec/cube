@@ -224,28 +224,6 @@ Use to listen to `Action` sent to view.
       // do anything
   });
 ```
-## Useful extensions
-
-```dart
-
-    // BuildContextExtensions
-
-    context.goTo(Widget());
-    context.goToReplacement(Widget());
-    context.goToAndRemoveUntil(Widget(),RoutePredicate);
-
-    context.mediaQuery; // MediaQuery.of(context);
-    context.padding; // MediaQuery.of(context).padding;
-    context.viewInsets; // MediaQuery.of(context).viewInsets;
-
-    context.sizeScreen; // MediaQuery.of(context).size;
-    context.widthScreen; // MediaQuery.of(context).size.width;
-    context.heightScreen; // MediaQuery.of(context).size.height;
-
-    context.theme;
-    context.scaffold;
-
-```
 
 ## Useful Widgets
 
@@ -438,6 +416,29 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
   }
 
   Cubes.instance.customInjector(MyInjector());
+
+```
+
+## Useful extensions
+
+```dart
+
+    // BuildContextExtensions
+
+    context.goTo(Widget());
+    context.goToReplacement(Widget());
+    context.goToAndRemoveUntil(Widget(),RoutePredicate);
+
+    context.mediaQuery; // MediaQuery.of(context);
+    context.padding; // MediaQuery.of(context).padding;
+    context.viewInsets; // MediaQuery.of(context).viewInsets;
+
+    context.sizeScreen; // MediaQuery.of(context).size;
+    context.widthScreen; // MediaQuery.of(context).size.width;
+    context.heightScreen; // MediaQuery.of(context).size.height;
+
+    context.theme;
+    context.scaffold;
 
 ```
 

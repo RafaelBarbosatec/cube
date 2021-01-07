@@ -255,7 +255,7 @@ This is a version of AnimatedList that simplifies its use for the Cube context.
 
 ```dart
 
-  CAnimatedListC<String>(
+  CAnimatedList<String>(
     itemList: cube.todoList,
     itemBuilder: (context, item, animation, type) {
       return ScaleTransition(

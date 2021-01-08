@@ -82,10 +82,10 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
 
   void _listener() {
     if (itemList.length != widget.itemList.length) {
-      List<T> auxList = List();
-      itemList.forEach((element) {
+      itemList.forEach((element) async {
         if (!widget.itemList.value.contains(element)) {
-          int index = itemList.indexOf(element);
+          final index = itemList.indexOf(element);
+          await _refresh();
           _listKey.currentState.removeItem(
             index,
             (context, animation) => (widget as CAnimatedList<T>).itemBuilder(
@@ -95,26 +95,27 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
               TypeAnimationListEnum.remove,
             ),
           );
-        } else {
-          auxList.add(element);
         }
       });
-      itemList = auxList;
-      widget.itemList.value.forEach((element) {
+
+      widget.itemList.value.forEach((element) async {
         if (!itemList.contains(element)) {
-          int index = widget.itemList.value.indexOf(element);
-          itemList.insert(index, element);
+          await _refresh();
+          final index = widget.itemList.value.indexOf(element);
           _listKey.currentState.insertItem(index);
         }
       });
     } else {
-      Future.delayed(Duration.zero, () {
-        itemList.clear();
-        widget.itemList.value.forEach((element) {
-          itemList.add(element);
-        });
-        setState(() {});
-      });
+      _refresh();
     }
+  }
+
+  Future _refresh() async {
+    await Future.delayed(Duration.zero);
+    itemList.clear();
+    widget.itemList.value.forEach((element) {
+      itemList.add(element);
+    });
+    setState(() {});
   }
 }

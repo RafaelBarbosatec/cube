@@ -1,3 +1,7 @@
+# 0.10.1
+
+- hotfix init value in `CTextFormField`.
+
 # 0.10.0
 
 - add `CTextFormField`.

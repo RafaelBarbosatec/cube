@@ -53,6 +53,18 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     notifyListeners();
   }
 
+  /// insert element in the index
+  void insert(int index, T element) {
+    this.value?.insert(index, element);
+    notifyListeners();
+  }
+
+  /// insert element list in the index
+  void insertAll(int index, Iterable<T> iterable) {
+    this.value?.insertAll(index, iterable);
+    notifyListeners();
+  }
+
   /// replace elements in list and notify listeners
   void replaceRange(int start, int end, Iterable<T> replacement) {
     this.value?.replaceRange(start, end, replacement);

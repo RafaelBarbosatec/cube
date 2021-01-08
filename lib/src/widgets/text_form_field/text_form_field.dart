@@ -158,6 +158,9 @@ class _CTextFormFieldState extends State<CTextFormField> {
 
   @override
   void initState() {
+    _controller.text = widget.observable.value.text;
+    _enable = widget.observable.value.enable;
+    _error = widget.observable.value.error;
     _obscureText = widget.observable.value.obscureText;
     widget.observable.addListener(listener);
     super.initState();

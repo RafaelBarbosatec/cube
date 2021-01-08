@@ -1,3 +1,8 @@
+# 0.10.2
+
+- improvements in  `CAnimatedList`.
+- add `insert` and `insertAll` in `ObservableList`
+
 # 0.10.1
 
 - hotfix init value in `CTextFormField`.

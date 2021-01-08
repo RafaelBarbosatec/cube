@@ -102,9 +102,18 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
       itemList = auxList;
       widget.itemList.value.forEach((element) {
         if (!itemList.contains(element)) {
-          itemList.add(element);
-          _listKey.currentState.insertItem(itemList.length - 1);
+          int index = widget.itemList.value.indexOf(element);
+          itemList.insert(index, element);
+          _listKey.currentState.insertItem(index);
         }
+      });
+    } else {
+      Future.delayed(Duration.zero, () {
+        itemList.clear();
+        widget.itemList.value.forEach((element) {
+          itemList.add(element);
+        });
+        setState(() {});
       });
     }
   }

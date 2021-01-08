@@ -71,6 +71,13 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     notifyListeners();
   }
 
+  void modifyItem(int index, T modify(T value)) {
+    if (this.value != null && this.value.length > index) {
+      this.value[index] = modify(this.value[index]);
+      notifyListeners();
+    }
+  }
+
   /// get if list is empty
   bool get isEmpty => this.value?.isEmpty;
 

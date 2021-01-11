@@ -22,7 +22,8 @@ class CAnimatedList<T> extends StatefulWidget {
 
   const CAnimatedList({
     Key key,
-    this.itemBuilder,
+    @required this.observable,
+    @required this.itemBuilder,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
@@ -30,7 +31,6 @@ class CAnimatedList<T> extends StatefulWidget {
     this.physics,
     this.shrinkWrap = false,
     this.padding,
-    this.observable,
   }) : super(key: key);
 
   @override

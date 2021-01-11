@@ -31,7 +31,7 @@ abstract class Cube {
     OnActionChanged<T, CubeAction> listener,
   ) {
     if (listener != null) {
-      if (_onActionListeners == null) _onActionListeners = List();
+      if (_onActionListeners == null) _onActionListeners = [];
       _onActionListeners.add(listener);
     }
   }

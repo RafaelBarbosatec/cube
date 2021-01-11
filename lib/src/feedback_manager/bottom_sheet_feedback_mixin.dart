@@ -2,6 +2,7 @@ import 'package:cubes/src/feedback_manager/feedback_manager.dart';
 import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 
+/// Class responsible for configuring the BottomSheets
 class CBottomSheetController<T> {
   final ObservableValue<CFeedBackControl<T>> observable;
   final WidgetByDataBuilder<T> builder;
@@ -38,6 +39,7 @@ class CBottomSheetController<T> {
   });
 }
 
+/// Mixin responsible for adding listeners to ObservableValue and controlling the display of BottomSheets
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = Map();

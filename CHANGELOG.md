@@ -2,6 +2,7 @@
 
 - improvements in  `CAnimatedList`.
 - add `insert` and `insertAll` in `ObservableList`
+- renamed `itemList` to `observable` in `CAnimatedList`;
 
 # 0.10.1
 

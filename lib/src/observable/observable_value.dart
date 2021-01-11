@@ -28,6 +28,9 @@ class ObservableValue<T> extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// uses to update value
   void update(T value) => _setValueAndNotify(value);
+
+  /// user do modify value. recommended return new instance (use copyWith if is possible).
   void modify(ModifyValue<T> modify) => _setValueAndNotify(modify(value));
 }

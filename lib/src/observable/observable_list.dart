@@ -71,6 +71,7 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     notifyListeners();
   }
 
+  /// use to modify specific item in the list
   void modifyItem(int index, T modify(T value)) {
     if (this.value != null && this.value.length > index) {
       this.value[index] = modify(this.value[index]);

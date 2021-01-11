@@ -2,6 +2,7 @@ import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Class used to control CCTextFormField
 class CTextFormFieldControl {
   final bool enable;
   final String text;
@@ -55,6 +56,7 @@ class CObscureTextButtonConfiguration {
   }) : this.show = false;
 }
 
+/// CTextFormField is a TextFormField with modifications to use ObservableValue to control.
 class CTextFormField extends StatefulWidget {
   final ObservableValue<CTextFormFieldControl> observable;
   final InputDecoration decoration;

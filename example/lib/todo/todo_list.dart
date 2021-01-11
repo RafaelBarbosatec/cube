@@ -11,7 +11,7 @@ class TodoList extends CubeWidget<TodoCube> {
         title: Text('Todo List'),
       ),
       body: CAnimatedList<String>(
-        itemList: cube.todoList,
+        observable: cube.todoList,
         itemBuilder: (context, item, animation, type) {
           if (type == TypeAnimationListEnum.add) {
             return ScaleTransition(

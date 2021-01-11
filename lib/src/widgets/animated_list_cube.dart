@@ -18,7 +18,7 @@ class CAnimatedList<T> extends StatefulWidget {
   final ScrollPhysics physics;
   final bool shrinkWrap;
   final EdgeInsetsGeometry padding;
-  final ObservableList<T> itemList;
+  final ObservableList<T> observable;
 
   const CAnimatedList({
     Key key,
@@ -30,7 +30,7 @@ class CAnimatedList<T> extends StatefulWidget {
     this.physics,
     this.shrinkWrap = false,
     this.padding,
-    this.itemList,
+    this.observable,
   }) : super(key: key);
 
   @override
@@ -44,16 +44,16 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
 
   @override
   void initState() {
-    widget.itemList.value.forEach((element) {
+    widget.observable.value.forEach((element) {
       itemList.add(element);
     });
-    widget.itemList.addListener(_listener);
+    widget.observable.addListener(_listener);
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.itemList.removeListener(_listener);
+    widget.observable.removeListener(_listener);
     super.dispose();
   }
 
@@ -74,18 +74,18 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
       shrinkWrap: widget.shrinkWrap,
       controller: widget.controller,
       physics: widget.physics,
-      initialItemCount: widget.itemList.length,
+      initialItemCount: widget.observable.length,
       primary: widget.primary,
       reverse: widget.reverse,
     );
   }
 
   void _listener() {
-    if (itemList.length != widget.itemList.length) {
-      List<T> auxList = List();
-      itemList.forEach((element) {
-        if (!widget.itemList.value.contains(element)) {
-          int index = itemList.indexOf(element);
+    if (itemList.length != widget.observable.length) {
+      itemList.forEach((element) async {
+        if (!widget.observable.value.contains(element)) {
+          final index = itemList.indexOf(element);
+          await _refresh();
           _listKey.currentState.removeItem(
             index,
             (context, animation) => (widget as CAnimatedList<T>).itemBuilder(
@@ -95,17 +95,27 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
               TypeAnimationListEnum.remove,
             ),
           );
-        } else {
-          auxList.add(element);
         }
       });
-      itemList = auxList;
-      widget.itemList.value.forEach((element) {
+
+      widget.observable.value.forEach((element) async {
         if (!itemList.contains(element)) {
-          itemList.add(element);
-          _listKey.currentState.insertItem(itemList.length - 1);
+          await _refresh();
+          final index = widget.observable.value.indexOf(element);
+          _listKey.currentState.insertItem(index);
         }
       });
+    } else {
+      _refresh();
     }
+  }
+
+  Future _refresh() async {
+    await Future.delayed(Duration.zero);
+    itemList.clear();
+    widget.observable.value.forEach((element) {
+      itemList.add(element);
+    });
+    setState(() {});
   }
 }

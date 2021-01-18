@@ -40,6 +40,6 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
 
   void _ready(_) {
     cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
-    cube.ready();
+    cube.onReady();
   }
 }

@@ -15,7 +15,7 @@ abstract class Cube {
   Object data;
 
   /// called when the view is ready
-  void ready() {
+  void onReady() {
     CubeMemoryContainer.instance.add(this);
   }
 

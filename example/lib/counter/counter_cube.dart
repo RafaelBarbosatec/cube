@@ -18,9 +18,9 @@ class CounterCube extends Cube {
   CounterCube({this.withDebounce = true});
 
   @override
-  void ready() {
+  void onReady() {
     // do anythings when view is ready
-    super.ready();
+    super.onReady();
   }
 
   void increment() {

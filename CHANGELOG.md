@@ -1,3 +1,7 @@
+# 0.10.3
+
+- renamed `ready` to `onReady` in `Cube`;
+
 # 0.10.2
 
 - improvements in  `CAnimatedList`.

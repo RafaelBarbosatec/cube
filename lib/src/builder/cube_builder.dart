@@ -69,7 +69,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
 
   void _ready(_) {
     cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
-    cube.ready();
+    cube.onReady();
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

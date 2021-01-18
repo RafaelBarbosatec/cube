@@ -41,7 +41,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   @override
   void initState() {
     cube = widget.cube ?? Cubes.getDependency();
-    cube.data = widget.initData;
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
@@ -68,8 +67,8 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   }
 
   void _ready(_) {
-    cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
-    cube.onReady();
+    Object data = widget.initData ?? ModalRoute.of(context)?.settings?.arguments;
+    cube.onReady(data);
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

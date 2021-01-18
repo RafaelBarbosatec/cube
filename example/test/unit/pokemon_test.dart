@@ -29,7 +29,7 @@ void main() {
       repository.getPokemonList(page: 0),
     ).thenAnswer((_) => Future.value(mockList));
 
-    await cube.onReady();
+    await cube.onReady(null);
 
     expect(cube.list.value, mockList);
     expect(cube.progress.value, false);

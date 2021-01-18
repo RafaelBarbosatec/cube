@@ -19,8 +19,7 @@ abstract class Cube {
 
   /// called when the cube is destroyed
   void dispose() {
-    _disposeListen();
-    removeOnActionListener(_cubeActionListener);
+    _disposeListeners();
     CubeMemoryContainer.instance.remove(this);
   }
 
@@ -99,7 +98,8 @@ abstract class Cube {
   }
 
   /// Remove listeners created on `listen`
-  void _disposeListen() {
+  void _disposeListeners() {
+    removeOnActionListener(_cubeActionListener);
     _listenersObservableMap?.forEach((key, value) {
       key.removeListener(value);
     });

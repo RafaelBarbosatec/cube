@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// called when cube send any Action to view.
-  void onAction(BuildContext context, C cube, CubeAction data) {}
+  void onAction(BuildContext context, C cube, CubeAction action) {}
 
   /// called when execute initState of the CubeBuilder
   void initState(BuildContext context, C cube) {}

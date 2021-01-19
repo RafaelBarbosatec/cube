@@ -25,9 +25,9 @@ class CounterCube extends Cube {
   final count = ObservableValue<int>(value: 0); // To List use `ObservableList`.
 
     @override
-    void ready() {
+    void onReady(Object arguments) {
       // do anything when view is ready
-      super.ready();
+      super.ready(arguments);
     }
 
     void increment() {
@@ -184,7 +184,6 @@ you will receive this action in the `View` through the method:
 
    @override
    void onAction(BuildContext context, MyCube cube, CubeAction action) {
-     // TODO: implement onAction
      if(action is NavigationAction) Navigator.pushNamed(context, (action as NavigationAction).route);
      super.onAction(context, cube, data);
    }
@@ -268,6 +267,7 @@ FeedBackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
        CDialogController<String>(
            observable: cube.dialogControl,
+           ...
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('Dialog: $data')));
            },
@@ -276,6 +276,7 @@ FeedBackManager(
    bottomSheetControllers: [  // You can add as many different BottomSheets as you like
        CBottomSheetController<String>(
            observable: cube.bottomSheetControl,
+           ...
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
            },
@@ -284,6 +285,7 @@ FeedBackManager(
    snackBarControllers: [
        CSnackBarController<String>(
            observable: cube.snackBarControl,
+           ...
            builder: (data, context) {
                return SnackBar(content: Text(data));
            },

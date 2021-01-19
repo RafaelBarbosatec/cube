@@ -1,6 +1,8 @@
 # 0.10.3
 
-- renamed `ready` to `onReady` in `Cube`;
+- [BREAKING CHANGE] renamed `ready()` to `onReady(Object arguments)` in `Cube`;
+- renamed `initData` to `arguments` in `CubeWidget` and `CubeBuilder`;
+- update get_it to `5.0.4`;
 
 # 0.10.2
 

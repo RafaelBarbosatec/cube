@@ -1,3 +1,7 @@
+# 0.10.4
+
+- add param `controller` in `CTextFormField`;
+
 # 0.10.3
 
 - [BREAKING CHANGE] renamed `ready()` to `onReady(Object arguments)` in `Cube`;

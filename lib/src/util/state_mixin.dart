@@ -19,7 +19,6 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   @override
   void initState() {
     cube = cube ?? Cubes.getDependency();
-    cube.data = initData;
     cube.addOnActionListener(_innerOnAction);
     WidgetsBinding.instance.addPostFrameCallback(_ready);
     super.initState();
@@ -39,7 +38,7 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   void onAction(CubeAction action);
 
   void _ready(_) {
-    cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
-    cube.ready();
+    Object data = initData ?? ModalRoute.of(context)?.settings?.arguments;
+    cube.onReady(data);
   }
 }

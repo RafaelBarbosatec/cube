@@ -23,19 +23,13 @@ void main() {
   });
 
   test('load pokémons', () async {
-    List<Pokemon> mockList = [
-      Pokemon(),
-      Pokemon(),
-      Pokemon(),
-      Pokemon(),
-      Pokemon()
-    ];
+    List<Pokemon> mockList = [Pokemon(), Pokemon(), Pokemon(), Pokemon(), Pokemon()];
 
     when(
       repository.getPokemonList(page: 0),
     ).thenAnswer((_) => Future.value(mockList));
 
-    await cube.ready();
+    await cube.onReady(null);
 
     expect(cube.list.value, mockList);
     expect(cube.progress.value, false);

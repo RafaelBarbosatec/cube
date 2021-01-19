@@ -22,7 +22,7 @@ export 'package:cubes/src/util/functions.dart';
 export 'package:cubes/src/util/state_mixin.dart';
 export 'package:cubes/src/widgets/animated_list_cube.dart';
 export 'package:cubes/src/widgets/cube_widget.dart';
-export 'package:cubes/src/widgets/text_form_field/text_form_field.dart';
+export 'package:cubes/src/widgets/text_form_field.dart';
 
 class Cubes {
   static final Cubes instance = Cubes._internal();

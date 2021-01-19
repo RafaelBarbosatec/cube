@@ -13,9 +13,9 @@ class PokemonCube extends Cube {
   final snackBarController = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
 
   @override
-  void ready() {
+  void onReady(Object arguments) {
     fetchPokemonList();
-    super.ready();
+    super.onReady(arguments);
   }
 
   void fetchPokemonList({bool isMore = false}) {

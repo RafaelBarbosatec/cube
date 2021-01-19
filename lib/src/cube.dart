@@ -11,18 +11,15 @@ abstract class Cube {
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
   OnActionChanged _cubeActionListener;
 
-  /// initial data if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
-  Object data;
-
   /// called when the view is ready
-  void ready() {
+  /// [data] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
+  void onReady(Object arguments) {
     CubeMemoryContainer.instance.add(this);
   }
 
   /// called when the cube is destroyed
   void dispose() {
-    _disposeListen();
-    removeOnActionListener(_cubeActionListener);
+    _disposeListeners();
     CubeMemoryContainer.instance.remove(this);
   }
 
@@ -31,7 +28,7 @@ abstract class Cube {
     OnActionChanged<T, CubeAction> listener,
   ) {
     if (listener != null) {
-      if (_onActionListeners == null) _onActionListeners = List();
+      if (_onActionListeners == null) _onActionListeners = [];
       _onActionListeners.add(listener);
     }
   }
@@ -101,7 +98,8 @@ abstract class Cube {
   }
 
   /// Remove listeners created on `listen`
-  void _disposeListen() {
+  void _disposeListeners() {
+    removeOnActionListener(_cubeActionListener);
     _listenersObservableMap?.forEach((key, value) {
       key.removeListener(value);
     });

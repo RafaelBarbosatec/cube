@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// called when cube send any Action to view.
-  void onAction(BuildContext context, C cube, CubeAction data) {}
+  void onAction(BuildContext context, C cube, CubeAction action) {}
 
   /// called when execute initState of the CubeBuilder
   void initState(BuildContext context, C cube) {}
@@ -12,7 +12,7 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// if you want the widget to not call `dispose` in the Cube, return false
   bool dispose(C cube) => true;
 
-  Object get initData => null;
+  Object get arguments => null;
 
   @protected
   Widget buildView(BuildContext context, C cube);
@@ -21,7 +21,7 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CubeBuilder<C>(
       builder: buildView,
-      initData: initData,
+      arguments: arguments,
       onAction: (cube, data) => onAction(context, cube, data),
       initState: (cube) => initState(context, cube),
       dispose: dispose,

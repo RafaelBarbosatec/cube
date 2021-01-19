@@ -17,14 +17,14 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   const CubeBuilder({
     Key key,
     @required this.builder,
-    this.initData,
+    this.arguments,
     this.cube,
     this.onAction,
     this.initState,
     this.dispose,
   }) : super(key: key);
 
-  final Object initData;
+  final Object arguments;
   final AsyncCubeWidgetBuilder<C> builder;
   final OnActionChanged<C, CubeAction> onAction;
   final InitCallback<C> initState;
@@ -41,7 +41,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   @override
   void initState() {
     cube = widget.cube ?? Cubes.getDependency();
-    cube.data = widget.initData;
     cube.addOnActionListener(_onAction);
     super.initState();
     cubeWidget.initState?.call(cube);
@@ -68,8 +67,8 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   }
 
   void _ready(_) {
-    cube.data = cube.data ?? ModalRoute.of(context)?.settings?.arguments;
-    cube.ready();
+    Object arguments = widget.arguments ?? ModalRoute.of(context)?.settings?.arguments;
+    cube.onReady(arguments);
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

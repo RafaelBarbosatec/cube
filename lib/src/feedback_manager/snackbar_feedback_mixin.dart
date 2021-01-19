@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 typedef SnackBar SnackBarByDataBuilder<T>(T data, BuildContext context);
 
+/// Class responsible for configuring the SnackBars
 class CSnackBarController<T> {
   final SnackBarAction action;
   final ObservableValue<CFeedBackControl<T>> observable;
@@ -34,6 +35,7 @@ class CSnackBarController<T> {
   });
 }
 
+/// Mixin responsible for adding listeners to ObservableValue and controlling the display of SnackBars
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   List<CSnackBarController> snackBarControllers;
   Map<CSnackBarController, bool> _mapSnackBarIsShowing = Map();

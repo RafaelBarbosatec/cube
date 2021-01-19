@@ -9,6 +9,7 @@ export 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 
 typedef Widget WidgetByDataBuilder<T>(T data, BuildContext context);
 
+/// class used to control feedbacks
 class CFeedBackControl<T> {
   final bool show;
   final T data;
@@ -23,6 +24,7 @@ class CFeedBackControl<T> {
   }
 }
 
+/// Widget that allows us to control Dialog, BottomSheet and SnackBars using ObservableValue
 class CFeedBackManager extends StatefulWidget {
   final Widget child;
 

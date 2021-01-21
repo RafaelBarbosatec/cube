@@ -58,6 +58,7 @@ class CObscureTextButtonConfiguration {
 
 /// CTextFormField is a TextFormField with modifications to use ObservableValue to control.
 class CTextFormField extends StatefulWidget {
+  final TextEditingController controller;
   final ObservableValue<CTextFormFieldControl> observable;
   final InputDecoration decoration;
   final FormFieldValidator<String> validator;
@@ -147,19 +148,21 @@ class CTextFormField extends StatefulWidget {
     this.onSaved,
     this.toolbarOptions,
     this.onChangedObscuteText,
+    this.controller,
   }) : super(key: key);
   @override
   _CTextFormFieldState createState() => _CTextFormFieldState();
 }
 
 class _CTextFormFieldState extends State<CTextFormField> {
-  TextEditingController _controller = TextEditingController();
+  TextEditingController _controller;
   bool _enable = true;
   bool _obscureText = false;
   String _error;
 
   @override
   void initState() {
+    _controller = widget.controller ?? TextEditingController();
     _controller.text = widget.observable.value.text;
     _enable = widget.observable.value.enable;
     _error = widget.observable.value.error;

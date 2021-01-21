@@ -1,6 +1,6 @@
 name: cubes
 description: Simple State Manager (Focusing on simplicity and rebuilding only the necessary)
-version: 0.10.3
+version: 0.10.4
 homepage: https://github.com/RafaelBarbosatec/cube
 
 environment:

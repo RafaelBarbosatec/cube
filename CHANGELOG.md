@@ -1,3 +1,8 @@
+# 0.10.5
+
+- improvements in `CTextFormField`;
+- improvements in `ObservableValue`;
+
 # 0.10.4
 
 - add param `controller` in `CTextFormField`;

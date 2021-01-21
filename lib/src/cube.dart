@@ -10,6 +10,7 @@ abstract class Cube {
   Map<dynamic, Debounce> _debounceMap;
   Map<ObservableValue, VoidCallback> _listenersObservableMap;
   OnActionChanged _cubeActionListener;
+  bool _disposed = false;
 
   /// called when the view is ready
   /// [data] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
@@ -21,6 +22,7 @@ abstract class Cube {
   void dispose() {
     _disposeListeners();
     CubeMemoryContainer.instance.remove(this);
+    _disposed = true;
   }
 
   /// Add OnActionListener
@@ -111,4 +113,6 @@ abstract class Cube {
     _cubeActionListener = (cube, action) => listener(action);
     addOnActionListener(_cubeActionListener);
   }
+
+  bool get disposed => _disposed;
 }

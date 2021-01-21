@@ -164,20 +164,22 @@ class _CTextFormFieldState extends State<CTextFormField> {
   void initState() {
     _controller = widget.controller ?? TextEditingController();
     _controller.text = widget.observable.value.text;
+    _controller.addListener(_controllerListener);
     _enable = widget.observable.value.enable;
     _error = widget.observable.value.error;
     _obscureText = widget.observable.value.obscureText;
-    widget.observable.addListener(listener);
+    widget.observable.addListener(_listener);
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.observable.removeListener(listener);
+    widget.observable.removeListener(_listener);
+    _controller.removeListener(_controllerListener);
     super.dispose();
   }
 
-  void listener() {
+  void _listener() {
     final control = widget.observable.value;
 
     postFrame(() {
@@ -205,6 +207,12 @@ class _CTextFormFieldState extends State<CTextFormField> {
         });
       }
     });
+  }
+
+  void _controllerListener() {
+    if (widget.observable.value.text != _controller.text) {
+      widget.observable.modify((value) => value.copyWith(text: _controller.text));
+    }
   }
 
   @override
@@ -250,10 +258,7 @@ class _CTextFormFieldState extends State<CTextFormField> {
       onSaved: widget.onSaved,
       maxLengthEnforced: widget.maxLengthEnforced,
       toolbarOptions: widget.toolbarOptions,
-      onChanged: (text) {
-        widget.observable.modify((value) => value.copyWith(text: text));
-        widget.onChanged?.call(text);
-      },
+      onChanged: (text) => widget.onChanged?.call(text),
       decoration: widget.decoration?.copyWith(
         errorText: (_error?.isNotEmpty ?? false) ? _error : null,
         suffixIcon: _buildSuffixIcon(),

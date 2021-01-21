@@ -28,6 +28,24 @@ class ObservableValue<T> extends ChangeNotifier {
     notifyListeners();
   }
 
+  @override
+  void notifyListeners() {
+    try {
+      super.notifyListeners();
+    } catch (e) {
+      print('A $runtimeType was used after being disposed');
+    }
+  }
+
+  @override
+  void dispose() {
+    try {
+      super.dispose();
+    } catch (e) {
+      print('Once you have called dispose() on a $runtimeType, it can no longer be used.');
+    }
+  }
+
   /// uses to update value
   void update(T value) => _setValueAndNotify(value);
 

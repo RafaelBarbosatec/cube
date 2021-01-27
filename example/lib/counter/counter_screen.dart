@@ -31,4 +31,10 @@ class CounterScreen extends CubeWidget<CounterCube> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  @override
+  void onAction(BuildContext context, CounterCube cube, CubeAction action) {
+    print(action);
+    super.onAction(context, cube, action);
+  }
 }

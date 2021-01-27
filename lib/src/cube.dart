@@ -1,7 +1,9 @@
 import 'package:cubes/cubes.dart';
 import 'package:cubes/src/util/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+
+abstract class CubeAction {}
 
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
 
@@ -13,7 +15,7 @@ abstract class Cube {
   bool _disposed = false;
 
   /// called when the view is ready
-  /// [data] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
+  /// [arguments] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
   void onReady(Object arguments) {
     CubeMemoryContainer.instance.add(this);
   }

@@ -1,5 +1,4 @@
 import 'package:cubes/cubes.dart';
-import 'package:cubes/src/action/cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/util/cube_provider.dart';
 import 'package:cubes/src/util/state_mixin.dart';

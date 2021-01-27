@@ -7,7 +7,6 @@ import 'package:cubes/src/localization/strings_location.dart';
 import 'package:cubes/src/util/cube_provider.dart';
 import 'package:flutter/widgets.dart';
 
-export 'package:cubes/src/action/cube_action.dart';
 export 'package:cubes/src/builder/cube_builder.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';

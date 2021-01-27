@@ -399,6 +399,8 @@ Ready!!!  Your application already supports internationalization. Bas get the st
 
 ```
 
+## Custom dependency injection
+
 By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one you can overwrite the Injector:
 
 ```dart

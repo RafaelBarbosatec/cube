@@ -1,5 +1,4 @@
 import 'package:cubes/cubes.dart';
-import 'package:cubes/src/util/cube_memory_container.dart';
 import 'package:cubes/src/util/debouncer.dart';
 import 'package:flutter/foundation.dart';
 
@@ -16,14 +15,11 @@ abstract class Cube {
 
   /// called when the view is ready
   /// [arguments] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
-  void onReady(Object arguments) {
-    CubeMemoryContainer.instance.add(this);
-  }
+  void onReady(Object arguments) {}
 
   /// called when the cube is destroyed
   void dispose() {
     _disposeListeners();
-    CubeMemoryContainer.instance.remove(this);
     _disposed = true;
   }
 
@@ -77,20 +73,8 @@ abstract class Cube {
         _debounceMap[identify].call(call);
       }
     } catch (e) {
-      print('runDebounce: $e');
+      print('[ERROR]runDebounce: $e');
     }
-  }
-
-  /// Uses to get the Cube ready in memory by type
-  @protected
-  T getCubeIsReady<T extends Cube>() {
-    return CubeMemoryContainer.instance.get<T>();
-  }
-
-  /// Uses to get the Cubes ready in memory by type
-  @protected
-  Iterable<T> getCubesAreReady<T extends Cube>() {
-    return CubeMemoryContainer.instance.getCubes<T>();
   }
 
   /// Uses to listen `ObservableValue` inner Cube

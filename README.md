@@ -106,7 +106,7 @@ class Home extends CubeWidget<CounterCube> {
 
 If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart), or use `CubeBuilder<Cube>`.
 
-OBS: Cube and its dependencies are injected into `CubeWidget` without the need for any extra configuration.
+OBS: Cube and its dependencies are injected into `CubeWidget` automatically.
 
 ---
 
@@ -398,6 +398,8 @@ Ready!!!  Your application already supports internationalization. Bas get the st
   String text = Cubes.getString('welcome');
 
 ```
+
+## Custom dependency injection
 
 By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one you can overwrite the Injector:
 

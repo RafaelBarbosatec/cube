@@ -7,7 +7,6 @@ import 'package:cubes/src/localization/strings_location.dart';
 import 'package:cubes/src/util/cube_provider.dart';
 import 'package:flutter/widgets.dart';
 
-export 'package:cubes/src/action/cube_action.dart';
 export 'package:cubes/src/builder/cube_builder.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';
@@ -27,6 +26,7 @@ export 'package:cubes/src/widgets/text_form_field.dart';
 class Cubes {
   static final Cubes instance = Cubes._internal();
   static CInjector _injector = GetItInjector();
+  static CGetterStringLocation _stringLocation = CStringsLocation.instance;
 
   Cubes._internal();
 
@@ -48,11 +48,14 @@ class Cubes {
     );
   }
 
-  static String getString(String key, [Map<String, String> params]) {
-    return CStringsLocation.instance.getString(key, params: params);
-  }
-
   static void resetInjector() => _injector.reset();
+
+  static CInjector injector() => _injector;
+  static CGetterStringLocation stringLocation() => _stringLocation;
+
+  static String getString(String key, [Map<String, String> params]) {
+    return _stringLocation.getString(key, params: params);
+  }
 
   static C of<C extends Cube>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;

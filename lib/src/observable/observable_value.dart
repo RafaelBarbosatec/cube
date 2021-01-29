@@ -21,6 +21,8 @@ class ObservableValue<T> extends ChangeNotifier {
   void _setValueAndNotify(T newValue) {
     if (T is List) {
       _lastValue = List.of(_value as List) as T;
+    } else if (T is Map) {
+      _lastValue = Map.of(_value as Map) as T;
     } else {
       _lastValue = _value;
     }

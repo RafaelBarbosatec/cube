@@ -1,3 +1,8 @@
+# 0.10.6
+
+- update `get_it`
+- some improvements and optimization
+
 # 0.10.5
 
 - improvements in `CTextFormField`;

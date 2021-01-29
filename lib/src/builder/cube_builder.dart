@@ -1,5 +1,4 @@
 import 'package:cubes/cubes.dart';
-import 'package:cubes/src/action/cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:cubes/src/util/cube_provider.dart';
 import 'package:cubes/src/util/state_mixin.dart';
@@ -20,14 +19,12 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
     this.arguments,
     this.cube,
     this.onAction,
-    this.initState,
     this.dispose,
   }) : super(key: key);
 
   final Object arguments;
   final AsyncCubeWidgetBuilder<C> builder;
   final OnActionChanged<C, CubeAction> onAction;
-  final InitCallback<C> initState;
   final CubeWidgetDispose<C> dispose;
   final C cube;
 
@@ -43,7 +40,6 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
     cube = widget.cube ?? Cubes.getDependency();
     cube.addOnActionListener(_onAction);
     super.initState();
-    cubeWidget.initState?.call(cube);
     WidgetsBinding.instance.addPostFrameCallback(_ready);
   }
 

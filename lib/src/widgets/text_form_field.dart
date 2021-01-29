@@ -1,4 +1,5 @@
 import 'package:cubes/src/observable/observable_value.dart';
+import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -154,7 +155,7 @@ class CTextFormField extends StatefulWidget {
   _CTextFormFieldState createState() => _CTextFormFieldState();
 }
 
-class _CTextFormFieldState extends State<CTextFormField> {
+class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
   TextEditingController _controller;
   bool _enable = true;
   bool _obscureText = false;
@@ -304,9 +305,5 @@ class _CTextFormFieldState extends State<CTextFormField> {
     } else {
       return null;
     }
-  }
-
-  void postFrame(VoidCallback callback) {
-    Future.delayed(Duration.zero, callback);
   }
 }

@@ -6,9 +6,6 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// called when cube send any Action to view.
   void onAction(BuildContext context, C cube, CubeAction action) {}
 
-  /// called when execute initState of the CubeBuilder
-  void initState(BuildContext context, C cube) {}
-
   /// if you want the widget to not call `dispose` in the Cube, return false
   bool dispose(C cube) => true;
 
@@ -23,7 +20,6 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
       builder: buildView,
       arguments: arguments,
       onAction: (cube, data) => onAction(context, cube, data),
-      initState: (cube) => initState(context, cube),
       dispose: dispose,
     );
   }

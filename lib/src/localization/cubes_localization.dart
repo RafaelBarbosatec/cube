@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class CubesLocalization {
   CubesLocalization(this.locale, {this.pathFiles = 'lang/'}) {
-    CStringsLocation.configure(this);
+    CStringsLocation.instance.configure(this);
   }
 
   final Locale locale;

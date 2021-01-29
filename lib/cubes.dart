@@ -26,6 +26,7 @@ export 'package:cubes/src/widgets/text_form_field.dart';
 class Cubes {
   static final Cubes instance = Cubes._internal();
   static CInjector _injector = GetItInjector();
+  static CGetterStringLocation _stringLocation = CStringsLocation.instance;
 
   Cubes._internal();
 
@@ -47,11 +48,14 @@ class Cubes {
     );
   }
 
-  static String getString(String key, [Map<String, String> params]) {
-    return CStringsLocation.instance.getString(key, params: params);
-  }
-
   static void resetInjector() => _injector.reset();
+
+  static CInjector injector() => _injector;
+  static CGetterStringLocation stringLocation() => _stringLocation;
+
+  static String getString(String key, [Map<String, String> params]) {
+    return _stringLocation.getString(key, params: params);
+  }
 
   static C of<C extends Cube>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;

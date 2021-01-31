@@ -10,6 +10,7 @@ void main() {
   });
 
   tearDown(() {
+    _counter = 0;
     injector.reset();
   });
 
@@ -24,7 +25,6 @@ void main() {
   });
 
   test('verify return injected singleton', () {
-    _counter = 0;
     injector.registerDependency<String>(
       (injector) {
         _counter++;

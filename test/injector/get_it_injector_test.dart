@@ -10,7 +10,7 @@ void main() {
   });
 
   tearDown(() {
-    injector?.reset();
+    injector.reset();
   });
 
   test('verify return injected factory', () {
@@ -24,6 +24,7 @@ void main() {
   });
 
   test('verify return injected singleton', () {
+    _counter = 0;
     injector.registerDependency<String>(
       (injector) {
         _counter++;

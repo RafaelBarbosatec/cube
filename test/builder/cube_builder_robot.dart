@@ -3,20 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../util/cube_test.dart';
+class ActionExample extends CubeAction {}
 
-class MockCubeTest extends Mock implements CubeTest {}
+class CubeExample extends Cube {
+  void sendAction(CubeAction action) {
+    onAction(action);
+  }
+}
+
+class MockCubeTest extends Mock implements CubeExample {}
 
 class CubeBuilderRobot {
   final WidgetTester tester;
-  CubeTest _cubeReturned;
+  CubeExample _cubeReturned;
   CubeAction _actionReturnedInView;
-  CubeTest _cubeMock;
+  CubeExample _cubeMock;
   Map _argumentTest = {'cube': 'Simple State Manager with dependency injection and no code generation required.'};
   CubeBuilderRobot(this.tester);
 
   void _setupInjections({bool useMock = true}) {
-    _cubeMock = useMock ? MockCubeTest() : CubeTest();
+    _cubeMock = useMock ? MockCubeTest() : CubeExample();
     Cubes.resetInjector();
     Cubes.registerDependency((injector) => _cubeMock);
   }
@@ -26,12 +32,12 @@ class CubeBuilderRobot {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: CubeBuilder<CubeTest>(
+        home: CubeBuilder<CubeExample>(
           arguments: _argumentTest,
           onAction: (cube, action) {
             _actionReturnedInView = action;
           },
-          builder: (BuildContext context, CubeTest cube) {
+          builder: (BuildContext context, CubeExample cube) {
             _cubeReturned = cube;
             return Container();
           },
@@ -52,7 +58,7 @@ class CubeBuilderRobot {
 
   Future assetActionSentByCube() async {
     await tester.pumpAndSettle();
-    final action = ActionTest();
+    final action = ActionExample();
     _cubeMock.sendAction(action);
     await tester.pumpAndSettle();
     expect(_actionReturnedInView, action);

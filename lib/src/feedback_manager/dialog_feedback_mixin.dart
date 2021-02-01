@@ -34,6 +34,7 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   Map<CDialogController, Function> _mapDialogListeners = Map();
   List<CDialogController> dialogControllers;
 
+  /// Configure listeners of the dialogControllers.
   void confDialogFeedBack(List<CDialogController> controllers) {
     this.dialogControllers = controllers;
     this.dialogControllers?.forEach((element) {
@@ -49,6 +50,7 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
+  /// Listener that controls the display of the Dialog.
   void _listenerDialogController(CDialogController element) {
     if (!mounted) return;
     if (element.observable.value.show && !_mapDialogIsShowing[element]) {
@@ -59,6 +61,7 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
+  /// Displays Dialog with the added settings.
   void _showDialog(CDialogController element) async {
     await Future.delayed(Duration(milliseconds: ANIMATION_DURATION));
     _mapDialogIsShowing[element] = true;

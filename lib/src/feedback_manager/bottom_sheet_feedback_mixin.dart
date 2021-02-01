@@ -46,6 +46,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   Map<CBottomSheetController, Function> _mapBottomSheetListeners = Map();
   List<CBottomSheetController> bottomSheetControllers;
 
+  /// Configure listeners of the bottomSheetControllers.
   void confBottomSheetFeedBack(List<CBottomSheetController> controllers) {
     this.bottomSheetControllers = controllers;
     this.bottomSheetControllers?.forEach((element) {
@@ -61,6 +62,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
+  /// Listener that controls the display of the Bottom Sheet.
   void _listenerDialogController(CBottomSheetController element) {
     if (!mounted) return;
     if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
@@ -71,6 +73,7 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
+  /// Displays Bottom Sheet with the added settings.
   void _showBottomSheet(CBottomSheetController element) async {
     await Future.delayed(Duration(milliseconds: ANIMATION_DURATION));
     _mapBottomSheetIsShowing[element] = true;

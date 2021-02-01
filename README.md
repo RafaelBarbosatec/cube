@@ -419,7 +419,7 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
     }
   }
 
-  Cubes.instance.customInjector(MyInjector());
+  Cubes.setCustomInjector(MyInjector());
 
 ```
 

@@ -25,38 +25,47 @@ export 'package:cubes/src/widgets/text_form_field.dart';
 
 class Cubes {
   static final Cubes instance = Cubes._internal();
-  static CInjector _injector = GetItInjector();
-  static CGetterStringLocation _stringLocation = CStringsLocation.instance;
+  CInjector _injector = GetItInjector();
+  CGetterStringLocation _stringLocation = CStringsLocation.instance;
 
   Cubes._internal();
 
-  void customInjector(CInjector injector) => _injector = injector;
+  /// Use to register your on Injector
+  static setCustomInjector(CInjector injector) => instance._injector = injector;
 
+  /// Use to get dependency registered
   static T getDependency<T>({String dependencyName}) {
-    return _injector.getDependency<T>(dependencyName: dependencyName);
+    return instance._injector.getDependency<T>(dependencyName: dependencyName);
   }
 
+  /// Use to register dependency
   static void registerDependency<T>(
     DependencyInjectorBuilder<T> builder, {
     String dependencyName,
     bool isSingleton = false,
   }) {
-    _injector.registerDependency<T>(
+    instance._injector.registerDependency<T>(
       builder,
       dependencyName: dependencyName,
       isSingleton: isSingleton,
     );
   }
 
-  static void resetInjector() => _injector.reset();
+  /// Use to reset injector
+  static void resetInjector() => instance._injector.reset();
 
-  static CInjector injector() => _injector;
-  static CGetterStringLocation stringLocation() => _stringLocation;
+  /// Use to get injector
+  static CInjector injector() => instance._injector;
 
+  /// Use to get StringLocation
+  static CGetterStringLocation stringLocation() => instance._stringLocation;
+
+  /// Use to get String in StringLocation
   static String getString(String key, [Map<String, String> params]) {
-    return _stringLocation.getString(key, params: params);
+    return instance._stringLocation.getString(key, params: params);
   }
 
+  /// Use to get Cube registered in de Widget tree.
   static C of<C extends Cube>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;
   }

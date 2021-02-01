@@ -12,6 +12,7 @@ void main() {
   });
 
   tearDown(() {
+    _valueNotify = null;
     _observableValue.dispose();
   });
 

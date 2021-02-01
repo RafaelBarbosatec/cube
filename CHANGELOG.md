@@ -1,3 +1,7 @@
+# 0.10.7
+
+- update dev_dependencies `mockito` to `any`
+
 # 0.10.6
 
 - update `get_it`

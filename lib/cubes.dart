@@ -7,7 +7,6 @@ import 'package:cubes/src/localization/strings_location.dart';
 import 'package:cubes/src/util/cube_provider.dart';
 import 'package:flutter/widgets.dart';
 
-export 'package:cubes/src/builder/cube_builder.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';
 export 'package:cubes/src/injector/injector.dart';
@@ -20,6 +19,7 @@ export 'package:cubes/src/util/extensions/ext.dart';
 export 'package:cubes/src/util/functions.dart';
 export 'package:cubes/src/util/state_mixin.dart';
 export 'package:cubes/src/widgets/animated_list_cube.dart';
+export 'package:cubes/src/widgets/cube_builder.dart';
 export 'package:cubes/src/widgets/cube_widget.dart';
 export 'package:cubes/src/widgets/text_form_field.dart';
 

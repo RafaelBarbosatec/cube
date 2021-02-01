@@ -1,3 +1,7 @@
+# 0.10.7
+
+- update `mockito` version to `any`
+
 # 0.10.6
 
 - update `get_it`

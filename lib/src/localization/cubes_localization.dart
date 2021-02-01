@@ -5,9 +5,10 @@ import 'package:cubes/src/localization/strings_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Responsible for loading the current locate string file
 class CubesLocalization {
   CubesLocalization(this.locale, {this.pathFiles = 'lang/'}) {
-    CStringsLocation.instance.configure(this);
+    CStringsLocation.configure(this);
   }
 
   final Locale locale;

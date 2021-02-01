@@ -1,6 +1,6 @@
 # 0.10.7
 
-- update dev_dependencies `mockito` to `any`
+- update `mockito` version to `any`
 
 # 0.10.6
 

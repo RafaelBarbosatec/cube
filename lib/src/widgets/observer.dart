@@ -47,10 +47,10 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
       return AnimatedSwitcher(
         duration: widget.duration,
         transitionBuilder: widget.transitionBuilder,
-        child: widgetObserver.builder(widget.observable.value),
+        child: widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink(),
       );
     }
-    return widgetObserver.builder(widget.observable.value);
+    return widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink();
   }
 
   void _listener() {

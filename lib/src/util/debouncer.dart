@@ -6,7 +6,7 @@ class Debounce {
 
   Debounce(this.delay);
 
-  call(Function action) {
+  void call(Function action) {
     _timer?.cancel();
     _timer = Timer(delay, action);
   }

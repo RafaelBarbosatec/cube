@@ -37,7 +37,7 @@ class PokemonScreen extends CubeWidget<PokemonCube> {
               },
             ),
             cube.progress.build<bool>(
-              (value) => widgetCondition(
+              (value) => genericCondition<Widget>(
                 condition: value,
                 match: Center(child: CircularProgressIndicator()),
               ),

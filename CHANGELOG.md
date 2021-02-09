@@ -1,3 +1,7 @@
+# 0.10.7+1
+
+- update `readme`
+
 # 0.10.7
 
 - update `mockito` version to `any`

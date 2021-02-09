@@ -40,6 +40,7 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   List<CSnackBarController> snackBarControllers;
   Map<CSnackBarController, bool> _mapSnackBarIsShowing = Map();
 
+  /// Configure listeners of the snackBarControllers.
   void confSnackBarFeedBack(List<CSnackBarController> controllers) {
     this.snackBarControllers = controllers;
     this.snackBarControllers?.forEach((element) {
@@ -54,6 +55,7 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
+  /// Listener that controls the display of the snackBar.
   void _listenerDialogController(CSnackBarController element) {
     if (!mounted) return;
     if (element.observable.value.show && !_mapSnackBarIsShowing[element]) {
@@ -64,6 +66,7 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
+  /// Displays SnackBar with the added settings.
   void _showSnackBar(CSnackBarController element) async {
     _mapSnackBarIsShowing[element] = true;
     Scaffold.of(context)?.showSnackBar(element.doBuild(element.observable.value.data, context));

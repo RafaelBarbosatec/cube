@@ -2,6 +2,8 @@ import 'package:cubes/cubes.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:flutter/widgets.dart';
 
+/// Widget created to replace StatelessWidget and facilitate the use of Cube
+/// This is responsible for getting instance and providing Cube
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// called when cube send any Action to view.
   void onAction(BuildContext context, C cube, CubeAction action) {}
@@ -9,6 +11,8 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   /// if you want the widget to not call `dispose` in the Cube, return false
   bool dispose(C cube) => true;
 
+  /// Arguments that will be sent to the cube through the onReady () method
+  /// If this argument is not set, ModalRoute.of(context)?.settings?.Arguments will be sent
   Object get arguments => null;
 
   @protected

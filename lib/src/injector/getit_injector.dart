@@ -6,15 +6,15 @@ final _getIt = GetIt.instance;
 class GetItInjector extends CInjector {
   @override
   T getDependency<T>({String dependencyName}) {
-    return _getIt.get<T>();
+    return _getIt.get<T>(instanceName: dependencyName);
   }
 
   @override
-  void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+  void registerDependency<T>(CDependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
     if (isSingleton) {
-      _getIt.registerLazySingleton<T>(() => builder(this));
+      _getIt.registerLazySingleton<T>(() => builder(this), instanceName: dependencyName);
     } else {
-      _getIt.registerFactory<T>(() => builder(this));
+      _getIt.registerFactory<T>(() => builder(this), instanceName: dependencyName);
     }
   }
 

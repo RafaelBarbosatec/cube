@@ -40,7 +40,7 @@ class Cubes {
 
   /// Use to register dependency
   static void registerDependency<T>(
-    DependencyInjectorBuilder<T> builder, {
+    CDependencyInjectorBuilder<T> builder, {
     String dependencyName,
     bool isSingleton = false,
   }) {

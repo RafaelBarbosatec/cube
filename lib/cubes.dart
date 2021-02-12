@@ -1,11 +1,12 @@
 library cube;
 
-import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/injector/getit_injector.dart';
-import 'package:cubes/src/injector/injector.dart';
-import 'package:cubes/src/localization/strings_location.dart';
-import 'package:cubes/src/util/cube_provider.dart';
 import 'package:flutter/widgets.dart';
+
+import 'src/cube.dart';
+import 'src/injector/getit_injector.dart';
+import 'src/injector/injector.dart';
+import 'src/localization/strings_location.dart';
+import 'src/util/cube_provider.dart';
 
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';
@@ -23,19 +24,23 @@ export 'package:cubes/src/widgets/cube_builder.dart';
 export 'package:cubes/src/widgets/cube_widget.dart';
 export 'package:cubes/src/widgets/text_form_field.dart';
 
+/// Core of the package where you will have useful functions and settings
 class Cubes {
-  static final Cubes instance = Cubes._internal();
+  /// instance of the Cubes
+  static final Cubes _instance = Cubes._internal();
+  final CGetterStringLocation _stringLocation = CStringsLocation.instance;
   CInjector _injector = GetItInjector();
-  CGetterStringLocation _stringLocation = CStringsLocation.instance;
 
   Cubes._internal();
 
-  /// Use to register your on Injector
-  static setCustomInjector(CInjector injector) => instance._injector = injector;
+  /// Factory to get instance of the Cubes
+  factory Cubes() {
+    return _instance;
+  }
 
   /// Use to get dependency registered
   static T getDependency<T>({String dependencyName}) {
-    return instance._injector.getDependency<T>(dependencyName: dependencyName);
+    return _instance._injector.getDependency<T>(dependencyName: dependencyName);
   }
 
   /// Use to register dependency
@@ -44,7 +49,7 @@ class Cubes {
     String dependencyName,
     bool isSingleton = false,
   }) {
-    instance._injector.registerDependency<T>(
+    _instance._injector.registerDependency<T>(
       builder,
       dependencyName: dependencyName,
       isSingleton: isSingleton,
@@ -52,17 +57,20 @@ class Cubes {
   }
 
   /// Use to reset injector
-  static void resetInjector() => instance._injector.reset();
+  static void resetInjector() => _instance._injector.reset();
 
   /// Use to get injector
-  static CInjector injector() => instance._injector;
+  CInjector get injector => _instance._injector;
+
+  /// Use to register your on Injector
+  set injector(CInjector injector) => _instance._injector = injector;
 
   /// Use to get StringLocation
-  static CGetterStringLocation stringLocation() => instance._stringLocation;
+  static CGetterStringLocation stringLocation() => _instance._stringLocation;
 
   /// Use to get String in StringLocation
   static String getString(String key, [Map<String, String> params]) {
-    return instance._stringLocation.getString(key, params: params);
+    return _instance._stringLocation.getString(key, params: params);
   }
 
   /// Use to get Cube registered in de Widget tree.

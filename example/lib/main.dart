@@ -25,7 +25,6 @@ void main() {
   Cubes.registerDependency((i) => PokemonRepository());
   Cubes.registerDependency((i) => FeedbackManagerCube());
   Cubes.registerDependency((i) => TextFormFieldCube());
-
   runApp(MyApp());
 }
 

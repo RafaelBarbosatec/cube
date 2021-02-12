@@ -408,18 +408,21 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
   class MyInjector extends Injector {
    @override
     T getDependency<T>({String dependencyName}) {
+      // your implementation
     }
 
     @override
     void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+      // your implementation
     }
 
     @override
     void reset() {
+      // your implementation
     }
   }
 
-  Cubes.setCustomInjector(MyInjector());
+  Cubes().injector = MyInjector();
 
 ```
 

@@ -1,7 +1,8 @@
-import 'package:cubes/cubes.dart';
-import 'package:cubes/src/cube.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../cubes.dart';
+import '../cube.dart';
 
 mixin StateMixin<T extends StatefulWidget> on State<T> {
   /// Used to update widget in next frame
@@ -39,7 +40,7 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   void onAction(CubeAction action);
 
   void _ready(_) {
-    Object data = initData ?? ModalRoute.of(context)?.settings?.arguments;
+    var data = initData ?? ModalRoute.of(context)?.settings?.arguments;
     cube.onReady(data);
   }
 }

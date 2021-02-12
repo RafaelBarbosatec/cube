@@ -13,10 +13,8 @@ class ObservableValue<T> extends ChangeNotifier {
   T get value => _value;
   T get lastValue => _lastValue;
 
-  @protected
-  void setInitialValue(T value) {
-    _value = value;
-  }
+  // ignore: avoid_setters_without_getters
+  set setValueWithoutNotify(T value) => _value = value;
 
   void _setValueAndNotify(T newValue) {
     if (T is List) {
@@ -34,7 +32,7 @@ class ObservableValue<T> extends ChangeNotifier {
   void notifyListeners() {
     try {
       super.notifyListeners();
-    } catch (e) {
+    } on Exception catch (_) {
       print('A $runtimeType was used after being disposed');
     }
   }
@@ -43,7 +41,7 @@ class ObservableValue<T> extends ChangeNotifier {
   void dispose() {
     try {
       super.dispose();
-    } catch (e) {
+    } on Exception catch (_) {
       print('Once you have called dispose() on a $runtimeType, it can no longer be used.');
     }
   }

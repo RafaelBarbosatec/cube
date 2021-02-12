@@ -1,5 +1,6 @@
-import 'package:cubes/src/cube.dart';
 import 'package:flutter/widgets.dart';
+
+import '../cube.dart';
 
 class CubeProvider<C extends Cube> extends InheritedWidget {
   final C cube;

@@ -1,7 +1,8 @@
-import 'package:cubes/src/observable/observable_value.dart';
-import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../observable/observable_value.dart';
+import '../util/state_mixin.dart';
 
 /// Class used to control CCTextFormField
 class CTextFormFieldControl {
@@ -54,7 +55,7 @@ class CObscureTextButtonConfiguration {
     this.iconShow,
     this.iconHide,
     this.align,
-  }) : this.show = false;
+  }) : show = false;
 }
 
 /// CTextFormField is a TextFormField with modifications to use ObservableValue to control.
@@ -266,7 +267,7 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
         prefixIcon: _buildPrefixIcon(),
       ),
       validator: (value) {
-        String error = widget?.validator?.call(value);
+        var error = widget?.validator?.call(value);
         widget.observable.modify((value) => value.copyWith(error: error ?? ''));
         return error;
       },
@@ -276,9 +277,12 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
   Widget _buildSuffixIcon() {
     if (widget?.obscureTextButtonConfiguration?.show == true &&
         widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.right) {
-      Widget icon = _obscureText
-          ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
-          : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+      var icon;
+      if (_obscureText) {
+        icon = widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined);
+      } else {
+        icon = widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+      }
       return IconButton(
         icon: icon,
         onPressed: () {
@@ -293,9 +297,12 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
   Widget _buildPrefixIcon() {
     if (widget?.obscureTextButtonConfiguration?.show == true &&
         widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.left) {
-      Widget icon = _obscureText
-          ? widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined)
-          : widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+      var icon;
+      if (_obscureText) {
+        icon = widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined);
+      } else {
+        icon = widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+      }
       return IconButton(
         icon: icon,
         onPressed: () {

@@ -1,6 +1,7 @@
-import 'package:cubes/src/observable/observable_value.dart';
-import 'package:cubes/src/widgets/observer.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../observable/observable_value.dart';
+import '../../widgets/observer.dart';
 
 extension ObservableValueExtensions on ObservableValue {
   CObserver build<T>(

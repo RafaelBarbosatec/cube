@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 class ObserverRobot {
   final WidgetTester tester;
   int _valueReturnedInBuilder;
-  WhenBuild<int> _whenBuild;
-  ObservableValue<int> _count = ObservableValue(value: 0);
+  WhenBuild<int> whenBuild;
+  final ObservableValue<int> _count = ObservableValue(value: 0);
 
   ObserverRobot(this.tester);
 
@@ -17,10 +17,10 @@ class ObserverRobot {
         home: CObserver<int>(
           observable: _count,
           when: (lastValue, newValue) {
-            if (_whenBuild != null) return _whenBuild(lastValue, newValue);
+            if (whenBuild != null) return whenBuild(lastValue, newValue);
             return true;
           },
-          builder: (int value) {
+          builder: (value) {
             _valueReturnedInBuilder = value;
             return Container(
               child: Text(value.toString()),
@@ -42,10 +42,6 @@ class ObserverRobot {
 
   void incrementValueWithModify(int increment) {
     _count.modify((value) => value + increment);
-  }
-
-  void registerWhenBuild(WhenBuild<int> whenBuild) {
-    _whenBuild = whenBuild;
   }
 
   Future assetValue(int value) async {

@@ -30,7 +30,7 @@ class CubeWidgetRobot {
   CubeWidgetRobot(this.tester);
   static Cube cubeReturned;
   static CubeAction actionReturned;
-  static Map _argumentTest = {
+  static final Map _argumentTest = {
     'cube': 'Simple State Manager with dependency injection and no code generation required.'
   };
 

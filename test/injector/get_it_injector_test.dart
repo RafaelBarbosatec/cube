@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   CInjector injector;
-  int _counter = 0;
+  var _counter = 0;
   setUp(() {
     injector = GetItInjector();
   });

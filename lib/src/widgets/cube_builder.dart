@@ -1,8 +1,9 @@
-import 'package:cubes/cubes.dart';
-import 'package:cubes/src/cube.dart';
-import 'package:cubes/src/util/cube_provider.dart';
-import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
+
+import '../../cubes.dart';
+import '../cube.dart';
+import '../util/cube_provider.dart';
+import '../util/state_mixin.dart';
 
 typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
   BuildContext context,
@@ -64,7 +65,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   }
 
   void _ready(_) {
-    Object arguments = widget.arguments ?? ModalRoute.of(context)?.settings?.arguments;
+    var arguments = widget.arguments ?? ModalRoute.of(context)?.settings?.arguments;
     cube.onReady(arguments);
   }
 

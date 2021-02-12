@@ -1,6 +1,7 @@
-import 'package:cubes/src/feedback_manager/feedback_manager.dart';
-import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
+
+import '../observable/observable_value.dart';
+import 'feedback_manager.dart';
 
 /// Class responsible for configuring the dialogs
 class CDialogController<T> {
@@ -30,23 +31,19 @@ class CDialogController<T> {
 /// Mixin responsible for adding listeners to ObservableValue and controlling the display of dialogs
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
-  Map<CDialogController, bool> _mapDialogIsShowing = Map();
-  Map<CDialogController, Function> _mapDialogListeners = Map();
+  final Map<CDialogController, bool> _mapDialogIsShowing = {};
+  final Map<CDialogController, Function> _mapDialogListeners = {};
   List<CDialogController> dialogControllers;
 
   /// Configure listeners of the dialogControllers.
   void confDialogFeedBack(List<CDialogController> controllers) {
-    this.dialogControllers = controllers;
-    this.dialogControllers?.forEach((element) {
-      _mapDialogIsShowing[element] = false;
-      _mapDialogListeners[element] = () => _listenerDialogController(element);
-      element.observable.addListener(_mapDialogListeners[element]);
-    });
+    dialogControllers = controllers;
+    dialogControllers?.forEach(_registerDialog);
   }
 
   @override
   void dispose() {
-    dialogControllers?.forEach((element) => element.observable.removeListener(_mapDialogListeners[element]));
+    dialogControllers?.forEach(_disposeDialog);
     super.dispose();
   }
 
@@ -79,7 +76,16 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
           );
         });
     _mapDialogIsShowing[element] = false;
-    // ignore: invalid_use_of_protected_member
-    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
+    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+  }
+
+  void _registerDialog(CDialogController element) {
+    _mapDialogIsShowing[element] = false;
+    _mapDialogListeners[element] = () => _listenerDialogController(element);
+    element.observable.addListener(_mapDialogListeners[element]);
+  }
+
+  void _disposeDialog(CDialogController element) {
+    element.observable.removeListener(_mapDialogListeners[element]);
   }
 }

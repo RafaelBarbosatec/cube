@@ -1,5 +1,6 @@
-import 'package:cubes/src/injector/injector.dart';
 import 'package:get_it/get_it.dart';
+
+import 'injector.dart';
 
 final _getIt = GetIt.instance;
 

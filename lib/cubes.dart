@@ -28,7 +28,7 @@ export 'package:cubes/src/widgets/text_form_field.dart';
 class Cubes {
   /// instance of the Cubes
   static final Cubes _instance = Cubes._internal();
-  final CGetterStringLocation _stringLocation = CStringsLocation.instance;
+  final CGetterStringLocation _stringLocation = CStringsLocation();
   CInjector _injector = GetItInjector();
 
   Cubes._internal();

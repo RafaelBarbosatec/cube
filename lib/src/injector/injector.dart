@@ -1,7 +1,7 @@
-import 'package:cubes/src/cube.dart';
+import '../cube.dart';
 
-typedef T CCubeInjectorBuilder<T extends Cube>(CInjector injector);
-typedef T CDependencyInjectorBuilder<T>(CInjector injector);
+typedef CCubeInjectorBuilder<T extends Cube> = T Function(CInjector injector);
+typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
 
 abstract class CInjector {
   /// Method used to register dependency

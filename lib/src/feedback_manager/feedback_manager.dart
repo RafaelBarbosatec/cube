@@ -1,13 +1,14 @@
-import 'package:cubes/src/feedback_manager/bottom_sheet_feedback_mixin.dart';
-import 'package:cubes/src/feedback_manager/dialog_feedback_mixin.dart';
-import 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 import 'package:flutter/material.dart';
+
+import 'bottom_sheet_feedback_mixin.dart';
+import 'dialog_feedback_mixin.dart';
+import 'snackbar_feedback_mixin.dart';
 
 export 'package:cubes/src/feedback_manager/bottom_sheet_feedback_mixin.dart';
 export 'package:cubes/src/feedback_manager/dialog_feedback_mixin.dart';
 export 'package:cubes/src/feedback_manager/snackbar_feedback_mixin.dart';
 
-typedef Widget WidgetByDataBuilder<T>(T data, BuildContext context);
+typedef WidgetByDataBuilder<T> = Widget Function(T data, BuildContext context);
 
 /// class used to control feedbacks
 class CFeedBackControl<T> {

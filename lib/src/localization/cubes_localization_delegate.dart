@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:cubes/src/localization/cubes_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class CubesLocalizationDelegate
-    extends LocalizationsDelegate<CubesLocalization> {
+import 'cubes_localization.dart';
+
+class CubesLocalizationDelegate extends LocalizationsDelegate<CubesLocalization> {
   const CubesLocalizationDelegate(
     this.supportedLocations, {
     this.pathFiles = 'lang/',
@@ -30,7 +30,7 @@ class CubesLocalizationDelegate
 
   @override
   Future<CubesLocalization> load(Locale locale) async {
-    CubesLocalization localizations = CubesLocalization(
+    var localizations = CubesLocalization(
       locale,
       pathFiles: pathFiles,
     );

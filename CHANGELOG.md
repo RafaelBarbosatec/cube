@@ -1,3 +1,8 @@
+# 0.10.8
+
+- update project to comply with `effective_dart`
+- improvements in `CubesLocalizationDelegate`
+
 # 0.10.7+1
 
 - update `readme`

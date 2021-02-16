@@ -4,6 +4,7 @@ import 'injector.dart';
 
 final _getIt = GetIt.instance;
 
+/// CInjector implemented with GetIt
 class GetItInjector extends CInjector {
   @override
   T getDependency<T>({String dependencyName}) {

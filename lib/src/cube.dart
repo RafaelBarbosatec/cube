@@ -1,11 +1,14 @@
-import 'package:cubes/cubes.dart';
-import 'package:cubes/src/util/debouncer.dart';
 import 'package:flutter/foundation.dart';
 
+import '../cubes.dart';
+import 'util/debouncer.dart';
+
+/// Base to Actions
 abstract class CubeAction {}
 
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
 
+/// Base to create Cube
 abstract class Cube {
   List<OnActionChanged<Cube, CubeAction>> _onActionListeners;
   Map<dynamic, Debounce> _debounceMap;
@@ -62,7 +65,7 @@ abstract class Cube {
     Duration duration = const Duration(milliseconds: 400),
   }) {
     try {
-      if (_debounceMap == null) _debounceMap = Map();
+      if (_debounceMap == null) _debounceMap = {};
       if (_debounceMap.containsKey(identify)) {
         if (_debounceMap[identify].delay != duration) {
           _debounceMap[identify] = Debounce(duration);
@@ -72,7 +75,7 @@ abstract class Cube {
         _debounceMap[identify] = Debounce(duration);
         _debounceMap[identify].call(call);
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print('[ERROR]runDebounce: $e');
     }
   }
@@ -80,7 +83,7 @@ abstract class Cube {
   /// Uses to listen `ObservableValue` inner Cube
   @protected
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
-    if (_listenersObservableMap == null) _listenersObservableMap = Map();
+    if (_listenersObservableMap == null) _listenersObservableMap = {};
     _listenersObservableMap[observableValue] = () => listener(observableValue.value);
     observableValue.addListener(_listenersObservableMap[observableValue]);
   }
@@ -100,5 +103,6 @@ abstract class Cube {
     addOnActionListener(_cubeActionListener);
   }
 
+  /// check if Cube is disposed
   bool get disposed => _disposed;
 }

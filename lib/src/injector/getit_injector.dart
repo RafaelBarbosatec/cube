@@ -1,8 +1,10 @@
-import 'package:cubes/src/injector/injector.dart';
 import 'package:get_it/get_it.dart';
+
+import 'injector.dart';
 
 final _getIt = GetIt.instance;
 
+/// CInjector implemented with GetIt
 class GetItInjector extends CInjector {
   @override
   T getDependency<T>({String dependencyName}) {

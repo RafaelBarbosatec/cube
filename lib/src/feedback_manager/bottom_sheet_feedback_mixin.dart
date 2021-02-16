@@ -1,6 +1,7 @@
-import 'package:cubes/src/feedback_manager/feedback_manager.dart';
-import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
+
+import '../observable/observable_value.dart';
+import 'feedback_manager.dart';
 
 /// Class responsible for configuring the BottomSheets
 class CBottomSheetController<T> {
@@ -42,23 +43,19 @@ class CBottomSheetController<T> {
 /// Mixin responsible for adding listeners to ObservableValue and controlling the display of BottomSheets
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
-  Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = Map();
-  Map<CBottomSheetController, Function> _mapBottomSheetListeners = Map();
+  final Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = {};
+  final Map<CBottomSheetController, Function> _mapBottomSheetListeners = {};
   List<CBottomSheetController> bottomSheetControllers;
 
   /// Configure listeners of the bottomSheetControllers.
   void confBottomSheetFeedBack(List<CBottomSheetController> controllers) {
-    this.bottomSheetControllers = controllers;
-    this.bottomSheetControllers?.forEach((element) {
-      _mapBottomSheetIsShowing[element] = false;
-      _mapBottomSheetListeners[element] = () => _listenerDialogController(element);
-      element.observable.addListener(_mapBottomSheetListeners[element]);
-    });
+    bottomSheetControllers = controllers;
+    bottomSheetControllers?.forEach(_registerBottomSheet);
   }
 
   @override
   void dispose() {
-    bottomSheetControllers?.forEach((element) => element.observable.removeListener(_mapBottomSheetListeners[element]));
+    bottomSheetControllers?.forEach(_disposeBottomSheet);
     super.dispose();
   }
 
@@ -95,7 +92,16 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
       ),
     );
     _mapBottomSheetIsShowing[element] = false;
-    // ignore: invalid_use_of_protected_member
-    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
+    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+  }
+
+  void _registerBottomSheet(CBottomSheetController element) {
+    _mapBottomSheetIsShowing[element] = false;
+    _mapBottomSheetListeners[element] = () => _listenerDialogController(element);
+    element.observable.addListener(_mapBottomSheetListeners[element]);
+  }
+
+  void _disposeBottomSheet(CBottomSheetController element) {
+    element.observable.removeListener(_mapBottomSheetListeners[element]);
   }
 }

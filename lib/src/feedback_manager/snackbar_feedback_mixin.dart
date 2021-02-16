@@ -1,8 +1,9 @@
-import 'package:cubes/src/feedback_manager/feedback_manager.dart';
-import 'package:cubes/src/observable/observable_value.dart';
 import 'package:flutter/material.dart';
 
-typedef SnackBar SnackBarByDataBuilder<T>(T data, BuildContext context);
+import '../observable/observable_value.dart';
+import 'feedback_manager.dart';
+
+typedef SnackBarByDataBuilder<T> = SnackBar Function(T data, BuildContext context);
 
 /// Class responsible for configuring the SnackBars
 class CSnackBarController<T> {
@@ -38,20 +39,17 @@ class CSnackBarController<T> {
 /// Mixin responsible for adding listeners to ObservableValue and controlling the display of SnackBars
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   List<CSnackBarController> snackBarControllers;
-  Map<CSnackBarController, bool> _mapSnackBarIsShowing = Map();
+  final Map<CSnackBarController, bool> _mapSnackBarIsShowing = {};
 
   /// Configure listeners of the snackBarControllers.
   void confSnackBarFeedBack(List<CSnackBarController> controllers) {
-    this.snackBarControllers = controllers;
-    this.snackBarControllers?.forEach((element) {
-      _mapSnackBarIsShowing[element] = false;
-      element.observable.addListener(() => _listenerDialogController(element));
-    });
+    snackBarControllers = controllers;
+    snackBarControllers?.forEach(_registerSnackBar);
   }
 
   @override
   void dispose() {
-    snackBarControllers?.forEach((element) => element.observable.dispose());
+    snackBarControllers?.forEach(_disposeSnackBar);
     super.dispose();
   }
 
@@ -72,7 +70,15 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     Scaffold.of(context)?.showSnackBar(element.doBuild(element.observable.value.data, context));
     await Future.delayed(element.duration);
     _mapSnackBarIsShowing[element] = false;
-    // ignore: invalid_use_of_protected_member
-    element.observable.setInitialValue(element.observable.value.copyWith(show: false));
+    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+  }
+
+  void _registerSnackBar(CSnackBarController element) {
+    _mapSnackBarIsShowing[element] = false;
+    element.observable.addListener(() => _listenerDialogController(element));
+  }
+
+  void _disposeSnackBar(CSnackBarController element) {
+    element.observable.dispose();
   }
 }

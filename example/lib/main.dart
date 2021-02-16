@@ -25,7 +25,6 @@ void main() {
   Cubes.registerDependency((i) => PokemonRepository());
   Cubes.registerDependency((i) => FeedbackManagerCube());
   Cubes.registerDependency((i) => TextFormFieldCube());
-
   runApp(MyApp());
 }
 
@@ -61,52 +60,54 @@ class Home extends StatelessWidget {
         title: Text(Cubes.getString('welcome')),
       ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            RaisedButton(
-              child: Text(Cubes.getString('counter')),
-              onPressed: () {
-                context.goTo(CounterScreen(), settings: RouteSettings(arguments: {'name': 'rafael'}));
-              },
-            ),
-            RaisedButton(
-              child: Text('Counter. Cube in StatefulWidget'),
-              onPressed: () {
-                context.goTo(CounterScreenWithAnimation());
-              },
-            ),
-            RaisedButton(
-              child: Text('Pokemons'),
-              onPressed: () {
-                context.goTo(PokemonScreen());
-              },
-            ),
-            RaisedButton(
-              child: Text(Cubes.getString('singleton')),
-              onPressed: () {
-                context.goTo(ScreenCounterSingleton());
-              },
-            ),
-            RaisedButton(
-              child: Text('Todo'),
-              onPressed: () {
-                context.goTo(TodoList());
-              },
-            ),
-            RaisedButton(
-              child: Text('FeedBackManager'),
-              onPressed: () {
-                context.goTo(FeedbackManagerScreen());
-              },
-            ),
-            RaisedButton(
-              child: Text('CTextFormField'),
-              onPressed: () {
-                context.goTo(TextFormFieldScreen());
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              RaisedButton(
+                child: Text(Cubes.getString('counter')),
+                onPressed: () {
+                  context.goTo(CounterScreen(), settings: RouteSettings(arguments: {'name': 'rafael'}));
+                },
+              ),
+              RaisedButton(
+                child: Text('Counter. Cube in StatefulWidget'),
+                onPressed: () {
+                  context.goTo(CounterScreenWithAnimation());
+                },
+              ),
+              RaisedButton(
+                child: Text('Pokemons'),
+                onPressed: () {
+                  context.goTo(PokemonScreen());
+                },
+              ),
+              RaisedButton(
+                child: Text(Cubes.getString('singleton')),
+                onPressed: () {
+                  context.goTo(ScreenCounterSingleton());
+                },
+              ),
+              RaisedButton(
+                child: Text('Todo'),
+                onPressed: () {
+                  context.goTo(TodoList());
+                },
+              ),
+              RaisedButton(
+                child: Text('FeedBackManager'),
+                onPressed: () {
+                  context.goTo(FeedbackManagerScreen());
+                },
+              ),
+              RaisedButton(
+                child: Text('CTextFormField'),
+                onPressed: () {
+                  context.goTo(TextFormFieldScreen());
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

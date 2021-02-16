@@ -1,5 +1,6 @@
-import 'package:cubes/src/observable/observable_list.dart';
 import 'package:flutter/widgets.dart';
+
+import '../observable/observable_list.dart';
 
 enum TypeAnimationListEnum { add, remove }
 typedef AnimatedListCubeItemBuilder<T> = Widget Function(
@@ -40,13 +41,11 @@ class CAnimatedList<T> extends StatefulWidget {
 class _AnimatedListState<T> extends State<CAnimatedList> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  List<T> itemList = List();
+  List<T> itemList = [];
 
   @override
   void initState() {
-    widget.observable.value.forEach((element) {
-      itemList.add(element);
-    });
+    widget.observable.value.forEach(itemList.add);
     widget.observable.addListener(_listener);
     super.initState();
   }
@@ -62,6 +61,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
     return AnimatedList(
       key: _listKey,
       itemBuilder: (context, index, animation) {
+        if (itemList.length <= index) return SizedBox.shrink();
         return (widget as CAnimatedList<T>).itemBuilder(
           context,
           itemList[index],
@@ -80,12 +80,11 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
     );
   }
 
-  void _listener() {
+  void _listener() async {
     if (itemList.length != widget.observable.length) {
-      itemList.forEach((element) async {
+      for (var element in itemList) {
         if (!widget.observable.value.contains(element)) {
           final index = itemList.indexOf(element);
-          await _refresh();
           _listKey.currentState.removeItem(
             index,
             (context, animation) => (widget as CAnimatedList<T>).itemBuilder(
@@ -96,26 +95,22 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
             ),
           );
         }
-      });
+      }
 
-      widget.observable.value.forEach((element) async {
+      for (var element in widget.observable.value) {
         if (!itemList.contains(element)) {
-          await _refresh();
           final index = widget.observable.value.indexOf(element);
           _listKey.currentState.insertItem(index);
         }
-      });
-    } else {
-      _refresh();
+      }
     }
+    _refresh();
   }
 
   Future _refresh() async {
     await Future.delayed(Duration.zero);
     itemList.clear();
-    widget.observable.value.forEach((element) {
-      itemList.add(element);
-    });
+    widget.observable.value.forEach(itemList.add);
     setState(() {});
   }
 }

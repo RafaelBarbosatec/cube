@@ -22,7 +22,8 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 ```dart
 
 class CounterCube extends Cube {
-  final count = ObservableValue<int>(value: 0); // To List use `ObservableList`.
+    final count = ObservableValue<int>(value: 0); // To List use `ObservableList`.
+    // or final count 0.obsValue;
 
     @override
     void onReady(Object arguments) {

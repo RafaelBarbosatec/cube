@@ -26,7 +26,7 @@ extension ObservableValueExtensions on ObservableValue {
 }
 
 /// Extension to facilitate create ObservableValue
-extension ObservableExtension<T> on T {
+extension ObservableValueExtension<T> on T {
   /// Create ObservableValue<T>
   ObservableValue<T> get obsValue => ObservableValue<T>(value: this);
 }

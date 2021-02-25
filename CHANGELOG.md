@@ -1,3 +1,7 @@
+# 0.10.9
+
+- add extension `obsValue` to create `ObservableValue` from any object
+
 # 0.10.8
 
 - update project to comply with `effective_dart`

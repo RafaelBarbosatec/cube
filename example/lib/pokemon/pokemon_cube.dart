@@ -8,9 +8,9 @@ class PokemonCube extends Cube {
 
   PokemonCube(this.repository);
 
-  final list = ObservableList<Pokemon>(value: []);
-  final progress = ObservableValue<bool>(value: false);
-  final snackBarController = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
+  final list = List<Pokemon>().obsValue;
+  final progress = false.obsValue;
+  final snackBarController = CFeedBackControl<String>().obsValue;
 
   @override
   void onReady(Object arguments) {
@@ -23,13 +23,13 @@ class PokemonCube extends Cube {
     int page = 0;
     if (isMore) page = (list.length ~/ LIMIT_PAGE) + 1;
     progress.update(true);
-    repository
-        .getPokemonList(page: page, limit: LIMIT_PAGE)
-        .then((value) {
-          if (isMore) return list.addAll(value);
-          list.update(value);
-        })
-        .catchError((error) => snackBarController.update(CFeedBackControl(show: true, data: error.toString())))
-        .whenComplete(() => progress.update(false));
+    repository.getPokemonList(page: page, limit: LIMIT_PAGE).then((value) {
+      if (isMore) return list.addAll(value);
+      list.update(value);
+    }).catchError((error) {
+      snackBarController.modify(
+        (value) => value.copyWith(show: true, data: error.toString()),
+      );
+    }).whenComplete(() => progress.update(false));
   }
 }

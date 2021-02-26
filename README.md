@@ -268,7 +268,11 @@ FeedBackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
        CDialogController<String>(
            observable: cube.dialogControl,
-           ...
+           // dismissible: bool,
+           // barrierColor: Color,
+           // routeSettings: RouteSettings,
+           // useRootNavigator: bool,
+           // useSafeArea: bool,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('Dialog: $data')));
            },
@@ -277,7 +281,17 @@ FeedBackManager(
    bottomSheetControllers: [  // You can add as many different BottomSheets as you like
        CBottomSheetController<String>(
            observable: cube.bottomSheetControl,
-           ...
+           // dismissible: bool,
+           // useRootNavigator: bool,
+           // routeSettings: RouteSettings,
+           // barrierColor: Color,
+           // backgroundColor: Color,
+           // elevation: double,
+           // shape: ShapeBorder,
+           // clipBehavior: Clip,
+           // enableDrag: bool,
+           // isScrollControlled: bool,
+           // useSafeArea: bool,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
            },
@@ -286,7 +300,14 @@ FeedBackManager(
    snackBarControllers: [
        CSnackBarController<String>(
            observable: cube.snackBarControl,
-           ...
+           // shape: ShapeBorder,
+           // elevation: double,
+           // backgroundColor: Color,
+           // margin: EdgeInsetsGeometry,
+           // padding: EdgeInsetsGeometry,
+           // duration: Duration,
+           // action: SnackBarAction,
+           // behavior: SnackBarBehavior,
            builder: (data, context) {
                return SnackBar(content: Text(data));
            },

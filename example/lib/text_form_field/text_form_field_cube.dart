@@ -1,7 +1,7 @@
 import 'package:cubes/cubes.dart';
 
 class TextFormFieldCube extends Cube {
-  final ObservableValue<CTextFormFieldControl> textFieldControl = ObservableValue(value: CTextFormFieldControl());
+  final textFieldControl = CTextFormFieldControl().obsValue;
 
   void cleanText() {
     textFieldControl.modify((value) => value.copyWith(text: ''));

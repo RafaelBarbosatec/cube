@@ -1,6 +1,7 @@
-import 'package:cubes/src/observable/observable_value.dart';
-import 'package:cubes/src/util/state_mixin.dart';
 import 'package:flutter/material.dart';
+
+import '../observable/observable_value.dart';
+import '../util/state_mixin.dart';
 
 typedef ObserverBuilder<T> = Widget Function(T value);
 typedef WhenBuild<T> = bool Function(T last, T next);

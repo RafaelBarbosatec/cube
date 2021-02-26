@@ -10,7 +10,7 @@ Simple State Manager with dependency injection and no code generation required.
 
 With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
 
-MVVM based architecture.
+No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) due to its simplicity and immediate updating of the observable values.
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
@@ -22,7 +22,8 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 ```dart
 
 class CounterCube extends Cube {
-  final count = ObservableValue<int>(value: 0); // To List use `ObservableList`.
+    final count = 0.obsValue;
+    // or final count = ObservableValue<int>(value: 0); in this case to List use `ObservableList`.
 
     @override
     void onReady(Object arguments) {
@@ -254,9 +255,9 @@ Creating observable to control:
 
 ``` dart
 
-final bottomSheetControl = ObservableValue<CFeedBackControl<String>(value: CFeedBackControl(data:'test'));
-final dialogControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl(data:'test'));
-final snackBarControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
+final bottomSheetControl = CFeedBackControl(data:'test').obsValue;
+final dialogControl = CFeedBackControl(data:'test').obsValue;
+final snackBarControl = CFeedBackControl<String>().obsValue;
 ```
 
 Now just add the widget to your tree and settings:
@@ -267,7 +268,11 @@ FeedBackManager(
    dialogControllers:[  // You can add as many different dialogs as you like
        CDialogController<String>(
            observable: cube.dialogControl,
-           ...
+           // dismissible: bool,
+           // barrierColor: Color,
+           // routeSettings: RouteSettings,
+           // useRootNavigator: bool,
+           // useSafeArea: bool,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('Dialog: $data')));
            },
@@ -276,7 +281,17 @@ FeedBackManager(
    bottomSheetControllers: [  // You can add as many different BottomSheets as you like
        CBottomSheetController<String>(
            observable: cube.bottomSheetControl,
-           ...
+           // dismissible: bool,
+           // useRootNavigator: bool,
+           // routeSettings: RouteSettings,
+           // barrierColor: Color,
+           // backgroundColor: Color,
+           // elevation: double,
+           // shape: ShapeBorder,
+           // clipBehavior: Clip,
+           // enableDrag: bool,
+           // isScrollControlled: bool,
+           // useSafeArea: bool,
            builder: (data, context) {
                return Container(height: 200, child: Center(child: Text('BottomSheet: $data')));
            },
@@ -285,7 +300,6 @@ FeedBackManager(
    snackBarControllers: [
        CSnackBarController<String>(
            observable: cube.snackBarControl,
-           ...
            builder: (data, context) {
                return SnackBar(content: Text(data));
            },
@@ -317,7 +331,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
 
  /// code in Cube
 
- final ObservableValue<CTextFormFieldControl> textFieldControl = ObservableValue(value: CTextFormFieldControl());
+ final textFieldControl = CTextFormFieldControl().obsValue;
 
  //  textFieldControl.value.text; // get text
  //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text
@@ -335,6 +349,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
      iconShow: Icon(Icons.visibility_outlined),
    ),
    decoration: InputDecoration(hintText: 'Type something'),
+   // ... All other TextFormField attributes
  ),
 
 ```
@@ -408,18 +423,21 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
   class MyInjector extends Injector {
    @override
     T getDependency<T>({String dependencyName}) {
+      // your implementation
     }
 
     @override
     void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+      // your implementation
     }
 
     @override
     void reset() {
+      // your implementation
     }
   }
 
-  Cubes.setCustomInjector(MyInjector());
+  Cubes().injector = MyInjector();
 
 ```
 

@@ -1,24 +1,36 @@
-import 'package:cubes/src/localization/cubes_localization.dart';
+import 'dart:ui';
 
+import 'cubes_localization.dart';
+
+/// Interface used to get locate and get string from json file
 abstract class CGetterStringLocation {
+  /// Get current locate loaded
+  Locale currentLocale();
+
+  /// Get String from json file
   String getString(String key, {Map<String, String> params});
 }
 
 /// Responsible for helping us get the words from the locate files
 class CStringsLocation implements CGetterStringLocation {
-  static final CStringsLocation instance = CStringsLocation._internal();
+  static final CStringsLocation _instance = CStringsLocation._internal();
 
-  CubesLocalization _myLocalizations;
+  /// Factory to get instance singleton of the CStringsLocation
+  factory CStringsLocation() => _instance;
+
+  /// Instance of the CubesLocalization
+  CubesLocalization cubesLocalisation;
 
   CStringsLocation._internal();
 
-  static void configure(CubesLocalization location) {
-    instance._myLocalizations = location;
-  }
-
   String getString(String key, {Map<String, String> params}) {
-    String str = _myLocalizations?.trans(key);
+    var str = cubesLocalisation?.trans(key);
     params?.forEach((key, value) => str = str?.replaceAll(key, value));
     return str;
+  }
+
+  @override
+  Locale currentLocale() {
+    return cubesLocalisation?.locale;
   }
 }

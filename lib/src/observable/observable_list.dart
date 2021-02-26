@@ -1,8 +1,10 @@
-import 'package:cubes/src/observable/observable_value.dart';
+import 'observable_value.dart';
 
+/// Class that represents our list-type observable
 class ObservableList<T> extends ObservableValue<List<T>> {
+  /// Constructor to init ObservableValue with value
   ObservableList({Iterable<T> value}) {
-    this.setInitialValue(value);
+    setValueWithoutNotify = value;
   }
 
   /// add element in list and notify listeners
@@ -19,7 +21,7 @@ class ObservableList<T> extends ObservableValue<List<T>> {
 
   /// clear list and notify listeners
   void clear() {
-    this.value?.clear();
+    value?.clear();
     notifyListeners();
   }
 
@@ -31,66 +33,66 @@ class ObservableList<T> extends ObservableValue<List<T>> {
 
   /// remove element by index in list and notify listeners
   void removeAt(int index) {
-    this.value?.removeAt(index);
+    value?.removeAt(index);
     notifyListeners();
   }
 
   /// remove element in list and notify listeners
   void removeWhere(bool test(T element)) {
-    this.value?.removeWhere(test);
+    value?.removeWhere(test);
     notifyListeners();
   }
 
   /// remove last element in list and notify listeners
   void removeLast() {
-    this.value?.removeLast();
+    value?.removeLast();
     notifyListeners();
   }
 
   /// remove element by range in list and notify listeners
   void removeRange(int start, int end) {
-    this.value?.removeRange(start, end);
+    value?.removeRange(start, end);
     notifyListeners();
   }
 
   /// insert element in the index
   void insert(int index, T element) {
-    this.value?.insert(index, element);
+    value?.insert(index, element);
     notifyListeners();
   }
 
   /// insert element list in the index
   void insertAll(int index, Iterable<T> iterable) {
-    this.value?.insertAll(index, iterable);
+    value?.insertAll(index, iterable);
     notifyListeners();
   }
 
   /// replace elements in list and notify listeners
   void replaceRange(int start, int end, Iterable<T> replacement) {
-    this.value?.replaceRange(start, end, replacement);
+    value?.replaceRange(start, end, replacement);
     notifyListeners();
   }
 
   /// use to modify specific item in the list
   void modifyItem(int index, T modify(T value)) {
-    if (this.value != null && this.value.length > index) {
-      this.value[index] = modify(this.value[index]);
+    if (value != null && value.length > index) {
+      value[index] = modify(value[index]);
       notifyListeners();
     }
   }
 
   /// get if list is empty
-  bool get isEmpty => this.value?.isEmpty;
+  bool get isEmpty => value?.isEmpty;
 
   /// get if list is not empty
   bool get isNotEmpty => !isEmpty;
 
   /// get size list
-  int get length => this.value?.length;
+  int get length => value?.length;
 
   /// get first item
-  T get first => this.value?.first;
+  T get first => value?.first;
 
   /// get last item
-  T get last => this.value?.last;
+  T get last => value?.last;
 }

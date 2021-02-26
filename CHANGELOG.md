@@ -1,3 +1,9 @@
+# 0.10.8
+
+- update project to comply with `effective_dart`
+- improvements in `CubesLocalizationDelegate`
+- add extension `obsValue` to create `ObservableValue` from any object
+
 # 0.10.7+1
 
 - update `readme`

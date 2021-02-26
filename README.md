@@ -349,6 +349,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
      iconShow: Icon(Icons.visibility_outlined),
    ),
    decoration: InputDecoration(hintText: 'Type something'),
+   // ... All other TextFormField attributes
  ),
 
 ```

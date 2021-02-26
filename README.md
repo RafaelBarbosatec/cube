@@ -300,14 +300,6 @@ FeedBackManager(
    snackBarControllers: [
        CSnackBarController<String>(
            observable: cube.snackBarControl,
-           // shape: ShapeBorder,
-           // elevation: double,
-           // backgroundColor: Color,
-           // margin: EdgeInsetsGeometry,
-           // padding: EdgeInsetsGeometry,
-           // duration: Duration,
-           // action: SnackBarAction,
-           // behavior: SnackBarBehavior,
            builder: (data, context) {
                return SnackBar(content: Text(data));
            },

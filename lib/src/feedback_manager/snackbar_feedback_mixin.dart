@@ -7,16 +7,8 @@ typedef SnackBarByDataBuilder<T> = SnackBar Function(T data, BuildContext contex
 
 /// Class responsible for configuring the SnackBars
 class CSnackBarController<T> {
-  final SnackBarAction action;
   final ObservableValue<CFeedBackControl<T>> observable;
   final SnackBarByDataBuilder<T> builder;
-  final Duration duration;
-  final ShapeBorder shape;
-  final double elevation;
-  final Color backgroundColor;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
-  final SnackBarBehavior behavior;
 
   SnackBar doBuild(T data, BuildContext context) {
     return builder(data, context);
@@ -25,14 +17,6 @@ class CSnackBarController<T> {
   CSnackBarController({
     @required this.observable,
     @required this.builder,
-    this.action,
-    this.duration = const Duration(seconds: 4),
-    this.shape,
-    this.elevation,
-    this.backgroundColor,
-    this.margin,
-    this.padding,
-    this.behavior,
   });
 }
 
@@ -67,8 +51,12 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   /// Displays SnackBar with the added settings.
   void _showSnackBar(CSnackBarController element) async {
     _mapSnackBarIsShowing[element] = true;
-    Scaffold.of(context)?.showSnackBar(element.doBuild(element.observable.value.data, context));
-    await Future.delayed(element.duration);
+
+    final snackBar = element.doBuild(element.observable.value.data, context);
+    Scaffold.of(context)?.showSnackBar(snackBar);
+
+    await Future.delayed(snackBar.duration);
+
     _mapSnackBarIsShowing[element] = false;
     element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
   }

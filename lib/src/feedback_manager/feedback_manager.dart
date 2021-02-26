@@ -15,6 +15,7 @@ class CFeedBackControl<T> {
   final bool show;
   final T data;
 
+  /// Constructor of the CFeedBackControl
   CFeedBackControl({this.show = false, this.data});
 
   CFeedBackControl<T> copyWith({bool show, T data}) {

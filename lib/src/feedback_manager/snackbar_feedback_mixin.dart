@@ -10,10 +10,12 @@ class CSnackBarController<T> {
   final ObservableValue<CFeedBackControl<T>> observable;
   final SnackBarByDataBuilder<T> builder;
 
+  /// Method used to get SnackBar with data type
   SnackBar doBuild(T data, BuildContext context) {
     return builder(data, context);
   }
 
+  /// Constructor of the CSnackBarController
   CSnackBarController({
     @required this.observable,
     @required this.builder,

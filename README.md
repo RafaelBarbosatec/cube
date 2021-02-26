@@ -255,9 +255,9 @@ Creating observable to control:
 
 ``` dart
 
-final bottomSheetControl = ObservableValue<CFeedBackControl<String>(value: CFeedBackControl(data:'test'));
-final dialogControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl(data:'test'));
-final snackBarControl = ObservableValue<CFeedBackControl<String>>(value: CFeedBackControl());
+final bottomSheetControl = CFeedBackControl(data:'test').obsValue;
+final dialogControl = CFeedBackControl(data:'test').obsValue;
+final snackBarControl = CFeedBackControl<String>().obsValue;
 ```
 
 Now just add the widget to your tree and settings:

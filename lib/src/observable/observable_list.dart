@@ -1,6 +1,8 @@
 import 'observable_value.dart';
 
+/// Class that represents our list-type observable
 class ObservableList<T> extends ObservableValue<List<T>> {
+  /// Constructor to init ObservableValue with value
   ObservableList({Iterable<T> value}) {
     setValueWithoutNotify = value;
   }

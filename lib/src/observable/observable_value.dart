@@ -2,17 +2,23 @@ import 'package:flutter/foundation.dart';
 
 typedef ModifyValue<T> = T Function(T value);
 
+/// Class that represents our observable
 class ObservableValue<T> extends ChangeNotifier {
   T _value;
   T _lastValue;
 
+  /// Constructor to init ObservableValue with value
   ObservableValue({T value}) {
     _value = value;
   }
 
+  /// Get current value of the observable
   T get value => _value;
+
+  /// Get las value of the observable
   T get lastValue => _lastValue;
 
+  /// Method uses to set value without notify listeners
   // ignore: avoid_setters_without_getters
   set setValueWithoutNotify(T value) => _value = value;
 

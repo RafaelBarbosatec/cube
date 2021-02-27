@@ -7,7 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'cubes_localization.dart';
 
 /// Delegate responsible for internationalization from json files
-class CubesLocalizationDelegate extends LocalizationsDelegate<CubesLocalization> {
+class CubesLocalizationDelegate
+    extends LocalizationsDelegate<CubesLocalization> {
   /// primary constructor of the CubesLocalizationDelegate
   const CubesLocalizationDelegate(
     this.supportedLocations, {
@@ -23,7 +24,9 @@ class CubesLocalizationDelegate extends LocalizationsDelegate<CubesLocalization>
 
   @override
   bool isSupported(Locale locale) {
-    return supportedLocations.map((e) => e.languageCode).contains(locale.languageCode);
+    return supportedLocations
+        .map((e) => e.languageCode)
+        .contains(locale.languageCode);
   }
 
   /// Get delegates to run internationalization

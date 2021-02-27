@@ -18,7 +18,9 @@ class CubeBuilderRobot {
   CubeExample _cubeReturned;
   CubeAction _actionReturnedInView;
   CubeExample _cubeMock;
-  final Map _argumentTest = {'cube': 'Simple State Manager with dependency injection and no code generation required.'};
+  final Map _argumentTest = {
+    'cube': 'Simple State Manager with dependency injection.'
+  };
   CubeBuilderRobot(this.tester);
 
   void _setupInjections({bool useMock = true}) {

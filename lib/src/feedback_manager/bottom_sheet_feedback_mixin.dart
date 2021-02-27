@@ -40,7 +40,8 @@ class CBottomSheetController<T> {
   });
 }
 
-/// Mixin responsible for adding listeners to ObservableValue and controlling the display of BottomSheets
+/// Mixin responsible for adding listeners to ObservableValue and controlling
+/// the display of BottomSheets
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = {};
@@ -64,7 +65,8 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     if (!mounted) return;
     if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
       _showBottomSheet(element);
-    } else if (!element.observable.value.show && _mapBottomSheetIsShowing[element]) {
+    } else if (!element.observable.value.show &&
+        _mapBottomSheetIsShowing[element]) {
       _mapBottomSheetIsShowing[element] = false;
       Navigator.pop(context);
     }
@@ -92,12 +94,14 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
       ),
     );
     _mapBottomSheetIsShowing[element] = false;
-    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+    element.observable.setValueWithoutNotify =
+        element.observable.value.copyWith(show: false);
   }
 
   void _registerBottomSheet(CBottomSheetController element) {
     _mapBottomSheetIsShowing[element] = false;
-    _mapBottomSheetListeners[element] = () => _listenerDialogController(element);
+    _mapBottomSheetListeners[element] =
+        () => _listenerDialogController(element);
     element.observable.addListener(_mapBottomSheetListeners[element]);
   }
 

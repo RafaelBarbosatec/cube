@@ -48,13 +48,15 @@ class ObservableValue<T> extends ChangeNotifier {
     try {
       super.dispose();
     } on Exception catch (_) {
-      print('Once you have called dispose() on a $runtimeType, it can no longer be used.');
+      print('Once you have called dispose() on a $runtimeType,'
+          ' it can no longer be used.');
     }
   }
 
   /// uses to update value
   void update(T value) => _setValueAndNotify(value);
 
-  /// user do modify value. recommended return new instance (use copyWith if is possible).
+  /// user do modify value. recommended return new instance
+  /// (use copyWith if is possible).
   void modify(ModifyValue<T> modify) => _setValueAndNotify(modify(value));
 }

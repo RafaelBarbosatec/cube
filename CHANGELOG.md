@@ -1,3 +1,7 @@
+# 0.10.8+1
+
+- formatting dart code
+
 # 0.10.8
 
 - update project to comply with `effective_dart`

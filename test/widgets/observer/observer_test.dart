@@ -17,7 +17,8 @@ void main() {
   });
 
   // ignore: lines_longer_than_80_chars
-  testWidgets('Should update render with new value using modify', (tester) async {
+  testWidgets('Should update render with new value using modify',
+      (tester) async {
     final robot = ObserverRobot(tester);
     await robot.setup();
     robot.incrementValueWithModify(25);
@@ -25,7 +26,8 @@ void main() {
     await robot.assetValue(30);
   });
 
-  testWidgets('Should note update render when not accept in WhenBuild', (tester) async {
+  testWidgets('Should note update render when not accept in WhenBuild',
+      (tester) async {
     final robot = ObserverRobot(tester);
     await robot.setup();
     robot.whenBuild = ((lastV, newV) {

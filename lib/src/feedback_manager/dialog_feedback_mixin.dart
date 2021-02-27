@@ -28,7 +28,8 @@ class CDialogController<T> {
   });
 }
 
-/// Mixin responsible for adding listeners to ObservableValue and controlling the display of dialogs
+/// Mixin responsible for adding listeners to ObservableValue and controlling
+/// the display of dialogs
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CDialogController, bool> _mapDialogIsShowing = {};
@@ -76,7 +77,8 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
           );
         });
     _mapDialogIsShowing[element] = false;
-    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+    element.observable.setValueWithoutNotify =
+        element.observable.value.copyWith(show: false);
   }
 
   void _registerDialog(CDialogController element) {

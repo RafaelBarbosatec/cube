@@ -1,6 +1,6 @@
-import 'package:cubes/cubes.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../cubes.dart';
 import '../../observable/observable_value.dart';
 import '../../widgets/observer.dart';
 

@@ -13,7 +13,8 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   bool dispose(C cube) => true;
 
   /// Arguments that will be sent to the cube through the onReady () method
-  /// If this argument is not set, ModalRoute.of(context)?.settings?.Arguments will be sent
+  /// If this argument is not set,
+  /// ModalRoute.of(context)?.settings?.Arguments will be sent
   Object get arguments => null;
 
   @protected

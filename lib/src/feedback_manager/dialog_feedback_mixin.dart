@@ -28,7 +28,8 @@ class CDialogController<T> {
   });
 }
 
-/// Mixin responsible for adding listeners to ObservableValue and controlling the display of dialogs
+/// Mixin responsible for adding listeners to ObservableValue and controlling
+/// the display of dialogs
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CDialogController, bool> _mapDialogIsShowing = {};

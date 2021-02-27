@@ -23,7 +23,8 @@ class CSnackBarController<T> {
   });
 }
 
-/// Mixin responsible for adding listeners to ObservableValue and controlling the display of SnackBars
+/// Mixin responsible for adding listeners to ObservableValue and controlling
+/// the display of SnackBars
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   List<CSnackBarController> snackBarControllers;
   final Map<CSnackBarController, bool> _mapSnackBarIsShowing = {};

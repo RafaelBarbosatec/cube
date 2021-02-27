@@ -6,7 +6,8 @@ import '../util/state_mixin.dart';
 typedef ObserverBuilder<T> = Widget Function(T value);
 typedef WhenBuild<T> = bool Function(T last, T next);
 
-/// Widget responsible for building another widget through ObservableValue updates
+/// Widget responsible for building another widget
+/// through ObservableValue updates
 class CObserver<T> extends StatefulWidget {
   const CObserver({
     Key key,

@@ -31,7 +31,7 @@ class CubeWidgetRobot {
   static Cube cubeReturned;
   static CubeAction actionReturned;
   static final Map _argumentTest = {
-    'cube': 'Simple State Manager with dependency injection and no code generation required.'
+    'cube': 'Simple State Manager with dependency injection'
   };
 
   Future setup({bool useMock = true}) async {

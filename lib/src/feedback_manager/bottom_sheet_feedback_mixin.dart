@@ -40,7 +40,8 @@ class CBottomSheetController<T> {
   });
 }
 
-/// Mixin responsible for adding listeners to ObservableValue and controlling the display of BottomSheets
+/// Mixin responsible for adding listeners to ObservableValue and controlling
+/// the display of BottomSheets
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = {};

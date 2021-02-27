@@ -18,7 +18,8 @@ abstract class Cube {
   bool _disposed = false;
 
   /// called when the view is ready
-  /// [arguments] if passed through CubeBuilder, if not, get arguments from `ModalRoute.of(context).settings.arguments;`
+  /// [arguments] if passed through CubeBuilder, if not, get arguments
+  /// from `ModalRoute.of(context).settings.arguments;`
   void onReady(Object arguments) {}
 
   /// called when the cube is destroyed
@@ -87,8 +88,9 @@ abstract class Cube {
   @protected
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
     if (_listenersObservableMap == null) _listenersObservableMap = {};
-    _listenersObservableMap[observableValue] =
-        () => listener(observableValue.value);
+    _listenersObservableMap[observableValue] = () {
+      listener(observableValue.value);
+    };
     observableValue.addListener(_listenersObservableMap[observableValue]);
   }
 

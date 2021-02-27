@@ -58,7 +58,8 @@ class CObscureTextButtonConfiguration {
   }) : show = false;
 }
 
-/// CTextFormField is a TextFormField with modifications to use ObservableValue to control.
+/// CTextFormField is a TextFormField with modifications to use
+/// ObservableValue to control.
 class CTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final ObservableValue<CTextFormFieldControl> observable;

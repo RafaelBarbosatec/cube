@@ -26,7 +26,8 @@ class CFeedBackControl<T> {
   }
 }
 
-/// Widget that allows us to control Dialog, BottomSheet and SnackBars using ObservableValue
+/// Widget that allows us to control Dialog, BottomSheet and SnackBars
+/// using ObservableValue
 class CFeedBackManager extends StatefulWidget {
   final Widget child;
 

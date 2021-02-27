@@ -58,6 +58,7 @@ abstract class Cube {
   ///      () => print(count.value),
   ///      duration: Duration(seconds: 1),
   ///    );
+  ///
   @protected
   void runDebounce(
     dynamic identify,

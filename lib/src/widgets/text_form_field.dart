@@ -110,7 +110,8 @@ class CTextFormField extends StatefulWidget {
     @required this.observable,
     this.decoration = const InputDecoration(),
     this.validator,
-    this.obscureTextButtonConfiguration = const CObscureTextButtonConfiguration.none(),
+    this.obscureTextButtonConfiguration =
+        const CObscureTextButtonConfiguration.none(),
     this.onChanged,
     this.textAlign = TextAlign.start,
     this.autovalidateMode,
@@ -187,7 +188,8 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
     postFrame(() {
       if (control.text != null && control.text != _controller.text) {
         _controller.text = control.text;
-        _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
+        _controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: _controller.text.length));
       }
 
       if (control.enable != null && control.enable != _enable) {
@@ -213,7 +215,8 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
 
   void _controllerListener() {
     if (widget.observable.value.text != _controller.text) {
-      widget.observable.modify((value) => value.copyWith(text: _controller.text));
+      widget.observable
+          .modify((value) => value.copyWith(text: _controller.text));
     }
   }
 
@@ -276,17 +279,21 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
 
   Widget _buildSuffixIcon() {
     if (widget?.obscureTextButtonConfiguration?.show == true &&
-        widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.right) {
+        widget?.obscureTextButtonConfiguration?.align ==
+            CObscureTextAlign.right) {
       var icon;
       if (_obscureText) {
-        icon = widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined);
+        icon = widget?.obscureTextButtonConfiguration?.iconShow ??
+            Icon(Icons.visibility_outlined);
       } else {
-        icon = widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+        icon = widget?.obscureTextButtonConfiguration?.iconHide ??
+            Icon(Icons.visibility_off_outlined);
       }
       return IconButton(
         icon: icon,
         onPressed: () {
-          widget.observable.modify((value) => value.copyWith(obscureText: !value.obscureText));
+          widget.observable.modify(
+              (value) => value.copyWith(obscureText: !value.obscureText));
         },
       );
     } else {
@@ -296,17 +303,21 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
 
   Widget _buildPrefixIcon() {
     if (widget?.obscureTextButtonConfiguration?.show == true &&
-        widget?.obscureTextButtonConfiguration?.align == CObscureTextAlign.left) {
+        widget?.obscureTextButtonConfiguration?.align ==
+            CObscureTextAlign.left) {
       var icon;
       if (_obscureText) {
-        icon = widget?.obscureTextButtonConfiguration?.iconShow ?? Icon(Icons.visibility_outlined);
+        icon = widget?.obscureTextButtonConfiguration?.iconShow ??
+            Icon(Icons.visibility_outlined);
       } else {
-        icon = widget?.obscureTextButtonConfiguration?.iconHide ?? Icon(Icons.visibility_off_outlined);
+        icon = widget?.obscureTextButtonConfiguration?.iconHide ??
+            Icon(Icons.visibility_off_outlined);
       }
       return IconButton(
         icon: icon,
         onPressed: () {
-          widget.observable.modify((value) => value.copyWith(obscureText: !value.obscureText));
+          widget.observable.modify(
+              (value) => value.copyWith(obscureText: !value.obscureText));
         },
       );
     } else {

@@ -17,5 +17,6 @@ class CubeProvider<C extends Cube> extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant CubeProvider oldWidget) => oldWidget.cube != cube;
+  bool updateShouldNotify(covariant CubeProvider oldWidget) =>
+      oldWidget.cube != cube;
 }

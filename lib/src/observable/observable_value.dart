@@ -48,7 +48,8 @@ class ObservableValue<T> extends ChangeNotifier {
     try {
       super.dispose();
     } on Exception catch (_) {
-      print('Once you have called dispose() on a $runtimeType, it can no longer be used.');
+      print(
+          'Once you have called dispose() on a $runtimeType, it can no longer be used.');
     }
   }
 

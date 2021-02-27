@@ -76,7 +76,8 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
           );
         });
     _mapDialogIsShowing[element] = false;
-    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+    element.observable.setValueWithoutNotify =
+        element.observable.value.copyWith(show: false);
   }
 
   void _registerDialog(CDialogController element) {

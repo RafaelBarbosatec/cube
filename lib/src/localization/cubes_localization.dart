@@ -23,7 +23,8 @@ class CubesLocalization {
 
   /// Load json according to locale
   Future<bool> load() async {
-    var data = await rootBundle.loadString('$pathFiles${locale.languageCode}.json');
+    var data =
+        await rootBundle.loadString('$pathFiles${locale.languageCode}.json');
     Map<String, dynamic> _result = json.decode(data);
     _sentences.clear();
     _result.forEach((key, dynamic value) {

@@ -12,11 +12,14 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void registerDependency<T>(CDependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+  void registerDependency<T>(CDependencyInjectorBuilder<T> builder,
+      {String dependencyName, bool isSingleton = false}) {
     if (isSingleton) {
-      _getIt.registerLazySingleton<T>(() => builder(this), instanceName: dependencyName);
+      _getIt.registerLazySingleton<T>(() => builder(this),
+          instanceName: dependencyName);
     } else {
-      _getIt.registerFactory<T>(() => builder(this), instanceName: dependencyName);
+      _getIt.registerFactory<T>(() => builder(this),
+          instanceName: dependencyName);
     }
   }
 

@@ -48,14 +48,17 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
       return AnimatedSwitcher(
         duration: widget.duration,
         transitionBuilder: widget.transitionBuilder,
-        child: widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink(),
+        child: widgetObserver.builder(widget.observable.value) ??
+            SizedBox.shrink(),
       );
     }
     return widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink();
   }
 
   void _listener() {
-    if (widgetObserver?.when?.call(widget.observable.lastValue, widget.observable.value) ?? true) {
+    if (widgetObserver?.when
+            ?.call(widget.observable.lastValue, widget.observable.value) ??
+        true) {
       postFrame(() => setState(() {}));
     }
   }

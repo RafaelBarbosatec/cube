@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../observable/observable_value.dart';
 import 'feedback_manager.dart';
 
-typedef SnackBarByDataBuilder<T> = SnackBar Function(T data, BuildContext context);
+typedef SnackBarByDataBuilder<T> = SnackBar Function(
+    T data, BuildContext context);
 
 /// Class responsible for configuring the SnackBars
 class CSnackBarController<T> {
@@ -44,7 +45,8 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     if (!mounted) return;
     if (element.observable.value.show && !_mapSnackBarIsShowing[element]) {
       _showSnackBar(element);
-    } else if (!element.observable.value.show && _mapSnackBarIsShowing[element]) {
+    } else if (!element.observable.value.show &&
+        _mapSnackBarIsShowing[element]) {
       _mapSnackBarIsShowing[element] = false;
       Scaffold.of(context)?.hideCurrentSnackBar();
     }
@@ -60,7 +62,8 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     await Future.delayed(snackBar.duration);
 
     _mapSnackBarIsShowing[element] = false;
-    element.observable.setValueWithoutNotify = element.observable.value.copyWith(show: false);
+    element.observable.setValueWithoutNotify =
+        element.observable.value.copyWith(show: false);
   }
 
   void _registerSnackBar(CSnackBarController element) {

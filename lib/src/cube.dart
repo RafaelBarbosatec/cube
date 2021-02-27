@@ -6,7 +6,8 @@ import 'util/debouncer.dart';
 /// Base to Actions
 abstract class CubeAction {}
 
-typedef OnActionChanged<A extends Cube, CubeAction> = void Function(A valueA, CubeAction valueB);
+typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
+    A valueA, CubeAction valueB);
 
 /// Base to create Cube
 abstract class Cube {
@@ -37,7 +38,8 @@ abstract class Cube {
   }
 
   /// Remove OnActionListener
-  void removeOnActionListener<T extends Cube>(OnActionChanged<T, CubeAction> listener) {
+  void removeOnActionListener<T extends Cube>(
+      OnActionChanged<T, CubeAction> listener) {
     _onActionListeners?.remove(listener);
   }
 
@@ -85,7 +87,8 @@ abstract class Cube {
   @protected
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
     if (_listenersObservableMap == null) _listenersObservableMap = {};
-    _listenersObservableMap[observableValue] = () => listener(observableValue.value);
+    _listenersObservableMap[observableValue] =
+        () => listener(observableValue.value);
     observableValue.addListener(_listenersObservableMap[observableValue]);
   }
 

@@ -34,7 +34,8 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
 }
 
-class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMixin {
+class _CubeBuilderState<C extends Cube> extends State<CubeBuilder>
+    with StateMixin {
   C cube;
 
   @override
@@ -65,7 +66,8 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder> with StateMix
   }
 
   void _ready(_) {
-    var arguments = widget.arguments ?? ModalRoute.of(context)?.settings?.arguments;
+    var arguments =
+        widget.arguments ?? ModalRoute.of(context)?.settings?.arguments;
     cube.onReady(arguments);
   }
 

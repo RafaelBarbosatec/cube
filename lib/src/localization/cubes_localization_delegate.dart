@@ -13,8 +13,7 @@ class CubesLocalizationDelegate
   const CubesLocalizationDelegate(
     this.supportedLocations, {
     this.pathFiles = 'lang/',
-  })  : assert(supportedLocations != null),
-        assert(supportedLocations.length > 0);
+  }) : assert(supportedLocations.length > 0);
 
   /// path where the json files are located
   final String pathFiles;

@@ -1,7 +1,7 @@
 import 'package:cubes/cubes.dart';
 
 class TextFormFieldCube extends Cube {
-  final textFieldControl = CTextFormFieldControl().obsValue;
+  final textFieldControl = CTextFormFieldControl.empty().obsValue;
 
   void cleanText() {
     textFieldControl.modify((value) => value.copyWith(text: ''));
@@ -24,6 +24,7 @@ class TextFormFieldCube extends Cube {
   }
 
   void changeObscureText() {
-    textFieldControl.modify((value) => value.copyWith(obscureText: !value.obscureText));
+    textFieldControl
+        .modify((value) => value.copyWith(obscureText: !value.obscureText));
   }
 }

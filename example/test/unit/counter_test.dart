@@ -9,13 +9,13 @@ import 'package:examplecube/counter/counter_cube.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  CounterCube cube;
+  late CounterCube cube;
   setUp(() {
     cube = CounterCube();
   });
 
   tearDown(() {
-    cube?.dispose();
+    cube.dispose();
   });
   test('initial value', () {
     expect(cube.count.value, 0);

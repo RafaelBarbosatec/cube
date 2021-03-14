@@ -2,18 +2,18 @@ import 'package:examplecube/pokemon/repository/model/pokemon.dart';
 import 'package:flutter/material.dart';
 
 class PokemonItemWidget extends StatefulWidget {
-  final Pokemon item;
+  final Pokemon? item;
 
-  final Function(Pokemon) onClick;
+  final Function(Pokemon?)? onClick;
 
-  const PokemonItemWidget({Key key, this.item, this.onClick}) : super(key: key);
+  const PokemonItemWidget({Key? key, this.item, this.onClick}) : super(key: key);
   @override
   _PokemonItemWidgetState createState() => _PokemonItemWidgetState();
 }
 
 class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<Offset> _animationSlide;
+  late AnimationController _controller;
+  late Animation<Offset> _animationSlide;
 
   @override
   void initState() {
@@ -40,15 +40,15 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProvid
   ListTile _getListTile() {
     return new ListTile(
       contentPadding: const EdgeInsets.all(10),
-      leading: _getLeadingWidget(widget.item.thumbnailImage),
-      title: _getTittleWidget(widget.item.name),
+      leading: _getLeadingWidget(widget.item!.thumbnailImage!),
+      title: _getTittleWidget(widget.item!.name!),
       subtitle: Text(
-        widget.item.description,
+        widget.item!.description!,
         maxLines: 3,
       ),
       onTap: () {
         if (widget.onClick != null) {
-          widget.onClick(widget.item);
+          widget.onClick!(widget.item);
         }
       },
     );

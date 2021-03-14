@@ -1,7 +1,7 @@
 import 'package:cubes/cubes.dart';
 
 class MsgAction extends CubeAction {
-  final String text;
+  final String? text;
 
   MsgAction({this.text});
 
@@ -18,7 +18,7 @@ class CounterCube extends Cube {
   CounterCube({this.withDebounce = true});
 
   @override
-  void onReady(Object arguments) {
+  void onReady(Object? arguments) {
     // do anythings when view is ready
     super.onReady(arguments);
   }

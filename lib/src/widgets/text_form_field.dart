@@ -18,6 +18,12 @@ class CTextFormFieldControl {
     this.obscureText = false,
   });
 
+  CTextFormFieldControl.empty({
+    this.enable = true,
+    this.error,
+    this.obscureText = false,
+  }) : text = '';
+
   CTextFormFieldControl copyWith({
     String? text,
     bool? enable,

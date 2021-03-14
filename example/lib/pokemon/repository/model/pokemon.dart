@@ -1,19 +1,19 @@
 class Pokemon {
-  List<String> abilities;
-  String detailPageURL;
-  double weight;
-  List<String> weakness;
-  String number;
-  int height;
-  String collectiblesSlug;
-  String featured;
-  String slug;
-  String description;
-  String name;
-  String thumbnailAltText;
-  String thumbnailImage;
-  int id;
-  List<String> type;
+  List<String>? abilities;
+  String? detailPageURL;
+  double? weight;
+  List<String>? weakness;
+  String? number;
+  int? height;
+  String? collectiblesSlug;
+  String? featured;
+  String? slug;
+  String? description;
+  String? name;
+  String? thumbnailAltText;
+  String? thumbnailImage;
+  int? id;
+  List<String>? type;
 
   Pokemon(
       {this.abilities,

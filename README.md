@@ -332,7 +332,7 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
 
  /// code in Cube
 
- final textFieldControl = CTextFormFieldControl().obsValue;
+ final textFieldControl = CTextFormFieldControl.empty().obsValue;
 
  //  textFieldControl.value.text; // get text
  //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text

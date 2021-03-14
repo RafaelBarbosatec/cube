@@ -8,15 +8,15 @@ class ObservableValue<T> extends ChangeNotifier {
   T _lastValue;
 
   /// Constructor to init ObservableValue with value
-  ObservableValue({T value}) {
-    _value = value;
-  }
+  ObservableValue({required T value})
+      : _value = value,
+        _lastValue = value;
 
   /// Get current value of the observable
   T get value => _value;
 
   /// Get las value of the observable
-  T get lastValue => _lastValue;
+  T? get lastValue => _lastValue;
 
   /// Method uses to set value without notify listeners
   // ignore: avoid_setters_without_getters

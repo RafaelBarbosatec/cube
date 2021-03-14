@@ -10,13 +10,13 @@ extension ObservableValueExtensions on ObservableValue {
   CObserver build<T>(
     ObserverBuilder<T> build, {
     bool animate = false,
-    WhenBuild<T> when,
+    WhenBuild<T>? when,
     AnimatedSwitcherTransitionBuilder transitionBuilder =
         AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
   }) {
     return CObserver<T>(
-      observable: this,
+      observable: this as ObservableValue<T>,
       animate: animate,
       transitionBuilder: transitionBuilder,
       duration: duration,

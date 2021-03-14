@@ -8,24 +8,24 @@ class CBottomSheetController<T> {
   final ObservableValue<CFeedBackControl<T>> observable;
   final WidgetByDataBuilder<T> builder;
   final bool dismissible;
-  final Color barrierColor;
-  final Color backgroundColor;
+  final Color? barrierColor;
+  final Color? backgroundColor;
   final bool useSafeArea;
   final bool useRootNavigator;
-  final RouteSettings routeSettings;
-  final double elevation;
+  final RouteSettings? routeSettings;
+  final double? elevation;
   final bool enableDrag;
   final bool isScrollControlled;
-  final ShapeBorder shape;
-  final Clip clipBehavior;
+  final ShapeBorder? shape;
+  final Clip? clipBehavior;
 
   Widget doBuild(T data, BuildContext context) {
     return builder(data, context);
   }
 
   CBottomSheetController({
-    @required this.observable,
-    @required this.builder,
+    required this.observable,
+    required this.builder,
     this.dismissible = true,
     this.barrierColor,
     this.useSafeArea = true,
@@ -45,11 +45,11 @@ class CBottomSheetController<T> {
 mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CBottomSheetController, bool> _mapBottomSheetIsShowing = {};
-  final Map<CBottomSheetController, Function> _mapBottomSheetListeners = {};
-  List<CBottomSheetController> bottomSheetControllers;
+  final Map<CBottomSheetController, VoidCallback> _mapBottomSheetListeners = {};
+  List<CBottomSheetController>? bottomSheetControllers;
 
   /// Configure listeners of the bottomSheetControllers.
-  void confBottomSheetFeedBack(List<CBottomSheetController> controllers) {
+  void confBottomSheetFeedBack(List<CBottomSheetController>? controllers) {
     bottomSheetControllers = controllers;
     bottomSheetControllers?.forEach(_registerBottomSheet);
   }
@@ -63,12 +63,14 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
   /// Listener that controls the display of the Bottom Sheet.
   void _listenerDialogController(CBottomSheetController element) {
     if (!mounted) return;
-    if (element.observable.value.show && !_mapBottomSheetIsShowing[element]) {
+    if (element.observable.value.show && !_mapBottomSheetIsShowing[element]!) {
       _showBottomSheet(element);
-    } else if (!element.observable.value.show &&
-        _mapBottomSheetIsShowing[element]) {
-      _mapBottomSheetIsShowing[element] = false;
-      Navigator.pop(context);
+    } else {
+      if (!element.observable.value.show &&
+          _mapBottomSheetIsShowing[element]!) {
+        _mapBottomSheetIsShowing[element] = false;
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -102,10 +104,10 @@ mixin BottomSheetFeedBackMixin<T extends StatefulWidget> on State<T> {
     _mapBottomSheetIsShowing[element] = false;
     _mapBottomSheetListeners[element] =
         () => _listenerDialogController(element);
-    element.observable.addListener(_mapBottomSheetListeners[element]);
+    element.observable.addListener(_mapBottomSheetListeners[element]!);
   }
 
   void _disposeBottomSheet(CBottomSheetController element) {
-    element.observable.removeListener(_mapBottomSheetListeners[element]);
+    element.observable.removeListener(_mapBottomSheetListeners[element]!);
   }
 }

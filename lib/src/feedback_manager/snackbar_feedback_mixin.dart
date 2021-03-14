@@ -18,19 +18,20 @@ class CSnackBarController<T> {
 
   /// Constructor of the CSnackBarController
   CSnackBarController({
-    @required this.observable,
-    @required this.builder,
+    required this.observable,
+    required this.builder,
   });
 }
 
 /// Mixin responsible for adding listeners to ObservableValue and controlling
 /// the display of SnackBars
 mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
-  List<CSnackBarController> snackBarControllers;
+  List<CSnackBarController>? snackBarControllers;
+  ScaffoldFeatureController? snackBarController;
   final Map<CSnackBarController, bool> _mapSnackBarIsShowing = {};
 
   /// Configure listeners of the snackBarControllers.
-  void confSnackBarFeedBack(List<CSnackBarController> controllers) {
+  void confSnackBarFeedBack(List<CSnackBarController>? controllers) {
     snackBarControllers = controllers;
     snackBarControllers?.forEach(_registerSnackBar);
   }
@@ -44,12 +45,12 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
   /// Listener that controls the display of the snackBar.
   void _listenerDialogController(CSnackBarController element) {
     if (!mounted) return;
-    if (element.observable.value.show && !_mapSnackBarIsShowing[element]) {
+    if (element.observable.value.show && !_mapSnackBarIsShowing[element]!) {
       _showSnackBar(element);
     } else if (!element.observable.value.show &&
-        _mapSnackBarIsShowing[element]) {
+        _mapSnackBarIsShowing[element]!) {
       _mapSnackBarIsShowing[element] = false;
-      Scaffold.of(context)?.hideCurrentSnackBar();
+      snackBarController?.close();
     }
   }
 
@@ -58,7 +59,8 @@ mixin SnackBarFeedBackMixin<T extends StatefulWidget> on State<T> {
     _mapSnackBarIsShowing[element] = true;
 
     final snackBar = element.doBuild(element.observable.value.data, context);
-    Scaffold.of(context)?.showSnackBar(snackBar);
+
+    snackBarController = ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
     await Future.delayed(snackBar.duration);
 

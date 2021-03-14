@@ -14,17 +14,17 @@ class CAnimatedList<T> extends StatefulWidget {
   final AnimatedListCubeItemBuilder itemBuilder;
   final Axis scrollDirection;
   final bool reverse;
-  final ScrollController controller;
-  final bool primary;
-  final ScrollPhysics physics;
+  final ScrollController? controller;
+  final bool? primary;
+  final ScrollPhysics? physics;
   final bool shrinkWrap;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
   final ObservableList<T> observable;
 
   const CAnimatedList({
-    Key key,
-    @required this.observable,
-    @required this.itemBuilder,
+    Key? key,
+    required this.observable,
+    required this.itemBuilder,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
@@ -45,7 +45,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
 
   @override
   void initState() {
-    widget.observable.value.forEach(itemList.add);
+    itemList.addAll(widget.observable.value as Iterable<T>);
     widget.observable.addListener(_listener);
     super.initState();
   }
@@ -85,7 +85,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
       for (var element in itemList) {
         if (!widget.observable.value.contains(element)) {
           final index = itemList.indexOf(element);
-          _listKey.currentState.removeItem(
+          _listKey.currentState?.removeItem(
             index,
             (context, animation) => (widget as CAnimatedList<T>).itemBuilder(
               context,
@@ -100,7 +100,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
       for (var element in widget.observable.value) {
         if (!itemList.contains(element)) {
           final index = widget.observable.value.indexOf(element);
-          _listKey.currentState.insertItem(index);
+          _listKey.currentState?.insertItem(index);
         }
       }
     }
@@ -110,7 +110,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
   Future _refresh() async {
     await Future.delayed(Duration.zero);
     itemList.clear();
-    widget.observable.value.forEach(itemList.add);
+    itemList.addAll(widget.observable.value as Iterable<T>);
     setState(() {});
   }
 }

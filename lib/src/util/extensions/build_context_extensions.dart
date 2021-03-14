@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 extension BuildContextExtensions on BuildContext {
-  Future<T> goTo<T extends Object>(
+  Future<T?> goTo<T extends Object?>(
     Widget widget, {
-    RouteSettings settings,
+    RouteSettings? settings,
     bool fullscreenDialog = false,
   }) {
-    return Navigator.push<T>(
+    return Navigator.push<T?>(
       this,
       MaterialPageRoute(
         builder: (context) => widget,
@@ -17,9 +17,9 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
-  Future<T> goToReplacement<T extends Object, TO extends Object>(
+  Future<T?> goToReplacement<T extends Object?, TO extends Object?>(
     Widget widget, {
-    RouteSettings settings,
+    RouteSettings? settings,
     bool fullscreenDialog = false,
   }) {
     return Navigator.pushReplacement<T, TO>(
@@ -32,10 +32,10 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
-  Future<T> goToAndRemoveUntil<T extends Object>(
+  Future<T?> goToAndRemoveUntil<T extends Object?>(
     Widget widget,
     RoutePredicate predicate, {
-    RouteSettings settings,
+    RouteSettings? settings,
     bool fullscreenDialog = false,
   }) {
     return Navigator.pushAndRemoveUntil<T>(
@@ -49,7 +49,7 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
-  void pop<T>([T result]) {
+  void pop<T>([T? result]) {
     Navigator.pop(this, result);
   }
 

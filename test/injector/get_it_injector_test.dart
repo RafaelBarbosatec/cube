@@ -1,5 +1,5 @@
 import 'package:cubes/cubes.dart';
-import 'package:cubes/src/injector/getit_injector.dart';
+import 'package:cubes/src/injector/get_it_injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

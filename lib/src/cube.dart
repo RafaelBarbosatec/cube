@@ -11,16 +11,16 @@ typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
 
 /// Base to create Cube
 abstract class Cube {
-  List<OnActionChanged<Cube, CubeAction>> _onActionListeners;
-  Map<dynamic, Debounce> _debounceMap;
-  Map<ObservableValue, VoidCallback> _listenersObservableMap;
-  OnActionChanged _cubeActionListener;
+  List<OnActionChanged<Cube, CubeAction>>? _onActionListeners;
+  Map<dynamic, Debounce>? _debounceMap;
+  Map<ObservableValue, VoidCallback>? _listenersObservableMap;
+  OnActionChanged? _cubeActionListener;
   bool _disposed = false;
 
   /// called when the view is ready
   /// [arguments] if passed through CubeBuilder, if not, get arguments
   /// from `ModalRoute.of(context).settings.arguments;`
-  void onReady(Object arguments) {}
+  void onReady(Object? arguments) {}
 
   /// called when the cube is destroyed
   void dispose() {
@@ -30,17 +30,15 @@ abstract class Cube {
 
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
-    OnActionChanged<T, CubeAction> listener,
+    OnActionChanged<T, CubeAction>? listener,
   ) {
-    if (listener != null) {
-      if (_onActionListeners == null) _onActionListeners = [];
-      _onActionListeners.add(listener);
-    }
+    if (_onActionListeners == null) _onActionListeners = [];
+    _onActionListeners?.add(listener as OnActionChanged<Cube, CubeAction>);
   }
 
   /// Remove OnActionListener
   void removeOnActionListener<T extends Cube>(
-      OnActionChanged<T, CubeAction> listener) {
+      OnActionChanged<T, CubeAction>? listener) {
     _onActionListeners?.remove(listener);
   }
 
@@ -65,19 +63,19 @@ abstract class Cube {
   @protected
   void runDebounce(
     dynamic identify,
-    Function call, {
+    VoidCallback call, {
     Duration duration = const Duration(milliseconds: 400),
   }) {
     try {
       if (_debounceMap == null) _debounceMap = {};
-      if (_debounceMap.containsKey(identify)) {
-        if (_debounceMap[identify].delay != duration) {
-          _debounceMap[identify] = Debounce(duration);
+      if (_debounceMap?.containsKey(identify) == true) {
+        if (_debounceMap![identify]?.delay != duration) {
+          _debounceMap![identify] = Debounce(duration);
         }
-        _debounceMap[identify].call(call);
+        _debounceMap![identify]?.call(call);
       } else {
-        _debounceMap[identify] = Debounce(duration);
-        _debounceMap[identify].call(call);
+        _debounceMap![identify] = Debounce(duration);
+        _debounceMap![identify]?.call(call);
       }
     } on Exception catch (e) {
       print('[ERROR]runDebounce: $e');
@@ -88,10 +86,10 @@ abstract class Cube {
   @protected
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
     if (_listenersObservableMap == null) _listenersObservableMap = {};
-    _listenersObservableMap[observableValue] = () {
+    _listenersObservableMap![observableValue] = () {
       listener(observableValue.value);
     };
-    observableValue.addListener(_listenersObservableMap[observableValue]);
+    observableValue.addListener(_listenersObservableMap![observableValue]!);
   }
 
   /// Remove listeners created on `listen`

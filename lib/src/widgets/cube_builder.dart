@@ -36,28 +36,28 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
 
 class _CubeBuilderState<C extends Cube> extends State<CubeBuilder>
     with StateMixin {
-  C? cube;
+  late C cube;
 
   @override
   void initState() {
     cube = cubeWidget.cube ?? Cubes.getDependency();
-    cube?.addOnActionListener(_onAction);
+    cube.addOnActionListener(_onAction);
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback(_ready);
   }
 
   @override
   void dispose() {
-    if (cubeWidget.dispose?.call(cube) ?? true) cube?.dispose();
-    cube?.removeOnActionListener(_onAction);
+    if (cubeWidget.dispose?.call(cube) ?? true) cube.dispose();
+    cube.removeOnActionListener(_onAction);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return CubeProvider(
-      cube: cube as C,
-      child: cubeWidget.builder(context, cube!),
+      cube: cube,
+      child: cubeWidget.builder(context, cube),
     );
   }
 
@@ -68,7 +68,7 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder>
   void _ready(_) {
     var arguments =
         widget.arguments ?? ModalRoute.of(context)?.settings.arguments;
-    cube?.onReady(arguments);
+    cube.onReady(arguments);
   }
 
   CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);

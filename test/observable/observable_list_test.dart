@@ -2,8 +2,8 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  ObservableList<int> _observableValue;
-  List<int> _valueNotify;
+  late ObservableList<int> _observableValue;
+  List<int>? _valueNotify;
   setUp(() {
     _observableValue = ObservableList(value: []);
     _observableValue.addListener(() {

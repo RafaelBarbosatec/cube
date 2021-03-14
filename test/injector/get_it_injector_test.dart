@@ -3,7 +3,7 @@ import 'package:cubes/src/injector/get_it_injector.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  CInjector injector;
+  late CInjector injector;
   var _counter = 0;
   setUp(() {
     injector = GetItInjector();

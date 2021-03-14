@@ -1,3 +1,7 @@
+# 1.0.0-nullsafety.0
+
+- migrate to null safety
+
 # 0.10.8+1
 
 - formatting dart code

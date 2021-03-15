@@ -18,7 +18,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 ## Usage
 
-* Creating Cube:
+* Creating a Cube:
 
 ```dart
 

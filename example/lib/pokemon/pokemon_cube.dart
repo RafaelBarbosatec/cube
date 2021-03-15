@@ -29,6 +29,7 @@ class PokemonCube extends Cube {
       if (isMore) return list.addAll(value);
       list.update(value);
     }).catchError((error) {
+      print(error);
       snackBarController.modify(
         (value) => value.copyWith(show: true, data: error.toString()),
       );

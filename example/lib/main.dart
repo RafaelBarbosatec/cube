@@ -71,11 +71,17 @@ class Home extends StatelessWidget {
                       settings: RouteSettings(arguments: {'name': 'rafael'}));
                 },
               ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 child: Text('Counter. Cube in StatefulWidget'),
                 onPressed: () {
                   context.goTo(CounterScreenWithAnimation());
                 },
+              ),
+              SizedBox(
+                height: 20,
               ),
               ElevatedButton(
                 child: Text('Pokemons'),
@@ -83,11 +89,17 @@ class Home extends StatelessWidget {
                   context.goTo(PokemonScreen());
                 },
               ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 child: Text(Cubes.getString('singleton')),
                 onPressed: () {
                   context.goTo(ScreenCounterSingleton());
                 },
+              ),
+              SizedBox(
+                height: 20,
               ),
               ElevatedButton(
                 child: Text('Todo'),
@@ -95,11 +107,17 @@ class Home extends StatelessWidget {
                   context.goTo(TodoList());
                 },
               ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 child: Text('FeedBackManager'),
                 onPressed: () {
                   context.goTo(FeedbackManagerScreen());
                 },
+              ),
+              SizedBox(
+                height: 20,
               ),
               ElevatedButton(
                 child: Text('CTextFormField'),

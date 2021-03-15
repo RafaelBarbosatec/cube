@@ -47,13 +47,23 @@ class FeedbackManagerScreen extends CubeWidget<FeedbackManagerCube> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                  child: Text('Show dialog per 3 seconds'),
-                  onPressed: cube.showDialogPer3Seconds),
+                child: Text('Show dialog per 3 seconds'),
+                onPressed: cube.showDialogPer3Seconds,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
-                  child: Text('Show bottomSheet per 3 seconds'),
-                  onPressed: cube.showBottomSheetPer3Seconds),
+                child: Text('Show bottomSheet per 3 seconds'),
+                onPressed: cube.showBottomSheetPer3Seconds,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
-                  child: Text('Show snackBar'), onPressed: cube.showSnackBar),
+                child: Text('Show snackBar'),
+                onPressed: cube.showSnackBar,
+              ),
             ],
           ),
         ),

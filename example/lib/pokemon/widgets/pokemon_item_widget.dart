@@ -1,4 +1,5 @@
 import 'package:examplecube/pokemon/repository/model/pokemon.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PokemonItemWidget extends StatefulWidget {
@@ -6,20 +7,24 @@ class PokemonItemWidget extends StatefulWidget {
 
   final Function(Pokemon?)? onClick;
 
-  const PokemonItemWidget({Key? key, this.item, this.onClick}) : super(key: key);
+  const PokemonItemWidget({Key? key, this.item, this.onClick})
+      : super(key: key);
   @override
   _PokemonItemWidgetState createState() => _PokemonItemWidgetState();
 }
 
-class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProviderStateMixin {
+class _PokemonItemWidgetState extends State<PokemonItemWidget>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animationSlide;
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animationSlide = Tween(begin: Offset(2.0, 0.0), end: Offset(0.0, 0.0))
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.decelerate));
+        .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.decelerate));
     _controller.forward(from: 0.0);
     super.initState();
   }
@@ -58,7 +63,7 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProvid
     return Container(
       width: 50,
       height: 50,
-      child: Image.network(url),
+      child: Image.network(_getUrl(url)),
     );
   }
 
@@ -76,5 +81,13 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget> with TickerProvid
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  String _getUrl(String url) {
+    String CORS = '';
+    if (kIsWeb) {
+      CORS = 'https://cors-anywhere.herokuapp.com/';
+    }
+    return '$CORS$url';
   }
 }

@@ -64,43 +64,44 @@ class Home extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text(Cubes.getString('counter')),
                 onPressed: () {
-                  context.goTo(CounterScreen(), settings: RouteSettings(arguments: {'name': 'rafael'}));
+                  context.goTo(CounterScreen(),
+                      settings: RouteSettings(arguments: {'name': 'rafael'}));
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Counter. Cube in StatefulWidget'),
                 onPressed: () {
                   context.goTo(CounterScreenWithAnimation());
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Pokemons'),
                 onPressed: () {
                   context.goTo(PokemonScreen());
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text(Cubes.getString('singleton')),
                 onPressed: () {
                   context.goTo(ScreenCounterSingleton());
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Todo'),
                 onPressed: () {
                   context.goTo(TodoList());
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('FeedBackManager'),
                 onPressed: () {
                   context.goTo(FeedbackManagerScreen());
                 },
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('CTextFormField'),
                 onPressed: () {
                   context.goTo(TextFormFieldScreen());

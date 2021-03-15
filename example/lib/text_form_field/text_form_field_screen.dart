@@ -30,17 +30,23 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
               ),
               Wrap(
                 children: [
-                  RaisedButton(child: Text('Clean text'), onPressed: cube.cleanText),
+                  ElevatedButton(
+                      child: Text('Clean text'), onPressed: cube.cleanText),
                   SizedBox(width: 10),
-                  RaisedButton(child: Text('Change text'), onPressed: cube.changeText),
+                  ElevatedButton(
+                      child: Text('Change text'), onPressed: cube.changeText),
                   SizedBox(width: 10),
-                  RaisedButton(child: Text('Set error'), onPressed: cube.setError),
+                  ElevatedButton(
+                      child: Text('Set error'), onPressed: cube.setError),
                   SizedBox(width: 10),
-                  RaisedButton(child: Text('enable'), onPressed: cube.enable),
+                  ElevatedButton(child: Text('enable'), onPressed: cube.enable),
                   SizedBox(width: 10),
-                  RaisedButton(child: Text('disable'), onPressed: cube.disable),
+                  ElevatedButton(
+                      child: Text('disable'), onPressed: cube.disable),
                   SizedBox(width: 10),
-                  RaisedButton(child: Text('change obscureText'), onPressed: cube.changeObscureText),
+                  ElevatedButton(
+                      child: Text('change obscureText'),
+                      onPressed: cube.changeObscureText),
                 ],
               )
             ],

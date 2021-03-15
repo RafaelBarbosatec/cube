@@ -36,8 +36,11 @@ class TodoRegister extends CubeWidget<TodoCube> {
                 ),
                 SizedBox(
                   width: double.maxFinite,
-                  child: RaisedButton(
-                    color: context.theme.primaryColor,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(context.theme.primaryColor),
+                    ),
                     child: Text('Save'),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {

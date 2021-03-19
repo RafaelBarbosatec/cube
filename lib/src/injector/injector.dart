@@ -7,9 +7,10 @@ typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
 abstract class CInjector {
   /// Method used to register dependency
   void registerDependency<T extends Object>(
-      CDependencyInjectorBuilder<T> builder,
-      {String? dependencyName,
-      bool isSingleton = false});
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+    bool isSingleton = false,
+  });
 
   /// Method used to get dependency
   T getDependency<T extends Object>({String? dependencyName});

@@ -18,11 +18,15 @@ class GetItInjector extends CInjector {
     bool isSingleton = false,
   }) {
     if (isSingleton) {
-      _getIt.registerLazySingleton<T>(() => builder(this),
-          instanceName: dependencyName);
+      _getIt.registerLazySingleton<T>(
+        () => builder(this),
+        instanceName: dependencyName,
+      );
     } else {
-      _getIt.registerFactory<T>(() => builder(this),
-          instanceName: dependencyName);
+      _getIt.registerFactory<T>(
+        () => builder(this),
+        instanceName: dependencyName,
+      );
     }
   }
 

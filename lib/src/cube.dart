@@ -15,7 +15,6 @@ abstract class Cube {
   Map<dynamic, Debounce>? _debounceMap;
   Map<ObservableValue, VoidCallback>? _listenersObservableMap;
   OnActionChanged? _cubeActionListener;
-  bool _disposed = false;
 
   /// called when the view is ready
   /// [arguments] if passed through CubeBuilder, if not, get arguments
@@ -25,7 +24,6 @@ abstract class Cube {
   /// called when the cube is destroyed
   void dispose() {
     _disposeListeners();
-    _disposed = true;
   }
 
   /// Add OnActionListener
@@ -106,7 +104,4 @@ abstract class Cube {
     _cubeActionListener = (cube, action) => listener(action);
     addOnActionListener(_cubeActionListener);
   }
-
-  /// check if Cube is disposed
-  bool get disposed => _disposed;
 }

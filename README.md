@@ -79,14 +79,14 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CubeBuilder<CounterCube>(
-      onAction: (cube, action) {
+      onAction: (cube, action) { // optional
         print(action);
       },
-      dispose:(CounterCube cube){
+      dispose:(CounterCube cube){ // optional
         // do anything
         return true; // If return  false CubeBuilder note call dispose in Cube
       },
-      arguments: 'Hi', //if not passed, get arguments from `ModalRoute.of(context).settings.arguments;`,
+      arguments: 'Hi', //if not passed, get arguments from `ModalRoute.of(context).settings.arguments;`. this will be returning in onReady in your Cube
       builder: (BuildContext context, CounterCube cube) {
         return Scaffold(
           appBar: AppBar(

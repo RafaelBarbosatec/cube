@@ -81,6 +81,16 @@ class ObservableList<T> extends ObservableValue<List<T>> {
     }
   }
 
+  /// use [List.indexOf]
+  int indexOf(T element) {
+    return value.indexOf(element);
+  }
+
+  /// use [List.indexWhere]
+  int indexWhere(bool test(T element), [int start = 0]) {
+    return value.indexWhere(test, start);
+  }
+
   /// get if list is empty
   bool get isEmpty => value.isEmpty;
 

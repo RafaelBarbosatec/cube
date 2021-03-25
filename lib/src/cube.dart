@@ -6,8 +6,11 @@ import 'util/debouncer.dart';
 /// Base to Actions
 abstract class CubeAction {}
 
+/// Function to notify Actions
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
-    A valueA, CubeAction valueB);
+  A valueA,
+  CubeAction valueB,
+);
 
 /// Base to create Cube
 abstract class Cube {

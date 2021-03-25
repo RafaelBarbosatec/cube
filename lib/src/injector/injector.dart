@@ -1,6 +1,9 @@
 import '../cube.dart';
 
+/// Function to receive Cube to inject
 typedef CCubeInjectorBuilder<T extends Cube> = T Function(CInjector injector);
+
+/// Function to receive dependency to inject
 typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
 
 /// Interface responsible to manager dependency injector

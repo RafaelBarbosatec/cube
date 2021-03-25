@@ -53,11 +53,11 @@ void main() {
   test('verify modifyitem', () {
     _observableListValue.update([3, 2, 1]);
     expect(_valueNotify, [3, 2, 1]);
-    _observableListValue.modifyItem(0, (value) => 5);
-    expect(_valueNotify, [5, 2, 1]);
+    _observableListValue.modifyItem(0, (value) => value + 1);
+    expect(_valueNotify, [4, 2, 1]);
     _observableListValue.removeAt(0);
     expect(_valueNotify, [2, 1]);
-    _observableListValue.modifyItem(0, (value) => 5);
+    _observableListValue.modifyItem(0, (value) => value + 3);
     expect(_valueNotify, [5, 1]);
   });
 }

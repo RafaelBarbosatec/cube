@@ -24,7 +24,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 class CounterCube extends Cube {
     final count = 0.obsValue;
-    // or final count = ObservableValue<int>(value: 0); in this case to List use `ObservableList`.
+    // or final count = ObservableValue<int>(value: 0)
 
     @override
     void onReady(Object arguments) {

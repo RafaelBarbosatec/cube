@@ -24,7 +24,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 class CounterCube extends Cube {
     final count = 0.obsValue;
-    // or final count = ObservableValue<int>(value: 0); in this case to List use `ObservableList`.
+    // or final count = ObservableValue<int>(value: 0)
 
     @override
     void onReady(Object arguments) {
@@ -69,7 +69,54 @@ void main() {
 
 ```
 
-* Creating view
+* Creating view using `CubeBuilder`
+
+
+```dart
+
+class CounterScreen extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return CubeBuilder<CounterCube>(
+      onAction: (cube, action) { // optional
+        print(action);
+      },
+      dispose:(CounterCube cube){ // optional
+        // do anything
+        return true; // If return  false CubeBuilder note call dispose in Cube
+      },
+      arguments: 'Hi', //if not passed, get arguments from `ModalRoute.of(context).settings.arguments;`. this will be returning in onReady in your Cube
+      builder: (BuildContext context, CounterCube cube) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Counter'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('You have pushed the button this many times:'),
+                cube.count.build<int>(
+                  (value) => Text(value.toString()),
+                ),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: cube.increment,
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        );
+      },
+    );
+  }
+}
+
+```
+
+or user `CubeWidget`
 
 ```dart
 
@@ -106,9 +153,9 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart), or use `CubeBuilder<Cube>`.
+If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
 
-OBS: Cube and its dependencies are injected into `CubeWidget` automatically.
+Cube and its dependencies are injected automatically.
 
 ---
 

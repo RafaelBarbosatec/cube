@@ -30,7 +30,9 @@ class CounterCube extends Cube {
     }
 
     if (count.value == 50) {
-      onAction(MsgAction(text: "You are clicking too much o.O")); // to send action to view
+      onAction(
+        MsgAction(text: "You are clicking too much o.O"),
+      ); // to send action to view
     }
 
     if (withDebounce) {

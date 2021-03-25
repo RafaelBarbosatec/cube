@@ -49,4 +49,15 @@ void main() {
     _observableValue.clear();
     expect(_valueNotify, []);
   });
+
+  test('verify modifyitem', () {
+    _observableValue.update([3, 2, 1]);
+    expect(_valueNotify, [3, 2, 1]);
+    _observableValue.modifyItem(0, (value) => 5);
+    expect(_valueNotify, [5, 2, 1]);
+    _observableValue.removeAt(0);
+    expect(_valueNotify, [2, 1]);
+    _observableValue.modifyItem(0, (value) => 5);
+    expect(_valueNotify, [5, 1]);
+  });
 }

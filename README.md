@@ -116,7 +116,7 @@ class CounterScreen extends StatelessWidget {
 
 ```
 
-or user `CubeWidget`
+or use `CubeWidget`
 
 ```dart
 

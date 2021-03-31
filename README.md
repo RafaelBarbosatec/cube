@@ -509,6 +509,9 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
 
     context.theme;
     context.scaffold;
+    context.showSnackBar(SnackBar());
+    context.arguments;
+    context.getCube<MyCube>(); // get Cube from provided
 
 ```
 

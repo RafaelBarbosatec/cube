@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../cubes.dart';
+import '../../cube.dart';
+
 extension BuildContextExtensions on BuildContext {
   Future<T?> goTo<T extends Object?>(
     Widget widget, {
@@ -63,4 +66,14 @@ extension BuildContextExtensions on BuildContext {
 
   ThemeData get theme => Theme.of(this);
   ScaffoldState get scaffold => Scaffold.of(this);
+
+  void showSnackBar(SnackBar snackBar) {
+    ScaffoldMessenger.of(this).showSnackBar(snackBar);
+  }
+
+  C? getCube<C extends Cube>() {
+    return Cubes.of<C>(this);
+  }
+
+  Object? get arguments => ModalRoute.of(this)?.settings.arguments;
 }

@@ -15,6 +15,9 @@ class ObservableValue<T> extends ChangeNotifier {
   /// Get current value of the observable
   T get value => _value;
 
+  /// Set current value of the observable
+  set value(T newValue) => update(newValue);
+
   /// Get las value of the observable
   T? get lastValue => _lastValue;
 

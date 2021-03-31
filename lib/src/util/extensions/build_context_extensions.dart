@@ -71,9 +71,7 @@ extension BuildContextExtensions on BuildContext {
     ScaffoldMessenger.of(this).showSnackBar(snackBar);
   }
 
-  C? getCube<C extends Cube>() {
-    return Cubes.of<C>(this);
-  }
+  C? getCube<C extends Cube>() => Cubes.of<C>(this);
 
   Object? get arguments => ModalRoute.of(this)?.settings.arguments;
 }

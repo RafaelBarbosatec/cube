@@ -10,12 +10,12 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
   void onAction(BuildContext context, C cube, CubeAction action) {}
 
   /// if you want the widget to not call `dispose` in the Cube, return false
-  bool dispose(C cube) => true;
+  bool dispose(C? cube) => true;
 
   /// Arguments that will be sent to the cube through the onReady () method
   /// If this argument is not set,
   /// ModalRoute.of(context)?.settings?.Arguments will be sent
-  Object get arguments => null;
+  Object? get arguments => null;
 
   @protected
   Widget buildView(BuildContext context, C cube);

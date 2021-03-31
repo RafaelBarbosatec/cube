@@ -2,4 +2,6 @@ include: package:effective_dart/analysis_options.yaml
 
 linter:
   rules:
+    public_member_api_docs: false
     constant_identifier_names: false
+    lines_longer_than_80_chars: false

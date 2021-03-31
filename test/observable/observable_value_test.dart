@@ -2,8 +2,8 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  ObservableValue<int> _observableValue;
-  int _valueNotify;
+  late ObservableValue<int> _observableValue;
+  int? _valueNotify;
   setUp(() {
     _observableValue = ObservableValue(value: 0);
     _observableValue.addListener(() {

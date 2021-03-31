@@ -7,26 +7,33 @@ import 'package:mockito/mockito.dart';
 class MockPokemonRepository extends Mock implements PokemonRepository {}
 
 void main() {
-  MockPokemonRepository repository;
-  PokemonCube cube;
+  late MockPokemonRepository repository;
+  late PokemonCube cube;
   setUp(() {
     repository = MockPokemonRepository();
     cube = PokemonCube(repository);
   });
 
   tearDown(() {
-    cube?.dispose();
+    cube.dispose();
   });
+
   test('initial value', () {
     expect(cube.list.value, []);
     expect(cube.progress.value, false);
   });
 
   test('load pokémons', () async {
-    List<Pokemon> mockList = [Pokemon(), Pokemon(), Pokemon(), Pokemon(), Pokemon()];
+    final List<Pokemon> mockList = [
+      Pokemon(),
+      Pokemon(),
+      Pokemon(),
+      Pokemon(),
+      Pokemon()
+    ];
 
     when(
-      repository.getPokemonList(page: 0),
+      repository.getPokemonList(),
     ).thenAnswer((_) => Future.value(mockList));
 
     await cube.onReady(null);

@@ -15,9 +15,9 @@ class MockCubeTest extends Mock implements CubeExample {}
 
 class CubeBuilderRobot {
   final WidgetTester tester;
-  CubeExample _cubeReturned;
-  CubeAction _actionReturnedInView;
-  CubeExample _cubeMock;
+  CubeExample? _cubeReturned;
+  CubeAction? _actionReturnedInView;
+  late CubeExample _cubeMock;
   final Map _argumentTest = {
     'cube': 'Simple State Manager with dependency injection.'
   };

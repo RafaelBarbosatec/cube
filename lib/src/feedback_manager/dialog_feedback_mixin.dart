@@ -6,10 +6,10 @@ import 'feedback_manager.dart';
 /// Class responsible for configuring the dialogs
 class CDialogController<T> {
   final bool dismissible;
-  final Color barrierColor;
+  final Color? barrierColor;
   final bool useSafeArea;
   final bool useRootNavigator;
-  final RouteSettings routeSettings;
+  final RouteSettings? routeSettings;
   final ObservableValue<CFeedBackControl<T>> observable;
   final WidgetByDataBuilder<T> builder;
 
@@ -18,10 +18,10 @@ class CDialogController<T> {
   }
 
   CDialogController({
-    @required this.observable,
-    @required this.builder,
+    required this.observable,
+    required this.builder,
     this.dismissible = true,
-    this.barrierColor,
+    this.barrierColor = Colors.black54,
     this.useSafeArea = true,
     this.useRootNavigator = true,
     this.routeSettings,
@@ -33,11 +33,11 @@ class CDialogController<T> {
 mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   static const ANIMATION_DURATION = 150;
   final Map<CDialogController, bool> _mapDialogIsShowing = {};
-  final Map<CDialogController, Function> _mapDialogListeners = {};
-  List<CDialogController> dialogControllers;
+  final Map<CDialogController, VoidCallback> _mapDialogListeners = {};
+  List<CDialogController>? dialogControllers;
 
   /// Configure listeners of the dialogControllers.
-  void confDialogFeedBack(List<CDialogController> controllers) {
+  void confDialogFeedBack(List<CDialogController>? controllers) {
     dialogControllers = controllers;
     dialogControllers?.forEach(_registerDialog);
   }
@@ -51,9 +51,10 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   /// Listener that controls the display of the Dialog.
   void _listenerDialogController(CDialogController element) {
     if (!mounted) return;
-    if (element.observable.value.show && !_mapDialogIsShowing[element]) {
+    if (element.observable.value.show && !_mapDialogIsShowing[element]!) {
       _showDialog(element);
-    } else if (!element.observable.value.show && _mapDialogIsShowing[element]) {
+    } else if (!element.observable.value.show &&
+        _mapDialogIsShowing[element]!) {
       _mapDialogIsShowing[element] = false;
       Navigator.pop(context);
     }
@@ -84,10 +85,10 @@ mixin DialogFeedBackMixin<T extends StatefulWidget> on State<T> {
   void _registerDialog(CDialogController element) {
     _mapDialogIsShowing[element] = false;
     _mapDialogListeners[element] = () => _listenerDialogController(element);
-    element.observable.addListener(_mapDialogListeners[element]);
+    element.observable.addListener(_mapDialogListeners[element]!);
   }
 
   void _disposeDialog(CDialogController element) {
-    element.observable.removeListener(_mapDialogListeners[element]);
+    element.observable.removeListener(_mapDialogListeners[element]!);
   }
 }

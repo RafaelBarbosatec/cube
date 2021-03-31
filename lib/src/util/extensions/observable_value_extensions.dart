@@ -10,13 +10,13 @@ extension ObservableValueExtensions on ObservableValue {
   CObserver build<T>(
     ObserverBuilder<T> build, {
     bool animate = false,
-    WhenBuild<T> when,
+    WhenBuild<T>? when,
     AnimatedSwitcherTransitionBuilder transitionBuilder =
         AnimatedSwitcher.defaultTransitionBuilder,
     Duration duration = const Duration(milliseconds: 300),
   }) {
     return CObserver<T>(
-      observable: this,
+      observable: this as ObservableValue<T>,
       animate: animate,
       transitionBuilder: transitionBuilder,
       duration: duration,
@@ -36,4 +36,37 @@ extension ObservableValueExtension<T> on T {
 extension ListToObservableValue<T> on List<T> {
   /// Create ObservableList<T>
   ObservableList<T> get obsValue => ObservableList<T>(value: this);
+}
+
+extension FeedbackControlExtensions<T> on ObservableValue<CFeedBackControl<T>> {
+  void show({T? data}) {
+    modify((value) => value.copyWith(show: true, data: data));
+  }
+
+  void hide() {
+    modify((value) => value.copyWith(show: false));
+  }
+}
+
+extension CTextFormFieldControlExtensions
+    on ObservableValue<CTextFormFieldControl> {
+  String get text => value.text;
+  set text(String text) {
+    modify((value) => value.copyWith(text: text));
+  }
+
+  String get error => value.error ?? '';
+  set error(String? error) {
+    modify((value) => value.copyWith(error: error));
+  }
+
+  bool get enable => value.enable;
+  set enable(bool enable) {
+    modify((value) => value.copyWith(enable: enable));
+  }
+
+  bool get enableObscureText => value.obscureText;
+  set enableObscureText(bool enable) {
+    modify((value) => value.copyWith(obscureText: enable));
+  }
 }

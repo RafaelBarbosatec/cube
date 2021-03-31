@@ -3,7 +3,7 @@ library cube;
 import 'package:flutter/widgets.dart';
 
 import 'src/cube.dart';
-import 'src/injector/getit_injector.dart';
+import 'src/injector/get_it_injector.dart';
 import 'src/injector/injector.dart';
 import 'src/localization/strings_location.dart';
 import 'src/util/cube_provider.dart';
@@ -39,14 +39,14 @@ class Cubes {
   }
 
   /// Use to get dependency registered
-  static T getDependency<T>({String dependencyName}) {
+  static T getDependency<T extends Object>({String? dependencyName}) {
     return _instance._injector.getDependency<T>(dependencyName: dependencyName);
   }
 
   /// Use to register dependency
-  static void registerDependency<T>(
+  static void registerDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
-    String dependencyName,
+    String? dependencyName,
     bool isSingleton = false,
   }) {
     _instance._injector.registerDependency<T>(
@@ -69,12 +69,12 @@ class Cubes {
   static CGetterStringLocation stringLocation() => _instance._stringLocation;
 
   /// Use to get String in StringLocation
-  static String getString(String key, [Map<String, String> params]) {
+  static String getString(String key, {Map<String, String>? params}) {
     return _instance._stringLocation.getString(key, params: params);
   }
 
   /// Use to get Cube registered in de Widget tree.
-  static C of<C extends Cube>(BuildContext context) {
+  static C? of<C extends Cube>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;
   }
 }

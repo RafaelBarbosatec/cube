@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 class ObserverRobot {
   final WidgetTester tester;
-  int _valueReturnedInBuilder;
-  WhenBuild<int> whenBuild;
+  int? _valueReturnedInBuilder;
+  WhenBuild<int>? whenBuild;
   final ObservableValue<int> _count = ObservableValue(value: 0);
 
   ObserverRobot(this.tester);
@@ -17,8 +17,7 @@ class ObserverRobot {
         home: CObserver<int>(
           observable: _count,
           when: (lastValue, newValue) {
-            if (whenBuild != null) return whenBuild(lastValue, newValue);
-            return true;
+            return whenBuild?.call(lastValue, newValue) ?? true;
           },
           builder: (value) {
             _valueReturnedInBuilder = value;

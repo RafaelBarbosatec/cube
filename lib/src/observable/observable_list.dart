@@ -3,96 +3,106 @@ import 'observable_value.dart';
 /// Class that represents our list-type observable
 class ObservableList<T> extends ObservableValue<List<T>> {
   /// Constructor to init ObservableValue with value
-  ObservableList({Iterable<T> value}) {
+  ObservableList({required List<T> value}) : super(value: value) {
     setValueWithoutNotify = value;
   }
 
   /// add element in list and notify listeners
   void add(T value) {
-    this.value?.add(value);
+    this.value.add(value);
     notifyListeners();
   }
 
   /// add element list in list and notify listeners
   void addAll(Iterable<T> value) {
-    this.value?.addAll(value);
+    this.value.addAll(value);
     notifyListeners();
   }
 
   /// clear list and notify listeners
   void clear() {
-    value?.clear();
+    value.clear();
     notifyListeners();
   }
 
   /// remove in list and notify listeners
   void remove(T value) {
-    this.value?.remove(value);
+    this.value.remove(value);
     notifyListeners();
   }
 
   /// remove element by index in list and notify listeners
   void removeAt(int index) {
-    value?.removeAt(index);
+    value.removeAt(index);
     notifyListeners();
   }
 
   /// remove element in list and notify listeners
   void removeWhere(bool test(T element)) {
-    value?.removeWhere(test);
+    value.removeWhere(test);
     notifyListeners();
   }
 
   /// remove last element in list and notify listeners
   void removeLast() {
-    value?.removeLast();
+    value.removeLast();
     notifyListeners();
   }
 
   /// remove element by range in list and notify listeners
   void removeRange(int start, int end) {
-    value?.removeRange(start, end);
+    value.removeRange(start, end);
     notifyListeners();
   }
 
   /// insert element in the index
   void insert(int index, T element) {
-    value?.insert(index, element);
+    value.insert(index, element);
     notifyListeners();
   }
 
   /// insert element list in the index
   void insertAll(int index, Iterable<T> iterable) {
-    value?.insertAll(index, iterable);
+    value.insertAll(index, iterable);
     notifyListeners();
   }
 
   /// replace elements in list and notify listeners
   void replaceRange(int start, int end, Iterable<T> replacement) {
-    value?.replaceRange(start, end, replacement);
+    value.replaceRange(start, end, replacement);
     notifyListeners();
   }
 
   /// use to modify specific item in the list
   void modifyItem(int index, T modify(T value)) {
-    if (value != null && value.length > index) {
+    if (value.length > index) {
       value[index] = modify(value[index]);
       notifyListeners();
     }
   }
 
+  /// use [List.indexOf]
+  int indexOf(T element) {
+    return value.indexOf(element);
+  }
+
+  /// use [List.indexWhere]
+  int indexWhere(bool test(T element), [int start = 0]) {
+    return value.indexWhere(test, start);
+  }
+
   /// get if list is empty
-  bool get isEmpty => value?.isEmpty;
+  bool get isEmpty => value.isEmpty;
 
   /// get if list is not empty
   bool get isNotEmpty => !isEmpty;
 
   /// get size list
-  int get length => value?.length;
+  int get length => value.length;
 
   /// get first item
-  T get first => value?.first;
+  T get first => value.first;
 
   /// get last item
-  T get last => value?.last;
+  T get last => value.last;
 }

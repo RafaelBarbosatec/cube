@@ -8,15 +8,14 @@ class CubeProvider<C extends Cube> extends InheritedWidget {
 
   /// CubeProvider constructor
   CubeProvider({
-    Key key,
-    @required this.cube,
-    @required Widget child,
-  })  : assert(child != null),
-        super(key: key, child: child);
+    Key? key,
+    required this.cube,
+    required Widget child,
+  }) : super(key: key, child: child);
 
   /// Used to return Cube that was provided
-  static C of<C extends Cube>(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>().cube;
+  static C? of<C extends Cube>(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<CubeProvider<C>>()?.cube;
   }
 
   @override

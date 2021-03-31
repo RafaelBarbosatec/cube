@@ -25,7 +25,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
                   controller: textEditingController,
                   decoration: InputDecoration(hintText: 'todo'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Required field';
                     }
                     return null;
@@ -36,11 +36,14 @@ class TodoRegister extends CubeWidget<TodoCube> {
                 ),
                 SizedBox(
                   width: double.maxFinite,
-                  child: RaisedButton(
-                    color: context.theme.primaryColor,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(context.theme.primaryColor),
+                    ),
                     child: Text('Save'),
                     onPressed: () {
-                      if (formKey.currentState.validate()) {
+                      if (formKey.currentState!.validate()) {
                         cube.addTodo(textEditingController.text);
                         context.pop();
                       }

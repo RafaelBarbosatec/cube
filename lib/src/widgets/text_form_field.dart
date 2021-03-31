@@ -8,21 +8,27 @@ import '../util/state_mixin.dart';
 class CTextFormFieldControl {
   final bool enable;
   final String text;
-  final String error;
+  final String? error;
   final bool obscureText;
 
   CTextFormFieldControl({
     this.enable = true,
-    this.text,
+    required this.text,
     this.error,
     this.obscureText = false,
   });
 
+  CTextFormFieldControl.empty({
+    this.enable = true,
+    this.error,
+    this.obscureText = false,
+  }) : text = '';
+
   CTextFormFieldControl copyWith({
-    String text,
-    bool enable,
-    bool obscureText,
-    String error,
+    String? text,
+    bool? enable,
+    bool? obscureText,
+    String? error,
   }) {
     return CTextFormFieldControl(
       text: text ?? this.text,
@@ -39,9 +45,9 @@ enum CObscureTextAlign {
 }
 
 class CObscureTextButtonConfiguration {
-  final bool show;
-  final Widget iconShow;
-  final Widget iconHide;
+  final bool? show;
+  final Widget? iconShow;
+  final Widget? iconHide;
   final CObscureTextAlign align;
 
   CObscureTextButtonConfiguration({
@@ -54,61 +60,60 @@ class CObscureTextButtonConfiguration {
   const CObscureTextButtonConfiguration.none({
     this.iconShow,
     this.iconHide,
-    this.align,
+    this.align = CObscureTextAlign.right,
   }) : show = false;
 }
 
 /// CTextFormField is a TextFormField with modifications to use
 /// ObservableValue to control.
 class CTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final ObservableValue<CTextFormFieldControl> observable;
   final InputDecoration decoration;
-  final FormFieldValidator<String> validator;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<bool> onChangedObscuteText;
+  final FormFieldValidator<String>? validator;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<bool>? onChangedObscuteText;
   final CObscureTextButtonConfiguration obscureTextButtonConfiguration;
-  final AutovalidateMode autovalidateMode;
-  final FocusNode focusNode;
-  final GestureTapCallback onTap;
-  final ValueChanged<String> onFieldSubmitted;
-  final TextInputAction textInputAction;
-  final List<TextInputFormatter> inputFormatters;
-  final TextInputType keyboardType;
-  final TextStyle style;
+  final AutovalidateMode? autovalidateMode;
+  final FocusNode? focusNode;
+  final GestureTapCallback? onTap;
+  final ValueChanged<String>? onFieldSubmitted;
+  final TextInputAction? textInputAction;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final TextStyle? style;
   final TextAlign textAlign;
   final int maxLines;
-  final int minLines;
+  final int? minLines;
   final bool expands;
-  final int maxLength;
-  final bool showCursor;
+  final int? maxLength;
+  final bool? showCursor;
   final bool autofocus;
   final bool readOnly;
   final bool autocorrect;
   final bool enableSuggestions;
   final double cursorWidth;
-  final double cursorHeight;
-  final Radius cursorRadius;
-  final Color cursorColor;
-  final StrutStyle strutStyle;
-  final TextDirection textDirection;
-  final TextAlignVertical textAlignVertical;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final StrutStyle? strutStyle;
+  final TextDirection? textDirection;
+  final TextAlignVertical? textAlignVertical;
   final TextCapitalization textCapitalization;
-  final Iterable<String> autofillHints;
-  final Brightness keyboardAppearance;
+  final Iterable<String>? autofillHints;
+  final Brightness? keyboardAppearance;
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
-  final InputCounterWidgetBuilder buildCounter;
-  final ScrollPhysics scrollPhysics;
+  final InputCounterWidgetBuilder? buildCounter;
+  final ScrollPhysics? scrollPhysics;
   final String obscuringCharacter;
-  final VoidCallback onEditingComplete;
-  final FormFieldSetter<String> onSaved;
-  final bool maxLengthEnforced;
-  final ToolbarOptions toolbarOptions;
+  final VoidCallback? onEditingComplete;
+  final FormFieldSetter<String>? onSaved;
+  final ToolbarOptions? toolbarOptions;
 
   const CTextFormField({
-    Key key,
-    @required this.observable,
+    Key? key,
+    required this.observable,
     this.decoration = const InputDecoration(),
     this.validator,
     this.obscureTextButtonConfiguration =
@@ -131,7 +136,6 @@ class CTextFormField extends StatefulWidget {
     this.readOnly = false,
     this.autocorrect = true,
     this.enableSuggestions = true,
-    this.maxLengthEnforced = true,
     this.showCursor,
     this.cursorWidth = 2.0,
     this.cursorHeight,
@@ -159,16 +163,16 @@ class CTextFormField extends StatefulWidget {
 }
 
 class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
-  TextEditingController _controller;
+  TextEditingController? _controller;
   bool _enable = true;
   bool _obscureText = false;
-  String _error;
+  String? _error;
 
   @override
   void initState() {
     _controller = widget.controller ?? TextEditingController();
-    _controller.text = widget.observable.value.text;
-    _controller.addListener(_controllerListener);
+    _controller?.text = widget.observable.value.text;
+    _controller?.addListener(_controllerListener);
     _enable = widget.observable.value.enable;
     _error = widget.observable.value.error;
     _obscureText = widget.observable.value.obscureText;
@@ -179,7 +183,7 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
   @override
   void dispose() {
     widget.observable.removeListener(_listener);
-    _controller.removeListener(_controllerListener);
+    _controller?.removeListener(_controllerListener);
     super.dispose();
   }
 
@@ -187,19 +191,20 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
     final control = widget.observable.value;
 
     postFrame(() {
-      if (control.text != null && control.text != _controller.text) {
-        _controller.text = control.text;
-        _controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: _controller.text.length));
+      if (control.text != _controller?.text) {
+        _controller?.text = control.text;
+        _controller?.selection = TextSelection.fromPosition(
+          TextPosition(offset: _controller?.text.length ?? 0),
+        );
       }
 
-      if (control.enable != null && control.enable != _enable) {
+      if (control.enable != _enable) {
         setState(() {
           _enable = control.enable;
         });
       }
 
-      if (control.obscureText != null && control.obscureText != _obscureText) {
+      if (control.obscureText != _obscureText) {
         setState(() {
           _obscureText = control.obscureText;
         });
@@ -215,9 +220,10 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
   }
 
   void _controllerListener() {
-    if (widget.observable.value.text != _controller.text) {
-      widget.observable
-          .modify((value) => value.copyWith(text: _controller.text));
+    if (widget.observable.value.text != _controller?.text) {
+      widget.observable.modify(
+        (value) => value.copyWith(text: _controller?.text),
+      );
     }
   }
 
@@ -262,32 +268,31 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
       obscuringCharacter: widget.obscuringCharacter,
       onEditingComplete: widget.onEditingComplete,
       onSaved: widget.onSaved,
-      maxLengthEnforced: widget.maxLengthEnforced,
       toolbarOptions: widget.toolbarOptions,
       onChanged: (text) => widget.onChanged?.call(text),
-      decoration: widget.decoration?.copyWith(
+      decoration: widget.decoration.copyWith(
         errorText: (_error?.isNotEmpty ?? false) ? _error : null,
         suffixIcon: _buildSuffixIcon(),
         prefixIcon: _buildPrefixIcon(),
       ),
       validator: (value) {
-        var error = widget?.validator?.call(value);
+        var error = widget.validator?.call(value);
         widget.observable.modify((value) => value.copyWith(error: error ?? ''));
         return error;
       },
     );
   }
 
-  Widget _buildSuffixIcon() {
-    if (widget?.obscureTextButtonConfiguration?.show == true &&
-        widget?.obscureTextButtonConfiguration?.align ==
+  Widget? _buildSuffixIcon() {
+    if (widget.obscureTextButtonConfiguration.show == true &&
+        widget.obscureTextButtonConfiguration.align ==
             CObscureTextAlign.right) {
       var icon;
       if (_obscureText) {
-        icon = widget?.obscureTextButtonConfiguration?.iconShow ??
+        icon = widget.obscureTextButtonConfiguration.iconShow ??
             Icon(Icons.visibility_outlined);
       } else {
-        icon = widget?.obscureTextButtonConfiguration?.iconHide ??
+        icon = widget.obscureTextButtonConfiguration.iconHide ??
             Icon(Icons.visibility_off_outlined);
       }
       return IconButton(
@@ -302,23 +307,23 @@ class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
     }
   }
 
-  Widget _buildPrefixIcon() {
-    if (widget?.obscureTextButtonConfiguration?.show == true &&
-        widget?.obscureTextButtonConfiguration?.align ==
-            CObscureTextAlign.left) {
+  Widget? _buildPrefixIcon() {
+    if (widget.obscureTextButtonConfiguration.show == true &&
+        widget.obscureTextButtonConfiguration.align == CObscureTextAlign.left) {
       var icon;
       if (_obscureText) {
-        icon = widget?.obscureTextButtonConfiguration?.iconShow ??
+        icon = widget.obscureTextButtonConfiguration.iconShow ??
             Icon(Icons.visibility_outlined);
       } else {
-        icon = widget?.obscureTextButtonConfiguration?.iconHide ??
+        icon = widget.obscureTextButtonConfiguration.iconHide ??
             Icon(Icons.visibility_off_outlined);
       }
       return IconButton(
         icon: icon,
         onPressed: () {
           widget.observable.modify(
-              (value) => value.copyWith(obscureText: !value.obscureText));
+            (value) => value.copyWith(obscureText: !value.obscureText),
+          );
         },
       );
     } else {

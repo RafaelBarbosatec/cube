@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/pokemon/repository/model/pokemon.dart';
 import 'package:examplecube/pokemon/repository/pokemon_repository.dart';
@@ -8,12 +10,12 @@ class PokemonCube extends Cube {
 
   PokemonCube(this.repository);
 
-  final list = List<Pokemon>().obsValue;
+  final list = <Pokemon>[].obsValue;
   final progress = false.obsValue;
   final snackBarController = CFeedBackControl<String>().obsValue;
 
   @override
-  void onReady(Object arguments) {
+  FutureOr onReady(Object? arguments) {
     fetchPokemonList();
     super.onReady(arguments);
   }
@@ -22,14 +24,13 @@ class PokemonCube extends Cube {
     if (progress.value) return;
     int page = 0;
     if (isMore) page = (list.length ~/ LIMIT_PAGE) + 1;
-    progress.update(true);
-    repository.getPokemonList(page: page, limit: LIMIT_PAGE).then((value) {
+    progress.value = true;
+    repository.getPokemonList(page: page, limit: LIMIT_PAGE)?.then((value) {
       if (isMore) return list.addAll(value);
-      list.update(value);
+      list.value = value;
     }).catchError((error) {
-      snackBarController.modify(
-        (value) => value.copyWith(show: true, data: error.toString()),
-      );
-    }).whenComplete(() => progress.update(false));
+      print(error);
+      snackBarController.show(data: error.toString());
+    }).whenComplete(() => progress.value = false);
   }
 }

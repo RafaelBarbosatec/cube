@@ -26,10 +26,10 @@ class CubeWidgetExample extends CubeWidget<CubeExample> {
 
 class CubeWidgetRobot {
   final WidgetTester tester;
-  CubeExample _cubeMock;
+  late CubeExample _cubeMock;
   CubeWidgetRobot(this.tester);
-  static Cube cubeReturned;
-  static CubeAction actionReturned;
+  static Cube? cubeReturned;
+  static CubeAction? actionReturned;
   static final Map _argumentTest = {
     'cube': 'Simple State Manager with dependency injection'
   };

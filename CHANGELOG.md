@@ -1,3 +1,11 @@
+# 1.0.1
+
+- Add extensions to facilitate the use of `CFeedBackControl` and `CTextFormFieldControl`
+
+# 1.0.0
+
+- migrate to null safety
+
 # 0.10.8+1
 
 - formatting dart code

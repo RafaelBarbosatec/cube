@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  const Home({Key key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,43 +64,62 @@ class Home extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text(Cubes.getString('counter')),
                 onPressed: () {
-                  context.goTo(CounterScreen(), settings: RouteSettings(arguments: {'name': 'rafael'}));
+                  context.goTo(CounterScreen(),
+                      settings: RouteSettings(arguments: {'name': 'rafael'}));
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text('Counter. Cube in StatefulWidget'),
                 onPressed: () {
                   context.goTo(CounterScreenWithAnimation());
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text('Pokemons'),
                 onPressed: () {
                   context.goTo(PokemonScreen());
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text(Cubes.getString('singleton')),
                 onPressed: () {
                   context.goTo(ScreenCounterSingleton());
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text('Todo'),
                 onPressed: () {
                   context.goTo(TodoList());
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text('FeedBackManager'),
                 onPressed: () {
                   context.goTo(FeedbackManagerScreen());
                 },
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 child: Text('CTextFormField'),
                 onPressed: () {
                   context.goTo(TextFormFieldScreen());

@@ -13,12 +13,12 @@ typedef WidgetByDataBuilder<T> = Widget Function(T data, BuildContext context);
 /// class used to control feedbacks
 class CFeedBackControl<T> {
   final bool show;
-  final T data;
+  final T? data;
 
   /// Constructor of the CFeedBackControl
   CFeedBackControl({this.show = false, this.data});
 
-  CFeedBackControl<T> copyWith({bool show, T data}) {
+  CFeedBackControl<T> copyWith({bool? show, T? data}) {
     return CFeedBackControl(
       show: show ?? this.show,
       data: data ?? this.data,
@@ -31,12 +31,12 @@ class CFeedBackControl<T> {
 class CFeedBackManager extends StatefulWidget {
   final Widget child;
 
-  final List<CBottomSheetController> bottomSheetControllers;
-  final List<CDialogController> dialogControllers;
-  final List<CSnackBarController> snackBarControllers;
+  final List<CBottomSheetController>? bottomSheetControllers;
+  final List<CDialogController>? dialogControllers;
+  final List<CSnackBarController>? snackBarControllers;
   const CFeedBackManager({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.bottomSheetControllers,
     this.dialogControllers,
     this.snackBarControllers,

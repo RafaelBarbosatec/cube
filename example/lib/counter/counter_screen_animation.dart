@@ -9,8 +9,8 @@ class CounterScreenWithAnimation extends StatefulWidget {
 
 class _CounterScreenWithAnimationState extends State<CounterScreenWithAnimation>
     with CubeStateMixin<CounterScreenWithAnimation, CounterCube>, TickerProviderStateMixin {
-  AnimationController _controller;
-  CurvedAnimation _curveAnimation;
+  late AnimationController _controller;
+  late CurvedAnimation _curveAnimation;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _CounterScreenWithAnimationState extends State<CounterScreenWithAnimation>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(Cubes.getString('description_counter')),
-              cube.count.build<int>((value) {
+              cube!.count.build<int>((value) {
                 return Text(value.toString());
               }),
             ],
@@ -47,7 +47,7 @@ class _CounterScreenWithAnimationState extends State<CounterScreenWithAnimation>
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: cube.increment,
+        onPressed: cube!.increment,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

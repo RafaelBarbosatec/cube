@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../observable/observable_value.dart';
 import '../util/state_mixin.dart';
 
-typedef ObserverBuilder<T> = Widget Function(T value);
+typedef ObserverBuilder<T> = Widget? Function(T value);
 typedef WhenBuild<T> = bool Function(T last, T next);
 
 /// Widget responsible for building another widget
 /// through ObservableValue updates
 class CObserver<T> extends StatefulWidget {
   const CObserver({
-    Key key,
-    @required this.observable,
-    @required this.builder,
+    Key? key,
+    required this.observable,
+    required this.builder,
     this.animate = false,
     this.when,
     this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
@@ -21,7 +21,7 @@ class CObserver<T> extends StatefulWidget {
 
   final ObservableValue<T> observable;
   final ObserverBuilder<T> builder;
-  final WhenBuild<T> when;
+  final WhenBuild<T>? when;
   final bool animate;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final Duration duration;
@@ -33,13 +33,13 @@ class CObserver<T> extends StatefulWidget {
 class _CObserverState<T> extends State<CObserver> with StateMixin {
   @override
   void initState() {
-    widget.observable?.addListener(_listener);
+    widget.observable.addListener(_listener);
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.observable?.removeListener(_listener);
+    widget.observable.removeListener(_listener);
     super.dispose();
   }
 
@@ -57,7 +57,7 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
   }
 
   void _listener() {
-    if (widgetObserver?.when
+    if (widgetObserver.when
             ?.call(widget.observable.lastValue, widget.observable.value) ??
         true) {
       postFrame(() => setState(() {}));

@@ -18,7 +18,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 ## Usage
 
-* Creating Cube:
+* Creating a Cube:
 
 ```dart
 
@@ -362,9 +362,9 @@ To show or hide:
 
 ``` dart
 
-bottomSheetControl.modify((value) => value.copyWith(show: true)); // or false to hide
-dialogControl.modify((value) => value.copyWith(show: true)); // or false to hide
-snackBarControl.modify((value) => value.copyWith(show: true, data: 'Success'));
+    bottomSheetControl.show(); // or hide();
+    dialogControl.show(); // or hide();
+    snackBarControl.show(data: 'Success');
 
 ```
 
@@ -379,13 +379,13 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
 
  /// code in Cube
 
- final textFieldControl = CTextFormFieldControl().obsValue;
+ final textFieldControl = CTextFormFieldControl(text: '').obsValue;
 
- //  textFieldControl.value.text; // get text
- //  textFieldControl.modify((value) => value.copyWith(text: 'New text')); // change text
- //  textFieldControl.modify((value) => value.copyWith(error: 'error example')); // set error
- //  textFieldControl.modify((value) => value.copyWith(enable: true)); // enable or disable
- //  textFieldControl.modify((value) => value.copyWith(obscureText: true)); // enable or disable obscureText
+ //  final text = textFieldControl.text; // get text
+ //  textFieldControl.text = 'New text'; // change text
+ //  textFieldControl.error = 'error example'; // set error
+ //  textFieldControl.enable = true; // enable or disable
+ //  textFieldControl.enableObscureText = true; // enable or disable obscureText
 
  // code in Widget
 
@@ -509,6 +509,9 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
 
     context.theme;
     context.scaffold;
+    context.showSnackBar(SnackBar());
+    context.arguments;
+    context.getCube<MyCube>(); // get Cube from provided
 
 ```
 

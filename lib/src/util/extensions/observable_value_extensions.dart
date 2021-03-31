@@ -37,3 +37,36 @@ extension ListToObservableValue<T> on List<T> {
   /// Create ObservableList<T>
   ObservableList<T> get obsValue => ObservableList<T>(value: this);
 }
+
+extension FeedbackControlExtensions<T> on ObservableValue<CFeedBackControl<T>> {
+  void show({T? data}) {
+    modify((value) => value.copyWith(show: true, data: data));
+  }
+
+  void hide() {
+    modify((value) => value.copyWith(show: false));
+  }
+}
+
+extension CTextFormFieldControlExtensions
+    on ObservableValue<CTextFormFieldControl> {
+  String get text => value.text;
+  set text(String text) {
+    modify((value) => value.copyWith(text: text));
+  }
+
+  String get error => value.error ?? '';
+  set error(String? error) {
+    modify((value) => value.copyWith(error: error));
+  }
+
+  bool get enable => value.enable;
+  set enable(bool enable) {
+    modify((value) => value.copyWith(enable: enable));
+  }
+
+  bool get enableObscureText => value.obscureText;
+  set enableObscureText(bool enable) {
+    modify((value) => value.copyWith(obscureText: enable));
+  }
+}

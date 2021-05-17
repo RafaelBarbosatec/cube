@@ -17,7 +17,7 @@ dependencies:
 
 dev_dependencies:
   mockito: any
-  effective_dart: any
+  dart_code_metrics: ^3.2.2
   flutter_test:
     sdk: flutter
 

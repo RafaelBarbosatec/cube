@@ -1,7 +1,23 @@
-include: package:effective_dart/analysis_options.yaml
+analyzer:
+  plugins:
+    - dart_code_metrics
 
-linter:
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    lines-of-executable-code: 50
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 50
+  metrics-exclude:
+    - test/**
   rules:
-    public_member_api_docs: false
-    constant_identifier_names: false
-    lines_longer_than_80_chars: false
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else

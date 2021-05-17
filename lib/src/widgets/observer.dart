@@ -58,9 +58,12 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
   }
 
   void _listener() {
-    if (widgetObserver.when
-            ?.call(widget.observable.lastValue, widget.observable.value) ??
-        true) {
+    final canRebuild = widgetObserver.when?.call(
+          widget.observable.lastValue,
+          widget.observable.value,
+        ) ??
+        true;
+    if (canRebuild) {
       // ignore: no-empty-block
       postFrame(() => setState(() {}));
     }

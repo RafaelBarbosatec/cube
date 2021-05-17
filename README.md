@@ -1,4 +1,5 @@
 [![pub package](https://img.shields.io/pub/v/cubes.svg)](https://pub.dartlang.org/packages/cubes)
+![](https://img.shields.io/github/workflow/status/RafaelBarbosatec/cube/unit-tests)
 
 <a href="https://github.com/RafaelBarbosatec/cube">
    <img alt="Cubes" src="https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/icon.png" height=80/>

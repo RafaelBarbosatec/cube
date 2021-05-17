@@ -1,3 +1,7 @@
+# 1.0.2
+
+- Update get_it
+
 # 1.0.1
 
 - Add extensions to facilitate the use of `CFeedBackControl` and `CTextFormFieldControl`

@@ -22,9 +22,13 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget>
   void initState() {
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _animationSlide = Tween(begin: Offset(2.0, 0.0), end: Offset(0.0, 0.0))
-        .animate(
-            CurvedAnimation(parent: _controller, curve: Curves.decelerate));
+    _animationSlide =
+        Tween(begin: Offset(2.0, 0.0), end: Offset(0.0, 0.0)).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.decelerate,
+      ),
+    );
     _controller.forward(from: 0.0);
     super.initState();
   }
@@ -88,6 +92,7 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget>
     if (kIsWeb) {
       CORS = 'https://cors-anywhere.herokuapp.com/';
     }
+
     return '$CORS$url';
   }
 }

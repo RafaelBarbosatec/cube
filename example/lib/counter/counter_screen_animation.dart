@@ -4,18 +4,27 @@ import 'package:flutter/material.dart';
 
 class CounterScreenWithAnimation extends StatefulWidget {
   @override
-  _CounterScreenWithAnimationState createState() => _CounterScreenWithAnimationState();
+  _CounterScreenWithAnimationState createState() =>
+      _CounterScreenWithAnimationState();
 }
 
 class _CounterScreenWithAnimationState extends State<CounterScreenWithAnimation>
-    with CubeStateMixin<CounterScreenWithAnimation, CounterCube>, TickerProviderStateMixin {
+    with
+        CubeStateMixin<CounterScreenWithAnimation, CounterCube>,
+        TickerProviderStateMixin {
   late AnimationController _controller;
   late CurvedAnimation _curveAnimation;
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _curveAnimation = CurvedAnimation(parent: _controller, curve: Curves.bounceOut);
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    _curveAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.bounceOut,
+    );
     super.initState();
     _controller.forward();
   }

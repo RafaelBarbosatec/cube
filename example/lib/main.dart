@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
   @override
+  // ignore: long-method
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -67,8 +68,10 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text(Cubes.getString('counter')),
                 onPressed: () {
-                  context.goTo(CounterScreen(),
-                      settings: RouteSettings(arguments: {'name': 'rafael'}));
+                  context.goTo(
+                    CounterScreen(),
+                    settings: RouteSettings(arguments: {'name': 'rafael'}),
+                  );
                 },
               ),
               SizedBox(

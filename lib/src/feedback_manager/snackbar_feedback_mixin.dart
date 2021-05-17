@@ -4,7 +4,9 @@ import '../observable/observable_value.dart';
 import 'feedback_manager.dart';
 
 typedef SnackBarByDataBuilder<T> = SnackBar Function(
-    T data, BuildContext context);
+  T data,
+  BuildContext context,
+);
 
 /// Class responsible for configuring the SnackBars
 class CSnackBarController<T> {

@@ -13,6 +13,7 @@ class TodoList extends CubeWidget<TodoCube> {
       body: CAnimatedList<String>(
         observable: cube.todoList,
         itemBuilder: (context, item, animation, type) {
+          // ignore: prefer-conditional-expressions
           if (type == TypeAnimationListEnum.add) {
             return ScaleTransition(
               scale: animation,
@@ -55,7 +56,7 @@ class TodoList extends CubeWidget<TodoCube> {
               onPressed: () {
                 cube.delete(text);
               },
-            )
+            ),
           ],
         ),
       ),

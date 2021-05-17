@@ -26,6 +26,7 @@ class CStringsLocation implements CGetterStringLocation {
   String getString(String key, {Map<String, String>? params}) {
     var str = cubesLocalisation?.trans(key);
     params?.forEach((key, value) => str = str?.replaceAll(key, value));
+
     return str ?? '';
   }
 

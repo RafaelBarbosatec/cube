@@ -19,7 +19,7 @@ class CubeBuilderRobot {
   CubeAction? _actionReturnedInView;
   late CubeExample _cubeMock;
   final Map _argumentTest = {
-    'cube': 'Simple State Manager with dependency injection.'
+    'cube': 'Simple State Manager with dependency injection.',
   };
   CubeBuilderRobot(this.tester);
 
@@ -41,6 +41,7 @@ class CubeBuilderRobot {
           },
           builder: (context, cube) {
             _cubeReturned = cube;
+
             return Container();
           },
         ),

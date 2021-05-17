@@ -14,6 +14,7 @@ class CubeWidgetExample extends CubeWidget<CubeExample> {
   @override
   Widget buildView(BuildContext context, CubeExample cube) {
     CubeWidgetRobot.cubeReturned = cube;
+
     return Container();
   }
 
@@ -31,7 +32,7 @@ class CubeWidgetRobot {
   static Cube? cubeReturned;
   static CubeAction? actionReturned;
   static final Map _argumentTest = {
-    'cube': 'Simple State Manager with dependency injection'
+    'cube': 'Simple State Manager with dependency injection',
   };
 
   Future setup({bool useMock = true}) async {

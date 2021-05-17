@@ -12,13 +12,19 @@ class PokemonRepository {
     if (kIsWeb) {
       CORS = 'https://cors-anywhere.herokuapp.com/';
     }
+
     return http
-        .get(Uri.parse(
-            '${CORS}http://104.131.18.84/pokemon?page=$page$paramLimit'))
-        .then((response) {
-      return jsonDecode(response.body)['data']
-          .map<Pokemon>((item) => Pokemon.fromJson(item))
-          .toList();
-    });
+        .get(
+      Uri.parse(
+        '${CORS}http://104.131.18.84/pokemon?page=$page$paramLimit',
+      ),
+    )
+        .then(
+      (response) {
+        return jsonDecode(response.body)['data']
+            .map<Pokemon>((item) => Pokemon.fromJson(item))
+            .toList();
+      },
+    );
   }
 }

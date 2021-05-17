@@ -28,31 +28,44 @@ class TextFormFieldScreen extends CubeWidget<TextFormFieldCube> {
               SizedBox(
                 height: 100,
               ),
-              Wrap(
-                children: [
-                  ElevatedButton(
-                      child: Text('Clean text'), onPressed: cube.cleanText),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                      child: Text('Change text'), onPressed: cube.changeText),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                      child: Text('Set error'), onPressed: cube.setError),
-                  SizedBox(width: 10),
-                  ElevatedButton(child: Text('enable'), onPressed: cube.enable),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                      child: Text('disable'), onPressed: cube.disable),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                      child: Text('change obscureText'),
-                      onPressed: cube.changeObscureText),
-                ],
-              )
+              _buildButtons(cube),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildButtons(TextFormFieldCube cube) {
+    return Wrap(
+      children: [
+        ElevatedButton(
+          child: Text('Clean text'),
+          onPressed: cube.cleanText,
+        ),
+        SizedBox(width: 10),
+        ElevatedButton(
+          child: Text('Change text'),
+          onPressed: cube.changeText,
+        ),
+        SizedBox(width: 10),
+        ElevatedButton(
+          child: Text('Set error'),
+          onPressed: cube.setError,
+        ),
+        SizedBox(width: 10),
+        ElevatedButton(child: Text('enable'), onPressed: cube.enable),
+        SizedBox(width: 10),
+        ElevatedButton(
+          child: Text('disable'),
+          onPressed: cube.disable,
+        ),
+        SizedBox(width: 10),
+        ElevatedButton(
+          child: Text('change obscureText'),
+          onPressed: cube.changeObscureText,
+        ),
+      ],
     );
   }
 }

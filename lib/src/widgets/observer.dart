@@ -53,6 +53,7 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
             SizedBox.shrink(),
       );
     }
+
     return widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink();
   }
 
@@ -60,6 +61,7 @@ class _CObserverState<T> extends State<CObserver> with StateMixin {
     if (widgetObserver.when
             ?.call(widget.observable.lastValue, widget.observable.value) ??
         true) {
+      // ignore: no-empty-block
       postFrame(() => setState(() {}));
     }
   }

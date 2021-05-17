@@ -62,6 +62,7 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
       key: _listKey,
       itemBuilder: (context, index, animation) {
         if (itemList.length <= index) return SizedBox.shrink();
+
         return (widget as CAnimatedList<T>).itemBuilder(
           context,
           itemList[index],
@@ -109,8 +110,9 @@ class _AnimatedListState<T> extends State<CAnimatedList> {
 
   Future _refresh() async {
     await Future.delayed(Duration.zero);
-    itemList.clear();
-    itemList.addAll(widget.observable.value as Iterable<T>);
-    setState(() {});
+    setState(() {
+      itemList.clear();
+      itemList.addAll(widget.observable.value as Iterable<T>);
+    });
   }
 }

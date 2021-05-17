@@ -15,22 +15,23 @@ class Pokemon {
   int? id;
   List<String>? type;
 
-  Pokemon(
-      {this.abilities,
-      this.detailPageURL,
-      this.weight,
-      this.weakness,
-      this.number,
-      this.height,
-      this.collectiblesSlug,
-      this.featured,
-      this.slug,
-      this.description,
-      this.name,
-      this.thumbnailAltText,
-      this.thumbnailImage,
-      this.id,
-      this.type});
+  Pokemon({
+    this.abilities,
+    this.detailPageURL,
+    this.weight,
+    this.weakness,
+    this.number,
+    this.height,
+    this.collectiblesSlug,
+    this.featured,
+    this.slug,
+    this.description,
+    this.name,
+    this.thumbnailAltText,
+    this.thumbnailImage,
+    this.id,
+    this.type,
+  });
 
   Pokemon.fromJson(Map<String, dynamic> json) {
     abilities = json['abilities'].cast<String>();
@@ -67,6 +68,7 @@ class Pokemon {
     data['thumbnailImage'] = this.thumbnailImage;
     data['id'] = this.id;
     data['type'] = this.type;
+
     return data;
   }
 }

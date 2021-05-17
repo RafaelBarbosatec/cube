@@ -28,6 +28,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
                     if (value!.isEmpty) {
                       return 'Required field';
                     }
+
                     return null;
                   },
                 ),
@@ -49,7 +50,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
                       }
                     },
                   ),
-                )
+                ),
               ],
             ),
           ),

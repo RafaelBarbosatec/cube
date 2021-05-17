@@ -17,6 +17,7 @@ void main() {
   test('verify return injected factory', () {
     injector.registerDependency<String>((injector) {
       _counter++;
+
       return 'count: $_counter';
     });
     expect(injector.getDependency<String>(), 'count: 1');
@@ -28,6 +29,7 @@ void main() {
     injector.registerDependency<String>(
       (injector) {
         _counter++;
+
         return 'count: $_counter';
       },
       isSingleton: true,

@@ -44,6 +44,7 @@ class CubesLocalizationDelegate
     );
     await localizations.load();
     print("Cubes: Load (${locale.toString()}) localization.");
+
     return localizations;
   }
 

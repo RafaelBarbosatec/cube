@@ -21,6 +21,7 @@ class ObserverRobot {
           },
           builder: (value) {
             _valueReturnedInBuilder = value;
+
             return Container(
               child: Text(value.toString()),
             );

@@ -29,7 +29,7 @@ void main() {
       Pokemon(),
       Pokemon(),
       Pokemon(),
-      Pokemon()
+      Pokemon(),
     ];
 
     when(

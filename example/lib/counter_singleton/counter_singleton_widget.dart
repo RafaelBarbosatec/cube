@@ -32,7 +32,11 @@ class CounterSingletonWidget extends CubeWidget<CounterSingletonCube> {
   }
 
   @override
-  void onAction(BuildContext context, CounterSingletonCube cube, CubeAction data) {
+  void onAction(
+    BuildContext context,
+    CounterSingletonCube cube,
+    CubeAction data,
+  ) {
     // TODO: implement onAction
     super.onAction(context, cube, data);
   }

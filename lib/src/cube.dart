@@ -22,6 +22,7 @@ abstract class Cube {
   /// called when the view is ready
   /// [arguments] if passed through CubeBuilder, if not, get arguments
   /// from `ModalRoute.of(context).settings.arguments;`
+  // ignore: no-empty-block
   void onReady(Object? arguments) {}
 
   /// called when the cube is destroyed
@@ -39,7 +40,8 @@ abstract class Cube {
 
   /// Remove OnActionListener
   void removeOnActionListener<T extends Cube>(
-      OnActionChanged<T, CubeAction>? listener) {
+    OnActionChanged<T, CubeAction>? listener,
+  ) {
     _onActionListeners?.remove(listener);
   }
 

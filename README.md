@@ -11,7 +11,7 @@ Simple State Manager with dependency injection and no code generation required.
 
 With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
 
-No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) due to its simplicity and immediate updating of the observable values.
+No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) because it is a feature already available in Flutter and for its simplicity.
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).

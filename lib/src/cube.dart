@@ -13,10 +13,9 @@ typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
 );
 
 /// Base to create Cube
-abstract class Cube {
+abstract class Cube extends CubeBase {
   List<OnActionChanged<Cube, CubeAction>>? _onActionListeners;
-  Map<dynamic, Debounce>? _debounceMap;
-  Map<ObservableValue, VoidCallback>? _listenersObservableMap;
+
   OnActionChanged? _cubeActionListener;
 
   /// called when the view is ready
@@ -24,11 +23,6 @@ abstract class Cube {
   /// from `ModalRoute.of(context).settings.arguments;`
   // ignore: no-empty-block
   void onReady(Object? arguments) {}
-
-  /// called when the cube is destroyed
-  void dispose() {
-    _disposeListeners();
-  }
 
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
@@ -51,6 +45,24 @@ abstract class Cube {
     if (_onActionListeners?.isEmpty == true) return;
     _onActionListeners?.last(this, action);
   }
+
+  @override
+  void dispose() {
+    removeOnActionListener(_cubeActionListener);
+    super.dispose();
+  }
+
+  /// Uses to listen `CubeAction` sended to view
+  @protected
+  void listenActions(ValueChanged<CubeAction> listener) {
+    _cubeActionListener = (cube, action) => listener(action);
+    addOnActionListener(_cubeActionListener);
+  }
+}
+
+abstract class CubeBase {
+  Map<dynamic, Debounce>? _debounceMap;
+  Map<ObservableValue, VoidCallback>? _listenersObservableMap;
 
   ///
   /// Uses to apply debounce.
@@ -95,18 +107,10 @@ abstract class Cube {
     observableValue.addListener(_listenersObservableMap![observableValue]!);
   }
 
-  /// Remove listeners created on `listen`
-  void _disposeListeners() {
-    removeOnActionListener(_cubeActionListener);
+  /// called when the cube is destroyed
+  void dispose() {
     _listenersObservableMap?.forEach((key, value) {
       key.removeListener(value);
     });
-  }
-
-  /// Uses to listen `CubeAction` sended to view
-  @protected
-  void listenActions(ValueChanged<CubeAction> listener) {
-    _cubeActionListener = (cube, action) => listener(action);
-    addOnActionListener(_cubeActionListener);
   }
 }

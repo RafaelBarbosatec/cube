@@ -4,6 +4,7 @@
 - Update `GetIt`
 - Add `Cubes.registerDependencyAsync`
 - Add `Cubes.getDependencyAsync`
+- improvements in `CubeStateMixin`
 
 # 1.0.2
 

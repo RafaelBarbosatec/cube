@@ -19,7 +19,7 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   /// Cube that will be used
   C? _cube;
 
-  set cube(C cube)=>_cube = cube;
+  set cube(C cube) => _cube = cube;
   C get cube => _cube!;
 
   /// Initial data used in `cube.onReady`
@@ -41,7 +41,8 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   }
 
   /// Remove action listeners.
-  void removeOnActionListener() => _cube?.removeOnActionListener(_innerOnAction);
+  void removeOnActionListener() =>
+      _cube?.removeOnActionListener(_innerOnAction);
 
   void _innerOnAction(C cube, CubeAction action) => onAction(action);
 

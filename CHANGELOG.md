@@ -1,3 +1,10 @@
+# 1.1.0
+
+- Add `SimpleCube`
+- Update `GetIt`
+- Add `Cubes.registerDependencyAsync`
+- Add `Cubes.getDependencyAsync`
+
 # 1.0.2
 
 - Update get_it

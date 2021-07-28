@@ -16,12 +16,20 @@ class GetItInjector extends CInjector {
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     bool isSingleton = false,
+    bool isSingletonLazy = true,
   }) {
     if (isSingleton) {
-      _getIt.registerLazySingleton<T>(
-        () => builder(this),
-        instanceName: dependencyName,
-      );
+      if (isSingletonLazy) {
+        _getIt.registerLazySingleton<T>(
+          () => builder(this),
+          instanceName: dependencyName,
+        );
+      } else {
+        _getIt.registerSingleton<T>(
+          builder(this),
+          instanceName: dependencyName,
+        );
+      }
     } else {
       _getIt.registerFactory<T>(
         () => builder(this),
@@ -31,7 +39,39 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void reset() {
-    _getIt.reset(dispose: false);
+  void reset({bool dispose = false}) {
+    _getIt.reset(dispose: dispose);
+  }
+
+  @override
+  void registerDependencyAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+    bool isSingleton = false,
+    bool isSingletonLazy = true,
+  }) {
+    if (isSingleton) {
+      if (isSingletonLazy) {
+        _getIt.registerLazySingletonAsync<T>(
+          () => builder(this),
+          instanceName: dependencyName,
+        );
+      } else {
+        _getIt.registerSingletonAsync<T>(
+          () => builder(this),
+          instanceName: dependencyName,
+        );
+      }
+    } else {
+      _getIt.registerFactoryAsync<T>(
+        () => builder(this),
+        instanceName: dependencyName,
+      );
+    }
+  }
+
+  @override
+  Future<T> getDependencyAsync<T extends Object>({String? dependencyName}) {
+    return _getIt.getAsync<T>(instanceName: dependencyName);
   }
 }

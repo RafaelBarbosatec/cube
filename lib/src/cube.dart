@@ -13,7 +13,7 @@ typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
 );
 
 /// Base to create Cube
-abstract class Cube extends CubeBase {
+abstract class Cube extends SimpleCube {
   List<OnActionChanged<Cube, CubeAction>>? _onActionListeners;
 
   OnActionChanged? _cubeActionListener;
@@ -60,7 +60,7 @@ abstract class Cube extends CubeBase {
   }
 }
 
-abstract class CubeBase {
+abstract class SimpleCube {
   Map<dynamic, Debounce>? _debounceMap;
   Map<ObservableValue, VoidCallback>? _listenersObservableMap;
 

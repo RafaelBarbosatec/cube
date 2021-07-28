@@ -13,6 +13,8 @@ import 'package:examplecube/todo/todo_list.dart';
 import 'package:flutter/material.dart';
 
 import 'counter/counter_cube.dart';
+import 'counter_simple_cube/counter_simple_cube.dart';
+import 'counter_simple_cube/counter_simple_cube_screen.dart';
 import 'counter_singleton/counter_singleton_cube.dart';
 import 'text_form_field/text_form_field_cube.dart';
 
@@ -25,6 +27,7 @@ void main() {
   Cubes.registerDependency((i) => PokemonRepository());
   Cubes.registerDependency((i) => FeedbackManagerCube());
   Cubes.registerDependency((i) => TextFormFieldCube());
+  Cubes.registerDependency((i) => CounterSimpleCube());
   runApp(MyApp());
 }
 
@@ -81,6 +84,17 @@ class Home extends StatelessWidget {
                 child: Text('Counter. Cube in StatefulWidget'),
                 onPressed: () {
                   context.goTo(CounterScreenWithAnimation());
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                child: Text('Counter. Using SimpleCube'),
+                onPressed: () {
+                  context.goTo(
+                    CounterSimpleCubeScreen(),
+                  );
                 },
               ),
               SizedBox(

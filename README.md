@@ -157,6 +157,8 @@ If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateM
 
 Cube and its dependencies are injected automatically.
 
+You can use `SimpleCube` too. see [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube);
+
 ---
 
 By doing this:

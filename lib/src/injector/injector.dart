@@ -1,10 +1,10 @@
-import '../cube.dart';
-
-/// Function to receive Cube to inject
-typedef CCubeInjectorBuilder<T extends Cube> = T Function(CInjector injector);
-
 /// Function to receive dependency to inject
 typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
+
+/// Function to receive dependency to inject
+typedef CDependencyInjectorAsyncBuilder<T> = Future<T> Function(
+  CInjector injector,
+);
 
 /// Interface responsible to manager dependency injector
 abstract class CInjector {
@@ -13,11 +13,23 @@ abstract class CInjector {
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     bool isSingleton = false,
+    bool isSingletonLazy = true,
+  });
+
+  /// Method used to register dependency async
+  void registerDependencyAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+    bool isSingleton = false,
+    bool isSingletonLazy = true,
   });
 
   /// Method used to get dependency
   T getDependency<T extends Object>({String? dependencyName});
 
+  /// Method used to get dependency async
+  Future<T> getDependencyAsync<T extends Object>({String? dependencyName});
+
   /// Method used to reset dependencies registered
-  void reset();
+  void reset({bool dispose = false});
 }

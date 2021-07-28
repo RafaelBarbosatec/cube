@@ -11,7 +11,7 @@ Simple State Manager with dependency injection and no code generation required.
 
 With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
 
-No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) due to its simplicity and immediate updating of the observable values.
+No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) because it is a feature already available in Flutter and for its simplicity.
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
@@ -156,6 +156,8 @@ class Home extends CubeWidget<CounterCube> {
 If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
 
 Cube and its dependencies are injected automatically.
+
+You can use `SimpleCube` too. see [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube);
 
 ---
 
@@ -550,6 +552,7 @@ void main() {
 ```
 
 Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
+
 Example widget test [here](https://github.com/RafaelBarbosatec/cube/tree/master/example/test/widget/counter)
 
 Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).

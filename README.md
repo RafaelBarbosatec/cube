@@ -552,7 +552,8 @@ void main() {
 ```
 
 Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
-Example widget test [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/widget/counter)
+
+Example widget test [here](https://github.com/RafaelBarbosatec/cube/tree/master/example/test/widget/counter)
 
 Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 

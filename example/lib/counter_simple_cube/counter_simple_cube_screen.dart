@@ -20,6 +20,12 @@ class _CounterSimpleCubeScreenState extends State<CounterSimpleCubeScreen> {
   }
 
   @override
+  void dispose() {
+    cube.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

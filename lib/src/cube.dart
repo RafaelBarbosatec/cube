@@ -109,6 +109,7 @@ abstract class SimpleCube {
 
   /// called when the cube is destroyed
   void dispose() {
+    _debounceMap?.clear();
     _listenersObservableMap?.forEach((key, value) {
       key.removeListener(value);
     });

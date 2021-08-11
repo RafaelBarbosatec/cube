@@ -470,7 +470,7 @@ By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependenc
 
 ```dart
 
-  class MyInjector extends Injector {
+  class MyInjector extends CInjector {
    @override
     T getDependency<T>({String dependencyName}) {
       // your implementation

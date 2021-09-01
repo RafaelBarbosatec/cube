@@ -1,3 +1,6 @@
+/// Enum that represents types of the register
+enum DependencyRegisterType { factory, singleton, lazySingleton }
+
 /// Function to receive dependency to inject
 typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
 
@@ -12,16 +15,14 @@ abstract class CInjector {
   void registerDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
-    bool isSingletonLazy = true,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   });
 
   /// Method used to register dependency async
   void registerDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
-    bool isSingletonLazy = true,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   });
 
   /// Method used to get dependency

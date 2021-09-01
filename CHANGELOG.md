@@ -1,9 +1,16 @@
+# 1.2.0
+
+- Adds key in `CubeWidget`
+- Update README.md
+- BREAKING CHANGES: remove bool to indicate type of the register dependency.
+Now use enum `DependencyRegisterType` between `factory`, `singleton`, `lazySingleton`.
+
 # 1.1.0
 
-- Add `SimpleCube`
+- Adds `SimpleCube`
 - Update `GetIt`
-- Add `Cubes.registerDependencyAsync`
-- Add `Cubes.getDependencyAsync`
+- Adds `Cubes.registerDependencyAsync`
+- Adds `Cubes.getDependencyAsync`
 - improvements in `CubeStateMixin`
 
 # 1.0.2

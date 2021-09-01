@@ -16,30 +16,11 @@ No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier]
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
 
-## Usage
 
-* Creating a Cube:
+
+## Counter Example
 
 ```dart
-
-class CounterCube extends Cube {
-    final count = 0.obsValue;
-    // or final count = ObservableValue<int>(value: 0)
-
-    @override
-    void onReady(Object arguments) {
-      // do anything when view is ready
-      super.ready(arguments);
-    }
-
-    void increment() {
-      count.modify((value) => value + 1); // or count.update(newValue);
-    }
-}
-
-```
-
-- Registering Cubes and or dependencies:
 
 ```dart
 
@@ -47,80 +28,156 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  // register cube
+ 
   Cubes.registerDependency((i) => CounterCube());
 
-  // Example register singleton Cube
-  // Cubes.registerDependency((i) => CounterCube(),isSingleton: true);
-
-  // Example register repositories or anything
-  // Cubes.registerDependency((i) => SingletonRepository(i.getDependency(),isSingleton: true);
-  // Cubes.registerDependency((i) => FactoryRepository(i.getDependency());
-
   runApp(MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Cube Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
-    ));
+      home: CounterScreen(),
+    ),
+  );
 }
 
-```
+class CounterCube extends Cube {
 
-* Creating view using `CubeBuilder`
+  final count = 0.obsValue;
 
+  void increment() {
+    count.modify((value) => value + 1); // or count.update(newValue);
+  }
+  
+}
 
-```dart
-
-class CounterScreen extends StatelessWidget {
-
+class CounterScreen extends CubeWidget<CounterCube> {
   @override
-  Widget build(BuildContext context) {
-    return CubeBuilder<CounterCube>(
-      onAction: (cube, action) { // optional
-        print(action);
-      },
-      dispose:(CounterCube cube){ // optional
-        // do anything
-        return true; // If return  false CubeBuilder note call dispose in Cube
-      },
-      arguments: 'Hi', //if not passed, get arguments from `ModalRoute.of(context).settings.arguments;`. this will be returning in onReady in your Cube
-      builder: (BuildContext context, CounterCube cube) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Counter'),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('You have pushed the button this many times:'),
-                cube.count.build<int>(
-                  (value) => Text(value.toString()),
-                ),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: cube.increment,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
-        );
-      },
+  Widget buildView(BuildContext context, CounterCube cube) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('You have pushed the button this many times:'),
+            SizedBox(height: 20),
+            cube.count.build<int>((value) {
+              return Text(value.toString());
+            }),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: cube.increment,
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
 ```
 
-or use `CubeWidget`
+## Usage
+
+### Creating a Cube
+
+Cube is the classe responsible to center business logic of the your view. 
+
+For create your cube, just create a class and extends of `Cube` like this:
 
 ```dart
 
-class Home extends CubeWidget<CounterCube> {
+class CounterCube extends Cube {
+   
+}
+
+```
+
+In `Cubes` you controll elements in the view using `ObservableValues`. To create once is easy:
+
+```dart
+
+class CounterCube extends Cube {
+    final count = 0.obsValue;
+    // final myList = <MyModel>[].obsValue;
+    // final viewModel = ViewMidel().obsValue;
+}
+
+```
+
+Ready, now we can modify these `ObservableValues` and your view will react to these changes. For example:
+
+```dart
+
+class CounterCube extends Cube {
+    final count = 0.obsValue;
+    
+    void increment() {
+      count.modify((value) => value + 1); // or count.update(newValue);
+    }
+}
+
+```
+
+It's normal to want to do a query in an API or do something else once the View is ready. 
+In `Cubes` it is super simple to do this. You can do overrride of the methos `onReady`, this is called when your View is a ready. 
+
+```dart
+
+class CounterCube extends Cube {
+    final count = 0.obsValue;
+    
+    void increment() {
+      count.modify((value) => value + 1); // or count.update(newValue);
+    }
+    
+    @override
+    void onReady(Object arguments) {
+      // do anything when view is ready
+      super.ready(arguments);
+    }
+}
+
+```
+
+The `arguments` variable we get is passed by the view, and if we don't pass this variable it gets from `ModalRoute.of(context).settings.arguments;`
+
+### Creating a View
+
+We widget that represents the View is very simple. just create a class and extends of `CubeWidget<CubeName>` passing the `Cube` name that this view will uses. For example:
+
+```dart
+
+class CounterScreen extends CubeWidget<CounterCube> {
+   
+}
+
+```
+
+Your IDE will force you to implement a mandatory method called `buildView`. getting like this:
+
+```dart
+
+class CounterScreen extends CubeWidget<CounterCube> {
+
+ @override
+  Widget buildView(BuildContext context, CounterCube cube) {
+    // TODO: implement buildView
+    throw UnimplementedError();
+  }
+   
+}
+
+```
+
+It is similar to the 'build' method already known to you from `StatelessWidget` and `State`. Where you will return your widget tree and will already have access to `Cube` to listen to the `ObservableValues`.
+The end result is this:
+
+
+```dart
+
+class CounterScreen extends CubeWidget<CounterCube> {
 
   @override
   Widget buildView(BuildContext context, CounterCube cube) {
@@ -143,7 +200,6 @@ class Home extends CubeWidget<CounterCube> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: cube.increment,
-        tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -153,30 +209,69 @@ class Home extends CubeWidget<CounterCube> {
 
 ```
 
-If you want to use cubes in a `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` in the state, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart).
+Note that listening to the `ObservableValue` was very simple. Simply:
 
-Cube and its dependencies are injected automatically.
+```dart
 
-You can use `SimpleCube` too. see [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube);
-
----
-
-By doing this:
-
-``` dart
-  cube.count.build<int>((value) {
-    return Text(value.toString());
-  }),
+   cube.count.build<int>((value) {
+     return Text(value.toString());
+   })
 
 ```
 
-we register by listening to the Observable `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+This way we listening to the `ObservableValue` `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
 ``` dart
   return Text(value.toString());
 ```
 
 This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
+
+### Registering Cubes and dependencies
+
+Did you notice that we never created an instance of `CounterCube`?
+This is because `Cubes` works with dependency injection. So for everything to work properly we have to register the `Cube` used and its dependencies, if any.
+
+
+```dart
+
+import 'package:cubes/cubes.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  // register cube
+  Cubes.registerDependency((i) => CounterCube());
+
+  // Example register singleton Cube
+  // Cubes.registerDependency(
+  //    (i) => CounterCube(),
+  //    type: DependencyRegisterType.singleton,
+  // );
+
+  // Example register repositories or anything
+  // Cubes.registerDependency((i) => SingletonRepository(i.getDependency());
+
+  runApp(MaterialApp(
+      title: 'Cubes Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: Home(),
+    ));
+}
+
+```
+
+---
+
+For those of you who don't like to attach a package to your project too much, there are other ways to work the View part. Look:
+
+- You can use `CubeBuilder` widget, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen.dart);
+- To work with `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart);
+- If you want to use it in a more minimalist way you can use the `SimpleCube`, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube).
+
+---
 
 ## Listening observable variables
 
@@ -224,20 +319,41 @@ To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cube
       NavigationAction({this.route});
   }
 
-  // sending action
-  onAction(NavigationAction(route: "/home"));
-
 ```
+
+In your cube
+
+```dart
+
+class MyCube extends Cube {
+
+   void navToGome(){
+      // sending action
+     onAction(NavigationAction(route: "/home"));
+   }
+}
+
+  
+```dart
 
 you will receive this action in the `View` through the method:
 
 ```dart
 
+class MyScreen extends CubeWidget<MyCube> {
+
+  @override
+  Widget buildView(BuildContext context, MyCube cube) {
+    return ...;
+  }
+  
    @override
    void onAction(BuildContext context, MyCube cube, CubeAction action) {
      if(action is NavigationAction) Navigator.pushNamed(context, (action as NavigationAction).route);
      super.onAction(context, cube, data);
    }
+
+}
 
 ```
 

@@ -21,8 +21,14 @@ import 'text_form_field/text_form_field_cube.dart';
 void main() {
   // register cube
   Cubes.registerDependency((i) => CounterCube());
-  Cubes.registerDependency((i) => CounterSingletonCube(), isSingleton: true);
-  Cubes.registerDependency((i) => TodoCube(), isSingleton: true);
+  Cubes.registerDependency(
+    (i) => CounterSingletonCube(),
+    type: DependencyRegisterType.singleton,
+  );
+  Cubes.registerDependency(
+    (i) => TodoCube(),
+    type: DependencyRegisterType.singleton,
+  );
   Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
   Cubes.registerDependency((i) => PokemonRepository());
   Cubes.registerDependency((i) => FeedbackManagerCube());

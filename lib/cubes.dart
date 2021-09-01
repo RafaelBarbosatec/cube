@@ -47,12 +47,12 @@ class Cubes {
   static void registerDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
     _instance._injector.registerDependency<T>(
       builder,
       dependencyName: dependencyName,
-      isSingleton: isSingleton,
+      type: type,
     );
   }
 
@@ -60,12 +60,12 @@ class Cubes {
   static void registerDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
     _instance._injector.registerDependencyAsync<T>(
       builder,
       dependencyName: dependencyName,
-      isSingleton: isSingleton,
+      type: type,
     );
   }
 

@@ -15,26 +15,27 @@ class GetItInjector extends CInjector {
   void registerDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
-    bool isSingletonLazy = true,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    if (isSingleton) {
-      if (isSingletonLazy) {
-        _getIt.registerLazySingleton<T>(
+    switch (type) {
+      case DependencyRegisterType.factory:
+        _getIt.registerFactory<T>(
           () => builder(this),
           instanceName: dependencyName,
         );
-      } else {
+        break;
+      case DependencyRegisterType.singleton:
         _getIt.registerSingleton<T>(
           builder(this),
           instanceName: dependencyName,
         );
-      }
-    } else {
-      _getIt.registerFactory<T>(
-        () => builder(this),
-        instanceName: dependencyName,
-      );
+        break;
+      case DependencyRegisterType.lazySingleton:
+        _getIt.registerLazySingleton<T>(
+          () => builder(this),
+          instanceName: dependencyName,
+        );
+        break;
     }
   }
 
@@ -47,26 +48,27 @@ class GetItInjector extends CInjector {
   void registerDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
-    bool isSingleton = false,
-    bool isSingletonLazy = true,
+    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    if (isSingleton) {
-      if (isSingletonLazy) {
+    switch (type) {
+      case DependencyRegisterType.factory:
+        _getIt.registerFactoryAsync<T>(
+          () => builder(this),
+          instanceName: dependencyName,
+        );
+        break;
+      case DependencyRegisterType.singleton:
         _getIt.registerLazySingletonAsync<T>(
           () => builder(this),
           instanceName: dependencyName,
         );
-      } else {
+        break;
+      case DependencyRegisterType.lazySingleton:
         _getIt.registerSingletonAsync<T>(
           () => builder(this),
           instanceName: dependencyName,
         );
-      }
-    } else {
-      _getIt.registerFactoryAsync<T>(
-        () => builder(this),
-        instanceName: dependencyName,
-      );
+        break;
     }
   }
 

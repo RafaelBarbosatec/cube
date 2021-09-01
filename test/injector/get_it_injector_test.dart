@@ -32,22 +32,21 @@ void main() {
 
         return 'count: $_counter';
       },
-      isSingleton: true,
+      type: DependencyRegisterType.singleton,
     );
     expect(injector.getDependency<String>(), 'count: 1');
     expect(injector.getDependency<String>(), 'count: 1');
     expect(injector.getDependency<String>(), 'count: 1');
   });
 
-  test('verify return injected singleton not lazy', () {
+  test('verify return injected singleton lazy', () {
     injector.registerDependency<String>(
       (injector) {
         _counter++;
 
         return 'count: $_counter';
       },
-      isSingleton: true,
-      isSingletonLazy: false,
+      type: DependencyRegisterType.lazySingleton,
     );
     expect(injector.getDependency<String>(), 'count: 1');
     expect(injector.getDependency<String>(), 'count: 1');
@@ -75,7 +74,7 @@ void main() {
 
         return 'count: $_counter';
       },
-      isSingleton: true,
+      type: DependencyRegisterType.singleton,
     );
 
     final r1 = await injector.getDependencyAsync<String>();
@@ -85,7 +84,7 @@ void main() {
     expect(r2, 'count: 1');
   });
 
-  test('verify return injected singleton async not lazy', () async {
+  test('verify return injected singleton async lazy', () async {
     injector.registerDependencyAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
@@ -93,8 +92,7 @@ void main() {
 
         return 'count: $_counter';
       },
-      isSingleton: true,
-      isSingletonLazy: false,
+      type: DependencyRegisterType.lazySingleton,
     );
 
     final r1 = await injector.getDependencyAsync<String>();

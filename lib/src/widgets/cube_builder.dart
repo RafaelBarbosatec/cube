@@ -11,7 +11,7 @@ typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
 );
 
 typedef InitCallback<C extends Cube> = Function(C cube);
-typedef CubeWidgetDispose<C extends Cube> = bool Function(C? cube);
+typedef CubeWidgetDispose<C extends Cube> = bool Function(C cube);
 
 /// Widget responsible for getting instance and providing Cube
 class CubeBuilder<C extends Cube> extends StatefulWidget {

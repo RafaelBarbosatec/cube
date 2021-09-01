@@ -6,12 +6,14 @@ import '../cube.dart';
 /// Widget created to replace StatelessWidget and facilitate the use of Cube
 /// This is responsible for getting instance and providing Cube
 abstract class CubeWidget<C extends Cube> extends StatelessWidget {
+  const CubeWidget({Key? key}) : super(key: key);
+
   /// called when cube send any Action to view.
   // ignore: no-empty-block
   void onAction(BuildContext context, C cube, CubeAction action) {}
 
   /// if you want the widget to not call `dispose` in the Cube, return false
-  bool dispose(C? cube) => true;
+  bool dispose(C cube) => true;
 
   /// Arguments that will be sent to the cube through the onReady () method
   /// If this argument is not set,

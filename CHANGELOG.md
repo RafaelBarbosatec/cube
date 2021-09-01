@@ -1,9 +1,13 @@
+# 1.1.1
+
+- Adds key in `CubeWidget`
+
 # 1.1.0
 
-- Add `SimpleCube`
+- Adds `SimpleCube`
 - Update `GetIt`
-- Add `Cubes.registerDependencyAsync`
-- Add `Cubes.getDependencyAsync`
+- Adds `Cubes.registerDependencyAsync`
+- Adds `Cubes.getDependencyAsync`
 - improvements in `CubeStateMixin`
 
 # 1.0.2

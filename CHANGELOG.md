@@ -1,6 +1,7 @@
-# 1.1.1
+# 1.2.0
 
 - Adds key in `CubeWidget`
+- Update README.md
 - BREAKING CHANGES: remove bool to indicate type of the register dependency.
 Now use enum `DependencyRegisterType` between `factory`, `singleton`, `lazySingleton`.
 

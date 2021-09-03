@@ -38,6 +38,7 @@ void main() {
 
     await cube.onReady(null);
 
+    expect(cube.list.value, isA<List<Pokemon>>());
     expect(cube.list.value, mockList);
     expect(cube.progress.value, false);
   });

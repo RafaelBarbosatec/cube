@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import '../cubes.dart';
@@ -22,7 +24,7 @@ abstract class Cube extends SimpleCube {
   /// [arguments] if passed through CubeBuilder, if not, get arguments
   /// from `ModalRoute.of(context).settings.arguments;`
   // ignore: no-empty-block
-  void onReady(Object? arguments) {}
+  FutureOr onReady(Object? arguments) {}
 
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(

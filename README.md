@@ -22,8 +22,6 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 ```dart
 
-```dart
-
 import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 

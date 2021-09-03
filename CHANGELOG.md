@@ -1,3 +1,7 @@
+# 1.2.0+1
+
+- Update README.md
+
 # 1.2.0
 
 - Adds key in `CubeWidget`

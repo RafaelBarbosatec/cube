@@ -585,9 +585,9 @@ You can replace part of the string using `params`. Like this:
 ```dart
 
   // String in json file:
-  // {'welcome':'Hello $name! Welcome to my app!'}
+  // {'welcome':'Hello {name}! Welcome to my app!'}
 
-  String text = Cubes.getString('welcome',params:{'$name':'Kevin'});
+  String text = Cubes.getString('welcome',params:{'{name}':'Kevin'});
 
 ```
 

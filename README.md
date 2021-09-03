@@ -532,6 +532,8 @@ Create a folder named `lang` and put your files with name location. This way:
 
 ![](https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/example-folders.png)
 
+[Example json file](https://github.com/RafaelBarbosatec/cube/blob/master/example/lang);
+
 Add path in your `pubspec.yaml`:
 
 ```yaml
@@ -575,6 +577,17 @@ Ready!!!  Your application already supports internationalization. Get the string
 ```dart
 
   String text = Cubes.getString('welcome');
+
+```
+
+You can replace part of the string using `params`. Like this:
+
+```dart
+
+  // String in json file:
+  // {'welcome':'Hello $name! Welcome to my app!'}
+
+  String text = Cubes.getString('welcome',params:{'$name':'Kevin'});
 
 ```
 

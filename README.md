@@ -219,7 +219,7 @@ Note that listening to the `ObservableValue` was very simple. Simply:
 
 This way we listening to the `ObservableValue` `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
-``` dart
+```dart
   return Text(value.toString());
 ```
 
@@ -332,7 +332,7 @@ class MyCube extends Cube {
 }
 
   
-```dart
+```
 
 you will receive this action in the `View` through the method:
 

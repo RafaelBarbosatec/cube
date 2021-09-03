@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 
 import 'strings_location.dart';
 
+Map<String, String> _jsonCache = {};
+
 /// Responsible for loading the current locate string file
 class CubesLocalization {
   /// Primary constructor of the  CubesLocalization
@@ -23,9 +25,13 @@ class CubesLocalization {
 
   /// Load json according to locale
   Future<bool> load() async {
-    var data =
-        await rootBundle.loadString('$pathFiles${locale.languageCode}.json');
-    Map<String, dynamic> _result = json.decode(data);
+    final fileName = '$pathFiles${locale.languageCode}.json';
+    String data = '';
+    if (!_jsonCache.containsKey(fileName)) {
+      data = await rootBundle.loadString(fileName);
+      _jsonCache[fileName] = data;
+    }
+    Map<String, dynamic> _result = json.decode(_jsonCache[fileName]!);
     _sentences.clear();
     _result.forEach((key, dynamic value) {
       _sentences[key] = value.toString();

@@ -219,7 +219,7 @@ Note that listening to the `ObservableValue` was very simple. Simply:
 
 This way we listening to the `ObservableValue` `count`, and every time this variable is changed, the` View` is notified by running the code block again:
 
-``` dart
+```dart
   return Text(value.toString());
 ```
 
@@ -332,7 +332,7 @@ class MyCube extends Cube {
 }
 
   
-```dart
+```
 
 you will receive this action in the `View` through the method:
 
@@ -532,6 +532,8 @@ Create a folder named `lang` and put your files with name location. This way:
 
 ![](https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/example-folders.png)
 
+[Example json file](https://github.com/RafaelBarbosatec/cube/blob/master/example/lang);
+
 Add path in your `pubspec.yaml`:
 
 ```yaml
@@ -570,11 +572,22 @@ In your `MaterialApp` you can configure the `CubesLocalizationDelegate`:
 
 ```
 
-Ready!!!  Your application already supports internationalization. Bas get the strings as follows:
+Ready!!!  Your application already supports internationalization. Get the strings as follows:
 
 ```dart
 
   String text = Cubes.getString('welcome');
+
+```
+
+You can replace part of the string using `params`. Like this:
+
+```dart
+
+  // String in json file:
+  // {'welcome':'Hello {name}! Welcome to my app!'}
+
+  String text = Cubes.getString('welcome',params:{'{name}':'Kevin'});
 
 ```
 
@@ -667,7 +680,7 @@ void main() {
 
 Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/test/unit/pokemon_test.dart)
 
-Example widget test [here](https://github.com/RafaelBarbosatec/cube/tree/master/example/test/widget/counter)
+Example widget test using `CubeRobot` [here](https://github.com/RafaelBarbosatec/cube/tree/master/example/test/widget/counter)
 
 Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 

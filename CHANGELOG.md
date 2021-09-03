@@ -1,6 +1,10 @@
+# 1.2.1
+
+- Adds `CubeRobot`. Util class to facilitate widget testing.
+
 # 1.2.0+1
 
-- Update README.md
+- Update README.md.
 
 # 1.2.0
 

@@ -4,11 +4,24 @@ import 'package:examplecube/counter/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class CounterWidgetRobot {
-  final WidgetTester tester;
+class CounterWidgetRobot extends CubeRobot {
+  CounterWidgetRobot(WidgetTester tester) : super(tester);
 
-  CounterWidgetRobot(this.tester) {
+  Future setup() async {
     _setupInjections();
+    final cubeLocation = CubesLocalizationDelegate(
+      [
+        Locale('en', 'US'),
+        Locale('pt', 'BR'),
+      ],
+    );
+    await widgetSetup(
+      CounterScreen(),
+      materialAppParams: CubeRobotMaterialAppParams(
+        localizationsDelegates: cubeLocation.delegates,
+        supportedLocales: cubeLocation.supportedLocations,
+      ),
+    );
   }
 
   void _setupInjections() {
@@ -16,45 +29,31 @@ class CounterWidgetRobot {
     Cubes.registerDependency((injector) => CounterCube(withDebounce: false));
   }
 
-  Future setup() async {
-    final cubeLocation = CubesLocalizationDelegate(
-      [
-        Locale('en', 'US'),
-        Locale('pt', 'BR'),
-      ],
-    );
-    await tester.pumpWidget(
-      MaterialApp(
-        home: CounterScreen(),
-        localizationsDelegates: cubeLocation.delegates,
-        supportedLocales: cubeLocation.supportedLocations,
-      ),
-    );
-  }
-
   Finder get buttonIncrement {
     return find.byKey(CounterScreen.KEY_FLOATING_BUTTON);
   }
 
-  Future assetText() async {
-    await tester.pumpAndSettle(const Duration(milliseconds: 100));
-    final finder = find.text('You have pushed the button this many times:');
+  void assetText() {
+    final finder = find.text(Cubes.getString('description_counter'));
     expect(finder, findsOneWidget);
   }
 
-  Future assetValue0() async {
-    await tester.pumpAndSettle(const Duration(milliseconds: 100));
+  void assetValue0() {
     final finder = find.text('0');
     expect(finder, findsOneWidget);
   }
 
-  Future assetValue3() async {
-    await tester.pumpAndSettle(const Duration(milliseconds: 100));
+  void assetValue3() {
     final finder = find.text('3');
     expect(finder, findsOneWidget);
   }
 
   Future clickIncrement() async {
     await tester.tap(buttonIncrement);
+    await awaitForAnimations();
+  }
+
+  Future assetSnapshotScreen() {
+    return takeSnapshot('counterScreen');
   }
 }

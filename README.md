@@ -570,7 +570,7 @@ In your `MaterialApp` you can configure the `CubesLocalizationDelegate`:
 
 ```
 
-Ready!!!  Your application already supports internationalization. Bas get the strings as follows:
+Ready!!!  Your application already supports internationalization. Get the strings as follows:
 
 ```dart
 

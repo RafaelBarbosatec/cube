@@ -31,11 +31,11 @@ class CubeRobotMaterialAppParams {
   });
 }
 
-abstract class CubeRobot {
+abstract class Robot {
   static const SIZE_DEVICE_DEFAULT = Size(1440, 2560);
   final WidgetTester tester;
 
-  CubeRobot(this.tester);
+  Robot(this.tester);
 
   Future<void> widgetSetup(
     Widget widget, {

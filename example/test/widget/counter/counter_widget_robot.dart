@@ -4,7 +4,9 @@ import 'package:examplecube/counter/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class CounterWidgetRobot extends CubeRobot {
+import '../../util/robot.dart';
+
+class CounterWidgetRobot extends Robot {
   CounterWidgetRobot(WidgetTester tester) : super(tester);
 
   Future setup() async {

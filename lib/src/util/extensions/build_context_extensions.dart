@@ -65,10 +65,17 @@ extension BuildContextExtensions on BuildContext {
   double get heightScreen => sizeScreen.height;
 
   ThemeData get theme => Theme.of(this);
+  TextTheme get textTheme => theme.textTheme;
   ScaffoldState get scaffold => Scaffold.of(this);
 
+  ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(this);
+
   void showSnackBar(SnackBar snackBar) {
-    ScaffoldMessenger.of(this).showSnackBar(snackBar);
+    scaffoldMessenger.showSnackBar(snackBar);
+  }
+
+  void clearSnackBars() {
+    scaffoldMessenger.clearSnackBars();
   }
 
   C? getCube<C extends Cube>() => Cubes.of<C>(this);

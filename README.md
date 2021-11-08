@@ -268,7 +268,7 @@ void main() {
 
 For those of you who don't like to depend your projects too much in a package, there are other ways to work with it:
 
-- You can use the `CubeBuilder` widget, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen.dart);
+- You can use the `CubeConsumer` widget, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen.dart);
 - To work with `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>`. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart);
 - For a minimalist approach, you can use `SimpleCube`. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube).
 
@@ -305,7 +305,7 @@ You can listen to observables in two ways: using the extension `build` as mentio
 
 ## Provider
 
-To get the reference of a specific Cube from `CubeBuilder` or `CubeWidget`, you can use `Cubes.of<MyCube>(context)`;
+To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you can use `Cubes.of<MyCube>(context)`;
 
 ## Methods: Inner Cube
 

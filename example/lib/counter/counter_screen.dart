@@ -8,7 +8,7 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CubeBuilder<CounterCube>(
+    return CubeConsumer<CounterCube>(
       onAction: (cube, action) {
         print(action);
       },

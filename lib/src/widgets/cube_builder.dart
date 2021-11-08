@@ -14,8 +14,8 @@ typedef InitCallback<C extends Cube> = Function(C cube);
 typedef CubeWidgetDispose<C extends Cube> = bool Function(C cube);
 
 /// Widget responsible for getting instance and providing Cube
-class CubeBuilder<C extends Cube> extends StatefulWidget {
-  const CubeBuilder({
+class CubeConsumer<C extends Cube> extends StatefulWidget {
+  const CubeConsumer({
     Key? key,
     required this.builder,
     this.arguments,
@@ -31,10 +31,10 @@ class CubeBuilder<C extends Cube> extends StatefulWidget {
   final C? cube;
 
   @override
-  _CubeBuilderState<C> createState() => _CubeBuilderState<C>();
+  _CubeConsumerState<C> createState() => _CubeConsumerState<C>();
 }
 
-class _CubeBuilderState<C extends Cube> extends State<CubeBuilder>
+class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
     with StateMixin {
   late C cube;
 
@@ -71,5 +71,5 @@ class _CubeBuilderState<C extends Cube> extends State<CubeBuilder>
     cube.onReady(arguments);
   }
 
-  CubeBuilder<C> get cubeWidget => (widget as CubeBuilder<C>);
+  CubeConsumer<C> get cubeWidget => (widget as CubeConsumer<C>);
 }

@@ -1,3 +1,6 @@
+# [NEXT]
+- Rename `CubeBuilder` to `CubeConsumer`
+
 # 1.2.1
 
 - Adds `CubeRobot`. Util class to facilitate widget testing.

@@ -34,7 +34,7 @@ class CubeBuilderRobot {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: CubeBuilder<CubeExample>(
+        home: CubeConsumer<CubeExample>(
           arguments: _argumentTest,
           onAction: (cube, action) {
             _actionReturnedInView = action;

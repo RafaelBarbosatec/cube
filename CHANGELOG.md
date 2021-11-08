@@ -1,4 +1,4 @@
-# [NEXT]
+# 1.2.2
 - Rename `CubeBuilder` to `CubeConsumer`
 
 # 1.2.1

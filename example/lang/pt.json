@@ -1,6 +1,7 @@
 {
-  "welcome": "Bem-vindo ao Cubes",
+  "welcome": "Bem-vindo ao Cubes @name",
   "counter": "Contador",
   "singleton": "Única instância",
-  "description_counter": "Você apertou o botão tantas vezes:"
+  "description_counter": "Você apertou o botão tantas vezes:",
+  "folks": "pessoal"
 }

@@ -1,6 +1,7 @@
 {
-  "welcome": "Welcome to Cubes",
+  "welcome": "Welcome to Cubes @name",
   "counter": "Counter",
   "singleton": "Singleton",
-  "description_counter": "You have pushed the button this many times:"
+  "description_counter": "You have pushed the button this many times:",
+  "folks": "folks"
 }

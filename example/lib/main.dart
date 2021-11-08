@@ -67,7 +67,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Cubes.getString('welcome')),
+        title: Text('welcome'.tr(params: {'name': 'folks'.tr()})),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -75,7 +75,7 @@ class Home extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ElevatedButton(
-                child: Text(Cubes.getString('counter')),
+                child: Text('counter'.tr()),
                 onPressed: () {
                   context.goTo(
                     CounterScreen(),

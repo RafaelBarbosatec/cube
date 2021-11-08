@@ -1,5 +1,8 @@
-# 1.2.2
+# 1.3.0
 - Rename `CubeBuilder` to `CubeConsumer`
+- Add methods in BuildContextExtensions : `goToNamed`, `goToNamedAndRemoveUntil`, `goToNamedReplacement`
+- Adds StringExtensions to facilitate get string translation : `tr()`
+- BREAKING CHANGE: Replace names in `Cubes.getString`. Now adds `@{name} in string of the json file` and replace in this way: `Cubes.getString('string',params:{'name':'Rafael'})`
 
 # 1.2.1
 

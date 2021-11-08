@@ -580,7 +580,8 @@ All done! Your application already supports internationalization. Now you can re
 ```dart
 
   String text = Cubes.getString('welcome');
-
+  // or
+  String text = 'welcome'.tr();
 ```
 
 You can replace parts of the string using `params`, just like this:
@@ -588,10 +589,11 @@ You can replace parts of the string using `params`, just like this:
 ```dart
 
   // String in json file:
-  // {'welcome':'Hello {name}! Welcome to my app!'}
+  // {'welcome':'Hello @name! Welcome to my app!'}
 
-  String text = Cubes.getString('welcome',params:{'{name}':'Kevin'});
-
+  String text = Cubes.getString('welcome',params:{'name':'Kevin'});
+  // or
+  String text = 'welcome'.tr(params:{'name':'Kevin'});
 ```
 
 ## Custom dependency injection

@@ -5,6 +5,38 @@ import '../../../cubes.dart';
 import '../../cube.dart';
 
 extension BuildContextExtensions on BuildContext {
+  Future<T?> goToNamed<T extends Object?>(
+    String routeName, {
+    Object? arguments,
+  }) {
+    return Navigator.pushNamed<T?>(this, routeName, arguments: arguments);
+  }
+
+  Future<T?> goToNamedAndRemoveUntil<T extends Object?>(
+    String routeName,
+    RoutePredicate predicate, {
+    Object? arguments,
+  }) {
+    return Navigator.pushNamedAndRemoveUntil(
+      this,
+      routeName,
+      predicate,
+      arguments: arguments,
+    );
+  }
+
+  Future<T?> goToNamedReplacement<T extends Object?>(
+    String routeName,
+    RoutePredicate predicate, {
+    Object? arguments,
+  }) {
+    return Navigator.pushReplacementNamed(
+      this,
+      routeName,
+      arguments: arguments,
+    );
+  }
+
   Future<T?> goTo<T extends Object?>(
     Widget widget, {
     RouteSettings? settings,

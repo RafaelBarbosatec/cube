@@ -84,7 +84,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('Counter. Cube in StatefulWidget'),
@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('Counter. Using SimpleCube'),
@@ -104,7 +104,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('Pokemons'),
@@ -113,7 +113,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text(Cubes.getString('singleton')),
@@ -122,7 +122,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('Todo'),
@@ -131,7 +131,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('FeedBackManager'),
@@ -140,7 +140,7 @@ class Home extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               ElevatedButton(
                 child: Text('CTextFormField'),

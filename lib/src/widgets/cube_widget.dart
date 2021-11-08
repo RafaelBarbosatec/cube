@@ -25,7 +25,7 @@ abstract class CubeWidget<C extends Cube> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CubeBuilder<C>(
+    return CubeConsumer<C>(
       builder: buildView,
       arguments: arguments,
       onAction: (cube, data) => onAction(context, cube, data),

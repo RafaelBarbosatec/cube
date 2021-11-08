@@ -9,9 +9,11 @@
 
 Simple State Manager with dependency injection and no code generation required.
 
-With Cubes, manage the state of the application in a simple and objective way and reconstructing in your widget tree only where necessary!
+## About
 
-No uses [RxDart](https://pub.dev/packages/rxdart), `Cubes` uses [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) because it is a feature already available in Flutter and for its simplicity.
+Manage the state of your Flutter application in a simple and objective way, rebuilding the widget tree only where necessary!
+
+`Cubes` makes use of [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) since it is a feature already available in Flutter and for its simplicity. `Cubes` doesn't rely on [RxDart](https://pub.dev/packages/rxdart).
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
@@ -80,9 +82,9 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ### Creating a Cube
 
-Cube is the classe responsible to center business logic of the your view. 
+Cube is the class responsible for handling the business logic of your view. 
 
-For create your cube, just create a class and extends of `Cube` like this:
+To create your Cube, just make a class that extends from `Cube` as follows:
 
 ```dart
 
@@ -92,7 +94,7 @@ class CounterCube extends Cube {
 
 ```
 
-In `Cubes` you controll elements in the view using `ObservableValues`. To create once is easy:
+In `Cubes`, you control elements in the view using `ObservableValues`. Creating such variables is easy:
 
 ```dart
 
@@ -104,7 +106,7 @@ class CounterCube extends Cube {
 
 ```
 
-Ready, now we can modify these `ObservableValues` and your view will react to these changes. For example:
+You can modify these `ObservableValues` and then your view will react to these changes. For example:
 
 ```dart
 
@@ -118,8 +120,8 @@ class CounterCube extends Cube {
 
 ```
 
-It's normal to want to do a query in an API or do something else once the View is ready. 
-In `Cubes` it is super simple to do this. You can do overrride of the methos `onReady`, this is called when your View is a ready. 
+It's a common practice to query an API or do something else once the View is ready. 
+In `Cubes`, this is super simple to achieve. Just override the method `onReady` and your code will be called once the View is ready. 
 
 ```dart
 
@@ -139,11 +141,11 @@ class CounterCube extends Cube {
 
 ```
 
-The `arguments` variable we get is passed by the view, and if we don't pass this variable it gets from `ModalRoute.of(context).settings.arguments;`
+The `arguments` property is taken from the view and, if ommited, it will be taken from `ModalRoute.of(context).settings.arguments;`
 
 ### Creating a View
 
-We widget that represents the View is very simple. just create a class and extends of `CubeWidget<CubeName>` passing the `Cube` name that this view will uses. For example:
+Creating a widget that represents a View is very simple. Make a class that extends from `CubeWidget<CubeName>` passing the `Cube` name that this view will use. For example:
 
 ```dart
 
@@ -153,7 +155,7 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ```
 
-Your IDE will force you to implement a mandatory method called `buildView`. getting like this:
+Your IDE will force you to implement a mandatory method called `buildView`, just like this:
 
 ```dart
 
@@ -169,8 +171,9 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ```
 
-It is similar to the 'build' method already known to you from `StatelessWidget` and `State`. Where you will return your widget tree and will already have access to `Cube` to listen to the `ObservableValues`.
-The end result is this:
+This method is similar to the 'build' method from `StatelessWidget` and `State`. There you will return your widget tree and will have access to `Cube` for listening your `ObservableValues`.
+
+The final result looks like this:
 
 
 ```dart
@@ -207,7 +210,7 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ```
 
-Note that listening to the `ObservableValue` was very simple. Simply:
+Note that listening to an `ObservableValue` is very simple:
 
 ```dart
 
@@ -217,18 +220,18 @@ Note that listening to the `ObservableValue` was very simple. Simply:
 
 ```
 
-This way we listening to the `ObservableValue` `count`, and every time this variable is changed, the` View` is notified by running the code block again:
+By listening to the `ObservableValue` `count`, every time this variable is changed the` View` is notified by running the following code again:
 
 ```dart
   return Text(value.toString());
 ```
 
-This guarantees that in the whole widget tree of your screen, only the necessary is rebuilt.
+This guarantees that only the necessary is rebuilt in the whole widget tree.
 
 ### Registering Cubes and dependencies
 
 Did you notice that we never created an instance of `CounterCube`?
-This is because `Cubes` works with dependency injection. So for everything to work properly we have to register the `Cube` used and its dependencies, if any.
+This is because `Cubes` works with dependency injection. So for everything to work properly, we have to register the `Cube` used and its dependencies inside `main()`.
 
 
 ```dart
@@ -237,16 +240,16 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  // register cube
+  // Register your Cube
   Cubes.registerDependency((i) => CounterCube());
 
-  // Example register singleton Cube
+  // Example: register a singleton Cube
   // Cubes.registerDependency(
   //    (i) => CounterCube(),
   //    type: DependencyRegisterType.singleton,
   // );
 
-  // Example register repositories or anything
+  // Example: register repositories or something else
   // Cubes.registerDependency((i) => SingletonRepository(i.getDependency());
 
   runApp(MaterialApp(
@@ -263,17 +266,17 @@ void main() {
 
 ---
 
-For those of you who don't like to attach a package to your project too much, there are other ways to work the View part. Look:
+For those of you who don't like to depend your projects too much in a package, there are other ways to work with it:
 
-- You can use `CubeBuilder` widget, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen.dart);
-- To work with `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>` see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart);
-- If you want to use it in a more minimalist way you can use the `SimpleCube`, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube).
+- You can use the `CubeConsumer` widget, see this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen.dart);
+- To work with `StatefulWidget` you can use the mixin `CubeStateMixin<StatefulWidget,Cube>`. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter/counter_screen_animation.dart);
+- For a minimalist approach, you can use `SimpleCube`. See this [example](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/counter_simple_cube).
 
 ---
 
 ## Listening observable variables
 
-You can listen to observables in two ways, using the extension `build` as in the example above or using the `Observer` widget:
+You can listen to observables in two ways: using the extension `build` as mentioned earlier or using the `CObserver` widget:
 
 ### Extension 'build'
 
@@ -302,9 +305,9 @@ You can listen to observables in two ways, using the extension `build` as in the
 
 ## Provider
 
-To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cubes.of<MyCube>(context)`;
+To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you can use `Cubes.of<MyCube>(context)`;
 
-## Methods inner Cube
+## Methods: Inner Cube
 
 ### onAction
 
@@ -319,7 +322,7 @@ To get the Cube by the children of `CubeBuilder`, `CubeWidget` you can use `Cube
 
 ```
 
-In your cube
+Then, inside your cube:
 
 ```dart
 
@@ -334,7 +337,7 @@ class MyCube extends Cube {
   
 ```
 
-you will receive this action in the `View` through the method:
+Finally, you will receive this action in the `View` through the method:
 
 ```dart
 
@@ -355,7 +358,7 @@ class MyScreen extends CubeWidget<MyCube> {
 
 ```
 
-this will be useful for navigation, to start some more complex animation, among other needs that `View` has to perform.
+This approach will be useful for navigation, for complex animations among other features that the `View` may need to perform.
 
 ### runDebounce
 
@@ -371,7 +374,7 @@ This method will help you to `debounce` the execution of something.
 
 ### listen
 
-Use to listen ObservableValue.
+Use it to listen ObservableValues.
 
 ```dart
   listen(count,(value){
@@ -381,7 +384,7 @@ Use to listen ObservableValue.
 
 ### listenActions
 
-Use to listen to `Action` sent to view.
+Use it to listen to the `Action` sent to the view.
 
 ```dart
   listenActions((action){
@@ -415,7 +418,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 Use this widget if you want to reactively control your `Dialog`, `BottomSheet` and `SnackBar` using an ObservableValue.
 
-Creating observable to control:
+Create the observable to control:
 
 ``` dart
 
@@ -424,7 +427,7 @@ final dialogControl = CFeedBackControl(data:'test').obsValue;
 final snackBarControl = CFeedBackControl<String>().obsValue;
 ```
 
-Now just add the widget to your tree and settings:
+Now just add the widget to your tree and its settings:
 
 ``` dart
 
@@ -489,7 +492,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 ### CTextFormField
 
 Widget created to use `TextFormField` with` ObservableValue`.
-With it you can work reactively with your `TextFormField`. Being able to modify and read its value, set error, enable and disable.
+With it you can work reactively with your `TextFormField`, being able to modify and read its value, set error, enable and disable it.
 
 ``` dart
 
@@ -518,23 +521,23 @@ With it you can work reactively with your `TextFormField`. Being able to modify 
 
 ```
 
-It is exactly the same as the conventional `TextFormField` with two more fields, the` observable` and `obscureTextButtonConfiguration`.
+It is exactly the same as the conventional `TextFormField` with two more fields, the `observable` and `obscureTextButtonConfiguration`.
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field).
 
 ## Internationalization support
 
-With Cubes you can configure internationalization in your application. in a simple way using .json files.
+With Cubes you can configure internationalization in your application in a simple way using JSON files.
 
 ### Using
 
-Create a folder named `lang` and put your files with name location. This way:
+Create a folder named `lang` in the root folder of your project and put your files named by the language and locale, just like this:
 
 ![](https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/example-folders.png)
 
 [Example json file](https://github.com/RafaelBarbosatec/cube/blob/master/example/lang);
 
-Add path in your `pubspec.yaml`:
+Add the path in your `pubspec.yaml`:
 
 ```yaml
 
@@ -572,7 +575,7 @@ In your `MaterialApp` you can configure the `CubesLocalizationDelegate`:
 
 ```
 
-Ready!!!  Your application already supports internationalization. Get the strings as follows:
+All done! Your application already supports internationalization. Now you can retrieve the strings as follows:
 
 ```dart
 
@@ -580,7 +583,7 @@ Ready!!!  Your application already supports internationalization. Get the string
 
 ```
 
-You can replace part of the string using `params`. Like this:
+You can replace parts of the string using `params`, just like this:
 
 ```dart
 
@@ -593,7 +596,7 @@ You can replace part of the string using `params`. Like this:
 
 ## Custom dependency injection
 
-By default, we use [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one you can overwrite the Injector:
+By default, `Cubes` uses [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one, you can overwrite the Injector:
 
 ```dart
 
@@ -682,6 +685,6 @@ Example with asynchronous call [here](https://github.com/RafaelBarbosatec/cube/b
 
 Example widget test using `Robot` [here](https://github.com/RafaelBarbosatec/cube/tree/master/example/test/widget/counter)
 
-Any questions see our [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
+If there are still doubts, you should be able to find what you're looking for in the full [example](https://github.com/RafaelBarbosatec/cube/tree/master/example).
 
 

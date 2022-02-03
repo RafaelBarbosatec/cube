@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../../cubes.dart';
-import '../cube.dart';
 
 /// Widget created to replace StatelessWidget and facilitate the use of Cube
 /// This is responsible for getting instance and providing Cube

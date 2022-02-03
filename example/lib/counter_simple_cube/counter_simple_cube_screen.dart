@@ -15,7 +15,7 @@ class _CounterSimpleCubeScreenState extends State<CounterSimpleCubeScreen> {
 
   @override
   void initState() {
-    cube = Cubes.getDependency();
+    cube = inject();
     super.initState();
   }
 
@@ -29,13 +29,13 @@ class _CounterSimpleCubeScreenState extends State<CounterSimpleCubeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Cubes.getString('counter')),
+        title: Text('counter'.tr()),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(Cubes.getString('description_counter')),
+            Text('description_counter'.tr()),
             cube.count.build<int>(
               (value) => Text(value.toString()),
             ),

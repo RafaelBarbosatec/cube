@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../cubes.dart';
-import '../cube.dart';
-import '../util/cube_provider.dart';
-import '../util/state_mixin.dart';
 
 typedef AsyncCubeWidgetBuilder<C extends Cube> = Widget Function(
   BuildContext context,
@@ -40,7 +37,7 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
 
   @override
   void initState() {
-    cube = cubeWidget.cube ?? Cubes.getDependency();
+    cube = cubeWidget.cube ?? inject();
     cube.addOnActionListener(_onAction);
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback(_ready);

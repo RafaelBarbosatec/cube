@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../cubes.dart';
-import '../../observable/observable_value.dart';
 import '../../widgets/observer.dart';
 
 /// Extension to facilitate the use of CObserver

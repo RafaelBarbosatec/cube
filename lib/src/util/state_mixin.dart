@@ -1,8 +1,6 @@
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../cubes.dart';
-import '../cube.dart';
 
 /// Mixin postFrame to uses in State
 mixin StateMixin<T extends StatefulWidget> on State<T> {

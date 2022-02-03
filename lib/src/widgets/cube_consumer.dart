@@ -40,7 +40,7 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
 
   @override
   void initState() {
-    cube = cubeWidget.cube ?? Cubes.getDependency();
+    cube = cubeWidget.cube ?? inject();
     cube.addOnActionListener(_onAction);
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback(_ready);

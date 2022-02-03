@@ -1,5 +1,6 @@
 #[next]
 - Update example
+- Adds `inject` global function.
 
 # 1.3.0
 - Rename `CubeBuilder` to `CubeConsumer`

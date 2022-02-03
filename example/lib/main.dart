@@ -27,10 +27,13 @@ void main() {
   );
   Cubes.registerDependency(
     (i) => TodoCube(),
-    type: DependencyRegisterType.singleton,
+    type: DependencyRegisterType.lazySingleton,
   );
   Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
-  Cubes.registerDependency((i) => PokemonRepository());
+  Cubes.registerDependency(
+    (i) => PokemonRepository(),
+    type: DependencyRegisterType.lazySingleton,
+  );
   Cubes.registerDependency((i) => FeedbackManagerCube());
   Cubes.registerDependency((i) => TextFormFieldCube());
   Cubes.registerDependency((i) => CounterSimpleCube());

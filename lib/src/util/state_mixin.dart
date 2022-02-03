@@ -27,7 +27,7 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
 
   @override
   void initState() {
-    _cube = _cube ?? Cubes.getDependency();
+    _cube = _cube ?? inject();
     _cube?.addOnActionListener(_innerOnAction);
     WidgetsBinding.instance?.addPostFrameCallback(_ready);
     super.initState();

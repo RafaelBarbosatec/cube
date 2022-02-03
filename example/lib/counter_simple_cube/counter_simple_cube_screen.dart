@@ -15,7 +15,7 @@ class _CounterSimpleCubeScreenState extends State<CounterSimpleCubeScreen> {
 
   @override
   void initState() {
-    cube = Cubes.getDependency();
+    cube = inject();
     super.initState();
   }
 

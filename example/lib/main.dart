@@ -116,7 +116,7 @@ class Home extends StatelessWidget {
                 height: 5,
               ),
               ElevatedButton(
-                child: Text(Cubes.getString('singleton')),
+                child: Text('singleton'.tr()),
                 onPressed: () {
                   context.goTo(ScreenCounterSingleton());
                 },

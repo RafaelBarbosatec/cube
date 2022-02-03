@@ -7,7 +7,7 @@ class ScreenCounterSingleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Cubes.getString('singleton')),
+        title: Text('singleton'.tr()),
       ),
       body: Column(
         children: [

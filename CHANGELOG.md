@@ -1,4 +1,4 @@
-# [NEXT]
+# [1.4.0]
 - little improvements
 - renamed `Cubes.registerDependency` to `Cubes.putDependency`;
 - renamed `Cubes.registerDependencyAsync` to `Cubes.putDependencyAsync`;

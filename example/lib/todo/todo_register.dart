@@ -46,7 +46,7 @@ class TodoRegister extends CubeWidget<TodoCube> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         cube.addTodo(textEditingController.text);
-                        context.pop();
+                        context.pop(textEditingController.text);
                       }
                     },
                   ),

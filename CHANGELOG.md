@@ -2,6 +2,15 @@
 - little improvements
 - renamed `Cubes.registerDependency` to `Cubes.putDependency`;
 - renamed `Cubes.registerDependencyAsync` to `Cubes.putDependencyAsync`;
+- renamed `onAction` to `sendAction` in Cube;
+- Adds `CubeNavigation` mixin. use this mixin in your cube to enable navigation methods:
+    - navToNamed
+    - navToNamedAndRemoveUntil
+    - navToNamedReplacement
+    - navTo
+    - navToReplacement
+    - navToAndRemoveUntil
+    - navPop
 
 # [1.3.1]
 - Update example

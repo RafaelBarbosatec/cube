@@ -1,6 +1,5 @@
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/todo/todo_cube.dart';
-import 'package:examplecube/todo/todo_register.dart';
 import 'package:flutter/material.dart';
 
 class TodoList extends CubeWidget<TodoCube> {
@@ -28,9 +27,7 @@ class TodoList extends CubeWidget<TodoCube> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.goTo(TodoRegister());
-        },
+        onPressed: cube.navToRegister,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), //

@@ -26,11 +26,11 @@ class CounterCube extends Cube {
   void increment() {
     count.modify((value) => value + 1);
     if (count.value == 5) {
-      onAction(MsgAction(text: "count five")); // to send action to view
+      sendAction(MsgAction(text: "count five")); // to send action to view
     }
 
     if (count.value == 50) {
-      onAction(
+      sendAction(
         MsgAction(text: "You are clicking too much o.O"),
       ); // to send action to view
     }

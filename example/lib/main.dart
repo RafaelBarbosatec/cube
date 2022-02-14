@@ -81,7 +81,7 @@ class Home extends StatelessWidget {
                 child: Text('counter'.tr()),
                 onPressed: () {
                   context.goTo(
-                    CounterScreen(),
+                    (_) => CounterScreen(),
                     settings: RouteSettings(arguments: {'name': 'rafael'}),
                   );
                 },
@@ -92,7 +92,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('Counter. Cube in StatefulWidget'),
                 onPressed: () {
-                  context.goTo(CounterScreenWithAnimation());
+                  context.goTo((_) => CounterScreenWithAnimation());
                 },
               ),
               SizedBox(
@@ -102,7 +102,7 @@ class Home extends StatelessWidget {
                 child: Text('Counter. Using SimpleCube'),
                 onPressed: () {
                   context.goTo(
-                    CounterSimpleCubeScreen(),
+                    (_) => CounterSimpleCubeScreen(),
                   );
                 },
               ),
@@ -112,7 +112,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('Pokemons'),
                 onPressed: () {
-                  context.goTo(PokemonScreen());
+                  context.goTo((_) => PokemonScreen());
                 },
               ),
               SizedBox(
@@ -121,7 +121,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('singleton'.tr()),
                 onPressed: () {
-                  context.goTo(ScreenCounterSingleton());
+                  context.goTo((_) => ScreenCounterSingleton());
                 },
               ),
               SizedBox(
@@ -130,7 +130,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('Todo'),
                 onPressed: () {
-                  context.goTo(TodoList());
+                  context.goTo((_) => TodoList());
                 },
               ),
               SizedBox(
@@ -139,7 +139,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('FeedBackManager'),
                 onPressed: () {
-                  context.goTo(FeedbackManagerScreen());
+                  context.goTo((_) => FeedbackManagerScreen());
                 },
               ),
               SizedBox(
@@ -148,7 +148,7 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: Text('CTextFormField'),
                 onPressed: () {
-                  context.goTo(TextFormFieldScreen());
+                  context.goTo((_) => TextFormFieldScreen());
                 },
               ),
             ],

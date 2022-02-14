@@ -7,7 +7,7 @@ class ActionExample extends CubeAction {}
 
 class CubeExample extends Cube {
   void sendAction(CubeAction action) {
-    onAction(action);
+    super.sendAction(action);
   }
 }
 

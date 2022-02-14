@@ -1,3 +1,4 @@
+import 'package:cubes/src/actions/navigator_action.dart';
 import 'package:flutter/material.dart';
 
 import '../../cubes.dart';
@@ -61,6 +62,9 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
   }
 
   void _onAction(C cube, CubeAction data) {
+    if (data is NavigationAction) {
+      _resolveNavigation(context, data);
+    }
     postFrame(() => cubeWidget.onAction?.call(cube, data));
   }
 
@@ -69,4 +73,59 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
   }
 
   CubeConsumer<C> get cubeWidget => (widget as CubeConsumer<C>);
+
+  void _resolveNavigation(BuildContext context, NavigationAction data) {
+    switch (data.type) {
+      case NavigationType.pushNamed:
+        context
+            .goToNamed(data.routeName!, arguments: data.arguments)
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.pushNamedAndRemoveUntil:
+        context
+            .goToNamedAndRemoveUntil(
+              data.routeName!,
+              data.predicate!,
+              arguments: data.arguments,
+            )
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.pushReplacementNamed:
+        context
+            .goToNamedReplacement(data.routeName!, arguments: data.arguments)
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.push:
+        context
+            .goTo(
+              data.builder!,
+              settings: data.settings,
+              fullscreenDialog: data.fullscreenDialog,
+            )
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.pushReplacement:
+        context
+            .goToReplacement(
+              data.builder!,
+              settings: data.settings,
+              fullscreenDialog: data.fullscreenDialog,
+            )
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.pushAndRemoveUntil:
+        context
+            .goToAndRemoveUntil(
+              data.builder!,
+              data.predicate!,
+              settings: data.settings,
+              fullscreenDialog: data.fullscreenDialog,
+            )
+            .then((r) => data.onResult?.call(r));
+        break;
+      case NavigationType.pop:
+        context.pop(data.result);
+        break;
+    }
+  }
 }

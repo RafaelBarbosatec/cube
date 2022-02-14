@@ -362,7 +362,7 @@ This approach will be useful for complex animations among other features that th
 
 #### Navigation
 
-You can use this feature to navigation system. But you don't have to do anything manually, we've already done that for you. Just use the `CubeNavigation` mixin.
+You can use this feature to your own navigation system. But you don't have to do anything manually, we've already done that for you. Just use the `CubeNavigation` mixin.
 
 ```dart
 

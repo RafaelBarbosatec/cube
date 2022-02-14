@@ -7,12 +7,7 @@ final _getIt = GetIt.instance;
 /// CInjector implemented with GetIt
 class GetItInjector extends CInjector {
   @override
-  T getDependency<T extends Object>({String? dependencyName}) {
-    return _getIt.get<T>(instanceName: dependencyName);
-  }
-
-  @override
-  void registerDependency<T extends Object>(
+  void putDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
@@ -40,12 +35,7 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void reset({bool dispose = false}) {
-    _getIt.reset(dispose: dispose);
-  }
-
-  @override
-  void registerDependencyAsync<T extends Object>(
+  void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
@@ -73,7 +63,17 @@ class GetItInjector extends CInjector {
   }
 
   @override
+  T getDependency<T extends Object>({String? dependencyName}) {
+    return _getIt.get<T>(instanceName: dependencyName);
+  }
+
+  @override
   Future<T> getDependencyAsync<T extends Object>({String? dependencyName}) {
     return _getIt.getAsync<T>(instanceName: dependencyName);
+  }
+
+  @override
+  void reset({bool dispose = false}) {
+    _getIt.reset(dispose: dispose);
   }
 }

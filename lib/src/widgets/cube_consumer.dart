@@ -45,7 +45,9 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
 
   @override
   void dispose() {
-    if (cubeWidget.dispose?.call(cube) ?? true) cube.dispose();
+    if (cubeWidget.dispose?.call(cube) ?? true) {
+      cube.dispose();
+    }
     cube.removeOnActionListener(_onAction);
     super.dispose();
   }
@@ -63,9 +65,7 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer>
   }
 
   void _ready(_) {
-    var arguments =
-        widget.arguments ?? ModalRoute.of(context)?.settings.arguments;
-    cube.onReady(arguments);
+    cube.onReady(widget.arguments ?? context.arguments);
   }
 
   CubeConsumer<C> get cubeWidget => (widget as CubeConsumer<C>);

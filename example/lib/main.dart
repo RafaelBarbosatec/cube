@@ -20,23 +20,23 @@ import 'text_form_field/text_form_field_cube.dart';
 
 void main() {
   // register cube
-  Cubes.registerDependency((i) => CounterCube());
-  Cubes.registerDependency(
+  Cubes.putDependency((i) => CounterCube());
+  Cubes.putDependency(
     (i) => CounterSingletonCube(),
     type: DependencyRegisterType.singleton,
   );
-  Cubes.registerDependency(
+  Cubes.putDependency(
     (i) => TodoCube(),
     type: DependencyRegisterType.lazySingleton,
   );
-  Cubes.registerDependency((i) => PokemonCube(i.getDependency()));
-  Cubes.registerDependency(
+  Cubes.putDependency((i) => PokemonCube(i.getDependency()));
+  Cubes.putDependency(
     (i) => PokemonRepository(),
     type: DependencyRegisterType.lazySingleton,
   );
-  Cubes.registerDependency((i) => FeedbackManagerCube());
-  Cubes.registerDependency((i) => TextFormFieldCube());
-  Cubes.registerDependency((i) => CounterSimpleCube());
+  Cubes.putDependency((i) => FeedbackManagerCube());
+  Cubes.putDependency((i) => TextFormFieldCube());
+  Cubes.putDependency((i) => CounterSimpleCube());
   runApp(MyApp());
 }
 

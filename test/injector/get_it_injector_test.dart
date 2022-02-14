@@ -15,7 +15,7 @@ void main() {
   });
 
   test('verify return injected factory', () {
-    injector.registerDependency<String>((injector) {
+    injector.putDependency<String>((injector) {
       _counter++;
 
       return 'count: $_counter';
@@ -26,7 +26,7 @@ void main() {
   });
 
   test('verify return injected singleton', () {
-    injector.registerDependency<String>(
+    injector.putDependency<String>(
       (injector) {
         _counter++;
 
@@ -40,7 +40,7 @@ void main() {
   });
 
   test('verify return injected singleton lazy', () {
-    injector.registerDependency<String>(
+    injector.putDependency<String>(
       (injector) {
         _counter++;
 
@@ -54,7 +54,7 @@ void main() {
   });
 
   test('verify return injected factory async', () {
-    injector.registerDependencyAsync<String>(
+    injector.putDependencyAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
 
@@ -67,7 +67,7 @@ void main() {
   });
 
   test('verify return injected singleton async', () async {
-    injector.registerDependencyAsync<String>(
+    injector.putDependencyAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
         _counter++;
@@ -85,7 +85,7 @@ void main() {
   });
 
   test('verify return injected singleton async lazy', () async {
-    injector.registerDependencyAsync<String>(
+    injector.putDependencyAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
         _counter++;

@@ -44,12 +44,12 @@ class Cubes {
   }
 
   /// Use to register dependency
-  static void registerDependency<T extends Object>(
+  static void putDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.registerDependency<T>(
+    _instance._injector.putDependency<T>(
       builder,
       dependencyName: dependencyName,
       type: type,
@@ -57,12 +57,12 @@ class Cubes {
   }
 
   /// Use to register dependency async
-  static void registerDependencyAsync<T extends Object>(
+  static void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.registerDependencyAsync<T>(
+    _instance._injector.putDependencyAsync<T>(
       builder,
       dependencyName: dependencyName,
       type: type,

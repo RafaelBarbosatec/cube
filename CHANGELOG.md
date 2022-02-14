@@ -1,3 +1,8 @@
+# [NEXT]
+- little improvements
+- renamed `registerDependency` to `putDependency`;
+- renamed `registerDependencyAsync` to `putDependencyAsync`;
+
 # [1.3.1]
 - Update example
 - Adds `inject` global function.

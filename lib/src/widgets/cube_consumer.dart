@@ -1,4 +1,3 @@
-import 'package:cubes/src/actions/navigator_action.dart';
 import 'package:flutter/material.dart';
 
 import '../../cubes.dart';

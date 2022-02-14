@@ -1,7 +1,7 @@
 # [NEXT]
 - little improvements
-- renamed `registerDependency` to `putDependency`;
-- renamed `registerDependencyAsync` to `putDependencyAsync`;
+- renamed `Cubes.registerDependency` to `Cubes.putDependency`;
+- renamed `Cubes.registerDependencyAsync` to `Cubes.putDependencyAsync`;
 
 # [1.3.1]
 - Update example

@@ -12,14 +12,14 @@ typedef CDependencyInjectorAsyncBuilder<T> = Future<T> Function(
 /// Interface responsible to manager dependency injector
 abstract class CInjector {
   /// Method used to register dependency
-  void registerDependency<T extends Object>(
+  void putDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
   });
 
   /// Method used to register dependency async
-  void registerDependencyAsync<T extends Object>(
+  void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,

@@ -24,8 +24,7 @@ extension BuildContextExtensions on BuildContext {
   }
 
   Future<T?> goToNamedReplacement<T extends Object?>(
-    String routeName,
-    RoutePredicate predicate, {
+    String routeName, {
     Object? arguments,
   }) {
     return Navigator.pushReplacementNamed(
@@ -36,14 +35,14 @@ extension BuildContextExtensions on BuildContext {
   }
 
   Future<T?> goTo<T extends Object?>(
-    Widget widget, {
+    WidgetBuilder builder, {
     RouteSettings? settings,
     bool fullscreenDialog = false,
   }) {
     return Navigator.push<T?>(
       this,
       MaterialPageRoute(
-        builder: (context) => widget,
+        builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
       ),
@@ -51,14 +50,14 @@ extension BuildContextExtensions on BuildContext {
   }
 
   Future<T?> goToReplacement<T extends Object?, TO extends Object?>(
-    Widget widget, {
+    WidgetBuilder builder, {
     RouteSettings? settings,
     bool fullscreenDialog = false,
   }) {
     return Navigator.pushReplacement<T, TO>(
       this,
       MaterialPageRoute(
-        builder: (context) => widget,
+        builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
       ),
@@ -66,7 +65,7 @@ extension BuildContextExtensions on BuildContext {
   }
 
   Future<T?> goToAndRemoveUntil<T extends Object?>(
-    Widget widget,
+    WidgetBuilder builder,
     RoutePredicate predicate, {
     RouteSettings? settings,
     bool fullscreenDialog = false,
@@ -74,7 +73,7 @@ extension BuildContextExtensions on BuildContext {
     return Navigator.pushAndRemoveUntil<T>(
       this,
       MaterialPageRoute(
-        builder: (context) => widget,
+        builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
       ),

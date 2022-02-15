@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 
 void main() {
  
-  Cubes.registerDependency((i) => CounterCube());
+  Cubes.putDependency((i) => CounterCube());
 
   runApp(MaterialApp(
       title: 'Cube Demo',
@@ -241,16 +241,16 @@ import 'package:flutter/material.dart';
 
 void main() {
   // Register your Cube
-  Cubes.registerDependency((i) => CounterCube());
+  Cubes.putDependency((i) => CounterCube());
 
   // Example: register a singleton Cube
-  // Cubes.registerDependency(
+  // Cubes.putDependency(
   //    (i) => CounterCube(),
   //    type: DependencyRegisterType.singleton,
   // );
 
   // Example: register repositories or something else
-  // Cubes.registerDependency((i) => SingletonRepository(i.getDependency());
+  // Cubes.putDependency((i) => SingletonRepository(i.getDependency());
 
   runApp(MaterialApp(
       title: 'Cubes Demo',
@@ -315,9 +315,9 @@ To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you
 
 ```dart
 
-  class NavigationAction extends CubeAction {
-      final String route;
-      NavigationAction({this.route});
+  class EventAction extends CubeAction {
+    String eventName;
+    EventAction(this.eventName);
   }
 
 ```
@@ -328,9 +328,9 @@ Then, inside your cube:
 
 class MyCube extends Cube {
 
-   void navToGome(){
+   void sendEvent(){
       // sending action
-     onAction(NavigationAction(route: "/home"));
+     sendAction(EventAction());
    }
 }
 
@@ -350,7 +350,7 @@ class MyScreen extends CubeWidget<MyCube> {
   
    @override
    void onAction(BuildContext context, MyCube cube, CubeAction action) {
-     if(action is NavigationAction) Navigator.pushNamed(context, (action as NavigationAction).route);
+     if(action is EventAction) _analyticsProvider.sendEvent((action as NavigationAction).eventName);
      super.onAction(context, cube, data);
    }
 
@@ -358,7 +358,30 @@ class MyScreen extends CubeWidget<MyCube> {
 
 ```
 
-This approach will be useful for navigation, for complex animations among other features that the `View` may need to perform.
+This approach will be useful for complex animations among other features that the `View` may need to perform.
+
+#### Navigation
+
+You can use this feature to your own navigation system. But you don't have to do anything manually, we've already done that for you. Just use the `CubeNavigation` mixin.
+
+```dart
+
+    class MyCube extends Cube with CubeNavigation{
+
+       void navToAnOtherScreen(){
+         navToNamed('/home');
+         // You can use:
+         // - navToNamed
+         // - navToNamedAndRemoveUntil
+         // - navToNamedReplacement
+         // - navTo
+         // - navToReplacement
+         // - navToAndRemoveUntil
+         // - navPop
+       }
+    }
+
+```
 
 ### runDebounce
 

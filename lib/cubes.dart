@@ -8,6 +8,7 @@ import 'src/injector/injector.dart';
 import 'src/localization/strings_location.dart';
 import 'src/util/cube_provider.dart';
 
+export 'package:cubes/src/actions/cube_action.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';
 export 'package:cubes/src/injector/injector.dart';
@@ -15,6 +16,7 @@ export 'package:cubes/src/localization/cubes_localization_delegate.dart';
 export 'package:cubes/src/localization/strings_location.dart';
 export 'package:cubes/src/observable/observable_list.dart';
 export 'package:cubes/src/observable/observable_value.dart';
+export 'package:cubes/src/util/cube_navigation_mixin.dart';
 export 'package:cubes/src/util/cube_provider.dart';
 export 'package:cubes/src/util/extensions/ext.dart';
 export 'package:cubes/src/util/functions.dart';
@@ -44,12 +46,12 @@ class Cubes {
   }
 
   /// Use to register dependency
-  static void registerDependency<T extends Object>(
+  static void putDependency<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.registerDependency<T>(
+    _instance._injector.putDependency<T>(
       builder,
       dependencyName: dependencyName,
       type: type,
@@ -57,12 +59,12 @@ class Cubes {
   }
 
   /// Use to register dependency async
-  static void registerDependencyAsync<T extends Object>(
+  static void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
     DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.registerDependencyAsync<T>(
+    _instance._injector.putDependencyAsync<T>(
       builder,
       dependencyName: dependencyName,
       type: type,

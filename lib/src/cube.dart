@@ -5,9 +5,6 @@ import 'package:flutter/foundation.dart';
 import '../cubes.dart';
 import 'util/debouncer.dart';
 
-/// Base to Actions
-abstract class CubeAction {}
-
 /// Function to notify Actions
 typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
   A valueA,
@@ -43,7 +40,7 @@ abstract class Cube extends SimpleCube {
 
   /// Method to send anything to view
   @protected
-  void onAction(CubeAction action) {
+  void sendAction(CubeAction action) {
     if (_onActionListeners?.isEmpty == true) return;
     _onActionListeners?.last(this, action);
   }

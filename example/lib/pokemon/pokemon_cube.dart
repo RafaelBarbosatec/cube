@@ -23,7 +23,9 @@ class PokemonCube extends Cube {
   void fetchPokemonList({bool isMore = false}) {
     if (progress.value) return;
     int page = 0;
-    if (isMore) page = (list.length ~/ LIMIT_PAGE) + 1;
+    if (isMore) {
+      page = (list.length ~/ LIMIT_PAGE) + 1;
+    }
     progress.value = true;
     repository.getPokemonList(page: page, limit: LIMIT_PAGE)?.then((value) {
       if (isMore) {

@@ -20,9 +20,9 @@ void main() {
 
       return 'count: $_counter';
     });
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 2');
-    expect(injector.getDependency<String>(), 'count: 3');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 2');
+    expect(injector.get<String>(), 'count: 3');
   });
 
   test('verify return injected singleton', () {
@@ -34,9 +34,9 @@ void main() {
       },
       type: DependencyRegisterType.singleton,
     );
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
   });
 
   test('verify return injected singleton lazy', () {
@@ -48,9 +48,9 @@ void main() {
       },
       type: DependencyRegisterType.lazySingleton,
     );
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
   });
 
   test('verify return injected factory async', () {
@@ -61,7 +61,7 @@ void main() {
         return 'value async';
       },
     );
-    injector.getDependencyAsync<String>().then((value) {
+    injector.getAsync<String>().then((value) {
       expect(value, 'value async');
     });
   });
@@ -77,8 +77,8 @@ void main() {
       type: DependencyRegisterType.singleton,
     );
 
-    final r1 = await injector.getDependencyAsync<String>();
-    final r2 = await injector.getDependencyAsync<String>();
+    final r1 = await injector.getAsync<String>();
+    final r2 = await injector.getAsync<String>();
 
     expect(r1, 'count: 1');
     expect(r2, 'count: 1');
@@ -95,8 +95,8 @@ void main() {
       type: DependencyRegisterType.lazySingleton,
     );
 
-    final r1 = await injector.getDependencyAsync<String>();
-    final r2 = await injector.getDependencyAsync<String>();
+    final r1 = await injector.getAsync<String>();
+    final r2 = await injector.getAsync<String>();
 
     expect(r1, 'count: 1');
     expect(r2, 'count: 1');

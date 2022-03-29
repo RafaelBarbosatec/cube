@@ -42,7 +42,7 @@ class Cubes {
 
   /// Use to get dependency registered
   static T getDependency<T extends Object>({String? dependencyName}) {
-    return _instance._injector.getDependency<T>(dependencyName: dependencyName);
+    return _instance._injector.get<T>(dependencyName: dependencyName);
   }
 
   /// Use to register dependency

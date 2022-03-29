@@ -63,17 +63,47 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  T getDependency<T extends Object>({String? dependencyName}) {
+  T get<T extends Object>({String? dependencyName}) {
     return _getIt.get<T>(instanceName: dependencyName);
   }
 
   @override
-  Future<T> getDependencyAsync<T extends Object>({String? dependencyName}) {
+  Future<T> getAsync<T extends Object>({String? dependencyName}) {
     return _getIt.getAsync<T>(instanceName: dependencyName);
   }
 
   @override
-  void reset({bool dispose = false}) {
-    _getIt.reset(dispose: dispose);
+  Future<void> reset({bool dispose = false}) {
+    return _getIt.reset(dispose: dispose);
+  }
+
+  @override
+  void putFactory<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _getIt.registerFactory<T>(
+      () => builder(this),
+      instanceName: dependencyName,
+    );
+  }
+
+  @override
+  void putLazySingleton<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _getIt.registerLazySingleton<T>(
+      () => builder(this),
+      instanceName: dependencyName,
+    );
+  }
+
+  @override
+  void putSingleton<T extends Object>(T value, {String? dependencyName}) {
+    _getIt.registerSingleton<T>(
+      value,
+      instanceName: dependencyName,
+    );
   }
 }

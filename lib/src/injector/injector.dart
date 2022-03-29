@@ -18,6 +18,22 @@ abstract class CInjector {
     DependencyRegisterType type = DependencyRegisterType.factory,
   });
 
+  /// Method used to register dependency by lazy
+  void putLazySingleton<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  });
+
+  void putFactory<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  });
+
+  void putSingleton<T extends Object>(
+    T value, {
+    String? dependencyName,
+  });
+
   /// Method used to register dependency async
   void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
@@ -26,11 +42,11 @@ abstract class CInjector {
   });
 
   /// Method used to get dependency
-  T getDependency<T extends Object>({String? dependencyName});
+  T get<T extends Object>({String? dependencyName});
 
   /// Method used to get dependency async
-  Future<T> getDependencyAsync<T extends Object>({String? dependencyName});
+  Future<T> getAsync<T extends Object>({String? dependencyName});
 
   /// Method used to reset dependencies registered
-  void reset({bool dispose = false});
+  Future<void> reset({bool dispose = false});
 }

@@ -29,7 +29,7 @@ void main() {
     (i) => TodoCube(),
     type: DependencyRegisterType.lazySingleton,
   );
-  Cubes.putDependency((i) => PokemonCube(i.getDependency()));
+  Cubes.putDependency((i) => PokemonCube(i.get()));
   Cubes.putDependency(
     (i) => PokemonRepository(),
     type: DependencyRegisterType.lazySingleton,

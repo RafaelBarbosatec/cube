@@ -78,19 +78,6 @@ class Cubes {
     );
   }
 
-  /// Use to register dependency async
-  static void putDependencyAsync<T extends Object>(
-    CDependencyInjectorAsyncBuilder<T> builder, {
-    String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
-  }) {
-    _instance._injector.putDependencyAsync<T>(
-      builder,
-      dependencyName: dependencyName,
-      type: type,
-    );
-  }
-
   /// Use to reset injector
   static void resetInjector() => _instance._injector.reset();
 

@@ -15,9 +15,8 @@ void main() {
   });
 
   test('verify return injected factory', () {
-    injector.putDependency<String>((injector) {
+    injector.putFactory<String>((injector) {
       _counter++;
-
       return 'count: $_counter';
     });
     expect(injector.get<String>(), 'count: 1');
@@ -26,13 +25,9 @@ void main() {
   });
 
   test('verify return injected singleton', () {
-    injector.putDependency<String>(
-      (injector) {
-        _counter++;
-
-        return 'count: $_counter';
-      },
-      type: DependencyRegisterType.singleton,
+    _counter++;
+    injector.putSingleton<String>(
+      'count: $_counter',
     );
     expect(injector.get<String>(), 'count: 1');
     expect(injector.get<String>(), 'count: 1');
@@ -40,13 +35,12 @@ void main() {
   });
 
   test('verify return injected singleton lazy', () {
-    injector.putDependency<String>(
+    injector.putLazySingleton<String>(
       (injector) {
         _counter++;
 
         return 'count: $_counter';
       },
-      type: DependencyRegisterType.lazySingleton,
     );
     expect(injector.get<String>(), 'count: 1');
     expect(injector.get<String>(), 'count: 1');

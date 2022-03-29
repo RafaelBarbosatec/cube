@@ -44,7 +44,7 @@ void main() {
 
 class CounterCube extends Cube {
 
-  final count = 0.obsValue;
+  final count = 0.obs;
 
   void increment() {
     count.modify((value) => value + 1); // or count.update(newValue);
@@ -99,7 +99,7 @@ In `Cubes`, you control elements in the view using `ObservableValues`. Creating 
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
+    final count = 0.obs;
     // final myList = <MyModel>[].obsValue;
     // final viewModel = ViewMidel().obsValue;
 }
@@ -111,7 +111,7 @@ You can modify these `ObservableValues` and then your view will react to these c
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
+    final count = 0.obs;
     
     void increment() {
       count.modify((value) => value + 1); // or count.update(newValue);
@@ -126,7 +126,7 @@ In `Cubes`, this is super simple to achieve. Just override the method `onReady` 
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
+    final count = 0.obs;
     
     void increment() {
       count.modify((value) => value + 1); // or count.update(newValue);

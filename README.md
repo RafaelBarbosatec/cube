@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 
 void main() {
  
-  Cubes.putDependency((i) => CounterCube());
+  Cubes.registerFactory((i) => CounterCube());
 
   runApp(MaterialApp(
       title: 'Cube Demo',
@@ -241,16 +241,13 @@ import 'package:flutter/material.dart';
 
 void main() {
   // Register your Cube
-  Cubes.putDependency((i) => CounterCube());
+  Cubes.registerFactory((i) => CounterCube());
 
   // Example: register a singleton Cube
-  // Cubes.putDependency(
-  //    (i) => CounterCube(),
-  //    type: DependencyRegisterType.singleton,
-  // );
+  // Cubes.registerSingleton(CounterCube());
 
   // Example: register repositories or something else
-  // Cubes.putDependency((i) => SingletonRepository(i.getDependency());
+  // Cubes.registerFactory((i) => SingletonRepository(i.get());
 
   runApp(MaterialApp(
       title: 'Cubes Demo',

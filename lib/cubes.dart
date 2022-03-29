@@ -46,33 +46,33 @@ class Cubes {
   }
 
   /// Method used to register dependency by lazy
-  static void putLazySingleton<T extends Object>(
+  static void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   }) {
-    _instance._injector.putLazySingleton(
+    _instance._injector.registerLazySingleton(
       builder,
       dependencyName: dependencyName,
     );
   }
 
   /// Method used to register dependency by factory
-  static void putFactory<T extends Object>(
+  static void registerFactory<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   }) {
-    _instance._injector.putFactory(
+    _instance._injector.registerFactory(
       builder,
       dependencyName: dependencyName,
     );
   }
 
   /// Method used to register singleton dependency
-  static void putSingleton<T extends Object>(
+  static void registerSingleton<T extends Object>(
     T value, {
     String? dependencyName,
   }) {
-    _instance._injector.putSingleton(
+    _instance._injector.registerSingleton(
       value,
       dependencyName: dependencyName,
     );

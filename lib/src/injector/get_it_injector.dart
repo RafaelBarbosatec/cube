@@ -50,7 +50,7 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void putFactory<T extends Object>(
+  void registerFactory<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   }) {
@@ -61,7 +61,7 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void putLazySingleton<T extends Object>(
+  void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   }) {
@@ -72,7 +72,7 @@ class GetItInjector extends CInjector {
   }
 
   @override
-  void putSingleton<T extends Object>(T value, {String? dependencyName}) {
+  void registerSingleton<T extends Object>(T value, {String? dependencyName}) {
     _getIt.registerSingleton<T>(
       value,
       instanceName: dependencyName,

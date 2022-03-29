@@ -12,19 +12,19 @@ typedef CDependencyInjectorAsyncBuilder<T> = Future<T> Function(
 /// Interface responsible to manager dependency injector
 abstract class CInjector {
   /// Method used to register dependency by lazy
-  void putLazySingleton<T extends Object>(
+  void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   });
 
   /// Method used to register dependency by factory
-  void putFactory<T extends Object>(
+  void registerFactory<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
   });
 
   /// Method used to register singleton dependency
-  void putSingleton<T extends Object>(
+  void registerSingleton<T extends Object>(
     T value, {
     String? dependencyName,
   });

@@ -1,9 +1,9 @@
 # [next]
 - Renamed `obsValue` to `obs`
 - Improvements in injector, now you have separated methods to register your dependency:
-    - `putSingleton`
-    - `putLazySingleton`
-    - `putFactory`
+    - `registerSingleton`
+    - `registerLazySingleton`
+    - `registerFactory`
 
 # [1.4.0]
 - little improvements

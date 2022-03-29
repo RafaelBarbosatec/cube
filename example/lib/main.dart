@@ -20,14 +20,14 @@ import 'text_form_field/text_form_field_cube.dart';
 
 void main() {
   // register cube
-  Cubes.putFactory((i) => CounterCube());
-  Cubes.putSingleton(CounterSingletonCube());
-  Cubes.putLazySingleton((i) => TodoCube());
-  Cubes.putFactory((i) => PokemonCube(i.get()));
-  Cubes.putLazySingleton((i) => PokemonRepository());
-  Cubes.putFactory((i) => FeedbackManagerCube());
-  Cubes.putFactory((i) => TextFormFieldCube());
-  Cubes.putFactory((i) => CounterSimpleCube());
+  Cubes.registerFactory((i) => CounterCube());
+  Cubes.registerSingleton(CounterSingletonCube());
+  Cubes.registerLazySingleton((i) => TodoCube());
+  Cubes.registerFactory((i) => PokemonCube(i.get()));
+  Cubes.registerLazySingleton((i) => PokemonRepository());
+  Cubes.registerFactory((i) => FeedbackManagerCube());
+  Cubes.registerFactory((i) => TextFormFieldCube());
+  Cubes.registerFactory((i) => CounterSimpleCube());
   runApp(MyApp());
 }
 

@@ -15,7 +15,7 @@ void main() {
   });
 
   test('verify return injected factory', () {
-    injector.putFactory<String>((injector) {
+    injector.registerFactory<String>((injector) {
       _counter++;
       return 'count: $_counter';
     });
@@ -26,7 +26,7 @@ void main() {
 
   test('verify return injected singleton', () {
     _counter++;
-    injector.putSingleton<String>(
+    injector.registerSingleton<String>(
       'count: $_counter',
     );
     expect(injector.get<String>(), 'count: 1');
@@ -35,7 +35,7 @@ void main() {
   });
 
   test('verify return injected singleton lazy', () {
-    injector.putLazySingleton<String>(
+    injector.registerLazySingleton<String>(
       (injector) {
         _counter++;
 

@@ -1,7 +1,7 @@
 import 'package:cubes/cubes.dart';
 
 class TextFormFieldCube extends Cube {
-  final textFieldControl = CTextFormFieldControl.empty().obsValue;
+  final textFieldControl = CTextFormFieldControl.empty().obs;
 
   void cleanText() {
     textFieldControl.text = '';

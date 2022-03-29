@@ -13,7 +13,7 @@ class MsgAction extends CubeAction {
 
 class CounterCube extends Cube {
   final bool withDebounce;
-  final count = 0.obsValue;
+  final count = 0.obs;
 
   CounterCube({this.withDebounce = true});
 

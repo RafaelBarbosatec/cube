@@ -28,13 +28,13 @@ extension ObservableValueExtensions on ObservableValue {
 /// Extension to facilitate create ObservableValue
 extension ObservableValueExtension<T> on T {
   /// Create ObservableValue<T>
-  ObservableValue<T> get obsValue => ObservableValue<T>(value: this);
+  ObservableValue<T> get obs => ObservableValue<T>(value: this);
 }
 
 /// Extension to facilitate create ObservableList
 extension ListToObservableValue<T> on List<T> {
   /// Create ObservableList<T>
-  ObservableList<T> get obsValue => ObservableList<T>(value: this);
+  ObservableList<T> get obs => ObservableList<T>(value: this);
 }
 
 extension FeedbackControlExtensions<T> on ObservableValue<CFeedBackControl<T>> {

@@ -41,20 +41,40 @@ class Cubes {
   }
 
   /// Use to get dependency registered
-  static T getDependency<T extends Object>({String? dependencyName}) {
+  static T get<T extends Object>({String? dependencyName}) {
     return _instance._injector.get<T>(dependencyName: dependencyName);
   }
 
-  /// Use to register dependency
-  static void putDependency<T extends Object>(
+  /// Method used to register dependency by lazy
+  static void putLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.putDependency<T>(
+    _instance._injector.putLazySingleton(
       builder,
       dependencyName: dependencyName,
-      type: type,
+    );
+  }
+
+  /// Method used to register dependency by factory
+  static void putFactory<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _instance._injector.putFactory(
+      builder,
+      dependencyName: dependencyName,
+    );
+  }
+
+  /// Method used to register singleton dependency
+  static void putSingleton<T extends Object>(
+    T value, {
+    String? dependencyName,
+  }) {
+    _instance._injector.putSingleton(
+      value,
+      dependencyName: dependencyName,
     );
   }
 

@@ -26,7 +26,7 @@ class CubeBuilderRobot {
   void _setupInjections({bool useMock = true}) {
     _cubeMock = useMock ? MockCubeTest() : CubeExample();
     Cubes.resetInjector();
-    Cubes.putDependency((injector) => _cubeMock);
+    Cubes.putSingleton(_cubeMock);
   }
 
   Future setup({bool useMock = true}) async {

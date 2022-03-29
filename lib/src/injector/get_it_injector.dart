@@ -7,34 +7,6 @@ final _getIt = GetIt.instance;
 /// CInjector implemented with GetIt
 class GetItInjector extends CInjector {
   @override
-  void putDependency<T extends Object>(
-    CDependencyInjectorBuilder<T> builder, {
-    String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
-  }) {
-    switch (type) {
-      case DependencyRegisterType.factory:
-        _getIt.registerFactory<T>(
-          () => builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-      case DependencyRegisterType.singleton:
-        _getIt.registerSingleton<T>(
-          builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-      case DependencyRegisterType.lazySingleton:
-        _getIt.registerLazySingleton<T>(
-          () => builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-    }
-  }
-
-  @override
   void putDependencyAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,

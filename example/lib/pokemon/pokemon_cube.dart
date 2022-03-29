@@ -10,9 +10,9 @@ class PokemonCube extends Cube {
 
   PokemonCube(this.repository);
 
-  final list = <Pokemon>[].obsValue;
-  final progress = false.obsValue;
-  final snackBarController = CFeedBackControl<String>().obsValue;
+  final list = <Pokemon>[].obs;
+  final progress = false.obs;
+  final snackBarController = CFeedBackControl<String>().obs;
 
   @override
   FutureOr onReady(Object? arguments) {

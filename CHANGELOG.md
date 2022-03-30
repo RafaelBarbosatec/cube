@@ -4,6 +4,8 @@
     - `registerSingleton`
     - `registerLazySingleton`
     - `registerFactory`
+    - `registerSingletonAsync`
+    - `registerFactoryAsync`
 
 # [1.4.0]
 - little improvements

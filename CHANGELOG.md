@@ -1,5 +1,7 @@
 # [next]
-- Renamed `obsValue` to `obs`
+
+BREAKING CHANGES:
+- Renamed `obsValue` to `obs`.
 - Improvements in injector, now you have separated methods to register your dependency:
     - `registerSingleton`
     - `registerLazySingleton`

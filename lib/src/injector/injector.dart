@@ -30,10 +30,15 @@ abstract class CInjector {
   });
 
   /// Method used to register dependency async
-  void putDependencyAsync<T extends Object>(
+  void registerFactoryAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
+  });
+
+  /// Method used to register dependency async
+  void registerSingletonAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
   });
 
   /// Method used to get dependency

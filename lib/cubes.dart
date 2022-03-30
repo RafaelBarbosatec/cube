@@ -78,6 +78,26 @@ class Cubes {
     );
   }
 
+  static void registerSingletonAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _instance._injector.registerSingletonAsync(
+      builder,
+      dependencyName: dependencyName,
+    );
+  }
+
+  static void registerFactoryAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _instance._injector.registerFactoryAsync(
+      builder,
+      dependencyName: dependencyName,
+    );
+  }
+
   /// Use to reset injector
   static void resetInjector() => _instance._injector.reset();
 

@@ -7,34 +7,6 @@ final _getIt = GetIt.instance;
 /// CInjector implemented with GetIt
 class GetItInjector extends CInjector {
   @override
-  void putDependencyAsync<T extends Object>(
-    CDependencyInjectorAsyncBuilder<T> builder, {
-    String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
-  }) {
-    switch (type) {
-      case DependencyRegisterType.factory:
-        _getIt.registerFactoryAsync<T>(
-          () => builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-      case DependencyRegisterType.singleton:
-        _getIt.registerLazySingletonAsync<T>(
-          () => builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-      case DependencyRegisterType.lazySingleton:
-        _getIt.registerSingletonAsync<T>(
-          () => builder(this),
-          instanceName: dependencyName,
-        );
-        break;
-    }
-  }
-
-  @override
   T get<T extends Object>({String? dependencyName}) {
     return _getIt.get<T>(instanceName: dependencyName);
   }
@@ -75,6 +47,28 @@ class GetItInjector extends CInjector {
   void registerSingleton<T extends Object>(T value, {String? dependencyName}) {
     _getIt.registerSingleton<T>(
       value,
+      instanceName: dependencyName,
+    );
+  }
+
+  @override
+  void registerSingletonAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _getIt.registerSingletonAsync<T>(
+      () => builder(this),
+      instanceName: dependencyName,
+    );
+  }
+
+  @override
+  void registerFactoryAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _getIt.registerFactoryAsync<T>(
+      () => builder(this),
       instanceName: dependencyName,
     );
   }

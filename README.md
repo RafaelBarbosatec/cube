@@ -100,8 +100,8 @@ In `Cubes`, you control elements in the view using `ObservableValues`. Creating 
 
 class CounterCube extends Cube {
     final count = 0.obs;
-    // final myList = <MyModel>[].obsValue;
-    // final viewModel = ViewMidel().obsValue;
+    // final myList = <MyModel>[].obs;
+    // final viewModel = ViewModel().obs;
 }
 
 ```

@@ -1,8 +1,8 @@
-# [next]
+# [1.5.0]
 
 BREAKING CHANGES:
-- Renamed `obsValue` to `obs`.
-- Improvements in injector, now you have separated methods to register your dependency:
+- Renamed `obsValue` to `obs`. [#56](https://github.com/RafaelBarbosatec/cube/issues/56)
+- Improvements in injector, now you have separated methods to register your dependency [#53](https://github.com/RafaelBarbosatec/cube/issues/53):
     - `registerSingleton`
     - `registerLazySingleton`
     - `registerFactory`

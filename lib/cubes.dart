@@ -45,6 +45,11 @@ class Cubes {
     return _instance._injector.get<T>(dependencyName: dependencyName);
   }
 
+  /// Use to get dependency registered by async
+  static Future<T> getAsync<T extends Object>({String? dependencyName}) {
+    return _instance._injector.getAsync<T>(dependencyName: dependencyName);
+  }
+
   /// Method used to register dependency by lazy
   static void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {

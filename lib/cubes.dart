@@ -41,33 +41,65 @@ class Cubes {
   }
 
   /// Use to get dependency registered
-  static T getDependency<T extends Object>({String? dependencyName}) {
-    return _instance._injector.getDependency<T>(dependencyName: dependencyName);
+  static T get<T extends Object>({String? dependencyName}) {
+    return _instance._injector.get<T>(dependencyName: dependencyName);
   }
 
-  /// Use to register dependency
-  static void putDependency<T extends Object>(
+  /// Use to get dependency registered by async
+  static Future<T> getAsync<T extends Object>({String? dependencyName}) {
+    return _instance._injector.getAsync<T>(dependencyName: dependencyName);
+  }
+
+  /// Method used to register dependency by lazy
+  static void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.putDependency<T>(
+    _instance._injector.registerLazySingleton(
       builder,
       dependencyName: dependencyName,
-      type: type,
     );
   }
 
-  /// Use to register dependency async
-  static void putDependencyAsync<T extends Object>(
-    CDependencyInjectorAsyncBuilder<T> builder, {
+  /// Method used to register dependency by factory
+  static void registerFactory<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
   }) {
-    _instance._injector.putDependencyAsync<T>(
+    _instance._injector.registerFactory(
       builder,
       dependencyName: dependencyName,
-      type: type,
+    );
+  }
+
+  /// Method used to register singleton dependency
+  static void registerSingleton<T extends Object>(
+    T value, {
+    String? dependencyName,
+  }) {
+    _instance._injector.registerSingleton(
+      value,
+      dependencyName: dependencyName,
+    );
+  }
+
+  static void registerSingletonAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _instance._injector.registerSingletonAsync(
+      builder,
+      dependencyName: dependencyName,
+    );
+  }
+
+  static void registerFactoryAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
+  }) {
+    _instance._injector.registerFactoryAsync(
+      builder,
+      dependencyName: dependencyName,
     );
   }
 

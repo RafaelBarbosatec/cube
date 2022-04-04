@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 
 void main() {
  
-  Cubes.putDependency((i) => CounterCube());
+  Cubes.registerFactory((i) => CounterCube());
 
   runApp(MaterialApp(
       title: 'Cube Demo',
@@ -44,7 +44,7 @@ void main() {
 
 class CounterCube extends Cube {
 
-  final count = 0.obsValue;
+  final count = 0.obs;
 
   void increment() {
     count.modify((value) => value + 1); // or count.update(newValue);
@@ -99,9 +99,9 @@ In `Cubes`, you control elements in the view using `ObservableValues`. Creating 
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
-    // final myList = <MyModel>[].obsValue;
-    // final viewModel = ViewMidel().obsValue;
+    final count = 0.obs;
+    // final myList = <MyModel>[].obs;
+    // final viewModel = ViewModel().obs;
 }
 
 ```
@@ -111,7 +111,7 @@ You can modify these `ObservableValues` and then your view will react to these c
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
+    final count = 0.obs;
     
     void increment() {
       count.modify((value) => value + 1); // or count.update(newValue);
@@ -126,7 +126,7 @@ In `Cubes`, this is super simple to achieve. Just override the method `onReady` 
 ```dart
 
 class CounterCube extends Cube {
-    final count = 0.obsValue;
+    final count = 0.obs;
     
     void increment() {
       count.modify((value) => value + 1); // or count.update(newValue);
@@ -241,16 +241,13 @@ import 'package:flutter/material.dart';
 
 void main() {
   // Register your Cube
-  Cubes.putDependency((i) => CounterCube());
+  Cubes.registerFactory((i) => CounterCube());
 
   // Example: register a singleton Cube
-  // Cubes.putDependency(
-  //    (i) => CounterCube(),
-  //    type: DependencyRegisterType.singleton,
-  // );
+  // Cubes.registerSingleton(CounterCube());
 
   // Example: register repositories or something else
-  // Cubes.putDependency((i) => SingletonRepository(i.getDependency());
+  // Cubes.registerFactory((i) => SingletonRepository(i.get());
 
   runApp(MaterialApp(
       title: 'Cubes Demo',

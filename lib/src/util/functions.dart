@@ -10,5 +10,5 @@ T? genericConditional<T>({
 }
 
 T inject<T extends Object>({String? dependencyName}) {
-  return Cubes.getDependency<T>(dependencyName: dependencyName);
+  return Cubes.get<T>(dependencyName: dependencyName);
 }

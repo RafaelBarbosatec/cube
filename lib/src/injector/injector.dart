@@ -11,26 +11,42 @@ typedef CDependencyInjectorAsyncBuilder<T> = Future<T> Function(
 
 /// Interface responsible to manager dependency injector
 abstract class CInjector {
-  /// Method used to register dependency
-  void putDependency<T extends Object>(
+  /// Method used to register dependency by lazy
+  void registerLazySingleton<T extends Object>(
     CDependencyInjectorBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
+  });
+
+  /// Method used to register dependency by factory
+  void registerFactory<T extends Object>(
+    CDependencyInjectorBuilder<T> builder, {
+    String? dependencyName,
+  });
+
+  /// Method used to register singleton dependency
+  void registerSingleton<T extends Object>(
+    T value, {
+    String? dependencyName,
   });
 
   /// Method used to register dependency async
-  void putDependencyAsync<T extends Object>(
+  void registerFactoryAsync<T extends Object>(
     CDependencyInjectorAsyncBuilder<T> builder, {
     String? dependencyName,
-    DependencyRegisterType type = DependencyRegisterType.factory,
+  });
+
+  /// Method used to register dependency async
+  void registerSingletonAsync<T extends Object>(
+    CDependencyInjectorAsyncBuilder<T> builder, {
+    String? dependencyName,
   });
 
   /// Method used to get dependency
-  T getDependency<T extends Object>({String? dependencyName});
+  T get<T extends Object>({String? dependencyName});
 
   /// Method used to get dependency async
-  Future<T> getDependencyAsync<T extends Object>({String? dependencyName});
+  Future<T> getAsync<T extends Object>({String? dependencyName});
 
   /// Method used to reset dependencies registered
-  void reset({bool dispose = false});
+  Future<void> reset({bool dispose = false});
 }

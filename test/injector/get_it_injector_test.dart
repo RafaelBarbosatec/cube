@@ -15,88 +15,63 @@ void main() {
   });
 
   test('verify return injected factory', () {
-    injector.putDependency<String>((injector) {
+    injector.registerFactory<String>((injector) {
       _counter++;
-
       return 'count: $_counter';
     });
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 2');
-    expect(injector.getDependency<String>(), 'count: 3');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 2');
+    expect(injector.get<String>(), 'count: 3');
   });
 
   test('verify return injected singleton', () {
-    injector.putDependency<String>(
-      (injector) {
-        _counter++;
-
-        return 'count: $_counter';
-      },
-      type: DependencyRegisterType.singleton,
+    _counter++;
+    injector.registerSingleton<String>(
+      'count: $_counter',
     );
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
   });
 
   test('verify return injected singleton lazy', () {
-    injector.putDependency<String>(
+    injector.registerLazySingleton<String>(
       (injector) {
         _counter++;
 
         return 'count: $_counter';
       },
-      type: DependencyRegisterType.lazySingleton,
     );
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
-    expect(injector.getDependency<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
+    expect(injector.get<String>(), 'count: 1');
   });
 
   test('verify return injected factory async', () {
-    injector.putDependencyAsync<String>(
+    injector.registerFactoryAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
 
         return 'value async';
       },
     );
-    injector.getDependencyAsync<String>().then((value) {
+    injector.getAsync<String>().then((value) {
       expect(value, 'value async');
     });
   });
 
   test('verify return injected singleton async', () async {
-    injector.putDependencyAsync<String>(
+    injector.registerSingletonAsync<String>(
       (injector) async {
         await Future.delayed(Duration(seconds: 1));
         _counter++;
 
         return 'count: $_counter';
       },
-      type: DependencyRegisterType.singleton,
     );
 
-    final r1 = await injector.getDependencyAsync<String>();
-    final r2 = await injector.getDependencyAsync<String>();
-
-    expect(r1, 'count: 1');
-    expect(r2, 'count: 1');
-  });
-
-  test('verify return injected singleton async lazy', () async {
-    injector.putDependencyAsync<String>(
-      (injector) async {
-        await Future.delayed(Duration(seconds: 1));
-        _counter++;
-
-        return 'count: $_counter';
-      },
-      type: DependencyRegisterType.lazySingleton,
-    );
-
-    final r1 = await injector.getDependencyAsync<String>();
-    final r2 = await injector.getDependencyAsync<String>();
+    final r1 = await injector.getAsync<String>();
+    final r2 = await injector.getAsync<String>();
 
     expect(r1, 'count: 1');
     expect(r2, 'count: 1');

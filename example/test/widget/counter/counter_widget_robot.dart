@@ -28,7 +28,7 @@ class CounterWidgetRobot extends Robot {
 
   void _setupInjections() {
     Cubes.resetInjector();
-    Cubes.putDependency((injector) => CounterCube(withDebounce: false));
+    Cubes.registerFactory((injector) => CounterCube(withDebounce: false));
   }
 
   Finder get buttonIncrement {

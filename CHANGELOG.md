@@ -1,3 +1,14 @@
+# [next]
+
+BREAKING CHANGES:
+- Renamed `obsValue` to `obs`.
+- Improvements in injector, now you have separated methods to register your dependency:
+    - `registerSingleton`
+    - `registerLazySingleton`
+    - `registerFactory`
+    - `registerSingletonAsync`
+    - `registerFactoryAsync`
+
 # [1.4.0]
 - little improvements
 - renamed `Cubes.registerDependency` to `Cubes.putDependency`;

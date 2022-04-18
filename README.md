@@ -249,6 +249,9 @@ void main() {
   // Example: register repositories or something else
   // Cubes.registerFactory((i) => SingletonRepository(i.get());
 
+  // Example: get any dependency
+  // Cubes.get<MyDependency>();
+
   runApp(MaterialApp(
       title: 'Cubes Demo',
       theme: ThemeData(

@@ -249,6 +249,9 @@ void main() {
   // Example: register repositories or something else
   // Cubes.registerFactory((i) => SingletonRepository(i.get());
 
+  // Example: get any dependency
+  // Cubes.get<MyDependency>();
+
   runApp(MaterialApp(
       title: 'Cubes Demo',
       theme: ThemeData(
@@ -306,9 +309,9 @@ To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you
 
 ## Methods: Inner Cube
 
-### onAction
+### sendAction
 
-`onAction` is used to send any type of action or message to a view. You simply create an 'action' extending from `CubeAction`.
+`sendAction` is used to send any type of action or message to a view. You simply create an 'action' extending from `CubeAction`.
 
 ```dart
 

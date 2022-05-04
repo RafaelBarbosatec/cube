@@ -81,7 +81,9 @@ abstract class SimpleCube {
     Duration duration = const Duration(milliseconds: 400),
   }) {
     try {
-      if (_debounceMap == null) _debounceMap = {};
+      if (_debounceMap == null) {
+        _debounceMap = {};
+      }
       if (_debounceMap?.containsKey(identify) == true) {
         if (_debounceMap![identify]?.delay != duration) {
           _debounceMap![identify] = Debounce(duration);
@@ -99,7 +101,9 @@ abstract class SimpleCube {
   /// Uses to listen `ObservableValue` inner Cube
   @protected
   void listen<T>(ObservableValue<T> observableValue, ValueChanged<T> listener) {
-    if (_listenersObservableMap == null) _listenersObservableMap = {};
+    if (_listenersObservableMap == null) {
+      _listenersObservableMap = {};
+    }
     _listenersObservableMap![observableValue] = () {
       listener(observableValue.value);
     };
@@ -109,8 +113,6 @@ abstract class SimpleCube {
   /// called when the cube is destroyed
   void dispose() {
     _debounceMap?.clear();
-    _listenersObservableMap?.forEach((key, value) {
-      key.removeListener(value);
-    });
+    _listenersObservableMap?.forEach((key, value) => key.removeListener(value));
   }
 }

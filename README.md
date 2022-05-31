@@ -35,7 +35,6 @@ void main() {
       title: 'Cube Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CounterScreen(),
     ),

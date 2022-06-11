@@ -29,13 +29,13 @@ class _CounterSimpleCubeScreenState extends State<CounterSimpleCubeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('counter'.tr()),
+        title: Text('counter'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('description_counter'.tr()),
+            Text('description_counter'),
             cube.count.build<int>(
               (value) => Text(value.toString()),
             ),

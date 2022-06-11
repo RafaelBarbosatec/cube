@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../cubes.dart';
 
 /// Mixin postFrame to uses in State
-mixin StateMixin<T extends StatefulWidget> on State<T> {
+extension StateExt on State {
   /// Used to update widget in next frame
   void postFrame(VoidCallback callback) {
     Future.delayed(Duration.zero, () {
@@ -25,10 +25,10 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
 
   @override
   void initState() {
+    super.initState();
     _cube = _cube ?? inject();
     _cube?.addOnActionListener(_innerOnAction);
-    WidgetsBinding.instance?.addPostFrameCallback(_ready);
-    super.initState();
+    postFrame(_ready);
   }
 
   @override
@@ -47,7 +47,7 @@ mixin CubeStateMixin<T extends StatefulWidget, C extends Cube> on State<T> {
   /// Method tha receive action from cube.
   void onAction(CubeAction action);
 
-  void _ready(_) {
+  void _ready() {
     var data = initData ?? ModalRoute.of(context)?.settings.arguments;
     _cube?.onReady(data);
   }

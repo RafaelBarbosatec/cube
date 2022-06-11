@@ -162,7 +162,7 @@ class CTextFormField extends StatefulWidget {
   _CTextFormFieldState createState() => _CTextFormFieldState();
 }
 
-class _CTextFormFieldState extends State<CTextFormField> with StateMixin {
+class _CTextFormFieldState extends State<CTextFormField> {
   TextEditingController? _controller;
   bool _enable = true;
   bool _obscureText = false;

@@ -1,7 +1,6 @@
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/counter/counter_cube.dart';
 import 'package:examplecube/counter/counter_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../util/robot.dart';
@@ -11,18 +10,9 @@ class CounterWidgetRobot extends Robot {
 
   Future setup() async {
     _setupInjections();
-    final cubeLocation = CubesLocalizationDelegate(
-      [
-        Locale('en', 'US'),
-        Locale('pt', 'BR'),
-      ],
-    );
+
     await widgetSetup(
       CounterScreen(),
-      materialAppParams: CubeRobotMaterialAppParams(
-        localizationsDelegates: cubeLocation.delegates,
-        supportedLocales: cubeLocation.supportedLocations,
-      ),
     );
   }
 
@@ -36,7 +26,7 @@ class CounterWidgetRobot extends Robot {
   }
 
   void assetText() {
-    final finder = find.text(Cubes.getString('description_counter'));
+    final finder = find.text('You have pushed the button this many times:');
     expect(finder, findsOneWidget);
   }
 

@@ -1,5 +1,6 @@
 import 'package:cubes/src/actions/cube_action.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cubes/src/util/extensions/ext.dart';
+import 'package:flutter/material.dart';
 
 ///
 /// Created by
@@ -122,4 +123,59 @@ class NavigationAction extends CubeAction {
         fullscreenDialog = false,
         builder = null,
         result = null;
+
+  void handle(BuildContext context) {
+    switch (type) {
+      case NavigationType.pushNamed:
+        context
+            .goToNamed(routeName!, arguments: arguments)
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.pushNamedAndRemoveUntil:
+        context
+            .goToNamedAndRemoveUntil(
+              routeName!,
+              predicate!,
+              arguments: arguments,
+            )
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.pushReplacementNamed:
+        context
+            .goToNamedReplacement(routeName!, arguments: arguments)
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.push:
+        context
+            .goTo(
+              builder!,
+              settings: settings,
+              fullscreenDialog: fullscreenDialog,
+            )
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.pushReplacement:
+        context
+            .goToReplacement(
+              builder!,
+              settings: settings,
+              fullscreenDialog: fullscreenDialog,
+            )
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.pushAndRemoveUntil:
+        context
+            .goToAndRemoveUntil(
+              builder!,
+              predicate!,
+              settings: settings,
+              fullscreenDialog: fullscreenDialog,
+            )
+            .then((r) => onResult?.call(r));
+        break;
+      case NavigationType.pop:
+        context.pop(result);
+        break;
+    }
+  }
 }

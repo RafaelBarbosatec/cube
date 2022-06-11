@@ -47,7 +47,7 @@ class _CounterScreenWithAnimationState extends State<CounterScreenWithAnimation>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('description_counter'.tr()),
+              Text('description_counter'),
               cube.count.build<int>((value) {
                 return Text(value.toString());
               }),

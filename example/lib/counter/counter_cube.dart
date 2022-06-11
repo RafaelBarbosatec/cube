@@ -20,7 +20,6 @@ class CounterCube extends Cube {
   @override
   void onReady(Object? arguments) {
     // do anythings when view is ready
-    super.onReady(arguments);
   }
 
   void increment() {

@@ -1,5 +1,8 @@
-# [1.5.0]
+# [1.5.1]
+- Update to Flutter 3.0
+- Turn deprecated `CubesLocalization`
 
+# [1.5.0]
 BREAKING CHANGES:
 - Renamed `obsValue` to `obs`. [#56](https://github.com/RafaelBarbosatec/cube/issues/56)
 - Improvements in injector, now you have separated methods to register your dependency [#53](https://github.com/RafaelBarbosatec/cube/issues/53):

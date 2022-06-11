@@ -30,7 +30,7 @@ class CObserver<T> extends StatefulWidget {
   _CObserverState<T> createState() => _CObserverState<T>();
 }
 
-class _CObserverState<T> extends State<CObserver> with StateMixin {
+class _CObserverState<T> extends State<CObserver> {
   @override
   void initState() {
     widget.observable.addListener(_listener);

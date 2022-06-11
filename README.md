@@ -35,7 +35,6 @@ void main() {
       title: 'Cube Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CounterScreen(),
     ),
@@ -550,74 +549,7 @@ Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/e
 
 ## Internationalization support
 
-With Cubes you can configure internationalization in your application in a simple way using JSON files.
-
-### Using
-
-Create a folder named `lang` in the root folder of your project and put your files named by the language and locale, just like this:
-
-![](https://raw.githubusercontent.com/RafaelBarbosatec/cube/master/media/example-folders.png)
-
-[Example json file](https://github.com/RafaelBarbosatec/cube/blob/master/example/lang);
-
-Add the path in your `pubspec.yaml`:
-
-```yaml
-
-  # To add assets to your application, add an assets section, like this:
-  assets:
-   - lang/
-
-```
-
-In your `MaterialApp` you can configure the `CubesLocalizationDelegate`:
-
-
-```dart
-
-    final cubeLocation = CubesLocalizationDelegate(
-      [
-        Locale('en', 'US'),
-        Locale('pt', 'BR'),
-      ],
-    );
-
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        title: 'My app',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        localizationsDelegates: cubeLocation.delegates, // see here
-        supportedLocales: cubeLocation.supportedLocations, // see here
-        home: Home(),
-      );
-    }
-
-```
-
-All done! Your application already supports internationalization. Now you can retrieve the strings as follows:
-
-```dart
-
-  String text = Cubes.getString('welcome');
-  // or
-  String text = 'welcome'.tr();
-```
-
-You can replace parts of the string using `params`, just like this:
-
-```dart
-
-  // String in json file:
-  // {'welcome':'Hello @name! Welcome to my app!'}
-
-  String text = Cubes.getString('welcome',params:{'name':'Kevin'});
-  // or
-  String text = 'welcome'.tr(params:{'name':'Kevin'});
-```
+Please use default [flutter internationalization](https://docs.flutter.dev/development/accessibility-and-localization/internationalization)'
 
 ## Custom dependency injection
 

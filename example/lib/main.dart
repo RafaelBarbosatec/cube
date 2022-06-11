@@ -32,13 +32,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final cubeLocation = CubesLocalizationDelegate(
-    [
-      Locale('en', 'US'),
-      Locale('pt', 'BR'),
-    ],
-  );
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,8 +40,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      localizationsDelegates: cubeLocation.delegates,
-      supportedLocales: cubeLocation.supportedLocations,
       home: Home(),
     );
   }
@@ -61,7 +52,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('welcome'.tr(params: {'name': 'folks'.tr()})),
+        title: Text('welcome'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -69,7 +60,7 @@ class Home extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ElevatedButton(
-                child: Text('counter'.tr()),
+                child: Text('counter'),
                 onPressed: () {
                   context.goTo(
                     (_) => CounterScreen(),
@@ -110,7 +101,7 @@ class Home extends StatelessWidget {
                 height: 5,
               ),
               ElevatedButton(
-                child: Text('singleton'.tr()),
+                child: Text('singleton'),
                 onPressed: () {
                   context.goTo((_) => ScreenCounterSingleton());
                 },

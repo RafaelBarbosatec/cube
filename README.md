@@ -349,7 +349,9 @@ class MyScreen extends CubeWidget<MyCube> {
   
    @override
    void onAction(BuildContext context, MyCube cube, CubeAction action) {
-     if(action is EventAction) _analyticsProvider.sendEvent((action as NavigationAction).eventName);
+     if(action is EventAction){
+        // do anything
+     }
      super.onAction(context, cube, data);
    }
 

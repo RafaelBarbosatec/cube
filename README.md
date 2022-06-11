@@ -132,9 +132,8 @@ class CounterCube extends Cube {
     }
     
     @override
-    void onReady(Object arguments) {
+    void onReady(Object? arguments) {
       // do anything when view is ready
-      super.ready(arguments);
     }
 }
 

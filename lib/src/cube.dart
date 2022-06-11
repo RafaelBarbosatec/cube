@@ -13,7 +13,7 @@ typedef OnActionChanged<A extends Cube, CubeAction> = void Function(
 
 /// Base to create Cube
 abstract class Cube extends SimpleCube {
-  List<OnActionChanged<Cube, CubeAction>>? _onActionListeners;
+  List<OnActionChanged<Cube, CubeAction>> _onActionListeners = [];
 
   OnActionChanged? _cubeActionListener;
 
@@ -21,28 +21,28 @@ abstract class Cube extends SimpleCube {
   /// [arguments] if passed through CubeBuilder, if not, get arguments
   /// from `ModalRoute.of(context).settings.arguments;`
   // ignore: no-empty-block
-  FutureOr onReady(Object? arguments) {}
+  FutureOr<void> onReady(Object? arguments) {}
 
   /// Add OnActionListener
   void addOnActionListener<T extends Cube>(
     OnActionChanged<T, CubeAction>? listener,
   ) {
-    if (_onActionListeners == null) _onActionListeners = [];
-    _onActionListeners?.add(listener as OnActionChanged<Cube, CubeAction>);
+    _onActionListeners.add(listener as OnActionChanged<Cube, CubeAction>);
   }
 
   /// Remove OnActionListener
   void removeOnActionListener<T extends Cube>(
     OnActionChanged<T, CubeAction>? listener,
   ) {
-    _onActionListeners?.remove(listener);
+    _onActionListeners.remove(listener);
   }
 
   /// Method to send anything to view
   @protected
   void sendAction(CubeAction action) {
-    if (_onActionListeners?.isEmpty == true) return;
-    _onActionListeners?.last(this, action);
+    if (_onActionListeners.isNotEmpty) {
+      _onActionListeners.last(this, action);
+    }
   }
 
   @override

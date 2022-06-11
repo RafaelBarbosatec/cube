@@ -361,7 +361,7 @@ class MyScreen extends CubeWidget<MyCube> {
 
 This approach will be useful for complex animations among other features that the `View` may need to perform.
 
-#### Navigation
+### Navigation
 
 You can use this feature to your own navigation system. But you don't have to do anything manually, we've already done that for you. Just use the `CubeNavigation` mixin.
 
@@ -394,26 +394,6 @@ This method will help you to `debounce` the execution of something.
      ()  => print(count.value),
      duration: Duration(seconds: 1),
    );
-```
-
-### listen
-
-Use it to listen ObservableValues.
-
-```dart
-  listen(count,(value){
-      // do anything
-  });
-```
-
-### listenActions
-
-Use it to listen to the `Action` sent to the view.
-
-```dart
-  listenActions((action){
-      // do anything
-  });
 ```
 
 ## Useful Widgets

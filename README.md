@@ -582,7 +582,6 @@ By default, `Cubes` uses [get_it](https://pub.dev/packages/get_it) to manage dep
     context.scaffold;
     context.showSnackBar(SnackBar());
     context.arguments;
-    context.getCube<MyCube>(); // get Cube from provided
 
 ```
 

@@ -6,6 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'cubes_localization.dart';
 
 /// Delegate responsible for internationalization from json files
+@Deprecated(
+    'Please use default flutter internationalization (https://docs.flutter.dev/development/accessibility-and-localization/internationalization)')
 class CubesLocalizationDelegate
     extends LocalizationsDelegate<CubesLocalization> {
   /// primary constructor of the CubesLocalizationDelegate

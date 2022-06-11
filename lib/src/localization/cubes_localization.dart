@@ -9,6 +9,8 @@ import 'strings_location.dart';
 Map<String, String> _jsonCache = {};
 
 /// Responsible for loading the current locate string file
+@Deprecated(
+    'Please use default flutter internationalization (https://docs.flutter.dev/development/accessibility-and-localization/internationalization)')
 class CubesLocalization {
   /// Primary constructor of the  CubesLocalization
   CubesLocalization(this.locale, {this.pathFiles = 'lang/'}) {

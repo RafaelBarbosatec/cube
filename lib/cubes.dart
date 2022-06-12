@@ -5,15 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'src/cube.dart';
 import 'src/injector/get_it_injector.dart';
 import 'src/injector/injector.dart';
-import 'src/localization/strings_location.dart';
 import 'src/util/cube_provider.dart';
 
 export 'package:cubes/src/actions/cube_action.dart';
 export 'package:cubes/src/cube.dart';
 export 'package:cubes/src/feedback_manager/feedback_manager.dart';
 export 'package:cubes/src/injector/injector.dart';
-export 'package:cubes/src/localization/cubes_localization_delegate.dart';
-export 'package:cubes/src/localization/strings_location.dart';
 export 'package:cubes/src/observable/observable_list.dart';
 export 'package:cubes/src/observable/observable_value.dart';
 export 'package:cubes/src/util/cube_navigation_mixin.dart';
@@ -30,7 +27,6 @@ export 'package:cubes/src/widgets/text_form_field.dart';
 class Cubes {
   /// instance of the Cubes
   static final Cubes _instance = Cubes._internal();
-  final CGetterStringLocation _stringLocation = CStringsLocation();
   CInjector _injector = GetItInjector();
 
   Cubes._internal();
@@ -111,14 +107,6 @@ class Cubes {
 
   /// Use to register your on Injector
   set injector(CInjector injector) => _instance._injector = injector;
-
-  /// Use to get StringLocation
-  static CGetterStringLocation stringLocation() => _instance._stringLocation;
-
-  /// Use to get String in StringLocation
-  static String getString(String key, {Map<String, String>? params}) {
-    return _instance._stringLocation.getString(key, params: params);
-  }
 
   /// Use to get Cube registered in de Widget tree.
   static C? of<C extends Cube>(BuildContext context) {

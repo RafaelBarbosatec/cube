@@ -528,10 +528,6 @@ It is exactly the same as the conventional `TextFormField` with two more fields,
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field).
 
-## Internationalization support
-
-Please use default [flutter internationalization](https://docs.flutter.dev/development/accessibility-and-localization/internationalization)'
-
 ## Custom dependency injection
 
 By default, `Cubes` uses [get_it](https://pub.dev/packages/get_it) to manage dependencies. if you want to use another one, you can overwrite the Injector:

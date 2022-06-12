@@ -1,3 +1,6 @@
+# [next]
+- BREAKING CHANGE: remove `CubesLocalization`
+
 # [1.5.1]
 - Update to Flutter 3.0
 - Turn deprecated `CubesLocalization`

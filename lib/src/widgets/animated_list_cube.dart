@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../observable/observable_list.dart';
 
 enum TypeAnimationListEnum { add, remove }
+
 typedef AnimatedListCubeItemBuilder<T> = Widget Function(
   BuildContext context,
   T item,

@@ -132,9 +132,8 @@ class CounterCube extends Cube {
     }
     
     @override
-    void onReady(Object arguments) {
+    void onReady(Object? arguments) {
       // do anything when view is ready
-      super.ready(arguments);
     }
 }
 
@@ -528,10 +527,6 @@ With it you can work reactively with your `TextFormField`, being able to modify 
 It is exactly the same as the conventional `TextFormField` with two more fields, the `observable` and `obscureTextButtonConfiguration`.
 
 Full usage example [here](https://github.com/RafaelBarbosatec/cube/blob/master/example/lib/text_form_field).
-
-## Internationalization support
-
-Please use default [flutter internationalization](https://docs.flutter.dev/development/accessibility-and-localization/internationalization)'
 
 ## Custom dependency injection
 

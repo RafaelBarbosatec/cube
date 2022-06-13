@@ -1,4 +1,4 @@
-# [next]
+# [1.5.2]
 - BREAKING CHANGE: remove `CubesLocalization`
 
 # [1.5.1]

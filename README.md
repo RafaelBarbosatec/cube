@@ -49,7 +49,7 @@ class CounterCube extends Cube {
   final count = 0.obs;
 
   void increment() {
-    count.modify((value) => value + 1); // or count.update(newValue);
+    count.modify((value) => value + 1); // or count.update(newValue); or count.value = newValue;
   }
   
 }

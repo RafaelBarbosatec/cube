@@ -1,7 +1,7 @@
 # Cubes examples
 
-- [Counter (Using CubeWidget)](#counter)
-- [Counter (Using CubeConsumer)](#counter)
+- [Counter (Using CubeWidget)](#counter-using-cubewidget)
+- [Counter (Using CubeConsumer)](#counter-using-cubeconsumer)
 
 
 ## Counter (Using CubeWidget)

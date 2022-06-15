@@ -1,3 +1,7 @@
+# [1.5.2+1]
+- Update readme and example
+- renamed `NavigationAction` to `NavigationCubeAction`.
+
 # [1.5.2]
 - BREAKING CHANGE: remove `CubesLocalization`
 

@@ -1,122 +1,51 @@
 # Cubes examples
 
-- [Counter](#counter)
+- [Counter (Using CubeWidget)](#counter-using-cubewidget)
+- [Counter (Using CubeConsumer)](#counter-using-cubeconsumer)
+- [Infinity scroll (Using CubeWidget)](#infinity-scroll-using-cubewidget)
 
 
-## Counter
-
-### Creating a Cube
-
-Cube is the class responsible for handling the business logic of your view.
-
-To create your Cube, just make a class that extends from `Cube` as follows:
+## Counter (Using CubeWidget)
 
 ```dart
+
+import 'package:cubes/cubes.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+
+  Cubes.registerFactory((i) => CounterCube());
+
+  runApp(MaterialApp(
+      title: 'Cube Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: CounterScreen(),
+    ),
+  );
+}
 
 class CounterCube extends Cube {
 
-}
+  final count = 0.obs;
 
-```
-
-In `Cubes`, you control elements in the view using `ObservableValues`. Creating such variables is easy:
-
-```dart
-
-class CounterCube extends Cube {
-    final count = 0.obs;
-    // final myList = <MyModel>[].obs;
-    // final viewModel = ViewModel().obs;
-}
-
-```
-
-You can modify these `ObservableValues` and then your view will react to these changes. For example:
-
-```dart
-
-class CounterCube extends Cube {
-    final count = 0.obs;
-
-    void increment() {
-      count.modify((value) => value + 1); // or count.update(newValue);
-    }
-}
-
-```
-
-It's a common practice to query an API or do something else once the View is ready.
-In `Cubes`, this is super simple to achieve. Just override the method `onReady` and your code will be called once the View is ready.
-
-```dart
-
-class CounterCube extends Cube {
-    final count = 0.obs;
-
-    void increment() {
-      count.modify((value) => value + 1); // or count.update(newValue);
-    }
-
-    @override
-    void onReady(Object? arguments) {
-      // do anything when view is ready
-    }
-}
-
-```
-
-The `arguments` property is taken from the view and, if ommited, it will be taken from `ModalRoute.of(context).settings.arguments;`
-
-### Creating a View
-
-Creating a widget that represents a View is very simple. Make a class that extends from `CubeWidget<CubeName>` passing the `Cube` name that this view will use. For example:
-
-```dart
-
-class CounterScreen extends CubeWidget<CounterCube> {
-
-}
-
-```
-
-Your IDE will force you to implement a mandatory method called `buildView`, just like this:
-
-```dart
-
-class CounterScreen extends CubeWidget<CounterCube> {
-
- @override
-  Widget buildView(BuildContext context, CounterCube cube) {
-    // TODO: implement buildView
-    throw UnimplementedError();
+  void increment() {
+    count.modify((value) => value + 1); // or count.update(newValue);
   }
 
 }
 
-```
-
-This method is similar to the 'build' method from `StatelessWidget` and `State`. There you will return your widget tree and will have access to `Cube` for listening your `ObservableValues`.
-
-The final result looks like this:
-
-
-```dart
-
 class CounterScreen extends CubeWidget<CounterCube> {
-
   @override
   Widget buildView(BuildContext context, CounterCube cube) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
+            Text('You have pushed the button this many times:'),
+            SizedBox(height: 20),
             cube.count.build<int>((value) {
               return Text(value.toString());
             }),
@@ -126,37 +55,14 @@ class CounterScreen extends CubeWidget<CounterCube> {
       floatingActionButton: FloatingActionButton(
         onPressed: cube.increment,
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
-
 }
 
 ```
 
-Note that listening to an `ObservableValue` is very simple:
-
-```dart
-
-   cube.count.build<int>((value) {
-     return Text(value.toString());
-   })
-
-```
-
-By listening to the `ObservableValue` `count`, every time this variable is changed the` View` is notified by running the following code again:
-
-```dart
-  return Text(value.toString());
-```
-
-This guarantees that only the necessary is rebuilt in the whole widget tree.
-
-### Registering Cubes and dependencies
-
-Did you notice that we never created an instance of `CounterCube`?
-This is because `Cubes` works with dependency injection. So for everything to work properly, we have to register the `Cube` used and its dependencies inside `main()`.
-
+## Counter (Using CubeConsumer)
 
 ```dart
 
@@ -164,26 +70,166 @@ import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  // Register your Cube
+
   Cubes.registerFactory((i) => CounterCube());
 
-  // Example: register a singleton Cube
-  // Cubes.registerSingleton(CounterCube());
-
-  // Example: register repositories or something else
-  // Cubes.registerFactory((i) => SingletonRepository(i.get());
-
-  // Example: get any dependency
-  // Cubes.get<MyDependency>();
-
   runApp(MaterialApp(
-      title: 'Cubes Demo',
+      title: 'Cube Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
-    ));
+      home: CounterScreen(),
+    ),
+  );
+}
+
+class CounterCube extends Cube {
+
+  final count = 0.obs;
+
+  void increment() {
+    count.modify((value) => value + 1); // or count.update(newValue);
+  }
+
+}
+
+class CounterScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CubeConsumer<CounterCube>(
+      builder: (BuildContext context, CounterCube cube) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('counter'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('You have pushed the button this many times:'),
+                cube.count.build<int>(
+                  (value) => Text(value.toString()),
+                ),
+              ],
+            ),
+          ),
+           floatingActionButton: FloatingActionButton(
+              onPressed: cube.increment,
+              child: Icon(Icons.add),
+            ),
+        );
+      },
+    );
+  }
+}
+
+```
+
+## Infinity scroll (Using CubeWidget)
+
+```dart
+
+import 'package:cubes/cubes.dart';
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+void main() {
+
+  Cubes.registerLazySingleton((i) => ListRepository());
+  Cubes.registerFactory((i) => InfinityScrollCube(i.get());
+
+  runApp(MaterialApp(
+      title: 'Cube Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: InfinityScrollScreen(),
+    ),
+  );
+}
+
+class ListRepository{
+
+   late Random _random;
+
+   ListRepository(){
+        _random = Random();
+   }
+
+   Future<List<String>> getList() async{
+        List<String> list = List.generate(30, (index) {
+          return 'Item ${random.nextInt(1000)}';
+        });
+        await Future.delayed(const Duration(seconds: 2));
+        return Future.value(list);
+   }
+}
+
+class InfinityScrollCube extends Cube {
+  final list = <String>[].obs;
+  final loading = false.obs;
+
+  final ListRepository _repository;
+
+  InfinityScrollCube(this._repository);
+
+  @override
+  void onReady(Object? arguments) {
+    load();
+  }
+
+  void load({bool isMore = false}) async {
+    if (loading.value) return;
+    loading.value = true;
+    List<String> newList = await _repository.getList();
+    if (isMore) {
+      list.addAll(newList);
+    } else {
+      list.update(newList);
+    }
+    loading.value = false;
+  }
+}
+
+class InfinityScrollScreen extends CubeWidget<InfinityScrollCube> {
+  const InfinityScrollScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget buildView(BuildContext context, InfinityScrollCube cube) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('InfinityScroll'),
+      ),
+      body: Stack(
+          children: [
+            cube.list.build<List<String>>((value) {
+              return ListView.builder(
+                itemCount: value.length,
+                itemBuilder: (context, index) {
+                  if (index >= value.length - 3) {
+                    cube.load(isMore: true);
+                  }
+                  return Card(
+                    margin: const EdgeInsets.all(10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value[index]),
+                    ),
+                  );
+                },
+              );
+            }),
+            cube.loading.build<bool>((value) {
+              if (value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return const SizedBox.shrink();
+              }
+            })
+          ]
+      ),
+    );
+  }
 }
 
 ```

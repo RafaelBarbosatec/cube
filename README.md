@@ -19,8 +19,11 @@ Manage the state of your Flutter application in a simple and objective way, rebu
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
 
 
+## Example
 
-## Counter Example
+All [Examples](https://pub.dev/packages/cubes/example)
+
+### Counter example
 
 ```dart
 
@@ -46,12 +49,15 @@ class CounterCube extends Cube {
   final count = 0.obs;
 
   void increment() {
-    count.modify((value) => value + 1); // or count.update(newValue);
+    count.modify((value) => value + 1); // or count.update(newValue); or count.value = newValue;
   }
   
 }
 
 class CounterScreen extends CubeWidget<CounterCube> {
+
+  const CounterScreen({Key? key}) : super(key: key);
+
   @override
   Widget buildView(BuildContext context, CounterCube cube) {
     return Scaffold(
@@ -77,7 +83,7 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ```
 
-## Usage
+## Explaining Counter example
 
 ### Creating a Cube
 
@@ -158,6 +164,8 @@ Your IDE will force you to implement a mandatory method called `buildView`, just
 ```dart
 
 class CounterScreen extends CubeWidget<CounterCube> {
+
+ const CounterScreen({Key? key}) : super(key: key);
 
  @override
   Widget buildView(BuildContext context, CounterCube cube) {
@@ -374,9 +382,6 @@ You can use this feature to your own navigation system. But you don't have to do
          // - navToNamed
          // - navToNamedAndRemoveUntil
          // - navToNamedReplacement
-         // - navTo
-         // - navToReplacement
-         // - navToAndRemoveUntil
          // - navPop
        }
     }

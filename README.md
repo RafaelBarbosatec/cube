@@ -55,6 +55,9 @@ class CounterCube extends Cube {
 }
 
 class CounterScreen extends CubeWidget<CounterCube> {
+
+  const CounterScreen({Key? key}) : super(key: key);
+
   @override
   Widget buildView(BuildContext context, CounterCube cube) {
     return Scaffold(
@@ -161,6 +164,8 @@ Your IDE will force you to implement a mandatory method called `buildView`, just
 ```dart
 
 class CounterScreen extends CubeWidget<CounterCube> {
+
+ const CounterScreen({Key? key}) : super(key: key);
 
  @override
   Widget buildView(BuildContext context, CounterCube cube) {

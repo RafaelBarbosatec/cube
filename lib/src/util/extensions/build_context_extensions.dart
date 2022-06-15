@@ -99,8 +99,10 @@ extension BuildContextExtensions on BuildContext {
 
   ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(this);
 
-  void showSnackBar(SnackBar snackBar) {
-    scaffoldMessenger.showSnackBar(snackBar);
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
+    SnackBar snackBar,
+  ) {
+    return scaffoldMessenger.showSnackBar(snackBar);
   }
 
   void clearSnackBars() {

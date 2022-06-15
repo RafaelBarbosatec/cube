@@ -60,7 +60,7 @@ class _CubeConsumerState<C extends Cube> extends State<CubeConsumer> {
   }
 
   void _onAction(C cube, CubeAction data) {
-    if (data is NavigationAction) {
+    if (data is NavigationCubeAction) {
       data.handle(context);
     }
     postFrame(() => cubeWidget.onAction?.call(cube, data));

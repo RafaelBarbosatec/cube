@@ -24,7 +24,7 @@ enum NavigationType {
   pop,
 }
 
-class NavigationAction extends CubeAction {
+class NavigationCubeAction extends CubeAction {
   final String? routeName;
   final WidgetBuilder? builder;
   final Object? arguments;
@@ -35,7 +35,7 @@ class NavigationAction extends CubeAction {
   final Object? result;
   final ValueChanged<Object?>? onResult;
 
-  NavigationAction({
+  NavigationCubeAction({
     this.type = NavigationType.push,
     this.routeName,
     this.builder,
@@ -47,7 +47,7 @@ class NavigationAction extends CubeAction {
     this.result,
   });
 
-  NavigationAction.push({
+  NavigationCubeAction.push({
     required this.builder,
     this.settings,
     this.onResult,
@@ -58,7 +58,7 @@ class NavigationAction extends CubeAction {
         result = null,
         predicate = null;
 
-  NavigationAction.pushReplacement({
+  NavigationCubeAction.pushReplacement({
     required this.builder,
     this.settings,
     this.onResult,
@@ -69,7 +69,7 @@ class NavigationAction extends CubeAction {
         result = null,
         predicate = null;
 
-  NavigationAction.pushAndRemoveUntil({
+  NavigationCubeAction.pushAndRemoveUntil({
     required this.builder,
     required this.predicate,
     this.settings,
@@ -80,7 +80,7 @@ class NavigationAction extends CubeAction {
         result = null,
         arguments = null;
 
-  NavigationAction.pop({
+  NavigationCubeAction.pop({
     this.result,
   })  : type = NavigationType.pop,
         routeName = null,
@@ -91,7 +91,7 @@ class NavigationAction extends CubeAction {
         builder = null,
         arguments = null;
 
-  NavigationAction.pushNamed({
+  NavigationCubeAction.pushNamed({
     required this.routeName,
     this.arguments,
     this.onResult,
@@ -102,7 +102,7 @@ class NavigationAction extends CubeAction {
         builder = null,
         result = null;
 
-  NavigationAction.pushNamedAndRemoveUntil({
+  NavigationCubeAction.pushNamedAndRemoveUntil({
     required this.routeName,
     required this.predicate,
     this.arguments,
@@ -113,7 +113,7 @@ class NavigationAction extends CubeAction {
         builder = null,
         result = null;
 
-  NavigationAction.pushReplacementNamed({
+  NavigationCubeAction.pushReplacementNamed({
     required this.routeName,
     this.arguments,
     this.onResult,

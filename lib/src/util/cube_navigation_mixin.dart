@@ -21,7 +21,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.pushNamed(
+      NavigationCubeAction.pushNamed(
         routeName: routeName,
         arguments: arguments,
         onResult: onResult,
@@ -36,7 +36,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.pushNamedAndRemoveUntil(
+      NavigationCubeAction.pushNamedAndRemoveUntil(
         routeName: routeName,
         arguments: arguments,
         predicate: predicate,
@@ -51,7 +51,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.pushReplacementNamed(
+      NavigationCubeAction.pushReplacementNamed(
         routeName: routeName,
         arguments: arguments,
         onResult: onResult,
@@ -66,7 +66,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.push(
+      NavigationCubeAction.push(
         builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
@@ -82,7 +82,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.pushReplacement(
+      NavigationCubeAction.pushReplacement(
         builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
@@ -99,7 +99,7 @@ mixin CubeNavigation on Cube {
     ValueChanged<Object?>? onResult,
   }) {
     this.sendAction(
-      NavigationAction.pushAndRemoveUntil(
+      NavigationCubeAction.pushAndRemoveUntil(
         builder: builder,
         fullscreenDialog: fullscreenDialog,
         settings: settings,
@@ -111,7 +111,7 @@ mixin CubeNavigation on Cube {
 
   void navPop<T>([T? result]) {
     this.sendAction(
-      NavigationAction.pop(result: result),
+      NavigationCubeAction.pop(result: result),
     );
   }
 }

@@ -20,7 +20,7 @@ To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](http
 
 
 
-## Counter Example
+## Counter example
 
 ```dart
 
@@ -77,7 +77,7 @@ class CounterScreen extends CubeWidget<CounterCube> {
 
 ```
 
-## Usage
+## Explaining Counter example
 
 ### Creating a Cube
 

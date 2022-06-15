@@ -1,5 +1,6 @@
 import 'package:cubes/cubes.dart';
 import 'package:examplecube/todo/todo_cube.dart';
+import 'package:examplecube/todo/todo_register.dart';
 import 'package:flutter/material.dart';
 
 class TodoList extends CubeWidget<TodoCube> {
@@ -27,7 +28,7 @@ class TodoList extends CubeWidget<TodoCube> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: cube.navToRegister,
+        onPressed: () => _navToRegister(context),
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), //
@@ -57,6 +58,13 @@ class TodoList extends CubeWidget<TodoCube> {
           ],
         ),
       ),
+    );
+  }
+
+  void _navToRegister(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TodoRegister()),
     );
   }
 }

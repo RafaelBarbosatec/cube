@@ -382,9 +382,6 @@ You can use this feature to your own navigation system. But you don't have to do
          // - navToNamed
          // - navToNamedAndRemoveUntil
          // - navToNamedReplacement
-         // - navTo
-         // - navToReplacement
-         // - navToAndRemoveUntil
          // - navPop
        }
     }

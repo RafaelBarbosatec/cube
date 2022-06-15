@@ -59,56 +59,6 @@ mixin CubeNavigation on Cube {
     );
   }
 
-  void navTo(
-    WidgetBuilder builder, {
-    RouteSettings? settings,
-    bool fullscreenDialog = false,
-    ValueChanged<Object?>? onResult,
-  }) {
-    this.sendAction(
-      NavigationCubeAction.push(
-        builder: builder,
-        fullscreenDialog: fullscreenDialog,
-        settings: settings,
-        onResult: onResult,
-      ),
-    );
-  }
-
-  void navToReplacement(
-    WidgetBuilder builder, {
-    RouteSettings? settings,
-    bool fullscreenDialog = false,
-    ValueChanged<Object?>? onResult,
-  }) {
-    this.sendAction(
-      NavigationCubeAction.pushReplacement(
-        builder: builder,
-        fullscreenDialog: fullscreenDialog,
-        settings: settings,
-        onResult: onResult,
-      ),
-    );
-  }
-
-  void navToAndRemoveUntil(
-    WidgetBuilder builder,
-    RoutePredicate predicate, {
-    RouteSettings? settings,
-    bool fullscreenDialog = false,
-    ValueChanged<Object?>? onResult,
-  }) {
-    this.sendAction(
-      NavigationCubeAction.pushAndRemoveUntil(
-        builder: builder,
-        fullscreenDialog: fullscreenDialog,
-        settings: settings,
-        predicate: predicate,
-        onResult: onResult,
-      ),
-    );
-  }
-
   void navPop<T>([T? result]) {
     this.sendAction(
       NavigationCubeAction.pop(result: result),

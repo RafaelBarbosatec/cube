@@ -18,7 +18,7 @@ Manage the state of your Flutter application in a simple and objective way, rebu
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
 
-
+## [Examples](https://pub.dev/packages/cubes/example)
 
 ## Counter example
 

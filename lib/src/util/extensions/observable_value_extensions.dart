@@ -6,7 +6,7 @@ import '../../widgets/observer.dart';
 /// Extension to facilitate the use of CObserver
 extension ObservableValueExtensions on ObservableValue {
   /// Use to create CObserver by ObservableValue
-  CObserver build<T>(
+  CObserver<T> build<T>(
     ObserverBuilder<T> build, {
     bool animate = false,
     WhenBuild<T>? when,

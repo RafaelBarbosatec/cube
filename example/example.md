@@ -184,32 +184,34 @@ class InfinityScrollScreen extends CubeWidget<InfinityScrollCube> {
       appBar: AppBar(
         title: const Text('InfinityScroll'),
       ),
-      body: Stack(children: [
-        cube.list.build<List<String>>((value) {
-          return ListView.builder(
-            itemCount: value.length,
-            itemBuilder: (context, index) {
-              if (index >= value.length - 3) {
-                cube.load(isMore: true);
-              }
-              return Card(
-                margin: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(value[index]),
-                ),
+      body: Stack(
+          children: [
+            cube.list.build<List<String>>((value) {
+              return ListView.builder(
+                itemCount: value.length,
+                itemBuilder: (context, index) {
+                  if (index >= value.length - 3) {
+                    cube.load(isMore: true);
+                  }
+                  return Card(
+                    margin: const EdgeInsets.all(10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value[index]),
+                    ),
+                  );
+                },
               );
-            },
-          );
-        }),
-        cube.loading.build<bool>((value) {
-          if (value) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return const SizedBox.shrink();
-          }
-        })
-      ]),
+            }),
+            cube.loading.build<bool>((value) {
+              if (value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return const SizedBox.shrink();
+              }
+            })
+          ]
+      ),
     );
   }
 }

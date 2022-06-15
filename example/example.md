@@ -135,7 +135,8 @@ import 'dart:math';
 
 void main() {
 
-  Cubes.registerFactory((i) => InfinityScrollCube());
+  Cubes.registerLazySingleton((i) => ListRepository());
+  Cubes.registerFactory((i) => InfinityScrollCube(i.get());
 
   runApp(MaterialApp(
       title: 'Cube Demo',
@@ -147,9 +148,30 @@ void main() {
   );
 }
 
+class ListRepository{
+
+   late Random _random;
+
+   ListRepository(){
+        _random = Random();
+   }
+
+   Future<List<String>> getList() async{
+        List<String> list = List.generate(30, (index) {
+          return 'Item ${random.nextInt(1000)}';
+        });
+        await Future.delayed(const Duration(seconds: 2));
+        return Future.value(list);
+   }
+}
+
 class InfinityScrollCube extends Cube {
   final list = <String>[].obs;
   final loading = false.obs;
+
+  final ListRepository _repository;
+
+  InfinityScrollCube(this._repository);
 
   @override
   void onReady(Object? arguments) {
@@ -157,15 +179,9 @@ class InfinityScrollCube extends Cube {
   }
 
   void load({bool isMore = false}) async {
-    if (loading.value) {
-      return;
-    }
+    if (loading.value) return;
     loading.value = true;
-    final random = Random();
-    List<String> newList = List.generate(30, (index) {
-      return 'Item ${random.nextInt(1000)}';
-    });
-    await Future.delayed(const Duration(seconds: 2));
+    List<String> newList = await _repository.getList();
     if (isMore) {
       list.addAll(newList);
     } else {

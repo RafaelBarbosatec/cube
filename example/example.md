@@ -158,7 +158,7 @@ class ListRepository{
 
    Future<List<String>> getList() async{
         List<String> list = List.generate(30, (index) {
-          return 'Item ${random.nextInt(1000)}';
+          return 'Item ${_random.nextInt(1000)}';
         });
         await Future.delayed(const Duration(seconds: 2));
         return Future.value(list);

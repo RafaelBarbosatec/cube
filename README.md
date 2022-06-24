@@ -324,6 +324,11 @@ To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you
   class EventAction extends CubeAction {
     String eventName;
     EventAction(this.eventName);
+
+    @override
+    void execute(BuildContext context){
+     // You can do anything when this action to arrive in the view. Per example show Dialog, show snackBar, etc
+    }
   }
 
 ```
@@ -343,7 +348,7 @@ class MyCube extends Cube {
   
 ```
 
-Finally, you will receive this action in the `View` through the method:
+You can listen this action in the `View` through the method `onAction`.(If you implemented `execute` method is not necessary do this)
 
 ```dart
 

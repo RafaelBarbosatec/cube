@@ -373,6 +373,8 @@ class MyScreen extends CubeWidget<MyCube> {
 
 This approach will be useful for complex animations among other features that the `View` may need to perform.
 
+Example that create navigation system using `CubeActions` : [navigator_action](https://github.com/RafaelBarbosatec/cube/blob/master/lib/src/actions/navigator_action.dart)
+
 ### Navigation
 
 You can use this feature to your own navigation system. But you don't have to do anything manually, we've already done that for you. Just use the `CubeNavigation` mixin.

@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class ActionExample extends CubeAction {
-  @override
-  void execute(BuildContext context) {}
-}
+class ActionExample extends CubeAction {}
 
 class CubeExample extends Cube {
   void sendAction(CubeAction action) {

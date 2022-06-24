@@ -17,5 +17,6 @@ export 'navigator_action.dart';
 
 abstract class CubeAction {
   /// When the action is sent he will are executed per this method
-  void execute(BuildContext context);
+  // ignore: no-empty-block
+  void execute(BuildContext context) {}
 }

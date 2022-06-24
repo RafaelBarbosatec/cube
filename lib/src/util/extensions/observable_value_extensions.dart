@@ -4,10 +4,11 @@ import '../../../cubes.dart';
 import '../../widgets/observer.dart';
 
 /// Extension to facilitate the use of CObserver
+
 extension ObservableValueExtensions on ObservableValue {
   /// Use to create CObserver by ObservableValue
   CObserver<T> build<T>(
-    ObserverBuilder<T> build, {
+    ObserverBuilder<T> builder, {
     bool animate = false,
     WhenBuild<T>? when,
     AnimatedSwitcherTransitionBuilder transitionBuilder =
@@ -20,7 +21,7 @@ extension ObservableValueExtensions on ObservableValue {
       transitionBuilder: transitionBuilder,
       duration: duration,
       when: when,
-      builder: build,
+      builder: builder,
     );
   }
 }

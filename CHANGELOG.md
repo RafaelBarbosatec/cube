@@ -1,4 +1,4 @@
-# [next]
+# [1.5.3]
 - remove `flutter_localizations`
 - Improvements in `CubeAction`. Now you can implement `void execute(BuildContext context)` method to do anything when this sent from cube.
 

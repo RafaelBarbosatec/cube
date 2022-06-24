@@ -5,6 +5,7 @@ import '../util/state_mixin.dart';
 
 typedef ObserverBuilder<T> = Widget? Function(T value);
 typedef WhenBuild<T> = bool Function(T last, T next);
+typedef WithoutContextWidgetBuilder = Widget Function();
 
 /// Widget responsible for building another widget
 /// through ObservableValue updates
@@ -13,6 +14,7 @@ class CObserver<T> extends StatefulWidget {
     Key? key,
     required this.observable,
     required this.builder,
+    this.emptyBuilder,
     this.animate = false,
     this.when,
     this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
@@ -21,6 +23,7 @@ class CObserver<T> extends StatefulWidget {
 
   final ObservableValue<T> observable;
   final ObserverBuilder<T> builder;
+  final WithoutContextWidgetBuilder? emptyBuilder;
   final WhenBuild<T>? when;
   final bool animate;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
@@ -57,7 +60,8 @@ class _CObserverState<T> extends State<CObserver> {
   }
 
   Widget _buildChild() {
-    return widgetObserver.builder(widget.observable.value) ?? SizedBox.shrink();
+    return widgetObserver.builder(widget.observable.value) ??
+        (widgetObserver.emptyBuilder?.call() ?? SizedBox.shrink());
   }
 
   void _listener() {

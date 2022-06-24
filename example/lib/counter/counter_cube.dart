@@ -1,4 +1,5 @@
 import 'package:cubes/cubes.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class MsgAction extends CubeAction {
   final String? text;
@@ -8,6 +9,11 @@ class MsgAction extends CubeAction {
   @override
   String toString() {
     return 'MsgAction{text: $text}';
+  }
+
+  @override
+  void execute(BuildContext context) {
+    print(this);
   }
 }
 

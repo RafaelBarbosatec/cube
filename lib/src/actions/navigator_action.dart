@@ -82,7 +82,8 @@ class NavigationCubeAction extends CubeAction {
         fullscreenDialog = false,
         result = null;
 
-  void handle(BuildContext context) {
+  @override
+  void execute(BuildContext context) {
     switch (type) {
       case NavigationType.pushNamed:
         context

@@ -311,7 +311,7 @@ You can listen to observables in two ways: using the extension `build` as mentio
 
 ## Provider
 
-To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you can use `Cubes.of<MyCube>(context)`;
+To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget` above of the widget tree, you can use Cubes.of<MyCube>(context);
 
 ## Methods: Inner Cube
 

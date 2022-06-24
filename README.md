@@ -548,19 +548,66 @@ By default, `Cubes` uses [get_it](https://pub.dev/packages/get_it) to manage dep
 
   class MyInjector extends CInjector {
    @override
-    T getDependency<T>({String dependencyName}) {
+    void registerLazySingleton<T extends Object>(
+        CDependencyInjectorBuilder<T> builder, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
 
     @override
-    void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+    void registerFactory<T extends Object>(
+        CDependencyInjectorBuilder<T> builder, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
 
     @override
-    void reset() {
+    void registerSingleton<T extends Object>(
+        T value, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
+
+
+    @override
+    void registerFactoryAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    void registerSingletonAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    void registerSingletonAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    T get<T extends Object>({String? dependencyName}){
+      // your implementation
+    }
+
+    Future<T> getAsync<T extends Object>({String? dependencyName}){
+      // your implementation
+    }
+
+     Future<void> reset({bool dispose = false}){
+       // your implementation
+     }
   }
 
   Cubes().injector = MyInjector();

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-export 'navigator_action.dart';
+import 'package:flutter/widgets.dart';
 
 ///
 /// Created by

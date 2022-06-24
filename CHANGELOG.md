@@ -1,3 +1,7 @@
+# [next]
+- remove `flutter_localizations`
+- Improvements in `CubeAction`. Now you can implement `void execute(BuildContext context)` method to do anything when this sent from cube.
+
 # [1.5.2+1]
 - Update readme and example
 - renamed `NavigationAction` to `NavigationCubeAction`.

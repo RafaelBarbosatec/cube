@@ -119,7 +119,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.5.2"
+    version: "1.5.2+1"
   dart_style:
     dependency: transitive
     description:
@@ -150,11 +150,6 @@ packages:
     version: "1.0.0"
   flutter:
     dependency: "direct main"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
-  flutter_localizations:
-    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -191,13 +186,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.17.0"
   logging:
     dependency: transitive
     description:

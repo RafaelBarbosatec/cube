@@ -16,5 +16,5 @@ import 'package:flutter/widgets.dart';
 abstract class CubeAction {
   /// When the action is sent he will are executed per this method
   // ignore: no-empty-block
-  void execute(BuildContext context) {}
+  void onExecute(BuildContext context) {}
 }

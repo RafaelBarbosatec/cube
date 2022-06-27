@@ -12,7 +12,7 @@ class MsgAction extends CubeAction {
   }
 
   @override
-  void execute(BuildContext context) {
+  void onExecute(BuildContext context) {
     print(this);
   }
 }

@@ -83,7 +83,7 @@ class NavigationCubeAction extends CubeAction {
         result = null;
 
   @override
-  void execute(BuildContext context) {
+  void onExecute(BuildContext context) {
     switch (type) {
       case NavigationType.pushNamed:
         context

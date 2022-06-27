@@ -13,7 +13,7 @@ Simple State Manager with dependency injection and no code generation required.
 
 Manage the state of your Flutter application in a simple and objective way, rebuilding the widget tree only where necessary!
 
-`Cubes` makes use of [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) since it is a feature already available in Flutter and for its simplicity. `Cubes` doesn't rely on [RxDart](https://pub.dev/packages/rxdart).
+`Cubes` makes use of [ChangeNotifier](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html) since it is a feature already available in Flutter and for its simplicity.
 
 ## Install
 To use this plugin, add `cubes` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/cubes/install).
@@ -311,7 +311,7 @@ You can listen to observables in two ways: using the extension `build` as mentio
 
 ## Provider
 
-To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you can use `Cubes.of<MyCube>(context)`;
+To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget` above of the widget tree, you can use Cubes.of<MyCube>(context);
 
 ## Methods: Inner Cube
 
@@ -326,7 +326,7 @@ To get the reference of a specific Cube from `CubeConsumer` or `CubeWidget`, you
     EventAction(this.eventName);
 
     @override
-    void execute(BuildContext context){
+    void onExecute(BuildContext context){
      // You can do anything when this action to arrive in the view. Per example show Dialog, show snackBar, etc
     }
   }
@@ -348,7 +348,7 @@ class MyCube extends Cube {
   
 ```
 
-You can listen this action in the `View` through the method `onAction`.(If you implemented `execute` method is not necessary do this)
+You can listen this action in the `View` through the method `onAction`.(If you implemented `onExecute` method is not necessary do this)
 
 ```dart
 
@@ -548,19 +548,66 @@ By default, `Cubes` uses [get_it](https://pub.dev/packages/get_it) to manage dep
 
   class MyInjector extends CInjector {
    @override
-    T getDependency<T>({String dependencyName}) {
+    void registerLazySingleton<T extends Object>(
+        CDependencyInjectorBuilder<T> builder, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
 
     @override
-    void registerDependency<T>(DependencyInjectorBuilder<T> builder, {String dependencyName, bool isSingleton = false}) {
+    void registerFactory<T extends Object>(
+        CDependencyInjectorBuilder<T> builder, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
 
     @override
-    void reset() {
+    void registerSingleton<T extends Object>(
+        T value, {
+        String? dependencyName,
+      }) {
       // your implementation
     }
+
+
+    @override
+    void registerFactoryAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    void registerSingletonAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    void registerSingletonAsync<T extends Object>(
+        CDependencyInjectorAsyncBuilder<T> builder, {
+        String? dependencyName,
+      }) {
+      // your implementation
+    }
+
+    @override
+    T get<T extends Object>({String? dependencyName}){
+      // your implementation
+    }
+
+    Future<T> getAsync<T extends Object>({String? dependencyName}){
+      // your implementation
+    }
+
+     Future<void> reset({bool dispose = false}){
+       // your implementation
+     }
   }
 
   Cubes().injector = MyInjector();

@@ -1,4 +1,4 @@
-# [next]
+# [1.5.4]
 - renamed `execute` to `onExecute` in `CubeAction`
 
 # [1.5.3]

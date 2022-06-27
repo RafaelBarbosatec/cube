@@ -1,4 +1,4 @@
-import 'package:cubes/src/actions/navigator_action.dart';
+import 'package:cubes/src/actions/navigation_cube_action.dart';
 import 'package:cubes/src/cube.dart';
 import 'package:flutter/widgets.dart';
 

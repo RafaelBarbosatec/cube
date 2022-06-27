@@ -1,6 +1,3 @@
-/// Enum that represents types of the register
-enum DependencyRegisterType { factory, singleton, lazySingleton }
-
 /// Function to receive dependency to inject
 typedef CDependencyInjectorBuilder<T> = T Function(CInjector injector);
 

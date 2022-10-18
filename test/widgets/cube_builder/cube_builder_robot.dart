@@ -1,7 +1,7 @@
 import 'package:cubes/cubes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 class ActionExample extends CubeAction {}
 
@@ -25,6 +25,11 @@ class CubeBuilderRobot {
 
   void _setupInjections({bool useMock = true}) {
     _cubeMock = useMock ? MockCubeTest() : CubeExample();
+    if (useMock) {
+      when(() => _cubeMock.onReady(any())).thenAnswer((realInvocation) {
+        return Future.value();
+      });
+    }
     Cubes.resetInjector();
     Cubes.registerSingleton(_cubeMock);
   }
@@ -56,7 +61,7 @@ class CubeBuilderRobot {
 
   Future assetCallOnReadyInCube() async {
     await tester.pumpAndSettle();
-    verify(_cubeMock.onReady(_argumentTest)).called(1);
+    verify(() => _cubeMock.onReady(_argumentTest)).called(1);
   }
 
   Future assetActionSentByCube() async {

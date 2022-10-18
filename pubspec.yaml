@@ -1,6 +1,6 @@
 name: cubes
 description: Simple State Manager (Focusing on simplicity and rebuilding only the necessary)
-version: 1.5.4
+version: 1.5.5
 homepage: https://github.com/RafaelBarbosatec/cube
 
 environment:
@@ -14,7 +14,7 @@ dependencies:
 
 
 dev_dependencies:
-  mockito: any
+  mocktail: any
   dart_code_metrics: ^4.16.0
   flutter_test:
     sdk: flutter

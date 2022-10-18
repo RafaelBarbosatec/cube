@@ -15,9 +15,9 @@ class PokemonCube extends Cube {
   final snackBarController = CFeedBackControl<String>().obs;
 
   @override
-  FutureOr onReady(Object? arguments) {
+  Future<void> onReady(Object? arguments) {
     fetchPokemonList();
-    super.onReady(arguments);
+    return super.onReady(arguments);
   }
 
   void fetchPokemonList({bool isMore = false}) {

@@ -62,7 +62,7 @@ class CubeWidgetRobot {
 
   Future assetCallOnReadyInCube() async {
     await tester.pumpAndSettle();
-    verify(()=>_cubeMock.onReady(_argumentTest)).called(1);
+    verify(() => _cubeMock.onReady(_argumentTest)).called(1);
   }
 
   Future assetActionSentByCube() async {

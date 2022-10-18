@@ -47,7 +47,7 @@ class _PokemonItemWidgetState extends State<PokemonItemWidget>
   }
 
   ListTile _getListTile() {
-    return new ListTile(
+    return ListTile(
       contentPadding: const EdgeInsets.all(10),
       leading: _getLeadingWidget(widget.item!.thumbnailImage!),
       title: _getTittleWidget(widget.item!.name!),
